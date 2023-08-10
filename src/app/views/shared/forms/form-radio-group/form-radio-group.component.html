@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+	<div class="my-3">
+		<div class="row">
+			<label class="col-4 pl-4">{{label}}: </label>
+			<mat-radio-group aria-labelledby="example-radio-group-label"
+							 class="example-radio-group col-8"
+							 formControlName="{{form_control_name}}">
+				<div class="row ">
+					<div class="col-md-6 p-0">
+						<mat-radio-button class=" example-radio-button" [checked]="default" value="1">
+							&nbsp;{{ first_choice }}
+						</mat-radio-button>
+					</div>
+					<div class="col-md-6 p-0">
+						<mat-radio-button class="example-radio-button" value="0">
+							&nbsp;{{ second_choice }}
+						</mat-radio-button>
+					</div>
+				</div>
+			</mat-radio-group>
+		</div>
+		<kt-form-error *ngIf="validation_type"
+					   [form]="form"
+					   [controlName]="form_control_name"
+					   [validationType]="validation_type"
+					   [controlText]="label"
+		></kt-form-error>
+	</div>
+</div>

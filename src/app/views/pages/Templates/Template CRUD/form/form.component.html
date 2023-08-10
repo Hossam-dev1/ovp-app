@@ -1,0 +1,38 @@
+<div class="form-div">
+
+	<form class="p-3" [formGroup]="form" autocomplete="off">
+
+		<kt-form-textarea
+			[form]="form"
+			[label]="'COMMON.content' | translate"
+			[form_control_name]="'content'"
+			[validation_type]="'required'">
+		</kt-form-textarea>
+
+		<kt-form-input
+			[form]="form"
+			[label]="'COMMON.content' | translate"
+			[form_control_name]="'content'"
+			[validation_type]="'required'">
+		</kt-form-input>
+
+		<kt-form-select
+			[form]="form"
+			[label]="'COMMON.content' | translate"
+			[form_control_name]="'content'"
+			[list]="[]"
+			[validation_type]="'required'">
+		</kt-form-select>
+
+		<kt-form-radio-group
+			[form]="form"
+			[label]="'COMMON.activation' | translate"
+			[form_control_name]="'is_active'"
+			[first_choice]="'COMMON.active' | translate"
+			[second_choice]="'COMMON.in_active' | translate"
+			[validation_type]="'required'">
+		</kt-form-radio-group>
+
+	</form>
+
+</div>

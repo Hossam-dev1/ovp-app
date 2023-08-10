@@ -1,0 +1,29 @@
+<kt-portlet-header [title]="'COMMON.Add_Button' | translate : {name : content_name}"
+				   [icon]="'flaticon-add'"></kt-portlet-header>
+<!--Loader-->
+<div class="example-container m-auto" *ngIf="isLoadingResults">
+	<div class="example-loading-shade mt-5 mb-5">
+		<mat-spinner diameter="50" *ngIf="isLoadingResults"></mat-spinner>
+	</div>
+</div>
+
+<!-- Form-->
+<div class="example-container">
+	<kt-auth-notice></kt-auth-notice>
+	<div [hidden]="isLoadingResults" class="my-4">
+
+		<kt-form [form]="form"></kt-form>
+
+		<div class="col-12 text-center px-3">
+			<button type="submit" class="btn btn-success mx-3" (click)="submitForm()">
+				{{ 'COMMON.Add_Button' | translate : {name : content_name} }}
+			</button>
+			<button class="btn btn-outline-info mx-3" (click)="clearForm()">
+				{{ 'COMMON.clear_form' | translate }}
+			</button>
+		</div>
+	</div>
+
+</div>
+
+

@@ -1,0 +1,57 @@
+<!-- <div [formGroup]="form">
+	<div class="my-3">
+		<div aria-label="input">
+			<mat-form-field class="w-100">
+				<mat-label>{{label}}</mat-label>
+				<label class="w-100">
+					<input matInput [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
+						placeholder="{{label}}">
+				</label>
+			</mat-form-field>
+		</div>
+		<kt-form-error *ngIf="validation_type" [form]="form" [controlName]="form_control_name"
+			[validationType]="validation_type" [controlText]="label"></kt-form-error>
+	</div>
+</div> -->
+
+
+<div [formGroup]="form">
+	<label class="font-weight-bold" *ngIf="title">
+		{{ title | titlecase }}
+		<span *ngIf="optional" class="optional">
+			({{ 'COMMON.optional' | translate }})
+		</span>
+		<i *ngIf="tooltip" class="fas fa-info-circle" [matTooltip]="tooltip"
+			[matTooltipPosition]="lang == 'en' ?'right':'left'"></i>
+	</label>
+	<div class="px-0" *ngIf="form_group">
+		<div [formGroupName]="form_group">
+			<mat-form-field class="w-100">
+				<mat-label>{{label}}</mat-label>
+				<label class="w-100">
+					<input matInput [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
+						placeholder="{{label}}">
+				</label>
+			</mat-form-field>
+
+			<kt-form-error *ngIf="validation_type" [form]="form" [controlName]="form_control_name"
+				[validationType]="validation_type" [controlText]="label">
+			</kt-form-error>
+		</div>
+	</div>
+
+
+	<div class="px-0" *ngIf="!form_group">
+			<mat-form-field class="w-100">
+				<mat-label>{{label}}</mat-label>
+				<label class="w-100">
+					<input matInput [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
+						placeholder="{{label}}">
+				</label>
+			</mat-form-field>
+
+			<kt-form-error *ngIf="validation_type" [form]="form" [controlName]="form_control_name"
+				[validationType]="validation_type" [controlText]="label">
+			</kt-form-error>
+	</div>
+</div>

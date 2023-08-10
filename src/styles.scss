@@ -1,0 +1,259 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~highlight.js/styles/googlecode.css";
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+
+// header base skins
+.kt-header-base-light {
+	@import "sass/global/layout/header/skins/base/light.scss";
+}
+
+.kt-header-base-dark {
+	@import "sass/global/layout/header/skins/base/dark.scss";
+}
+
+// header menu skins
+.kt-header-menu-light {
+	@import "sass/global/layout/header/skins/menu/light.scss";
+}
+
+.kt-header-menu-dark {
+	@import "sass/global/layout/header/skins/menu/dark.scss";
+}
+
+// brand skins
+.kt-brand-dark {
+	@import "sass/global/layout/brand/skins/dark.scss";
+}
+
+.kt-brand-light {
+	@import "sass/global/layout/brand/skins/light.scss";
+}
+
+// aside skins
+.kt-aside-dark {
+	@import "sass/global/layout/aside/skins/dark.scss";
+}
+
+.kt-aside-light {
+	@import "sass/global/layout/aside/skins/light.scss";
+}
+
+// hide bootstrap dropdown arrow globally
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.mat-table__wrapper--dashboard .mat-table {
+	min-width: 600px !important;
+	width: 100% !important;
+}
+
+.position-static {
+	position: static;
+}
+
+
+kt-error-page {
+	height: 100%;
+}
+
+table, th, td, tr, .mat-sort-header-container {
+	justify-content: center;
+}
+.no-data {
+	text-align: center;
+	padding: 4rem 0;
+	h4 {
+		font-weight: 400;
+		font-size: 2rem;
+		color: rgba(0, 0, 0, .54);
+	}
+}
+@media (max-width: 1024px) {
+	#kt_wrapper {
+		padding: 0 !important;
+	}
+}
+
+.img-thumbnail {
+	width: 100px !important;
+	height: 70px !important;
+	object-fit: contain !important;
+	margin: 5px auto;
+}
+
+.flaticon2-check-mark {
+	color: #3b940e
+}
+
+.flaticon2-cancel-music {
+	color: #f00
+}
+
+.btn-circle {
+	width: 40px !important;
+	height: 40px !important;
+	line-height: 40px !important;
+	text-align: center !important;
+	padding: 0 !important;
+	border-radius: 50% !important;
+}
+
+.btn-circle i {
+	position: relative !important;
+	top: -1px !important;
+	padding: 0 !important;
+}
+
+.dropdown-menu {
+	min-width: 4em !important;
+}
+
+@media (max-width: 1024px) {
+	.kt-grid > .kt-grid__item {
+	//	height: 100% !important;
+	}
+	.kt-aside .kt-aside-menu {
+		max-height: 100% !important;
+	}
+	.kt-footer{
+		display: none;
+	}
+}
+
+.mat-option-text{
+	padding: 0 !important;
+}
+
+.mat-dialog-container{
+	padding-bottom: 0 !important;
+}
+
+.delete-selected{
+	text-align: center;
+	cursor: pointer;
+	color: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.selected-cell{
+	background-color: #f7f7f754;
+	font-weight: bold;
+	border-radius: 30px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.selected-cell:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+.shadow
+{
+	position:relative;
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.shadow:before, .shadow:after
+{
+	content:"";
+	position:absolute;
+	z-index:-1;
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+	-moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+	box-shadow:0 0 20px rgba(0,0,0,0.8);
+	top:0;
+	bottom:0;
+	left:10px;
+	right:10px;
+	-moz-border-radius:100px / 10px;
+	border-radius:100px / 10px;
+}
+.shadow:after
+{
+	right:10px;
+	left:auto;
+	-webkit-transform:skew(8deg) rotate(3deg);
+	-moz-transform:skew(8deg) rotate(3deg);
+	-ms-transform:skew(8deg) rotate(3deg);
+	-o-transform:skew(8deg) rotate(3deg);
+	transform:skew(8deg) rotate(3deg);
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label, .mat-form-field-appearance-legacy .mat-hint{
+	padding-bottom: 7px !important;
+	margin-bottom: 0 !important;
+}
+
+.kt-aside-menu .kt-menu__nav > .kt-menu__section{
+	display: none !important;
+}
+
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 1025px) {
+	.kt-content{
+		padding-top: 0 !important;
+	}
+}
+
+@media (max-width: 1024.98px) {
+	.kt-content{
+		padding-top: 80px !important;
+	}
+
+	.kt-header__topbar--mobile-on .kt-header__topbar {
+		margin-top: 52px !important;
+		height: 60px !important;
+		transition: all .3s ease;
+
+		-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0.1) inset;
+		-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0.1) inset;
+		box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0.1) inset;
+	}
+}
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 767.98px) {
+	.example-container{
+		overflow-x: auto !important;
+	}
+
+	.example-table-container{
+		width: max-content !important;
+	}
+
+	.mat-paginator{
+		width: auto !important;
+	}
+}
+
+@media (min-width: 1025px){
+	.kt-header {
+		height: 80px !important;
+	}
+}
+
+.ck.ck-editor__editable_inline{
+	border: 1px solid #ccc !important;
+}
+
+.full-screen-modal .mat-dialog-container {
+	max-width: none;
+}
+
+input{
+	height: 30px !important;
+}

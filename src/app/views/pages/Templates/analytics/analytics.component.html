@@ -1,0 +1,185 @@
+<div class="row">
+	<!--Charts1-->
+	<div class="col-xl-12">
+		<div class="row row-full-height">
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body>
+						<!--Start line chart-->
+						<div class="chart-parent">
+							<ngx-charts-line-chart
+								[scheme]="colorScheme"
+								[results]="data1"
+								[gradient]="gradient"
+								[xAxis]="showXAxis"
+								[yAxis]="showYAxis"
+								[legend]="showLegend"
+								[showXAxisLabel]="showXAxisLabel"
+								[showYAxisLabel]="showYAxisLabel"
+								[xAxisLabel]="xAxisLabel"
+								[yAxisLabel]="yAxisLabel"
+								[autoScale]="autoScale"
+								[timeline]="timeline"
+								(select)="onSelect($event)">
+							</ngx-charts-line-chart>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body>
+						<!--Start line chart-->
+						<div class="chart-parent">
+							<ngx-charts-bar-vertical
+								[scheme]="colorScheme"
+								[results]="data2"
+								[gradient]="gradient"
+								[xAxis]="showXAxis"
+								[yAxis]="showYAxis"
+								[legend]="showLegend"
+								[showXAxisLabel]="showXAxisLabel"
+								[showYAxisLabel]="showYAxisLabel"
+								[xAxisLabel]="xAxisLabel"
+								[yAxisLabel]="yAxisLabel"
+								(select)="onSelect($event)">
+							</ngx-charts-bar-vertical>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+		</div>
+	</div>
+	<!--Charts1-->
+	<br>
+	<!--Charts2-->
+	<div class="col-xl-12">
+		<div class="row row-full-height">
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body>
+						<!--Start line chart-->
+						<div class="chart-parent">
+							<ngx-charts-bar-horizontal
+								[scheme]="colorScheme"
+								[results]="data3"
+								[gradient]="gradient"
+								[xAxis]="showXAxis"
+								[yAxis]="showYAxis"
+								[legend]="showLegend"
+								[showXAxisLabel]="showXAxisLabel"
+								[showYAxisLabel]="showYAxisLabel"
+								[xAxisLabel]="xAxisLabel"
+								[yAxisLabel]="yAxisLabel"
+								(select)="onSelect($event)">
+							</ngx-charts-bar-horizontal>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body>
+						<!--Start line chart-->
+						<div class="chart-parent">
+							<ngx-charts-bar-vertical-normalized
+								[scheme]="colorScheme"
+								[results]="data4"
+								[gradient]="gradient"
+								[xAxis]="showXAxis"
+								[yAxis]="showYAxis"
+								[legend]="showLegend"
+								[showXAxisLabel]="showXAxisLabel"
+								[showYAxisLabel]="showYAxisLabel"
+								[xAxisLabel]="xAxisLabel"
+								[yAxisLabel]="yAxisLabel"
+								(select)="onSelect($event)">
+							</ngx-charts-bar-vertical-normalized>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+		</div>
+	</div>
+	<!--Charts2-->
+
+	<!--Charts3-->
+	<div class="col-xl-12">
+		<div class="row row-full-height">
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body class="pie-container">
+						<!--Start line chart-->
+						<div class="chart-parent pie">
+							<ngx-charts-pie-chart
+								[scheme]="colorScheme"
+								[results]="data5"
+								[legend]="showLegend"
+								[labels]="true">
+							</ngx-charts-pie-chart>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="' kt-portlet--border-bottom-brand'">
+					<kt-portlet-body class="pie-container">
+						<!--Start line chart-->
+						<div class="chart-parent pie">
+							<ngx-charts-advanced-pie-chart
+								[scheme]="colorScheme"
+								[results]="data6"
+								[gradient]="gradient"
+								(select)="onSelect($event)">
+							</ngx-charts-advanced-pie-chart>
+						</div>
+						<!--End line chart Chart-->
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="0" [desc]="'Demo Statistics'" [options]="chartOptions1"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet>
+
+				<div class="kt-space-20"></div>
+
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="0" [desc]="'Demo Statistics'" [options]="chartOptions2"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="0" [desc]="'Demo Statistics'" [options]="chartOptions3"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet>
+
+				<div class="kt-space-20"></div>
+
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="0" [desc]="'Demo Statistics'" [options]="chartOptions4"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+
+		</div>
+	</div>
+	<!--Charts3-->
+
+</div>

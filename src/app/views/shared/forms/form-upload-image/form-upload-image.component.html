@@ -1,0 +1,19 @@
+<div class="mb-4">
+	<label class="d-block mb-4">{{label}}</label>
+	<label class="btn btn-outline-dark">
+		{{ 'Components.Gallery.change_image' | translate }} <i class="flaticon2-image-file"></i>
+		<input type="file" (change)="onFileSelect($event)" hidden/>
+	</label>
+	<kt-form-error *ngIf="validation_type"
+				   [form]="form"
+				   [controlName]="form_control_name"
+				   [validationType]="validation_type"
+				   [controlText]="label"
+	></kt-form-error>
+
+	<div *ngIf="imgURL" class="uploaded-preview my-4">
+		<div>
+			<img src="{{ imgURL }}" alt="" class="w-100 h-100">
+		</div>
+	</div>
+</div>

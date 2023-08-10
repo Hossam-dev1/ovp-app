@@ -1,0 +1,69 @@
+<!--&lt;!&ndash;begin::Head&ndash;&gt;-->
+<!--<div class="kt-login__head">-->
+<!--	<span class="kt-login__signup-label">Content Management System (CMS)</span>&nbsp;&nbsp;-->
+<!--</div>-->
+<!--&lt;!&ndash;end::Head&ndash;&gt;-->
+
+<!--begin::Body-->
+<div class="kt-login__body">
+
+	<!--begin::Signin-->
+	<div class="kt-login__form">
+		<div class="mt-3">
+			<kt-global-notice></kt-global-notice>
+		</div>
+
+		<div class="kt-login__title">
+			<h3>{{ 'AUTH.LOGIN.BUTTON' | translate}}</h3>
+		</div>
+
+		<kt-auth-notice></kt-auth-notice>
+
+		<!--begin::Form-->
+		<form class="kt-form" [formGroup]="loginForm" autocomplete="off">
+			<div class="form-group mb-5">
+				<mat-form-field>
+					<mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
+					<input matInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}" formControlName="email" autocomplete="off"/>
+					<mat-error *ngIf="isControlHasError('email','required')">
+						<strong>{{ 'VALIDATION.REQUIRED' | translate:{name: 'AUTH.INPUT.EMAIL' | translate } }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','email')">
+						<strong>{{ 'VALIDATION.INVALID' | translate:{name: 'AUTH.INPUT.EMAIL' | translate } }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','minlength')">
+						<strong>{{ 'VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','maxlength')">
+						<strong>{{ 'VALIDATION.MAX_LENGTH_FIELD' | translate }} 255</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<br>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>{{ 'AUTH.INPUT.PASSWORD' | translate }}</mat-label>
+					<input matInput type="password" placeholder="{{ 'AUTH.INPUT.PASSWORD' | translate }}" formControlName="password" autocomplete="off"/>
+					<mat-error *ngIf="isControlHasError('password','required')">
+						<strong>{{ 'VALIDATION.REQUIRED_F' | translate:{name: 'AUTH.INPUT.PASSWORD' | translate } }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('password','minlength')">
+						<strong>{{ 'VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('password','maxlength')">
+						<strong>{{ 'VALIDATION.MAX_LENGTH_FIELD' | translate }} 100</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<!--begin::Action-->
+			<div class="kt-login__actions">
+				<button (click)="submit()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" id="kt_login_signin_submit" class="btn btn-outline-danger btn-elevate kt-login__btn-primary">{{ 'AUTH.LOGIN.BUTTON' | translate }}</button>
+			</div>
+			<!--end::Action-->
+		</form>
+		<!--end::Form-->
+
+	</div>
+	<!--end::Signing-->
+</div>
+<!--end::Body-->

@@ -1,0 +1,20 @@
+<div [formGroup]="form" *ngIf="list">
+	<div class="my-3">
+		<div aria-label="select-box">
+			<mat-form-field appearance="fill" class="w-100">
+				<mat-label>{{label}}</mat-label>
+				<mat-select formControlName="{{form_control_name}}" [multiple]="is_multi">
+					<mat-option *ngFor="let item of list" [value]="item.id">
+						{{ item.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<kt-form-error *ngIf="validation_type"
+					   [form]="form"
+					   [controlName]="form_control_name"
+					   [validationType]="validation_type"
+					   [controlText]="label"
+		></kt-form-error>
+	</div>
+</div>

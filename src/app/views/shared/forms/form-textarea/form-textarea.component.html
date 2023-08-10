@@ -1,0 +1,21 @@
+<div [formGroup]="form">
+	<div class="my-3">
+		<div aria-label="text-area">
+			<mat-form-field class="w-100">
+				<mat-label>{{label}}</mat-label>
+				<label class="w-100">
+						<textarea matInput
+								  formControlName="{{form_control_name}}"
+								  placeholder="{{label}}">
+						</textarea>
+				</label>
+			</mat-form-field>
+		</div>
+		<kt-form-error *ngIf="validation_type"
+			[form]="form"
+			[controlName]="form_control_name"
+			[validationType]="validation_type"
+			[controlText]="label"
+		></kt-form-error>
+	</div>
+</div>

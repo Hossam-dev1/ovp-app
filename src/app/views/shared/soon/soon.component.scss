@@ -1,0 +1,11 @@
+span{
+	border-bottom: 1px solid;
+	text-transform: capitalize;
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+	img{
+		width: 80%;
+	}
+}

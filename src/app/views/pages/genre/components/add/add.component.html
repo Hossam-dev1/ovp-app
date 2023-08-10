@@ -1,0 +1,29 @@
+<div class="header p-3">
+	<h5>Add Genre</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="addForm" autocomplete="off">
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-input [form]="addForm" [label]="'Key'" [form_control_name]="'key'"></kt-form-input>
+				</div>
+			</div>
+			<div class="row" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (en)'" [form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (ar)'" [form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary" (click)="submit()">Add</button>
+			</div>
+		</form>
+	</div>
+
+</div>

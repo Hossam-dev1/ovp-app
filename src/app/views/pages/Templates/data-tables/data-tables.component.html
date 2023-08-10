@@ -1,0 +1,77 @@
+<kt-notice [icon]="'flaticon-warning kt-font-warning'" style="direction: ltr;text-align: left;">
+	&nbsp; &nbsp; DataTables created By <code>Al3ameed</code>.
+</kt-notice>
+<div class="row">
+	<kt-portlet class="col-12 p-3">
+		<kt-portlet-header [title]="'Data Table'"> </kt-portlet-header>
+		<div class="example-container">
+			<div class="example-loading-shade"
+				 *ngIf="isLoadingResults">
+				<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+			</div>
+			<div class="example-table-container">
+				<!--Search Filter-->
+				<form>
+
+					<mat-form-field class="w-25 pr-3 pl-3">
+						<input matInput name="filter_Position" (keyup)="applySpecificFilter('position' ,$event.target.value)" placeholder="Filter Position.">
+					</mat-form-field>
+
+					<mat-form-field class="w-25 pr-3 pl-3">
+						<input matInput name="filter_Name" (keyup)="applySpecificFilter('name' ,$event.target.value)" placeholder="Filter Name.">
+					</mat-form-field>
+
+					<mat-form-field class="w-25 pr-3 pl-3">
+						<input matInput name="weight" (keyup)="applySpecificFilter('weight' ,$event.target.value)" placeholder="Filter Weight.">
+					</mat-form-field>
+
+					<mat-form-field class="w-25 pr-3 pl-3">
+						<input matInput name="symbol" (keyup)="applySpecificFilter('symbol' ,$event.target.value)" placeholder="Filter symbol.">
+					</mat-form-field>
+
+				</form>
+				<!--Table-->
+				<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+					<!-- Position Column -->
+					<ng-container matColumnDef="position">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+						<td mat-cell *matCellDef="let element"> {{element.position}} </td>
+						<td mat-footer-cell *matFooterCellDef> No. </td>
+					</ng-container>
+
+					<!-- Name Column -->
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+						<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+						<td mat-footer-cell *matFooterCellDef> Name </td>
+					</ng-container>
+
+					<!-- Weight Column -->
+					<ng-container matColumnDef="weight">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+						<td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+						<td mat-footer-cell *matFooterCellDef> Weight </td>
+					</ng-container>
+
+					<!-- Symbol Column -->
+					<ng-container matColumnDef="symbol">
+						<th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+						<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+						<td mat-footer-cell *matFooterCellDef> Symbol </td>
+					</ng-container>
+
+					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+					<tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+				</table>
+				<!--Table-->
+			</div>
+			<mat-paginator
+				[length]="resultsLength"
+				[pageIndex]="pageIndex"
+				[pageSize]="pageSize"
+				(page)="getServerData($event)"
+			></mat-paginator>
+		</div>
+	</kt-portlet>
+</div>

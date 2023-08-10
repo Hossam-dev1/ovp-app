@@ -1,0 +1,26 @@
+<div [formGroup]="form">
+	<div class="my-3">
+		<div aria-label="input" class="row">
+			<mat-form-field class="col-10">
+				<label class="w-100">
+					<input [matDatepicker]="picker1"
+						   (click)="picker1.open()"
+						   formControlName="{{form_control_name}}" matInput
+						   placeholder="{{ label }}">
+				</label>
+				<mat-datepicker #picker1></mat-datepicker>
+			</mat-form-field>
+			<div class="col-2">
+				<button mat-raised-button (click)="picker1.open()">
+					<i class="flaticon-calendar-1" style="font-size:30px;"></i>
+				</button>
+			</div>
+		</div>
+		<kt-form-error *ngIf="validation_type"
+					   [form]="form"
+					   [controlName]="form_control_name"
+					   [validationType]="validation_type"
+					   [controlText]="label"
+		></kt-form-error>
+	</div>
+</div>

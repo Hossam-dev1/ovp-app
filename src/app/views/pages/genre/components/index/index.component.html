@@ -1,0 +1,76 @@
+<div class="contianer">
+	<div class="header-title py-3">
+		<h4>{{ 'Components.GENRE.title' | translate }}</h4>
+	</div>
+	<mat-divider class="my-2"></mat-divider>
+
+	<div class="header p-4">
+		<div class="row">
+			<div class="col md 6">
+			</div>
+			<div class="col-md-6 text-right ">
+				<a routerLink="/cms/genre/add"><button mat-raised-button color="primary">{{ 'MENU.ADD_NEW' | translate }}</button></a>
+			</div>
+		</div>
+
+	</div>
+	<div class="loader d-flex justify-content-center">
+		<kt-api-loader class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
+	</div>
+
+	<div class="example-container mat-elevation-z8" *ngIf="!isLoadingResults">
+
+
+		<mat-table #table matSort  [dataSource]="dataSource">
+			<!-- id Column -->
+			<ng-container matColumnDef="id">
+				<mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Components.GENRE.headers.id' | translate }} </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+			</ng-container>
+
+			<!-- key Column -->
+			<ng-container matColumnDef="key">
+				<mat-header-cell *matHeaderCellDef  mat-sort-header>{{ 'Components.GENRE.headers.key' | translate }}</mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.key}} </mat-cell>
+			</ng-container>
+
+			<!-- name Column -->
+			<ng-container matColumnDef="name">
+				<mat-header-cell *matHeaderCellDef > {{ 'Components.GENRE.headers.name' | translate }} </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{lang == 'en' ? element.name.en :element.name.ar}} </mat-cell>
+			</ng-container>
+
+
+			<!-- action Column -->
+			<ng-container matColumnDef="options">
+				<mat-header-cell *matHeaderCellDef> {{ 'Components.options' | translate }}</mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+						<mat-icon>settings</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item [routerLink]="'edit/'+ element.id">
+							{{ 'Components.Edit' | translate }}
+						</button>
+						<button mat-menu-item [routerLink]="element.id" (click)="deleteGenre(element.id)">
+							{{ 'Components.Delete' | translate }}
+						</button>
+					</mat-menu>
+				</mat-cell>
+			</ng-container>
+
+
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		</mat-table>
+
+		<!-- <mat-paginator
+			[pageSizeOptions]="[5, 10, 20]"
+			showFirstLastButtons
+			[length]="resultsLength"
+			[pageIndex]="pageIndex"
+			(page)="pagination($event)">
+		</mat-paginator> -->
+
+	</div>
+</div>
