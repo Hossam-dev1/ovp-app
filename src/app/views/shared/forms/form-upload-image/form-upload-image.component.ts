@@ -32,6 +32,7 @@ export class FormUploadImageComponent implements OnInit {
 			reader.readAsDataURL(file);
 			reader.onload = (_event) => {
 				this.imgURL = reader.result;
+
 				if (this.to_base64){
 					this.form.controls[this.form_control_name].setValue(this.imgURL);
 				}

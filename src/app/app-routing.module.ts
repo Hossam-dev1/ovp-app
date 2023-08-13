@@ -29,6 +29,20 @@ const routes: Routes = [
 				loadChildren: () => import('./views/pages/genre/genre.module').then(m => m.GenreModule)
 			},
 
+			{
+				path: "nationalities", // <= Page URL ,
+				loadChildren: () => import('./views/pages/nationalities/nationalities.module').then(m => m.NationalitiesModule)
+			},
+
+			{
+				path: "crew_type", // <= Page URL ,
+				loadChildren: () => import('./views/pages/crew-type/crew-type.module').then(m => m.CrewTypeModule)
+			},
+
+			{
+				path: "crew", // <= Page URL ,
+				loadChildren: () => import('./views/pages/crew/crew.module').then(m => m.CrewModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

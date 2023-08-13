@@ -1,0 +1,79 @@
+<div class="header p-3">
+	<h5>Add Crew</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="addForm" autocomplete="off">
+
+			<div class="row" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row" formGroupName="description">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-date-picker [form]="addForm" [label]="'Birth_date'"
+						[form_control_name]="'birth_date'"></kt-form-date-picker>
+				</div>
+				<div class="col-md-6">
+					<kt-form-date-picker [form]="addForm" [label]="'Death_date'"
+						[form_control_name]="'death_date'"></kt-form-date-picker>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-select [form]="addForm" [label]="'Gender'" [genderList]="['male','female']"
+						[form_control_name]="'gender'"></kt-form-select>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form]="addForm" [label]="'Social link'"
+						[form_control_name]="'social_links'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-select [form]="addForm" [label]="'Types'" [typesList]="crewTypesList"
+						[form_control_name]="'types'"></kt-form-select>
+				</div>
+				<div class="col-md-6">
+					<kt-form-select [form]="addForm" [label]="'Nationality'" [typesList]="nationalitiesList"
+						[form_control_name]="'nationality_id'"></kt-form-select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<kt-form-upload-image [to_base64]="true" [form]="addForm" [form_control_name]="'thumb'" [label]="'Upload img'">
+					</kt-form-upload-image>
+				</div>
+			</div>
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
+					(click)="submit()">Add</button>
+			</div>
+		</form>
+	</div>
+
+</div>

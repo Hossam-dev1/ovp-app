@@ -146,6 +146,7 @@ export const locale = {
 				columns: {},
 				view_image: 'عرض الصورة',
 				change_image: 'اضافة / تغيير الصورة',
+				choose_img: ' اضافة صورة',
 				upload: 'رفع',
 				no_images: 'لا يوجد صورة ف المعرض حتى الان',
 				no_attached_images: 'لم يتم اضافة صور',

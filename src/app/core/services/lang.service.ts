@@ -14,6 +14,8 @@ export class LangService {
 	}
 	loadStyle() {
 		let lang = localStorage.getItem('cms_lang');
+		console.log('lang',lang);
+
 		this.localLang.next(lang)
 		let styleName = '';
 		if (lang == 'ar') {

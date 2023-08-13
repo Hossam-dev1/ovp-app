@@ -1,20 +1,34 @@
-<div [formGroup]="form" *ngIf="list">
+<div [formGroup]="form">
 	<div class="my-3">
-		<div aria-label="select-box">
+
+		<div aria-label="select-box" *ngIf="typesList.length">
+			<mat-form-field appearance="fill" class="w-100" >
+				<mat-label>{{label}}</mat-label>
+				<mat-select formControlName="{{form_control_name}}" [multiple]="is_multi" *ngIf="!isloading">
+					<mat-option *ngFor="let item of typesList" [value]="item.id">
+						{{ item?.key ||  toLang(item.name) }}
+					</mat-option>
+				</mat-select>
+				<mat-spinner *ngIf="isloading"></mat-spinner>
+			</mat-form-field>
+		</div>
+
+		<div aria-label="select-box" *ngIf="genderList.length">
 			<mat-form-field appearance="fill" class="w-100">
 				<mat-label>{{label}}</mat-label>
 				<mat-select formControlName="{{form_control_name}}" [multiple]="is_multi">
-					<mat-option *ngFor="let item of list" [value]="item.id">
-						{{ item.name }}
+					<mat-option *ngFor="let item of genderList" [value]="item">
+						{{ item }}
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
+
 		<kt-form-error *ngIf="validation_type"
-					   [form]="form"
-					   [controlName]="form_control_name"
-					   [validationType]="validation_type"
-					   [controlText]="label"
+						[form]="form"
+						[controlName]="form_control_name"
+						[validationType]="validation_type"
+						[controlText]="label"
 		></kt-form-error>
 	</div>
 </div>

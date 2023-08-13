@@ -1,19 +1,27 @@
+import { LangService } from './../../../../../core/services/lang.service';
 // Angular
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
 	selector: 'kt-material-preview',
 	templateUrl: './material-preview.component.html',
 	styleUrls: ['./material-preview.component.scss'],
 })
-export class MaterialPreviewComponent implements OnInit {
+export class MaterialPreviewComponent implements OnInit, OnChanges {
 	// Public properties
 	@Input() viewItem: any;
-
+	@Input() title: string;
+	DataDetails:any
+	lang:string = 'en'
+	isLoadingResults:boolean = true
 	/**
 	 * Component constructor
 	 */
-	constructor() {
+	constructor(
+		private _langService:LangService,
+		private cdr:ChangeDetectorRef
+
+	) {
 	}
 
 	/**
@@ -24,8 +32,26 @@ export class MaterialPreviewComponent implements OnInit {
 	 * On init
 	 */
 	ngOnInit() {
+		this.checkLocalLang();
+
+	}
+	ngOnChanges(changes: SimpleChanges): void {
+
+		if (changes['viewItem'] && changes['viewItem'].firstChange ){
+			this.isLoadingResults = false;
+			this.cdr.detectChanges();
+		}
+	}
+	checkLocalLang() {
+		this._langService.localLang.subscribe((curreLang) => {
+			this.lang = curreLang;
+			this.cdr.detectChanges();
+		})
 	}
 
+	toLang(param){
+		return this.lang == 'en' ? param.en : param.ar
+	}
 	/**
 	 * Toggle visibility
 	 */

@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PartialsModule } from '../partials/partials.module';
 import {MaterialPreviewModule} from "../partials/content/general/material-preview/material-preview.module";
 // Pages
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatDividerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
@@ -36,6 +36,7 @@ import {EditComponent} from './Templates/Template CRUD/edit/edit.component';
 import {IndexComponent} from './Templates/Template CRUD/index/index.component';
 import {FormComponent} from './Templates/Template CRUD/form/form.component';
 import {TranslateModule} from '@ngx-translate/core';
+import { CrewTypeComponent } from './crew-type/crew-type.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {TranslateModule} from '@ngx-translate/core';
 		MatSlideToggleModule,
 		MatTableModule,
 		MatPaginatorModule,
+		MatDividerModule,
 		MatProgressSpinnerModule,
 		MatSortModule,
 		NgxChartsModule,
@@ -86,12 +88,15 @@ import {TranslateModule} from '@ngx-translate/core';
 		MatSliderModule,
 		MatSlideToggleModule,
 		MatTableModule,
+		MatDividerModule,
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		MatSortModule,
 		NgxChartsModule,
 		SharedModule,
 		CustomDatePipe,
+		TranslateModule,
+		DataTablesComponent
 	],
 	providers: [
 		{
@@ -104,7 +109,7 @@ import {TranslateModule} from '@ngx-translate/core';
 		NgSelectConfig ,
 	],
 	declarations: [FormsComponent, DataTablesComponent, AnalyticsComponent, CustomDatePipe,
-		AddComponent, EditComponent, IndexComponent, FormComponent
+		AddComponent, EditComponent, IndexComponent, FormComponent,
 	]
 })
 export class PagesModule {

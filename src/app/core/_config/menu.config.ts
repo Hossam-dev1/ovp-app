@@ -1,5 +1,7 @@
-import {ShortAccessMenuConfig} from './header-menues/short.access.menu.config';
-import {AddNewMenuConfig} from './header-menues/add.new.menu.config';
+import { CrewMenuConfig } from './aside-menues/crew.menu.config';
+import { NationalitiesModule } from './../../views/pages/nationalities/nationalities.module';
+import { ShortAccessMenuConfig } from './header-menues/short.access.menu.config';
+import { AddNewMenuConfig } from './header-menues/add.new.menu.config';
 import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 
 
@@ -7,14 +9,17 @@ import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 export class MenuConfig {
 
 	// Aside Menu
-	genreMenuConfig:GenreMenuConfig;
+	genreMenuConfig: GenreMenuConfig;
+	crewMenuConfig: CrewMenuConfig;
 
 	// Header Menu
 	shortAccessMenuConfig: ShortAccessMenuConfig;
-	addNewMenuConfig:AddNewMenuConfig;
+	addNewMenuConfig: AddNewMenuConfig;
 
 	constructor() {
 		this.genreMenuConfig = new GenreMenuConfig();
+		this.crewMenuConfig = new CrewMenuConfig();
+
 
 		this.shortAccessMenuConfig = new ShortAccessMenuConfig();
 		this.addNewMenuConfig = new AddNewMenuConfig();
@@ -55,9 +60,16 @@ export class MenuConfig {
 		return this.defaults;
 	}
 
-	public attachAsideMenuItems(){
-		let template_items = this.genreMenuConfig.configs;
-		this.attachAsideMenu(template_items);
+	public attachAsideMenuItems() {
+		// Genre Config
+		let genre_items = this.genreMenuConfig.configs;
+		this.attachAsideMenu(genre_items);
+
+		// Crew Config
+		let crew_items = this.crewMenuConfig.configs;
+		console.log(crew_items);
+
+		this.attachAsideMenu(crew_items);
 	}
 
 	public attachHeaderMenuItems() {
@@ -70,16 +82,16 @@ export class MenuConfig {
 		this.attachHeaderMenu(add_menu_items);
 	}
 
-	public attachAsideMenu(items){
-		items.forEach((item)=>{
+	public attachAsideMenu(items) {
+		items.forEach((item) => {
 			this.defaults.aside.items.push(
 				item
 			);
 		});
 	}
 
-	public attachHeaderMenu(items){
-		items.forEach((item)=>{
+	public attachHeaderMenu(items) {
+		items.forEach((item) => {
 			this.defaults.header.items.push(
 				item
 			);

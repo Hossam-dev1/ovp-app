@@ -6,3 +6,15 @@
 -edit #
 -delete #
 - show #
+
+
+-nationalities-
+- index
+- add
+- edit
+- delete
+- show
+
+- crew -
+- details
+- edit

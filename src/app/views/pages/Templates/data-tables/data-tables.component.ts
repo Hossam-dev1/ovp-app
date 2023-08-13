@@ -1,89 +1,97 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface PeriodicElement {
-	name: string;
-	position: number;
-	weight: number;
-	symbol: string;
-}
+import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
+import { CrewTypeService } from './../../../../core/services/Crew-Module/crew-type.service';
+import { NationalitiesService } from './../../../../core/services/Crew-Module/nationalities.service';
+import { LangService } from './../../../../core/services/lang.service';
+import { DataSource } from '@angular/cdk/collections';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatOptionParentComponent } from '@angular/material';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 export interface ITableFilter {
 	column: string;
 	value: any;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-	{position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-	{position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-	{position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-	{position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-	{position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-	{position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-	{position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-	{position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-	{position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-	{position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-const ELEMENT_DATA2: PeriodicElement[] = [
-	{position: 11, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-	{position: 12, name: 'Helium', weight: 4.0026, symbol: 'He'},
-	{position: 13, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-	{position: 14, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-	{position: 15, name: 'Boron', weight: 10.811, symbol: 'B'},
-	{position: 16, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-	{position: 17, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-	{position: 18, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-	{position: 19, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-	{position: 20, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
 /**
  * @title Data table with sorting, pagination, and filtering.
  */
 @Component({
-  selector: 'kt-data-tables',
-  templateUrl: './data-tables.component.html',
-  styleUrls: ['./data-tables.component.scss']
+	selector: 'kt-data-tables',
+	templateUrl: './data-tables.component.html',
+	styleUrls: ['./data-tables.component.scss']
 })
-export class DataTablesComponent  implements OnInit  {
-	dataSource;
+export class DataTablesComponent implements OnInit, OnChanges {
+
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
+	@Input() Data_Source: any;
+	@Input() Displayed_Columns: any;
+	@Input() isLoading_Results: boolean;
+	@Input() title: string;
+	@Input() route_path:any
+
+	dataSource$;
 	resultsLength = 20;
 	pageIndex = 0;
-	filter: ITableFilter[] = [];
+	// filter: ITableFilter[] = [];
 	pageSize = 10;
-	displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-	isLoadingResults = true;
-	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-	@ViewChild(MatSort, {static: true}) sort: MatSort;
+	tableHeaders: string[] = [];
+	displayedColumns:any
+	isLoading = true;
+	lang: string = 'en';
 
-	constructor() {
+
+	constructor(
+		private _langService: LangService,
+		private cdr: ChangeDetectorRef,
+		private _nationalitiesService: NationalitiesService,
+		private _crewTypeService: CrewTypeService,
+		private _crewService: CrewService,
+		private _toaster: ToastrService
+
+	) {
 		// Assign the data to the data source for the table to render
-		this.dataSource =  new MatTableDataSource(ELEMENT_DATA);
-		this.isLoadingResults = false;
+		// this.dataSource =  new MatTableDataSource(ELEMENT_DATA);
 	}
 
 	ngOnInit() {
-		this.dataSource.sort = this.sort;
-		this.dataSource.filterPredicate = this.customFilterPredicate;
+		this.checkLocalLang()
+		// this.dataSource.sort = this.sort;
+		// this.dataSource.filterPredicate = this.customFilterPredicate
 	}
 
-	applySpecificFilter(columnNames , value) {
-		let found = 0;
-		for (let i = 0; i < this.filter.length; i++) {
-			if(this.filter[i].column == columnNames) {
-				this.filter[i].value = value;
-				found = 1;
-			}
+	checkLocalLang() {
+		this._langService.localLang.subscribe((curreLang) => {
+			this.lang = curreLang;
+			this.cdr.detectChanges();
+		})
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes.Data_Source.currentValue) {
+			this.dataSource$ = new MatTableDataSource(this.Data_Source)
+			this.tableHeaders = this.Displayed_Columns;
+			this.isLoading = false;
 		}
-		if(found == 0) {
-			this.filter.push({column: columnNames, value: value});
-		}
-		this.dataSource.filter = this.filter;
-		if (this.dataSource.paginator) {
-			this.dataSource.paginator.firstPage();
-		}
+	}
+
+	applySpecificFilter(columnNames, value) {
+		// let found = 0;
+		// for (let i = 0; i < this.filter.length; i++) {
+		// 	if(this.filter[i].column == columnNames) {
+		// 		this.filter[i].value = value;
+		// 		found = 1;
+		// 	}
+		// }
+		// if(found == 0) {
+		// 	this.filter.push({column: columnNames, value: value});
+		// }
+		// this.dataSource.filter = this.filter;
+		// if (this.dataSource.paginator) {
+		// 	this.dataSource.paginator.firstPage();
+		// }
 	}
 
 	// set specific filter columns
@@ -91,7 +99,7 @@ export class DataTablesComponent  implements OnInit  {
 		for (let i = 0; i < filters.length; i++) {
 			let column = filters[i].column;
 			let value = filters[i].value;
-			const fitsThisFilter =  (data[column]+ '').includes(value);
+			const fitsThisFilter = (data[column] + '').includes(value);
 			if (!fitsThisFilter) {
 				return false;
 			}
@@ -100,9 +108,33 @@ export class DataTablesComponent  implements OnInit  {
 	}
 
 	// get data form server
-	public getServerData(event?:PageEvent){
-		this.dataSource = new MatTableDataSource(ELEMENT_DATA2);
+	public getServerData(event?: PageEvent) {
+		// this.dataSource = new MatTableDataSource(ELEMENT_DATA2);
 		this.pageIndex = this.pageIndex + 1;
+	}
+
+	deleteColumn(id: number) {
+		if (this.title == 'Nationalities') {
+			this._nationalitiesService.deleteNationalityById(id).subscribe((res: any) => {
+				this._toaster.success(res.message)
+				this._nationalitiesService.isListChanged.next(true);
+				this.cdr.detectChanges();
+			})
+		} else if (this.title == 'Crew Type') {
+			this._crewTypeService.delete(id).subscribe((res: any) => {
+				this._toaster.success(res.message)
+				this._crewTypeService.isListChanged.next(true);
+				this.cdr.detectChanges();
+			})
+		} else if (this.title == 'Crew') {
+			console.log(this.title);
+
+			this._crewService.delete(id).subscribe((res: any) => {
+				this._toaster.success(res.message)
+				this._crewService.isListChanged.next(true);
+				this.cdr.detectChanges();
+			})
+		}
 	}
 
 }

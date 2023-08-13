@@ -36,7 +36,7 @@ export const locale = {
 		STATISTICS: {
 			name: 'Statistics',
 			visitors_count: '',
-              link  : 'Open {{title}} List'
+			link: 'Open {{title}} List'
 		},
 
 		MENUS: {
@@ -49,7 +49,20 @@ export const locale = {
 			GENRE: {
 				TITLE: 'GENRE',
 				MENU: {
-					GENRE: 'GENRE',
+					GENRE: 'Genre',
+				},
+			},
+			CREW: {
+				TITLE: 'CREW',
+				SUBMENU:'Crew',
+				MENU: {
+					CREW_TYPE:{
+						TITLE:'Crew Type',
+					},
+					NATIIONALITIES:{
+						TITLE:'Nationalities',
+					},
+
 				},
 			},
 		},
@@ -112,9 +125,9 @@ export const locale = {
 			Select: 'Select',
 			export: 'Export',
 			no_image: 'No Image Yet',
-            Accept : "Accept" ,
-			Reject : "Reject",
-			Pending : "Pending",
+			Accept: "Accept",
+			Reject: "Reject",
+			Pending: "Pending",
 
 			TEMPLATE: {
 				name: 'TEMPLATE',
@@ -143,6 +156,7 @@ export const locale = {
 				view_image: 'View Image',
 				change_image: 'Add / Change imageِِ',
 				upload: 'Upload',
+				choose_img: 'Choose Img',
 				no_images: 'No Gallery Image yet',
 				no_attached_images: 'No Images attached yet',
 				selected_images: 'Selected Images',
@@ -173,8 +187,8 @@ export const locale = {
 
 			activation_button: 'Active',
 			deactivation_button: 'Inactive',
-			accepted : 'Accepted',
-			rejected : 'Rejected',
+			accepted: 'Accepted',
+			rejected: 'Rejected',
 
 			email: 'Email',
 			password: 'Password',
@@ -212,7 +226,7 @@ export const locale = {
 			old_password: 'Old Password',
 			new_password: 'New Password',
 			yes: 'Yes',
-			no : 'No',
+			no: 'No',
 		},
 
 		MSG: {},

@@ -6,8 +6,6 @@ import { IndexComponent } from './components/index/index.component';
 import { AddComponent } from './components/add/add.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { MatDividerModule } from '@angular/material';
 import { PagesModule } from '../pages.module';
 
 const routes: Routes = [
@@ -36,8 +34,6 @@ const routes: Routes = [
 	imports: [
 		CommonModule,
 		RouterModule.forChild(routes),
-		TranslateModule,
-		MatDividerModule,
 		PagesModule,
 	],
 	providers: [],

@@ -38,7 +38,8 @@ export class IndexComponent implements OnInit, OnChanges {
 
 
 	ngOnChanges() {
-		this.dataSource.sort = this.sort; this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 	}
 
 	checkLocalLang() {
