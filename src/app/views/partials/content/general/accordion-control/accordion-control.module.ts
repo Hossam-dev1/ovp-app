@@ -31,7 +31,7 @@ const ACCORDION_CONTROL_DIRECTIVES = [
 	declarations: ACCORDION_CONTROL_DIRECTIVES
 })
 export class AccordionControlModule {
-	static forRoot(): ModuleWithProviders {
+	static forRoot(): ModuleWithProviders<AccordionControlModule> {
 		return { ngModule: AccordionControlModule, providers: [AccordionControlConfig] };
 	}
 }

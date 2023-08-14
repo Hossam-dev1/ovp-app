@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit, OnChanges {
 	pageIndex = 0;
 	lang: string = 'en'
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-	@ViewChild(MatSort, { static: false }) sort: MatSort;
+	@ViewChild(MatSort) sort: MatSort;
 
 
 
