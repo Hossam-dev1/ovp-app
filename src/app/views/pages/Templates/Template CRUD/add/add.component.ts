@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {AuthNoticeService} from '../../../../../core/services/auth-notice.service';
 import {HelperService} from '../../../../../core/services/helper.service';
 import {FormErrorService} from '../../../../../core/services/FormError.service';
@@ -21,8 +21,8 @@ export class AddComponent implements OnInit, OnDestroy, InitializeComponentInter
 	isValidationError:boolean = false;
 
 	isLoadingResults: any = true;
-	form: FormGroup;
-	constructor(private fb: FormBuilder ,
+	form: UntypedFormGroup;
+	constructor(private fb: UntypedFormBuilder ,
 				// private service: PublicationRulesService,
 				private formErrorService: FormErrorService,
 				private route: ActivatedRoute,

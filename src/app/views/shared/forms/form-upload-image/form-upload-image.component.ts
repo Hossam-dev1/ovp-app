@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 
 @Component({
 	selector: 'kt-form-upload-image',
@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
 })
 export class FormUploadImageComponent implements OnInit, OnChanges {
 
-	@Input() form: FormGroup;
+	@Input() form: UntypedFormGroup;
 	@Input() label: string;
 	@Input() form_control_name: string = null;
 	@Input() validation_type: string = null;

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormErrorService} from '../../../core/services/FormError.service';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 
 @Component({
 	selector: 'kt-form-error',
@@ -9,7 +9,7 @@ import {FormGroup} from '@angular/forms';
 })
 export class FormErrorComponent implements OnInit {
 
-	@Input() form: FormGroup;
+	@Input() form: UntypedFormGroup;
 	@Input() controlName: string;
 	@Input() validationType: string;
 	@Input() controlText : string;

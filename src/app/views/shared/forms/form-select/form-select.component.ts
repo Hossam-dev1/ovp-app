@@ -1,6 +1,6 @@
 import { LangService } from './../../../../core/services/lang.service';
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 
 @Component({
 	selector: 'kt-form-select',
@@ -11,7 +11,7 @@ export class FormSelectComponent implements OnInit, OnChanges {
 	isloading:boolean = true;
 	lang:string = 'en';
 
-	@Input() form: FormGroup;
+	@Input() form: UntypedFormGroup;
 	@Input() label: string;
 	@Input() form_control_name:string = null;
 	@Input() validation_type: string = null;

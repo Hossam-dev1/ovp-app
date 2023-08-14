@@ -1,7 +1,7 @@
 import { NationalitiesService } from './../../../../../core/services/Crew-Module/nationalities.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -12,13 +12,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class EditComponent implements OnInit {
 
-	editForm: FormGroup;
+	editForm: UntypedFormGroup;
 	isLoadingResults: boolean
 	genre_ID: number;
 	genre_object: any = {}
 
 	constructor(
-		private _fb: FormBuilder,
+		private _fb: UntypedFormBuilder,
 		private _nationalitiesService: NationalitiesService,
 		private _toastr: ToastrService,
 		private _activatedRoute: ActivatedRoute,
@@ -35,8 +35,8 @@ export class EditComponent implements OnInit {
 	private initForm() {
 		this.editForm = this._fb.group({
 			name: this._fb.group({
-				en: new FormControl('', [Validators.required]),
-				ar: new FormControl('', [Validators.required]),
+				en: new UntypedFormControl('', [Validators.required]),
+				ar: new UntypedFormControl('', [Validators.required]),
 			}),
 		});
 	}

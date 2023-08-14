@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 import {FormErrorService} from '../../../../../core/services/FormError.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {FormErrorService} from '../../../../../core/services/FormError.service';
 })
 export class FormComponent implements OnInit {
 
-	@Input() form: FormGroup;
+	@Input() form: UntypedFormGroup;
 
 	constructor() {
 	}

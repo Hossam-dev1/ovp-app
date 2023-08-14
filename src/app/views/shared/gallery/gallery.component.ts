@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {GalleryService} from '../../../core/services/Gallery-Module/Gallery/gallery.service';
 import {PaginateParams} from '../../../core/models/paginateParams.interface';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {FormErrorService} from '../../../core/services/FormError.service';
 import {AuthNoticeService} from '../../../core/services/auth-notice.service';
 import {HelperService} from '../../../core/services/helper.service';
@@ -35,7 +35,7 @@ export class GalleryComponent implements OnInit {
 	images: GalleryModel[];
 
 
-	uploadForm: FormGroup;
+	uploadForm: UntypedFormGroup;
 	imgURL:any = null;
 
 	headerParams: PaginateParams = {
@@ -49,7 +49,7 @@ export class GalleryComponent implements OnInit {
 
 	constructor(private  cdr: ChangeDetectorRef,
 				private service : GalleryService,
-				private fb: FormBuilder ,
+				private fb: UntypedFormBuilder ,
 				private formErrorService: FormErrorService,
 				private authNoticeService: AuthNoticeService,
 				public dialog: MatDialog,

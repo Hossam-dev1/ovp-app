@@ -2,7 +2,7 @@ import { NationalitiesService } from './../../../../../core/services/Crew-Module
 import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,12 +16,12 @@ export class AddComponent implements OnInit {
 	crewTypesList:any[]=[]
 	nationalitiesList:any[]=[]
 
-	addForm: FormGroup;
+	addForm: UntypedFormGroup;
 	isLoadingResults: boolean;
 	clearImgSrc:boolean;
 
 	constructor(
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		private _crewService: CrewService,
 		private _crewTypeService: CrewTypeService,
 		private _nationalitiesService: NationalitiesService,
@@ -41,20 +41,20 @@ export class AddComponent implements OnInit {
 	}
 	private initForm() {
 		this.addForm = this.fb.group({
-			gender: new FormControl('', [Validators.required]),
-			birth_date: new FormControl('', [Validators.required]),
-			death_date: new FormControl('', [Validators.required]),
-			social_links: new FormControl([], [Validators.required]),
-			types: new FormControl([], [Validators.required]),
-			thumb: new FormControl('', [Validators.required]),
-			nationality_id: new FormControl('', [Validators.required]),
+			gender: new UntypedFormControl('', [Validators.required]),
+			birth_date: new UntypedFormControl('', [Validators.required]),
+			death_date: new UntypedFormControl('', [Validators.required]),
+			social_links: new UntypedFormControl([], [Validators.required]),
+			types: new UntypedFormControl([], [Validators.required]),
+			thumb: new UntypedFormControl('', [Validators.required]),
+			nationality_id: new UntypedFormControl('', [Validators.required]),
 			name: this.fb.group({
-				en: new FormControl('', [Validators.required]),
-				ar: new FormControl('', [Validators.required]),
+				en: new UntypedFormControl('', [Validators.required]),
+				ar: new UntypedFormControl('', [Validators.required]),
 			}),
 			description: this.fb.group({
-				en: new FormControl('', [Validators.required]),
-				ar: new FormControl('', [Validators.required]),
+				en: new UntypedFormControl('', [Validators.required]),
+				ar: new UntypedFormControl('', [Validators.required]),
 			}),
 		});
 	}

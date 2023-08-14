@@ -1,6 +1,6 @@
 import { GenreService } from '../../../../../core/services/Genre-Module/genre.service';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,11 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-	addForm: FormGroup;
+	addForm: UntypedFormGroup;
 	isLoadingResults: boolean
 
 	constructor(
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		private genreService: GenreService,
 		private toastr: ToastrService,
 		private cdr:ChangeDetectorRef
@@ -29,10 +29,10 @@ export class AddComponent implements OnInit {
 	}
 	private initForm() {
 		this.addForm = this.fb.group({
-			key: new FormControl('', [Validators.required]),
+			key: new UntypedFormControl('', [Validators.required]),
 			name: this.fb.group({
-				en: new FormControl('', [Validators.required]),
-				ar: new FormControl('', [Validators.required]),
+				en: new UntypedFormControl('', [Validators.required]),
+				ar: new UntypedFormControl('', [Validators.required]),
 			}),
 		});
 	}

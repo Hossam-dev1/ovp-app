@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 
 @Component({
 	selector: 'kt-form-input',
@@ -7,7 +7,7 @@ import {FormGroup} from '@angular/forms';
 	styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-	@Input() form: FormGroup;
+	@Input() form: UntypedFormGroup;
 	@Input() form_group: string;
 	@Input() title: string;
 	@Input() label: string;

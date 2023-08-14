@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -23,7 +23,7 @@ export class EditComponent implements OnInit, OnDestroy, InitializeComponentInte
 	isValidationError:boolean = false;
 
 	isLoadingResults: any = true;
-	form: FormGroup;
+	form: UntypedFormGroup;
 	// model: PublicationRulesModel;
 
 	model;
@@ -31,7 +31,7 @@ export class EditComponent implements OnInit, OnDestroy, InitializeComponentInte
 	id = null;
 	is_result:boolean;
 
-	constructor(private formBuilder: FormBuilder ,
+	constructor(private formBuilder: UntypedFormBuilder ,
 				// private service: PublicationRulesService,
 				private formErrorService: FormErrorService,
 				private route: ActivatedRoute,

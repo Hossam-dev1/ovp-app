@@ -1,14 +1,14 @@
 // Angular
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
 	selector: 'kt-update-status-dialog',
 	templateUrl: './update-status-dialog.component.html'
 })
 export class UpdateStatusDialogComponent implements OnInit {
-	selectedStatusForUpdate = new FormControl('');
+	selectedStatusForUpdate = new UntypedFormControl('');
 	viewLoading: boolean = false;
 	loadingAfterSubmit: boolean = false;
 	constructor(

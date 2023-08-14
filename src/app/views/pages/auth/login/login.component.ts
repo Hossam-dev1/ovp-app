@@ -2,7 +2,7 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 // form controls and form builder
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 // RxJS
 import {Observable, Subject} from 'rxjs';
 // Auth
@@ -28,7 +28,7 @@ const DEMO_PARAMS = {
 })
 export class LoginComponent implements OnInit, OnDestroy {
 	// Public params
-	loginForm: FormGroup;
+	loginForm: UntypedFormGroup;
 	loading = false;
 	isLoggedIn$: Observable<boolean>;
 	errors: any = [];
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private auth: AuthService,
 		private AccountPermissionsService: AccountPermissionsService,
 		private authNoticeService: AuthNoticeService,
-		private fb: FormBuilder,
+		private fb: UntypedFormBuilder,
 		private cdr: ChangeDetectorRef,
 		private route: ActivatedRoute,
 		private helper: HelperService

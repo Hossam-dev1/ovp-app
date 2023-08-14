@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'kt-forms',
@@ -7,12 +7,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-	TestForm: FormGroup;
+	TestForm: UntypedFormGroup;
 	selected: any;
 	toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 	indeterminate = 'after';
 
-	constructor(private fb: FormBuilder) { }
+	constructor(private fb: UntypedFormBuilder) { }
   	ngOnInit() {
 		this.initForm();
   	}
