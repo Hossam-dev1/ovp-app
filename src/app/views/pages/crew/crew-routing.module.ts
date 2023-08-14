@@ -28,7 +28,7 @@ const routes: Routes = [
 				path: 'edit/:id',
 				component: EditComponent
 			} ,
-			{path: '**', redirectTo: '', pathMatch: ''},
+			{path: '**', redirectTo: '', pathMatch: 'full'},
 		]
 	}
 ];

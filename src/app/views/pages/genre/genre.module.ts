@@ -1,3 +1,4 @@
+import { PagesModule } from './../pages.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,7 +7,6 @@ import { IndexComponent } from './components/index/index.component';
 import { AddComponent } from './components/add/add.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
-import { PagesModule } from '../pages.module';
 
 const routes: Routes = [
 	{
@@ -25,7 +25,7 @@ const routes: Routes = [
 				path: 'edit/:id',
 				component: EditComponent
 			} ,
-			{path: '**', redirectTo: '', pathMatch: ''},
+			{path: '**', redirectTo: '', pathMatch: 'full'},
 		]
 	}
 ];
