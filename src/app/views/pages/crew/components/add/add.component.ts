@@ -17,7 +17,8 @@ export class AddComponent implements OnInit {
 	nationalitiesList:any[]=[]
 
 	addForm: FormGroup;
-	isLoadingResults: boolean
+	isLoadingResults: boolean;
+	clearImgSrc:boolean;
 
 	constructor(
 		private fb: FormBuilder,
@@ -85,8 +86,6 @@ export class AddComponent implements OnInit {
 			this.addForm.markAllAsTouched();
 			return
 		}
-
-
 		const formData = {
 			gender: this.getAddForm['gender'].value,
 			birth_date:  this.formattedDate(this.getAddForm['birth_date'].value),
@@ -106,7 +105,9 @@ export class AddComponent implements OnInit {
 		}
 		this._crewService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
+			this.clearImgSrc = true
 			this.toastr.success(resp.message + 'successfully');
+			this.cdr.detectChanges();
 		},
 			(error) => {
 				const errorControll = Object.keys(error.error.errors).toString();

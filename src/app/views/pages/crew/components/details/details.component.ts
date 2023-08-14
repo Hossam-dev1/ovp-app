@@ -9,14 +9,14 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-	crew_ID:number;
-	crewDetails:any;
-	isLoading:boolean = true;
+	crew_ID: number;
+	crewDetails: any;
+	isLoading: boolean = true;
 
 	constructor(
 		private _crewService: CrewService,
 		private cdr: ChangeDetectorRef,
-		private _activatedRoute:ActivatedRoute,
+		private _activatedRoute: ActivatedRoute,
 
 	) { }
 
@@ -25,8 +25,8 @@ export class DetailsComponent implements OnInit {
 		this.getCrewDetails()
 	}
 
-	getCrewDetails(){
-		this._crewService.show(this.crew_ID).subscribe((resp:any)=>{
+	getCrewDetails() {
+		this._crewService.show(this.crew_ID).subscribe((resp: any) => {
 			console.log(resp);
 
 			this.crewDetails = resp.body;
@@ -34,6 +34,5 @@ export class DetailsComponent implements OnInit {
 			this.cdr.markForCheck()
 			// console.log(resp.body);
 		})
-
-}
+	}
 }

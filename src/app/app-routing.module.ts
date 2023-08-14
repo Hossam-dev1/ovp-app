@@ -43,6 +43,16 @@ const routes: Routes = [
 				path: "crew", // <= Page URL ,
 				loadChildren: () => import('./views/pages/crew/crew.module').then(m => m.CrewModule)
 			},
+
+			{
+				path: "company_type", // <= Page URL ,
+				loadChildren: () => import('./views/pages/company-type/company-type.module').then(m => m.CompanyTypeModule)
+			},
+
+			{
+				path: "company", // <= Page URL ,
+				loadChildren: () => import('./views/pages/company/company.module').then(m => m.CompanyModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

@@ -62,7 +62,19 @@ export const locale = {
 					NATIIONALITIES:{
 						TITLE:'Nationalities',
 					},
+				},
+			},
 
+			CLIPS: {
+				TITLE: 'CLIPS',
+				SUBMENU:'Clip',
+				MENU: {
+					COMPANY:{
+						TITLE:'Company',
+					},
+					COMPANY_TYPE:{
+						TITLE:'Company Type',
+					},
 				},
 			},
 		},

@@ -1,1 +1,81 @@
 <p>edit works!</p>
+<div class="header p-3">
+	<h5>Edit Crew</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="editForm" autocomplete="off">
+
+			<div class="row" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="editForm" [label]="'Name (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="editForm" [label]="'Name (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row" formGroupName="description">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Description (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Description (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-date-picker [form]="editForm" [label]="'Birth_date'"
+						[form_control_name]="'birth_date'"></kt-form-date-picker>
+				</div>
+				<div class="col-md-6">
+					<kt-form-date-picker [form]="editForm" [label]="'Death_date'"
+						[form_control_name]="'death_date'"></kt-form-date-picker>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-select [form]="editForm" [label]="'Gender'" [genderList]="['male','female']"
+						[form_control_name]="'gender'"></kt-form-select>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form]="editForm" [label]="'Social link'"
+						[form_control_name]="'social_links'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-select [form]="editForm" [label]="'Types'" [is_multi]="false" [typesList]="crewTypesList"
+						[form_control_name]="'types'"></kt-form-select>
+				</div>
+				<div class="col-md-6">
+					<kt-form-select [form]="editForm" [label]="'Nationality'" [typesList]="nationalitiesList"
+						[form_control_name]="'nationality_id'"></kt-form-select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
+						[form_control_name]="'thumb'" [label]="'Upload img'">
+					</kt-form-upload-image>
+				</div>
+			</div>
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
+					(click)="submit()">Update</button>
+			</div>
+		</form>
+	</div>
+
+</div>

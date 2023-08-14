@@ -18,3 +18,18 @@
 - crew -
 - details
 - edit
+
+
+- company type -
+- index
+- add
+- edit
+- delete
+- show
+
+- company -
+- index
+- add
+- edit
+- delete
+- show

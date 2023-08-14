@@ -36,7 +36,6 @@ import {EditComponent} from './Templates/Template CRUD/edit/edit.component';
 import {IndexComponent} from './Templates/Template CRUD/index/index.component';
 import {FormComponent} from './Templates/Template CRUD/form/form.component';
 import {TranslateModule} from '@ngx-translate/core';
-import { CrewTypeComponent } from './crew-type/crew-type.component';
 
 
 @NgModule({

@@ -48,13 +48,38 @@ export const locale = {
 				},
 			},
 			GENRE: {
-				TITLE: 'النوع',
+				TITLE: 'الانواع',
 				MENU: {
 					GENRE: 'النوع',
 				},
 			},
-		},
 
+			CREW: {
+				TITLE: 'طاقم العمل',
+				SUBMENU:'الفريق',
+				MENU: {
+					CREW_TYPE:{
+						TITLE:'نوع الطاقم',
+					},
+					NATIIONALITIES:{
+						TITLE:'الجنسيات',
+					},
+				},
+			},
+
+			CLIPS: {
+				TITLE: 'مقاطع الفيديو',
+				SUBMENU:'الفيديو',
+				MENU: {
+					COMPANY:{
+						TITLE:'الشركات',
+					},
+					COMPANY_TYPE:{
+						TITLE:'نوع الشركات',
+					},
+				},
+			},
+		},
 
 		AUTH: {
 			GENERAL: {

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import {FormGroup} from '@angular/forms';
 	templateUrl: './form-upload-image.component.html',
 	styleUrls: ['./form-upload-image.component.scss']
 })
-export class FormUploadImageComponent implements OnInit {
+export class FormUploadImageComponent implements OnInit, OnChanges {
 
 	@Input() form: FormGroup;
 	@Input() label: string;
@@ -14,11 +14,22 @@ export class FormUploadImageComponent implements OnInit {
 	@Input() validation_type: string = null;
 	@Input() to_base64:boolean = false;
 	@Input() imgURL:any = null;
+	@Input() clear_src:boolean;
 
 	constructor(private cdr: ChangeDetectorRef,) {
 	}
 
 	ngOnInit() {
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		console.log(changes);
+
+		if(changes.clear_src.currentValue){
+			this.imgURL = null
+			this.cdr.markForCheck();
+		}
+
 	}
 
 	onFileSelect(event) {

@@ -1,3 +1,4 @@
+import { CompanyTypeService } from './../../../../core/services/Clips-Module/company-type.service';
 import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
 import { CrewTypeService } from './../../../../core/services/Crew-Module/crew-type.service';
 import { NationalitiesService } from './../../../../core/services/Crew-Module/nationalities.service';
@@ -49,6 +50,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private _nationalitiesService: NationalitiesService,
 		private _crewTypeService: CrewTypeService,
 		private _crewService: CrewService,
+		private _companyTypeService: CompanyTypeService,
 		private _toaster: ToastrService
 
 	) {
@@ -127,11 +129,16 @@ export class DataTablesComponent implements OnInit, OnChanges {
 				this.cdr.detectChanges();
 			})
 		} else if (this.title == 'Crew') {
-			console.log(this.title);
-
 			this._crewService.delete(id).subscribe((res: any) => {
 				this._toaster.success(res.message)
 				this._crewService.isListChanged.next(true);
+				this.cdr.detectChanges();
+			})
+		}
+		else if (this.title == 'Company Types') {
+			this._companyTypeService.delete(id).subscribe((res: any) => {
+				this._toaster.success(res.message)
+				this._companyTypeService.isListChanged.next(true);
 				this.cdr.detectChanges();
 			})
 		}
