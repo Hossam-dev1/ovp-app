@@ -18,7 +18,7 @@
 		"@angular-material-components/file-input": "^5.0.1",
 		"@angular/animations": "^8.2.5",
 		"@angular/cdk": "^8.1.1",
-		"@angular/cli": "^8.3.29",
+		"@angular/cli": "^11.1.0",
 		"@angular/common": "^8.2.5",
 		"@angular/compiler": "^8.2.5",
 		"@angular/core": "^8.2.14",
