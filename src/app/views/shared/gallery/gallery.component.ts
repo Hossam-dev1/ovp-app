@@ -7,7 +7,7 @@ import {AuthNoticeService} from '../../../core/services/auth-notice.service';
 import {HelperService} from '../../../core/services/helper.service';
 import {GalleryInterface} from '../Base-Interface/gallery.Interface';
 import {DeleteModalComponent} from '../delete-modal/delete-modal.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {GalleryModel} from '../../../core/models/Gallery-Module/Gallery/gallery.model';
 

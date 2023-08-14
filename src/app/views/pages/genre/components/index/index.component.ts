@@ -1,9 +1,11 @@
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { LangService } from './../../../../../core/services/lang.service';
 import { AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { GenreService } from '../../../../../core/services/Genre-Module/genre.service';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
-
+MatPaginator
 @Component({
 	selector: 'kt-index',
 	templateUrl: './index.component.html',

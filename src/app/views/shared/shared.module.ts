@@ -1,15 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FilterComponent} from './filter/filter.component';
-import {
-	MatDividerModule,
-	MatDialogModule,
-	MatInputModule,
-	MatProgressSpinnerModule,
-	MatRadioModule,
-	MatSelectModule,
-	MatTooltipModule, MatButtonModule, MatDatepickerModule, MatCheckboxModule, MatIconModule, MatLineModule, MatListModule
-} from '@angular/material';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiLoaderComponent} from './api-loader/api-loader.component';
@@ -79,7 +82,6 @@ import { FormDatePickerComponent } from './forms/form-date-picker/form-date-pick
         NgxMatSelectSearchModule,
         MatCheckboxModule,
         MatIconModule,
-        MatLineModule,
         MatListModule,
         MatMenuModule
     ],

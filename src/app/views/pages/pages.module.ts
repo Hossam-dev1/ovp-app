@@ -1,3 +1,4 @@
+import { MaterialPreviewModule } from './../partials/content/general/material-preview/material-preview.module';
 // Angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,9 +6,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // Partials
 import { PartialsModule } from '../partials/partials.module';
-import {MaterialPreviewModule} from "../partials/content/general/material-preview/material-preview.module";
 // Pages
-import { MatDividerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";

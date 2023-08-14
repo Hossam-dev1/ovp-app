@@ -7,7 +7,7 @@ import {HelperService} from '../../../core/services/helper.service';
 import {IndexInterface} from '../Base-Interface/Index.Interface';
 import {PaginateParams} from '../../../core/models/paginateParams.interface';
 import {DeleteModalComponent} from '../delete-modal/delete-modal.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {RoutesName} from '../../../core/Global/routes.name';
 
 @Component({

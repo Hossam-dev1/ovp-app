@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit , OnDestroy, IndexInterface , Init
 	page_name:string;
 	content_name:string;
 	add_route:string;
-
+	service
 	navigationSubscription;
 
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

@@ -15,7 +15,7 @@ import { PortletModule } from '../portlet/portlet.module';
 import { HighlightModule } from 'ngx-highlightjs';
 import {CoreModule} from "../../../../../core/core.module";
 import {MatGridListModule} from '@angular/material/grid-list';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     imports: [

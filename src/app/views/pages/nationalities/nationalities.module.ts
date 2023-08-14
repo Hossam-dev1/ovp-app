@@ -1,3 +1,4 @@
+import { MatDividerModule } from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +9,6 @@ import { EditComponent } from './components/edit/edit.component';
 import { NationalitiesComponent } from './nationalities.component';
 import { SharedModule } from '../../shared/shared.module';
 import { PagesModule } from '../pages.module';
-import { MatDividerModule } from '@angular/material';
 
 
 @NgModule({

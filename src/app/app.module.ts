@@ -1,10 +1,12 @@
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // Angular
-import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
+// import { GestureConfig } from '@angular/material/co';
+
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormGroupDirective } from '@angular/forms';
 // Angular in memory
@@ -123,7 +125,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		},
 		{
 			provide: HAMMER_GESTURE_CONFIG,
-			useClass: GestureConfig
+			useClass: HammerGestureConfig
 		},
 		{
 			// layout config initializer
