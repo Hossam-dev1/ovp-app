@@ -39,7 +39,7 @@ export class NationalitiesService {
 		return this.HttpClient.put(environment.url() + `admins/nationalities/${id}`, data)
 	}
 
-	deleteNationalityById(id: number) {
+	delete(id: number) {
 		return this.HttpClient.delete(environment.url() + `admins/nationalities/${id}`)
 	}
 

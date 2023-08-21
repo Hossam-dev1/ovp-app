@@ -4,6 +4,7 @@ import { ShortAccessMenuConfig } from './header-menues/short.access.menu.config'
 import { AddNewMenuConfig } from './header-menues/add.new.menu.config';
 import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 import { ClipMenuConfig } from './aside-menues/clibs.menu.config';
+import { TagsMenuConfig } from './aside-menues/tags.menu.config';
 
 
 
@@ -13,6 +14,7 @@ export class MenuConfig {
 	genreMenuConfig: GenreMenuConfig;
 	crewMenuConfig: CrewMenuConfig;
 	clipMenuConfig: ClipMenuConfig;
+	tagMenuConfig: TagsMenuConfig;
 
 	// Header Menu
 	shortAccessMenuConfig: ShortAccessMenuConfig;
@@ -22,7 +24,7 @@ export class MenuConfig {
 		this.genreMenuConfig = new GenreMenuConfig();
 		this.crewMenuConfig = new CrewMenuConfig();
 		this.clipMenuConfig = new ClipMenuConfig();
-
+		this.tagMenuConfig = new TagsMenuConfig();
 
 
 		this.shortAccessMenuConfig = new ShortAccessMenuConfig();
@@ -75,8 +77,11 @@ export class MenuConfig {
 
 		// Crew Config
 		let clip_items = this.clipMenuConfig.configs;
-		console.log(clip_items);
 		this.attachAsideMenu(clip_items);
+
+		let tag_items = this.tagMenuConfig.configs;
+		console.log(tag_items);
+		this.attachAsideMenu(tag_items);
 	}
 
 	public attachHeaderMenuItems() {

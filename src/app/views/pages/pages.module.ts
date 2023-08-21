@@ -38,6 +38,7 @@ import {EditComponent} from './Templates/Template CRUD/edit/edit.component';
 import {IndexComponent} from './Templates/Template CRUD/index/index.component';
 import {FormComponent} from './Templates/Template CRUD/form/form.component';
 import {TranslateModule} from '@ngx-translate/core';
+import { SimpleTableComponent } from './Templates/simple-table/simple-table.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import {TranslateModule} from '@ngx-translate/core';
 		SharedModule,
 		CustomDatePipe,
 		TranslateModule,
-		DataTablesComponent
+		DataTablesComponent,
+		SimpleTableComponent
 	],
 	providers: [
 		{
@@ -110,7 +112,7 @@ import {TranslateModule} from '@ngx-translate/core';
 		NgSelectConfig ,
 	],
 	declarations: [FormsComponent, DataTablesComponent, AnalyticsComponent, CustomDatePipe,
-		AddComponent, EditComponent, IndexComponent, FormComponent,
+		AddComponent, EditComponent, IndexComponent, FormComponent, SimpleTableComponent,
 	]
 })
 export class PagesModule {

@@ -1,0 +1,80 @@
+<div class="loader d-flex justify-content-center p-5" *ngIf="isLoading">
+	<mat-spinner diameter="50" ></mat-spinner>
+</div>
+
+<kt-portlet class="col-md-12 p-1" *ngIf="!isLoading">
+	<ng-container>
+		<kt-material-preview [headers]="headersData" *ngIf="!isLoading" [viewItem]="clipDetails"
+			[title]="'Clip Details'"></kt-material-preview>
+	</ng-container>
+
+	<ng-container>
+		<h3 class="text-center py-3">Companies List</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th *ngFor="let item of companiesHeaders">{{item}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let rows of companiesData; index as i">
+					<td>{{i+1}}</td>
+					<td>{{ toLang(rows.name) }}</td>
+					<td>{{ toLang(rows.description) }}</td>
+					<td>{{ rows.year }}</td>
+					<td><img class="img-thumbnail w-50"
+							onerror="this.src ='../../../../../../assets/img/Dummy-Person.png'" src="rows.logo"></td>
+				</tr>
+			</tbody>
+		</table>
+	</ng-container>
+
+	<ng-container>
+		<h3 class="text-center py-3">Crews List</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th *ngFor="let item of crewHeaders">{{item}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let rows of clipDetails?.crews; index as i">
+					<td>{{i+1}}</td>
+					<td>{{ toLang(rows.name) }}</td>
+					<td>{{ toLang(rows.description) }}</td>
+					<td>{{ rows.birth_date }}</td>
+					<td>{{ rows.death_date }}</td>
+					<td>{{ rows.gender }}</td>
+					<td>{{ rows.social_links[0] }}</td>
+					<td>
+						<img class="img-thumbnail w-50" onerror="this.src ='../../../../../../assets/img/Dummy-Person.png'"
+						[src]="rows.thumb">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</ng-container>
+
+	<ng-container>
+		<h3 class="text-center py-3">Geners List</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th *ngFor="let item of genresHeaders">{{item}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let rows of clipDetails?.genres; index as i">
+					<td>{{i+1}}</td>
+					<td>{{ rows.key }}</td>
+					<td>{{ toLang(rows.name) }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</ng-container>
+
+
+</kt-portlet>

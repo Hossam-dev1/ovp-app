@@ -1,0 +1,15 @@
+<table class="table table-bordered">
+	<thead >
+		<tr>
+			<th *ngFor="let item of tableHeaders">{{item}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let rows of tableData; i as index">
+			<td>{{ toLang(rows.name) }}</td>
+			<td>{{ toLang(rows.description) }}</td>
+			<td><img class="img-thumbnail w-50" onerror="this.src ='../../../../../../assets/img/Dummy-Person.png'" src="rows.logo" ></td>
+			<td>{{ rows.year }}</td>
+		</tr>
+	</tbody>
+</table>

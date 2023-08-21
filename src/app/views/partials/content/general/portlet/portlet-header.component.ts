@@ -26,7 +26,7 @@ import { Observable, Subscription } from 'rxjs';
 				<i *ngIf="icon" [ngClass]="icon"></i>
 			</span>
 			<ng-content *ngIf="!title" select="[ktPortletTitle]"></ng-content>
-			<h3 *ngIf="title" class="kt-portlet__head-title" [innerHTML]="title"></h3>
+			<h2 *ngIf="title" class="kt-portlet__head-title" [innerHTML]="title"></h2>
 		</div>
 		<div class="kt-portlet__head-toolbar" #refTools [hidden]="hideTools">
 			<ng-content select="[ktPortletTools]"></ng-content>

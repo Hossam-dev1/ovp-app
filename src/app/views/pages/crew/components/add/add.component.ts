@@ -110,10 +110,10 @@ export class AddComponent implements OnInit {
 			this.cdr.detectChanges();
 		},
 			(error) => {
+				this.toastr.error(error.error.message);
 				const errorControll = Object.keys(error.error.errors).toString();
 				this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();
-				this.toastr.error(error.error.message);
 			})
 	}
 

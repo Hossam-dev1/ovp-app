@@ -12,7 +12,7 @@ export class DetailsComponent implements OnInit {
 	crew_ID: number;
 	crewDetails: any;
 	isLoading: boolean = true;
-
+	headersData:string[] = ['name', 'description', 'birth_date', 'death_date', 'gender', 'nationality', 'social_links', 'types']
 	constructor(
 		private _crewService: CrewService,
 		private cdr: ChangeDetectorRef,

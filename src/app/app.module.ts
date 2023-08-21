@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormGroupDirective } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 // Angular in memory
 // Perfect Scroll bar
 import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -102,6 +104,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		NgxMatSelectSearchModule,
 		SharedModule,
 		ToastrModule.forRoot(),
+		NgSelectModule
 	],
 	exports: [],
 	providers: [

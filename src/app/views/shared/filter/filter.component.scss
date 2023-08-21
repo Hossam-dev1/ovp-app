@@ -1,3 +1,21 @@
 .filter-height{
 	height: 45px !important;
 }
+
+.search-box{
+	position: relative;
+	i{
+		position: absolute;
+		top: 14px;
+		left: 15px;
+		font-size: 15px;
+		color: darkgray;
+	}
+
+	.mat-input-element{
+		padding: 0 42px !important;
+	}
+}
+ button.btn {
+ 	font-weight: 400 !important;
+ }

@@ -42,6 +42,8 @@ import { FormUploadImageComponent } from './forms/form-upload-image/form-upload-
 import { FormStatusComponent } from './forms/form-status/form-status.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormDatePickerComponent } from './forms/form-date-picker/form-date-picker.component';
+import { FormYearDatePickerComponent } from './forms/form-year-date-picker/form-year-date-picker.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { FormDatePickerComponent } from './forms/form-date-picker/form-date-pick
         FormShowComponent,
         FormUploadImageComponent,
         FormStatusComponent,
-        FormDatePickerComponent
+        FormDatePickerComponent,
+        FormYearDatePickerComponent
     ],
     imports: [
         CommonModule,
@@ -83,7 +86,8 @@ import { FormDatePickerComponent } from './forms/form-date-picker/form-date-pick
         MatCheckboxModule,
         MatIconModule,
         MatListModule,
-        MatMenuModule
+        MatMenuModule,
+		MatNativeDateModule
     ],
     exports: [
         FilterComponent,
@@ -105,7 +109,9 @@ import { FormDatePickerComponent } from './forms/form-date-picker/form-date-pick
         FormShowComponent,
         FormUploadImageComponent,
         MatMenuModule,
-        FormDatePickerComponent
+        FormDatePickerComponent,
+		FormYearDatePickerComponent,
+		FormStatusComponent
     ]
 })
 export class SharedModule {

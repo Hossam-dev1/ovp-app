@@ -1,0 +1,9 @@
+
+<kt-portlet class="col-md-12 p-3">
+	<ng-container>
+		<kt-material-preview [headers]="headersData" *ngIf="!isLoading" [viewItem]="providerDetails" [title]="'Content Provider Details'"></kt-material-preview>
+	</ng-container>
+	<div class="loader d-flex justify-content-center p-5">
+		<mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
+	</div>
+</kt-portlet>

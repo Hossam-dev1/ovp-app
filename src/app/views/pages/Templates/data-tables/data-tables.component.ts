@@ -1,3 +1,10 @@
+import { GenreService } from './../../../../core/services/Genre-Module/genre.service';
+import { HelperService } from './../../../../core/services/helper.service';
+import { AuthNoticeService } from './../../../../core/services/auth-notice.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DeleteModalComponent } from './../../../shared/delete-modal/delete-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ContentProviderService } from './../../../../core/services/Clips-Module/content-provider.service';
 import { CompanyTypeService } from './../../../../core/services/Clips-Module/company-type.service';
 import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
 import { CrewTypeService } from './../../../../core/services/Crew-Module/crew-type.service';
@@ -9,7 +16,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-
+import { CompanyService } from './../../../../core/services/Clips-Module/company.service';
+import { PaginateParams } from '../../../../core/models/paginateParams.interface';
+import { GlobalConfig } from '../../../../core/Global/global.config';
 export interface ITableFilter {
 	column: string;
 	value: any;
@@ -24,43 +33,74 @@ export interface ITableFilter {
 })
 export class DataTablesComponent implements OnInit, OnChanges {
 
-	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild('paginator', { static: true }) paginator: MatPaginator;
+	@ViewChild('paginatorPageSize') paginatorPageSize: MatPaginator;
+
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	@Input() Data_Source: any;
 	@Input() Displayed_Columns: any;
 	@Input() isLoading_Results: boolean;
 	@Input() title: string;
-	@Input() route_path:any
+	@Input() route_path: any
+	@Input() dynamicServiceName: string;
 
-	dataSource$;
+	dataSource$: MatTableDataSource<any>;
+	dataSourceWithPageSize;
 	resultsLength = 20;
 	pageIndex = 0;
-	// filter: ITableFilter[] = [];
-	pageSize = 10;
+	filter: any;
+	pageSize = 5;
 	tableHeaders: string[] = [];
-	displayedColumns:any
+	displayedColumns: any
 	isLoading = true;
 	lang: string = 'en';
 
+	//filter variables
+	headerParams: PaginateParams = {
+		active: 1,
+		per_page: GlobalConfig.pagination_per_page,
+		search_key: null,
+		sort_key: null,
+		sort_order: null,
+		next_page_index: 0,
+	};
 
 	constructor(
 		private _langService: LangService,
 		private cdr: ChangeDetectorRef,
+		private helper: HelperService,
+		private authNoticeService: AuthNoticeService,
 		private _nationalitiesService: NationalitiesService,
+		private _genereService:GenreService,
+		private _contentProviderService: ContentProviderService,
 		private _crewTypeService: CrewTypeService,
 		private _crewService: CrewService,
 		private _companyTypeService: CompanyTypeService,
-		private _toaster: ToastrService
-
+		private _companyService: CompanyService,
+		private _toaster: ToastrService,
+		public dialog: MatDialog,
+		private translate: TranslateService
 	) {
 		// Assign the data to the data source for the table to render
 		// this.dataSource =  new MatTableDataSource(ELEMENT_DATA);
 	}
 
+	ngAfterViewInit() {
+		if (!this.isLoading) {
+			console.log('hi');
+
+
+		}
+	}
 	ngOnInit() {
 		this.checkLocalLang()
+		// this.dataSource$.paginator = this.paginator;
 		// this.dataSource.sort = this.sort;
 		// this.dataSource.filterPredicate = this.customFilterPredicate
+	}
+
+	toLang(param) {
+		return this.lang == 'en' ? param.en : param.ar;
 	}
 
 	checkLocalLang() {
@@ -74,25 +114,22 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		if (changes.Data_Source.currentValue) {
 			this.dataSource$ = new MatTableDataSource(this.Data_Source)
 			this.tableHeaders = this.Displayed_Columns;
+			this.dataSourceWithPageSize = new MatTableDataSource(this.Data_Source);
+			this.dataSource$.paginator = this.paginator;
+			this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
 			this.isLoading = false;
 		}
 	}
 
-	applySpecificFilter(columnNames, value) {
-		// let found = 0;
-		// for (let i = 0; i < this.filter.length; i++) {
-		// 	if(this.filter[i].column == columnNames) {
-		// 		this.filter[i].value = value;
-		// 		found = 1;
-		// 	}
-		// }
-		// if(found == 0) {
-		// 	this.filter.push({column: columnNames, value: value});
-		// }
-		// this.dataSource.filter = this.filter;
-		// if (this.dataSource.paginator) {
-		// 	this.dataSource.paginator.firstPage();
-		// }
+	applySpecificFilter(columnNames, value: string) {
+
+		this.dataSource$ = new MatTableDataSource(this.Data_Source.filter((item) => item['name'][this.lang].includes(value)))
+		console.log(this.dataSource$);
+		this.cdr.detectChanges();
+
+		if (this.dataSource$.paginator) {
+			this.dataSource$.paginator.firstPage();
+		}
 	}
 
 	// set specific filter columns
@@ -110,37 +147,40 @@ export class DataTablesComponent implements OnInit, OnChanges {
 
 	// get data form server
 	public getServerData(event?: PageEvent) {
-		// this.dataSource = new MatTableDataSource(ELEMENT_DATA2);
 		this.pageIndex = this.pageIndex + 1;
 	}
 
-	deleteColumn(id: number) {
-		if (this.title == 'Nationalities') {
-			this._nationalitiesService.deleteNationalityById(id).subscribe((res: any) => {
-				this._toaster.success(res.message)
-				this._nationalitiesService.isListChanged.next(true);
-				this.cdr.detectChanges();
-			})
-		} else if (this.title == 'Crew Type') {
-			this._crewTypeService.delete(id).subscribe((res: any) => {
-				this._toaster.success(res.message)
-				this._crewTypeService.isListChanged.next(true);
-				this.cdr.detectChanges();
-			})
-		} else if (this.title == 'Crew') {
-			this._crewService.delete(id).subscribe((res: any) => {
-				this._toaster.success(res.message)
-				this._crewService.isListChanged.next(true);
-				this.cdr.detectChanges();
-			})
-		}
-		else if (this.title == 'Company Types') {
-			this._companyTypeService.delete(id).subscribe((res: any) => {
-				this._toaster.success(res.message)
-				this._companyTypeService.isListChanged.next(true);
-				this.cdr.detectChanges();
-			})
-		}
+	get dynamicService() {
+		return this[this.dynamicServiceName];
+	}
+
+	deleteColumn(id: number, elem) {
+		const dialogRef = this.dialog.open(DeleteModalComponent, {
+			width: '40rem',
+			data: {
+				title: this.translate.instant('COMMON.Delete_Title', {
+					name: elem.name[this.lang] || '',
+				}),
+				body: this.translate.instant('COMMON.Delete_Body', {
+					name: elem.name[this.lang] || '',
+					id: id
+				}),
+			}
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				this.dynamicService.delete(id).subscribe(res => {
+					// this.authNoticeService.setNotice(this.translate.instant('COMMON.Deleted_successfully', {
+					// 	name: 'delete'}), 'success');
+					this.dynamicService.isListChanged.next(true);
+					this._toaster.success(res.message)
+				}, handler => {
+					this.authNoticeService.setNotice(this.helper.showingErrors(handler.error), 'danger');
+					// this.deletedItem = null;
+					this._toaster.error(handler.error?.error)
+				});
+			}
+		});
 	}
 
 }

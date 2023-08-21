@@ -26,7 +26,7 @@ export class ClipMenuConfig {
 			{
 				"title": "Clip",
 				"translate": "MENUS.CLIPS.SUBMENU",
-				"page": '/cms/clip'
+				"page": '/cms/clips'
 			},
 			{
 				"title": "Company",
@@ -37,6 +37,11 @@ export class ClipMenuConfig {
 				"title": "Company Type",
 				"translate": "MENUS.CLIPS.MENU.COMPANY_TYPE.TITLE",
 				"page": '/cms/company_type'
+			},
+			{
+				"title": "Content Provider",
+				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
+				"page": '/cms/content_provider'
 			},
 		]
 	};

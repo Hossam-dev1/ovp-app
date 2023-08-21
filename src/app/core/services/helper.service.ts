@@ -1,13 +1,24 @@
-import {Injectable} from '@angular/core';
-import {errors} from '../models/errors.interface';
-import {NavigationEnd} from '@angular/router';
-
+import { environment } from './../../../environments/environment';
+import { Injectable } from '@angular/core';
+import { errors } from '../models/errors.interface';
+import { NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpParams, HttpClient } from '@angular/common/http';
 @Injectable({
 	providedIn: 'root'
 })
 export class HelperService {
 
-	constructor() {
+	constructor(private HttpClient: HttpClient) {
+	}
+
+	contentTypesList(): Observable<any> {
+		return this.HttpClient.get(environment.url() + 'admins/content_types',
+			{ headers: { "Accept-Language": "all" } })
+	}
+	dimentionsList(): Observable<any> {
+		return this.HttpClient.get(environment.url() + 'admins/dimentions',
+			{ headers: { "Accept-Language": "all" } })
 	}
 
 	showingErrors(handler: errors) {
@@ -44,8 +55,8 @@ export class HelperService {
 		});
 	}
 
-	public pushMultiSelect(event, Selection, originalSource){
-		if(event.isUserInput) {
+	public pushMultiSelect(event, Selection, originalSource) {
+		if (event.isUserInput) {
 			let id = event.source.value;
 			let check = event.source.selected;
 
@@ -54,7 +65,7 @@ export class HelperService {
 				let item = originalSource.find(element => element.id == id);
 				let element_exist = Selection.find(element => element.id == id);
 
-				if (!element_exist){
+				if (!element_exist) {
 					Selection.push(item);
 				}
 			} else {
@@ -65,7 +76,7 @@ export class HelperService {
 		return Selection;
 	}
 
-	public popFromForm(form, form_name, item_id){
+	public popFromForm(form, form_name, item_id) {
 		let listControl = form.controls[form_name].value;
 
 		if (listControl) {
@@ -74,12 +85,12 @@ export class HelperService {
 		return listControl;
 	}
 
-	public popFromSelectionList(Selection, item_id){
+	public popFromSelectionList(Selection, item_id) {
 		// @ts-ignore
 		return Selection.filter(element => element.id != item_id);
 	}
 
-	public maxNumberOfPages(resp){
+	public maxNumberOfPages(resp) {
 		return (resp['pagination'] ? resp['pagination'].last_page : 1);
 	}
 

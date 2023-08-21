@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {UntypedFormGroup} from '@angular/forms';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormArray, FormGroup, UntypedFormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'kt-form-upload-image',
@@ -9,12 +9,16 @@ import {UntypedFormGroup} from '@angular/forms';
 export class FormUploadImageComponent implements OnInit, OnChanges {
 
 	@Input() form: UntypedFormGroup;
+	@Input() formGroup: any;
 	@Input() label: string;
 	@Input() form_control_name: string = null;
 	@Input() validation_type: string = null;
-	@Input() to_base64:boolean = false;
-	@Input() imgURL:any = null;
-	@Input() clear_src:boolean;
+	@Input() to_base64: boolean = false;
+	@Input() imgURL: any = null;
+	@Input() clear_src: boolean;
+	@Input() dimentionID: any;
+	@Input() control_index: any
+
 
 	constructor(private cdr: ChangeDetectorRef,) {
 	}
@@ -23,9 +27,9 @@ export class FormUploadImageComponent implements OnInit, OnChanges {
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log(changes);
+		// console.log(changes);
 
-		if(changes.clear_src.currentValue){
+		if (changes?.clear_src?.currentValue) {
 			this.imgURL = null
 			this.cdr.markForCheck();
 		}
@@ -35,7 +39,7 @@ export class FormUploadImageComponent implements OnInit, OnChanges {
 	onFileSelect(event) {
 		if (event.target.files.length > 0) {
 			const file = event.target.files[0];
-			if (!this.to_base64){
+			if (!this.to_base64) {
 				this.form.controls[this.form_control_name].setValue(file);
 			}
 
@@ -43,9 +47,18 @@ export class FormUploadImageComponent implements OnInit, OnChanges {
 			reader.readAsDataURL(file);
 			reader.onload = (_event) => {
 				this.imgURL = reader.result;
+				this.cdr.markForCheck()
+				if (this.to_base64) {
+					if (this.formGroup) {
 
-				if (this.to_base64){
-					this.form.controls[this.form_control_name].setValue(this.imgURL);
+						const formGroup = this.form.controls[this.formGroup] as FormArray; // step 1
+						const control = formGroup.at(this.control_index); // step 2
+						control.patchValue({ img: this.imgURL, dimention_id: this.dimentionID }); // step 3
+						// console.log(this.form.controls[this.formGroup]);
+
+						return
+					}
+					return this.form.controls[this.form_control_name].setValue(this.imgURL);
 				}
 				this.cdr.markForCheck();
 			};

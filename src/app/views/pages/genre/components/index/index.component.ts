@@ -11,7 +11,7 @@ MatPaginator
 	templateUrl: './index.component.html',
 	styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit, OnChanges {
+export class IndexComponent implements OnInit {
 	displayedColumns = ['id', 'key', 'name', 'options'];
 	dataSource = new MatTableDataSource([]);;
 	isLoadingResults: boolean = false;
@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit, OnChanges {
 
 
 	constructor(
-		private genreService: GenreService,
+		private _genreService: GenreService,
 		private cdr: ChangeDetectorRef,
 		private _toastr: ToastrService,
 		private _langService: LangService
@@ -35,40 +35,24 @@ export class IndexComponent implements OnInit, OnChanges {
 
 	ngOnInit() {
 		this.getData()
-		this.checkLocalLang();
-	}
-
-
-	ngOnChanges() {
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
-	}
-
-	checkLocalLang() {
-		this._langService.localLang.subscribe((curreLang) => {
-			this.lang = curreLang;
-			this.cdr.detectChanges();
+		this._genreService.isListChanged.subscribe((resp) => {
+			if (resp) {
+				this.getData()
+			}
 		})
 	}
+
+
+
 	getData() {
 		this.isLoadingResults = true;
-		this.genreService.list().subscribe((resp) => {
-			this.dataSource = new MatTableDataSource(resp.body)
+		this._genreService.list().subscribe((resp) => {
+
+			this.dataSource = resp.body
+			console.log(this.dataSource);
 			this.isLoadingResults = false;
 			this.cdr.detectChanges();
-			console.log(this.paginator);
-			this.ngOnChanges()
 		})
 	}
 
-	deleteGenre(id: number) {
-		this.genreService.delete(id).subscribe((resp: any) => {
-			console.log(resp);
-			this._toastr.success(resp.message + ' successfully');
-			this.getData();
-		})
-	}
-	public pagination(event?: PageEvent) {
-		// this.pageIndex = event?.pageIndex;
-	}
 }

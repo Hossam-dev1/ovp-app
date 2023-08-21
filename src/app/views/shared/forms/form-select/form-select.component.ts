@@ -42,6 +42,8 @@ export class FormSelectComponent implements OnInit, OnChanges {
 		})
 	}
 	ngOnChanges(changes: SimpleChanges): void {
+		console.log('changes', changes);
+
 		if (changes.typesList?.currentValue.length > 0){
 			this.isloading = false
 			this.cdr.detectChanges()

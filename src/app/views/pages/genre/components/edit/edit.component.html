@@ -5,7 +5,7 @@
 
 <!-- Form-->
 <div class="example-container container-fluid">
-	<div class="loader d-flex justify-content-center p-5">
+	<div class="loader d-flex justify-content-center p-5" *ngIf="isLoadingResults">
 		<kt-api-loader class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
 	</div>
 	<div [hidden]="isLoadingResults">

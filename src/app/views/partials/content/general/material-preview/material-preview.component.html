@@ -1,4 +1,4 @@
-<kt-portlet [ngClass]="'kt-portlet--ngviewer'" >
+<kt-portlet [ngClass]="'kt-portlet--ngviewer'">
 
 	<kt-portlet-header [title]="title">
 		<ng-container ktPortletTools>
@@ -10,7 +10,7 @@
 					</a>
 				</li>
 			</ul> -->
-			<div class="kt-portlet__head-group">
+			<div class="kt-portlet__head-group" *ngIf="viewItem?.logo">
 				<img class="preview-img" src="{{'../../../../../../assets/img/Dummy-Person.png'}}" alt="">
 			</div>
 		</ng-container>
@@ -20,82 +20,17 @@
 		<div *ngIf="(hasExampleSource)" class="kt-portlet__preview kt-portlet__code"
 			[ngClass]="{'kt-portlet__code--show' : viewItem.isCodeVisible}">
 			<mat-grid-list cols="2" rowHeight="60px">
-				<mat-grid-tile>
+				<mat-grid-tile *ngFor="let item of headers">
 					<div class="col-5 header">
-						Name :
+						{{item}} :
 					</div>
 					<div class="col-7">
-						{{toLang(viewItem.name)}}
+						{{ (item == 'name' || item == 'description' || item == 'nationality' || item == 'types'|| item
+						== 'slug') ?
+						toLang(viewItem[item], item) : viewItem[item] }}
 					</div>
-				</mat-grid-tile>
 
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Description :
-					</div>
-					<div class="col-7">
-						{{toLang(viewItem.description)}}
-					</div>
 				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Birth_date :
-					</div>
-					<div class="col-7">
-						{{viewItem.birth_date}}
-					</div>
-				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Death_date :
-					</div>
-					<div class="col-7">
-						{{viewItem.death_date}}
-					</div>
-				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Nationality :
-					</div>
-					<div class="col-7">
-						{{toLang(viewItem.nationality['name'])}}
-					</div>
-				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Types :
-					</div>
-					<div class="col-7">
-						<span *ngFor="let type of viewItem.types">
-							{{type["key"]}} | {{toLang(type['name'])}}
-						</span>
-					</div>
-				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Gender :
-					</div>
-					<div class="col-7">
-						{{viewItem.gender}}
-					</div>
-				</mat-grid-tile>
-
-				<mat-grid-tile>
-					<div class="col-5 header">
-						Social links :
-					</div>
-					<div class="col-7">
-						<span *ngFor="let link of viewItem.social_links">
-							<a  target="_blank" href="{{link}}">{{link}}</a>
-						</span>
-					</div>
-				</mat-grid-tile>
-
 			</mat-grid-list>
 		</div>
 

@@ -43,15 +43,25 @@ const routes: Routes = [
 				path: "crew", // <= Page URL ,
 				loadChildren: () => import('./views/pages/crew/crew.module').then(m => m.CrewModule)
 			},
-
 			{
 				path: "company_type", // <= Page URL ,
 				loadChildren: () => import('./views/pages/company-type/company-type.module').then(m => m.CompanyTypeModule)
 			},
-
 			{
 				path: "company", // <= Page URL ,
 				loadChildren: () => import('./views/pages/company/company.module').then(m => m.CompanyModule)
+			},
+			{
+				path: "clips", // <= Page URL ,
+				loadChildren: () => import('./views/pages/clip/clip.module').then(m => m.ClipModule)
+			},
+			{
+				path: "content_provider", // <= Page URL ,
+				loadChildren: () => import('./views/pages/content-provider/content-provider.module').then(m => m.ContentProviderModule)
+			},
+			{
+				path: "tags", // <= Page URL ,
+				loadChildren: () => import('./views/pages/tags/tags.module').then(m => m.TagsModule)
 			},
 			// admins
 			// {

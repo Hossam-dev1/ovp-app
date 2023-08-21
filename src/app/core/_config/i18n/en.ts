@@ -75,8 +75,16 @@ export const locale = {
 					COMPANY_TYPE:{
 						TITLE:'Company Type',
 					},
+					CONTENT_PROVIDER:{
+						TITLE:'Content Provider',
+					},
 				},
 			},
+
+			TAGS:{
+				TITLE : "Tags",
+				SUBMENU:"Tag" ,
+			}
 		},
 
 		AUTH: {

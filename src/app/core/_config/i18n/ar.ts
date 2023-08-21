@@ -77,8 +77,17 @@ export const locale = {
 					COMPANY_TYPE:{
 						TITLE:'نوع الشركات',
 					},
+					CONTENT_PROVIDER:{
+						TITLE:'مزود الخدمه',
+					},
 				},
 			},
+
+			TAGS:{
+				TITLE : "العلامات",
+				SUBMENU:"العلامة" ,
+			}
+
 		},
 
 		AUTH: {

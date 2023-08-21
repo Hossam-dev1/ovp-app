@@ -1,6 +1,6 @@
-<div class="mb-4">
+<div class="mb-4 position-relative" >
 	<div class="row">
-		<div class="col-6 position-relative">
+		<div class="col-6 ">
 			<label class="d-block mb-4">{{label}}</label>
 			<label class="btn btn-outline-dark">
 				{{ 'Components.Gallery.choose_img' | translate }} <i class="flaticon2-image-file"></i>
@@ -16,7 +16,7 @@
 		<!-- <div class="col-6"> -->
 			<div *ngIf="imgURL" class="uploaded-preview my-4">
 				<div>
-					<img style="width: 2.5rem;" src="{{ imgURL }}" alt="" class="">
+					<img  class="img-thumbnail" src="{{ imgURL }}" alt="" class="">
 				</div>
 			</div>
 		<!-- </div> -->

@@ -1,0 +1,65 @@
+<div class="header p-3">
+	<h5>Add Content Provider</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div class="loader d-flex justify-content-center">
+		<kt-api-loader diameter="50" class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
+	</div>
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="addForm" autocomplete="off">
+
+			<div class="row" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row" formGroupName="description">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (en)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-input [form]="addForm" [label]="'Email'"
+						[form_control_name]="'email'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form]="addForm" [label]="'Address'" [type]="'email'"
+						[form_control_name]="'address'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<kt-form-input [form]="addForm" [label]="'Phone'"
+						[form_control_name]="'phone'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
+						[form_control_name]="'image'" [label]="'Upload img'">
+					</kt-form-upload-image>
+				</div>
+			</div>
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
+					(click)="submit()">Add</button>
+			</div>
+		</form>
+	</div>
+
+</div>

@@ -6,6 +6,9 @@
 
 <!-- Form-->
 <div class="example-container container-fluid">
+	<div class="loader d-flex justify-content-center">
+		<kt-api-loader diameter="50" class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
+	</div>
 	<div [hidden]="isLoadingResults">
 		<form class="example-form p-3" [formGroup]="editForm" autocomplete="off">
 
