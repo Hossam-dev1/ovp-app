@@ -1,3 +1,4 @@
+import { SeriesModule } from './views/pages/series/series.module';
 // Angular
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -62,6 +63,11 @@ const routes: Routes = [
 			{
 				path: "tags", // <= Page URL ,
 				loadChildren: () => import('./views/pages/tags/tags.module').then(m => m.TagsModule)
+			},
+
+			{
+				path: "series", // <= Page URL ,
+				loadChildren: () => import('./views/pages/series/series.module').then(m => m.SeriesModule)
 			},
 			// admins
 			// {
