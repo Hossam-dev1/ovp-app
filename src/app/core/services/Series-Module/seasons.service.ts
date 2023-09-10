@@ -15,11 +15,15 @@ export class SeasonsService {
 	constructor(private HttpClient: HttpClient) { }
 
 	list(
-		paginationParams?
+		paginationParams?,
+		series_id?
 	): Observable<any> {
 		let params = new HttpParams();
 		if (paginationParams) {
 			params = params.append("is_pagination", paginationParams.is_pagination);
+		}
+		if (series_id) {
+			params = params.append("series_id", series_id);
 		}
 		params = params.append("is_pagination", String(1))
 		return this.HttpClient.get(environment.url() + 'admins/seasons',

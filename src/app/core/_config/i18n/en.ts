@@ -5,7 +5,7 @@ export const locale = {
 
 		MENU: {
 			NEW: 'new',
-			SHORT_ACCESS: 'Short Access',
+			SHORT_ACCESS: 'Shortcuts',
 			ADD_NEW: 'Add new',
 			APPS: 'Apps',
 			DASHBOARD: 'Dashboard',
@@ -48,6 +48,7 @@ export const locale = {
 			},
 			GENRE: {
 				TITLE: 'GENRE',
+				SUBMENU:'Genre',
 				MENU: {
 					GENRE: 'Genre',
 				},

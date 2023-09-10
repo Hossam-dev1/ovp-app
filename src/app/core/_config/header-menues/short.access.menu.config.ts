@@ -21,7 +21,7 @@ export class ShortAccessMenuConfig {
 		title: 'Short Access',
 		root: true,
 		translate: 'MENU.SHORT_ACCESS',
-		// icon: 'flaticon2-refresh-button',
+		icon: 'kt-menu__hor-arrow la la-angle-down',
 		submenu: [
 			{
 				"title": 'Genere',
@@ -33,7 +33,33 @@ export class ShortAccessMenuConfig {
 				"title": 'Crew',
 				"translate": "MENUS.CREW.SUBMENU",
 				"page": '/cms/crew'
-			}
+			},
+			{
+				"title": 'Clips',
+				"translate": "MENUS.CLIPS.SUBMENU",
+				"page": '/cms/clips'
+			},
+			{
+				"title": 'Company',
+				"translate": "MENUS.CLIPS.MENU.COMPANY.TITLE",
+				"page": '/cms/company'
+			},
+			{
+				"title": 'Nationalities',
+				"translate": "MENUS.CREW.MENU.NATIIONALITIES.TITLE",
+				"page": '/cms/nationalities'
+			},
+			{
+				"title": 'Content Providers',
+				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
+				"page": '/cms/content_provider'
+			},
+			{
+				"title": 'Series',
+				"translate": "MENUS.SERIES.SUBMENU",
+				"page": '/cms/series'
+			},
+
 		]
 	};
 

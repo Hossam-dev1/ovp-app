@@ -4,11 +4,11 @@
 	.kt-header-menu-wrapper {
 		height: 100%;
 	}
-	.kt-menu__item.kt-menu__item--rel{
-		&:hover{
-			.kt-menu__link-text{
-				color: #ff4057 !important;
-			}
-		}
+	.shortMenu{
+		border: 1px solid !important;
 	}
+	a{
+		flex-direction: row-reverse !important;
+	}
+
 }

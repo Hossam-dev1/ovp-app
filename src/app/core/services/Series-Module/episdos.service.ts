@@ -15,11 +15,16 @@ export class EpisdosService {
 	constructor(private HttpClient: HttpClient) { }
 
 	list(
-		paginationParams?
+		paginationParams?,
+		season_id?,
+		series_id?
 	): Observable<any> {
 		let params = new HttpParams();
 		if (paginationParams) {
 			params = params.append("is_pagination", paginationParams.is_pagination);
+		}
+		if (season_id) {
+			params = params.append("season_id", season_id);
 		}
 		params = params.append("is_pagination", String(1))
 		return this.HttpClient.get(environment.url() + 'admins/episodes',

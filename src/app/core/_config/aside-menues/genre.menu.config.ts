@@ -21,7 +21,7 @@ export class GenreMenuConfig {
 		title: 'Genre',
 		root: true,
 		translate: 'MENUS.GENRE.TITLE',
-		//icon: SectionIconsName.TEMPLATE(),
+		icon: 'flaticon2-open-box',
 		submenu: [
 			{
 				"title": "Genre",

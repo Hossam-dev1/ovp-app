@@ -2821,7 +2821,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .dropdown-item.active, .dropdown-item:active {
 	color: #fff;
 	text-decoration: none;
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4209,7 +4209,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	padding: .5rem .75rem;
 	margin-left: -1px;
 	line-height: 1.25;
-	color: #5d78ff;
+	color: #ff4057;
 	background-color: #fff;
 	border: 1px solid #ebedf2
 }
@@ -9353,7 +9353,7 @@ a.text-dark:focus, a.text-dark:hover {
 	font-size: 1.1rem;
 	font-weight: 500;
 	padding: 1rem;
-	color: #5d78ff;
+	color: #ff4057;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center
@@ -9362,7 +9362,7 @@ a.text-dark:focus, a.text-dark:hover {
 .accordion .card .card-header .card-title > i {
 	margin-right: 1rem;
 	font-size: 1.4rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .accordion .card .card-header .card-title.collapsed {
@@ -9405,7 +9405,7 @@ a.text-dark:focus, a.text-dark:hover {
 	font-size: 1.1rem;
 	padding: 1rem 1rem 1rem 0;
 	font-weight: 500;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .accordion.accordion-light .card .card-header .card-title.collapsed, .accordion.accordion-light .card .card-header .card-title.collapsed:after {
@@ -9475,7 +9475,7 @@ a.text-dark:focus, a.text-dark:hover {
 	content: "";
 	font-size: 1.7rem;
 	font-weight: 700;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .accordion.accordion-outline .card .card-header .card-title.collapsed {
@@ -9541,7 +9541,7 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .accordion.accordion-toggle-arrow .card .card-header .card-title {
-	color: #5d78ff;
+	color: #ff4057;
 	position: relative
 }
 
@@ -9556,7 +9556,7 @@ a.text-dark:focus, a.text-dark:hover {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 	content: "";
-	color: #5d78ff
+	color: #ff4057
 }
 
 .accordion.accordion-toggle-arrow .card .card-header .card-title.collapsed {
@@ -9569,7 +9569,7 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .accordion.accordion-toggle-plus .card .card-header .card-title {
-	color: #5d78ff;
+	color: #ff4057;
 	position: relative
 }
 
@@ -9584,7 +9584,7 @@ a.text-dark:focus, a.text-dark:hover {
 	font-smoothing: antialiased;
 	content: "";
 	font-size: 1.2rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .accordion.accordion-toggle-plus .card .card-header .card-title.collapsed {
@@ -9717,8 +9717,8 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .alert.alert-brand {
-	background: #5d78ff;
-	border: 1px solid #5d78ff;
+	background: #ff4057;
+	border: 1px solid #ff4057;
 	color: #fff
 }
 
@@ -9736,22 +9736,22 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .alert.alert-outline-brand {
-	border: 1px solid #5d78ff;
-	color: #5d78ff
+	border: 1px solid #ff4057;
+	color: #ff4057
 }
 
 .alert.alert-outline-brand .alert-close i, .alert.alert-outline-brand .alert-icon i, .alert.alert-outline-brand .alert-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .alert.alert-solid-brand {
 	background: rgba(93, 120, 255, .1);
 	border-color: transparent;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .alert.alert-solid-brand .alert-close i, .alert.alert-solid-brand .alert-icon i, .alert.alert-solid-brand .alert-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .alert.alert-light {
@@ -10065,12 +10065,12 @@ button.btn, input.btn, label.btn {
 }
 
 .btn.btn-clean.active, .btn.btn-clean:active, .btn.btn-clean:hover, .show > .btn.btn-clean {
-	color: #5d78ff;
+	color: #ff4057;
 	background: #f0f3ff
 }
 
 .btn.btn-clean.active i, .btn.btn-clean:active i, .btn.btn-clean:hover i, .show > .btn.btn-clean i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .btn.btn-default {
@@ -10085,8 +10085,8 @@ button.btn, input.btn, label.btn {
 
 .btn.btn-default.active, .btn.btn-default:active, .btn.btn-default:hover, .show > .btn.btn-default {
 	color: #fff;
-	background: #5d78ff;
-	border-color: #5d78ff
+	background: #ff4057;
+	border-color: #ff4057
 }
 
 .btn.btn-default.active i, .btn.btn-default:active i, .btn.btn-default:hover i, .show > .btn.btn-default i {
@@ -10106,8 +10106,8 @@ button.btn, input.btn, label.btn {
 }
 
 .btn-brand {
-	background-color: #5d78ff;
-	border-color: #5d78ff;
+	background-color: #ff4057;
+	border-color: #ff4057;
 	color: #fff
 }
 
@@ -10123,8 +10123,8 @@ button.btn, input.btn, label.btn {
 
 .btn-brand.disabled, .btn-brand:disabled {
 	color: #fff;
-	background-color: #5d78ff;
-	border-color: #5d78ff
+	background-color: #ff4057;
+	border-color: #ff4057
 }
 
 .btn-brand:not(:disabled):not(.disabled).active, .btn-brand:not(:disabled):not(.disabled):active, .show > .btn-brand.dropdown-toggle {
@@ -10879,14 +10879,14 @@ button.btn, input.btn, label.btn {
 }
 
 .btn-outline-brand {
-	color: #5d78ff;
-	border-color: #5d78ff
+	color: #ff4057;
+	border-color: #ff4057
 }
 
 .btn-outline-brand:hover {
 	color: #fff;
-	background-color: #5d78ff;
-	border-color: #5d78ff
+	background-color: #ff4057;
+	border-color: #ff4057
 }
 
 .btn-outline-brand.focus, .btn-outline-brand:focus {
@@ -10894,14 +10894,14 @@ button.btn, input.btn, label.btn {
 }
 
 .btn-outline-brand.disabled, .btn-outline-brand:disabled {
-	color: #5d78ff;
+	color: #ff4057;
 	background-color: transparent
 }
 
 .btn-outline-brand:not(:disabled):not(.disabled).active, .btn-outline-brand:not(:disabled):not(.disabled):active, .show > .btn-outline-brand.dropdown-toggle {
 	color: #fff;
-	background-color: #5d78ff;
-	border-color: #5d78ff
+	background-color: #ff4057;
+	border-color: #ff4057
 }
 
 .btn-outline-brand:not(:disabled):not(.disabled).active:focus, .btn-outline-brand:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-brand.dropdown-toggle:focus {
@@ -11120,8 +11120,8 @@ button.btn, input.btn, label.btn {
 
 .btn-hover-brand.active, .btn-hover-brand:active, .btn-hover-brand:hover, .show > .btn-hover-brand {
 	color: #fff;
-	background-color: #5d78ff;
-	border-color: #5d78ff
+	background-color: #ff4057;
+	border-color: #ff4057
 }
 
 .btn-outline-hover-brand.btn-clean {
@@ -11129,8 +11129,8 @@ button.btn, input.btn, label.btn {
 }
 
 .btn-outline-hover-brand.active, .btn-outline-hover-brand:active, .btn-outline-hover-brand:hover, .show > .btn-outline-hover-brand {
-	color: #5d78ff;
-	border-color: #5d78ff;
+	color: #ff4057;
+	border-color: #ff4057;
 	background-color: transparent
 }
 
@@ -11247,7 +11247,7 @@ button.btn, input.btn, label.btn {
 }
 
 .btn-font-brand, .btn-font-hover-brand.active, .btn-font-hover-brand:active, .btn-font-hover-brand:hover, .show > .btn-font-hover-brand {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .btn-font-hover-light.active, .btn-font-hover-light:active, .btn-font-hover-light:hover, .btn-font-light, .show > .btn-font-hover-light {
@@ -11576,7 +11576,7 @@ button.btn, input.btn, label.btn {
 
 .btn.btn-label {
 	background-color: #f0f3ff;
-	color: #5d78ff;
+	color: #ff4057;
 	cursor: text !important
 }
 
@@ -11585,19 +11585,19 @@ button.btn, input.btn, label.btn {
 }
 
 .btn.btn-link.active, .btn.btn-link:focus, .btn.btn-link:hover, a.btn.btn-label.active, a.btn.btn-label:focus, a.btn.btn-label:hover, button.btn.btn-label.active, button.btn.btn-label:focus, button.btn.btn-label:hover, input.btn.btn-label.active, input.btn.btn-label:focus, input.btn.btn-label:hover {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
 .btn.btn-label-brand {
 	background-color: rgba(93, 120, 255, .1);
-	color: #5d78ff;
+	color: #ff4057;
 	cursor: text !important
 }
 
 .btn.btn-label-brand-o2 {
 	background-color: rgba(93, 120, 255, .2);
-	color: #5d78ff;
+	color: #ff4057;
 	cursor: text !important
 }
 
@@ -11606,7 +11606,7 @@ a.btn.btn-label-brand, button.btn.btn-label-brand, input.btn.btn-label-brand, la
 }
 
 a.btn.btn-label-brand.active, a.btn.btn-label-brand:focus, a.btn.btn-label-brand:hover, button.btn.btn-label-brand.active, button.btn.btn-label-brand:focus, button.btn.btn-label-brand:hover, input.btn.btn-label-brand.active, input.btn.btn-label-brand:focus, input.btn.btn-label-brand:hover, label.btn.btn-label-brand.active, label.btn.btn-label-brand:focus, label.btn.btn-label-brand:hover {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -12529,7 +12529,7 @@ code {
 }
 
 .modal .modal-content .modal-header .close:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .modal.modal-sticky-bottom-right {
@@ -12629,7 +12629,7 @@ code {
 }
 
 .pagination.pagination--grid .page-item.active .page-link, .pagination.pagination--grid .page-item:focus .page-link, .pagination.pagination--grid .page-item:hover .page-link {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -12705,7 +12705,7 @@ code {
 
 .table.table-light--brand thead tr, .table.table-light thead tr {
 	background-color: rgba(93, 120, 255, .15);
-	color: #5d78ff
+	color: #ff4057
 }
 
 .table.table-light--light thead tr {
@@ -12782,7 +12782,7 @@ code {
 }
 
 .nav-tabs .nav-item .nav-link, .nav-tabs .nav-item .nav-link.active, .nav-tabs .nav-item .nav-link.active i, .nav-tabs .nav-item .nav-link:active, .nav-tabs .nav-item .nav-link:active i, .nav-tabs .nav-item .nav-link:hover, .nav-tabs .nav-item .nav-link:hover i, .nav-tabs .nav-item .nav-link i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .nav-tabs .nav-item .nav-link.disabled, .nav-tabs .nav-item .nav-link.disabled i {
@@ -12790,7 +12790,7 @@ code {
 }
 
 .nav-tabs .nav-item.show > .nav-link, .nav-tabs .nav-item.show > .nav-link i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .nav-pills .nav-item {
@@ -12806,7 +12806,7 @@ code {
 }
 
 .nav-pills .nav-item .nav-link.active, .nav-pills .nav-item .nav-link.active:hover, .nav-pills .nav-item .nav-link:active, .nav-pills .nav-item.show > .nav-link {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -12821,7 +12821,7 @@ code {
 
 .nav-pills.nav-pills-label .nav-item .nav-link.active, .nav-pills.nav-pills-label .nav-item .nav-link.active:hover, .nav-pills.nav-pills-label .nav-item .nav-link:active, .nav-pills.nav-pills-label .nav-item.show > .nav-link {
 	background-color: rgba(93, 120, 255, .1);
-	color: #5d78ff
+	color: #ff4057
 }
 
 .nav-fit {
@@ -12947,7 +12947,7 @@ code {
 }
 
 .nav-pills.nav-tabs-btn.nav-pills-btn-brand a.nav-link.active {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .nav-pills.nav-tabs-btn.nav-pills-btn-brand a.nav-link.active .nav-link-icon i, .nav-pills.nav-tabs-btn.nav-pills-btn-brand a.nav-link.active .nav-link-title {
@@ -13224,16 +13224,16 @@ code {
 .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link.active, .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link:hover, .nav-tabs.nav-tabs-line a.nav-link.active, .nav-tabs.nav-tabs-line a.nav-link:hover {
 	background-color: transparent;
 	color: #595d6e;
-	border-bottom: 1px solid #5d78ff
+	border-bottom: 1px solid #ff4057
 }
 
 .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link.active > i, .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link:hover > i, .nav-tabs.nav-tabs-line a.nav-link.active > i, .nav-tabs.nav-tabs-line a.nav-link:hover > i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link.active g [fill], .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link:hover g [fill], .nav-tabs.nav-tabs-line a.nav-link.active g [fill], .nav-tabs.nav-tabs-line a.nav-link:hover g [fill] {
 	transition: fill .3s ease;
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link.active:hover g [fill], .nav-tabs.nav-tabs-line.nav.nav-tabs .nav-link:hover:hover g [fill], .nav-tabs.nav-tabs-line a.nav-link.active:hover g [fill], .nav-tabs.nav-tabs-line a.nav-link:hover:hover g [fill] {
@@ -13241,12 +13241,12 @@ code {
 }
 
 .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link:hover, .nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover {
-	border-bottom: 1px solid #5d78ff
+	border-bottom: 1px solid #ff4057
 }
 
 .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active, .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link:hover, .nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link.active, .nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover {
-	color: #5d78ff;
-	border-bottom: 1px solid #5d78ff
+	color: #ff4057;
+	border-bottom: 1px solid #ff4057
 }
 
 .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active > i, .nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link:hover > i, .nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link.active > i, .nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover > i {
@@ -13479,7 +13479,7 @@ code {
 }
 
 .toast .toast-close:hover i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .tooltip .tooltip-inner {
@@ -13514,23 +13514,23 @@ code {
 
 .tooltip.tooltip-brand .tooltip-inner {
 	color: #fff;
-	background: #5d78ff
+	background: #ff4057
 }
 
 .tooltip.tooltip-brand.bs-tooltip-auto[x-placement^=top] .arrow:before, .tooltip.tooltip-brand.bs-tooltip-top .arrow:before {
-	border-top-color: #5d78ff
+	border-top-color: #ff4057
 }
 
 .tooltip.tooltip-brand.bs-tooltip-auto[x-placement^=right] .arrow:before, .tooltip.tooltip-brand.bs-tooltip-right .arrow:before {
-	border-right-color: #5d78ff
+	border-right-color: #ff4057
 }
 
 .tooltip.tooltip-brand.bs-tooltip-auto[x-placement^=bottom] .arrow:before, .tooltip.tooltip-brand.bs-tooltip-bottom .arrow:before {
-	border-bottom-color: #5d78ff
+	border-bottom-color: #ff4057
 }
 
 .tooltip.tooltip-brand.bs-tooltip-auto[x-placement^=left] .arrow:before, .tooltip.tooltip-brand.bs-tooltip-left .arrow:before {
-	border-left-color: #5d78ff
+	border-left-color: #ff4057
 }
 
 .mat-badge-content {
@@ -14220,7 +14220,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-accent .mat-option.mat-selected:not(.mat-option-disabled) {
@@ -14252,7 +14252,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
@@ -14395,7 +14395,7 @@ textarea.cdk-textarea-autosize-measuring {
 
 .mat-badge-content {
 	color: #fff;
-	background: #5d78ff
+	background: #ff4057
 }
 
 @media (-ms-high-contrast: active) {
@@ -14611,7 +14611,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
@@ -14627,7 +14627,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-button.mat-primary .mat-button-focus-overlay, .mat-icon-button.mat-primary .mat-button-focus-overlay, .mat-stroked-button.mat-primary .mat-button-focus-overlay {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-button.mat-accent .mat-button-focus-overlay, .mat-icon-button.mat-accent .mat-button-focus-overlay, .mat-stroked-button.mat-accent .mat-button-focus-overlay {
@@ -14669,7 +14669,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-fab.mat-accent, .mat-flat-button.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent {
@@ -14822,7 +14822,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-checkbox-checked.mat-primary .mat-checkbox-background, .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -14862,7 +14862,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
@@ -14900,7 +14900,7 @@ textarea.cdk-textarea-autosize-measuring {
 }
 
 .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -15003,7 +15003,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-calendar-body-selected {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -15052,7 +15052,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-datepicker-toggle-active {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-datepicker-toggle-active.mat-accent {
@@ -15121,7 +15121,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-form-field.mat-focused .mat-form-field-label {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-form-field.mat-focused .mat-form-field-label.mat-accent {
@@ -15141,7 +15141,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-form-field.mat-focused .mat-form-field-ripple {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-form-field.mat-focused .mat-form-field-ripple.mat-accent {
@@ -15153,7 +15153,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-form-field-type-mat-native-select.mat-focused:not(.mat-form-field-invalid) .mat-form-field-infix:after {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-form-field-type-mat-native-select.mat-focused:not(.mat-form-field-invalid).mat-accent .mat-form-field-infix:after {
@@ -15225,7 +15225,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-form-field-appearance-outline.mat-focused.mat-accent .mat-form-field-outline-thick {
@@ -15245,7 +15245,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-icon.mat-primary {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-icon.mat-accent {
@@ -15265,7 +15265,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-input-element {
-	caret-color: #5d78ff
+	caret-color: #ff4057
 }
 
 .mat-input-element::placeholder {
@@ -15367,7 +15367,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-progress-bar-fill:after {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-progress-bar.mat-accent .mat-progress-bar-background {
@@ -15395,7 +15395,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-progress-spinner circle, .mat-spinner circle {
-	stroke: #5d78ff
+	stroke: #ff4057
 }
 
 .mat-progress-spinner.mat-accent circle, .mat-spinner.mat-accent circle {
@@ -15411,11 +15411,11 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
-	border-color: #5d78ff
+	border-color: #ff4057
 }
 
 .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-primary:active .mat-radio-persistent-ripple {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
@@ -15479,7 +15479,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .mat-form-field.mat-focused.mat-accent .mat-select-arrow {
@@ -15542,7 +15542,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
@@ -15550,7 +15550,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-slide-toggle.mat-primary.mat-checked .mat-ripple-element {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-slide-toggle.mat-warn.mat-checked .mat-slide-toggle-thumb {
@@ -15583,7 +15583,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-primary .mat-slider-thumb, .mat-primary .mat-slider-thumb-label, .mat-primary .mat-slider-track-fill {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-primary .mat-slider-thumb-label-text {
@@ -15676,7 +15676,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -15744,7 +15744,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-tab-group.mat-primary.mat-background-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary.mat-background-primary .mat-ink-bar {
@@ -15780,7 +15780,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-tab-group.mat-background-primary .mat-tab-header, .mat-tab-group.mat-background-primary .mat-tab-header-pagination, .mat-tab-group.mat-background-primary .mat-tab-links, .mat-tab-nav-bar.mat-background-primary .mat-tab-header, .mat-tab-nav-bar.mat-background-primary .mat-tab-header-pagination, .mat-tab-nav-bar.mat-background-primary .mat-tab-links {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .mat-tab-group.mat-background-primary .mat-tab-label, .mat-tab-group.mat-background-primary .mat-tab-link, .mat-tab-nav-bar.mat-background-primary .mat-tab-label, .mat-tab-nav-bar.mat-background-primary .mat-tab-link {
@@ -15865,7 +15865,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-toolbar.mat-primary {
-	background: #5d78ff;
+	background: #ff4057;
 	color: #fff
 }
 
@@ -16042,7 +16042,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .kt-mat-alert.kt-mat-alert--primary {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-mat-alert.kt-mat-alert--accent {
@@ -16850,7 +16850,7 @@ button.close {
 }
 
 .dropzone.dropzone-default.dropzone-brand {
-	border-color: #5d78ff
+	border-color: #ff4057
 }
 
 .dropzone.dropzone-default.dropzone-light {
@@ -16961,7 +16961,7 @@ button.close {
 }
 
 .dropzone.dropzone-multi .dropzone-item .dropzone-toolbar .dropzone-cancel:hover i, .dropzone.dropzone-multi .dropzone-item .dropzone-toolbar .dropzone-delete:hover i, .dropzone.dropzone-multi .dropzone-item .dropzone-toolbar .dropzone-start:hover i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .dropzone.dropzone-multi .dropzone-item .dropzone-toolbar .dropzone-start {
@@ -17100,11 +17100,11 @@ body.swal2-height-auto {
 }
 
 .ql-toolbar.ql-snow button.ql-active .ql-stroke, .ql-toolbar.ql-snow button:focus .ql-stroke, .ql-toolbar.ql-snow button:hover .ql-stroke {
-	stroke: #5d78ff
+	stroke: #ff4057
 }
 
 .ql-toolbar.ql-snow .ql-picker-item.ql-active, .ql-toolbar.ql-snow .ql-picker-item.ql-selected, .ql-toolbar.ql-snow .ql-picker-item:hover, .ql-toolbar.ql-snow .ql-picker-label.ql-active, .ql-toolbar.ql-snow .ql-picker-label:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .ql-container.ql-snow {
@@ -17120,7 +17120,7 @@ body.swal2-height-auto {
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-label, .ql-snow .ql-picker.ql-expanded .ql-picker-label.ql-active, .ql-snow .ql-picker.ql-expanded .ql-picker-label:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-options, .ql-snow .ql-tooltip {
@@ -17154,7 +17154,7 @@ body.swal2-height-auto {
 
 .ql-snow .ql-tooltip .ql-action:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .modal .ql-snow .ql-tooltip.ql-editing {
@@ -17244,7 +17244,7 @@ body.swal2-height-auto {
 
 .tagify .tagify__tag .tagify__tag__removeBtn:hover {
 	background: transparent;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .tagify .tagify__tag .tagify__tag__removeBtn:hover + div > span {
@@ -17256,7 +17256,7 @@ body.swal2-height-auto {
 }
 
 .tagify .tagify__tag.tagify__tag--brand .tagify__tag__removeBtn:after, .tagify .tagify__tag.tagify__tag--brand div .tagify__tag-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .tagify .tagify__tag.tagify__tag--brand .tagify__tag__removeBtn:hover {
@@ -17436,7 +17436,7 @@ body.swal2-height-auto {
 
 .tagify__dropdown .tagify__dropdown__item.tagify__dropdown__item--active {
 	background: #f7f8fa;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .tox-target {
@@ -17461,7 +17461,7 @@ body.swal2-height-auto {
 }
 
 .ck-content.ck-focused {
-	border-color: #5d78ff !important;
+	border-color: #ff4057 !important;
 	box-shadow: none !important
 }
 
@@ -17485,7 +17485,7 @@ body.swal2-height-auto {
 }
 
 .ck-body .ck-balloon-panel .ck-content.ck-focused {
-	border-color: #5d78ff !important
+	border-color: #ff4057 !important
 }
 
 .ck-body .ck-balloon-panel .ck-toolbar, .ck-body .ck-balloon-panel.ck-toolbar-container {
@@ -17512,13 +17512,13 @@ body.swal2-height-auto {
 }
 
 .kanban-container .kanban-board .brand {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
 .kanban-container .kanban-board .brand-light {
 	background-color: rgba(93, 120, 255, .1);
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kanban-container .kanban-board .light {
@@ -17623,7 +17623,7 @@ body.swal2-height-auto {
 
 .kanban-container .kanban-item[data-class=brand] {
 	background-color: rgba(93, 120, 255, .1);
-	color: #5d78ff;
+	color: #ff4057;
 	box-shadow: none
 }
 
@@ -26554,7 +26554,7 @@ b, strong {
 }
 
 .kt-font-brand {
-	color: #5d78ff !important
+	color: #ff4057 !important
 }
 
 .kt-font-hover-brand:hover {
@@ -26566,7 +26566,7 @@ b, strong {
 }
 
 .kt-bg-brand, .kt-bg-fill-brand {
-	background-color: #5d78ff !important
+	background-color: #ff4057 !important
 }
 
 .kt-bg-fill-brand, .kt-bg-fill-brand > i {
@@ -28868,7 +28868,7 @@ and (max-width: 768px) {
 }
 
 .kt-portlet.kt-portlet--solid-brand {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-portlet.kt-portlet--solid-brand .kt-portlet__head {
@@ -29794,7 +29794,7 @@ and (max-width: 768px) {
 
 .kt-datatable > .kt-datatable__table > .kt-datatable__body .kt-datatable__toggle-detail i {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-datatable > .kt-datatable__table > .kt-datatable__body .kt-datatable__toggle-detail i:before {
@@ -29804,7 +29804,7 @@ and (max-width: 768px) {
 
 .kt-datatable > .kt-datatable__table > .kt-datatable__body .kt-datatable__toggle-detail.kt-datatable__toggle-detail--active i, .kt-datatable > .kt-datatable__table > .kt-datatable__body .kt-datatable__toggle-detail:hover i {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-datatable > .kt-datatable__table > .kt-datatable__body .kt-datatable__row-detail .kt-datatable__detail table {
@@ -29821,7 +29821,7 @@ and (max-width: 768px) {
 }
 
 .kt-datatable > .kt-datatable__table > .kt-datatable__head .kt-datatable__row > .kt-datatable__cell > span > i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link {
@@ -29834,18 +29834,18 @@ and (max-width: 768px) {
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--first:hover, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--last:hover, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--next:hover, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--prev:hover {
-	background: #5d78ff;
+	background: #ff4057;
 	color: #fff
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link:hover {
 	transition: all .3s;
-	background: #5d78ff;
+	background: #ff4057;
 	color: #fff
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--active {
-	background: #5d78ff;
+	background: #ff4057;
 	color: #fff
 }
 
@@ -29863,8 +29863,8 @@ and (max-width: 768px) {
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-pager-input:focus {
 	transition: all .3s;
-	background: #5d78ff;
-	border-color: #5d78ff
+	background: #ff4057;
+	border-color: #ff4057
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size .btn.dropdown-toggle {
@@ -29882,7 +29882,7 @@ and (max-width: 768px) {
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size .btn.dropdown-toggle:focus, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size .btn.dropdown-toggle:hover, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size.show > .btn.dropdown-toggle {
 	border: 0 !important;
 	color: #fff !important;
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size .btn.dropdown-toggle:focus i, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size .btn.dropdown-toggle:hover i, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-info .kt-datatable__pager-size.show > .btn.dropdown-toggle i {
@@ -29898,7 +29898,7 @@ and (max-width: 768px) {
 }
 
 .kt-datatable.kt-datatable--subtable > .kt-datatable__table > .kt-datatable__body .kt-datatable__toggle-subtable > i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-datatable.kt-datatable--subtable > .kt-datatable__table > .kt-datatable__body .kt-datatable__row-subtable {
@@ -29936,7 +29936,7 @@ and (max-width: 768px) {
 }
 
 .kt-datatable.kt-datatable--default > .kt-datatable__table > .kt-datatable__foot .kt-datatable__row > .kt-datatable__cell.kt-datatable__cell--sorted > span, .kt-datatable.kt-datatable--default > .kt-datatable__table > .kt-datatable__head .kt-datatable__row > .kt-datatable__cell.kt-datatable__cell--sorted > span {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-datatable.kt-datatable--default.kt-datatable--subtable > .kt-datatable__table > .kt-datatable__body .kt-datatable__row.kt-datatable__row--subtable-expanded > .kt-datatable__cell {
@@ -29970,7 +29970,7 @@ and (max-width: 768px) {
 	right: 20px;
 	cursor: pointer;
 	z-index: 100;
-	background: #5d78ff;
+	background: #ff4057;
 	box-shadow: 0 0 15px 1px rgba(69, 65, 78, .2);
 	opacity: 0;
 	transition: all .3s;
@@ -30395,23 +30395,23 @@ td > .kt-checkbox.kt-checkbox--single, th > .kt-checkbox.kt-checkbox--single {
 }
 
 .kt-checkbox.kt-checkbox--brand > span {
-	border: 1px solid #5d78ff
+	border: 1px solid #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand > span:after {
-	border: solid #5d78ff
+	border: solid #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand > input:disabled ~ span:after {
-	border-color: #5d78ff
+	border-color: #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand > input:checked ~ span {
-	border: 1px solid #5d78ff
+	border: 1px solid #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand.kt-checkbox--bold > input:checked ~ span {
-	border: 2px solid #5d78ff
+	border: 2px solid #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand > input:disabled ~ span {
@@ -30419,7 +30419,7 @@ td > .kt-checkbox.kt-checkbox--single, th > .kt-checkbox.kt-checkbox--single {
 }
 
 .kt-checkbox.kt-checkbox--brand.kt-checkbox--solid > span {
-	background: #5d78ff;
+	background: #ff4057;
 	border: 1px solid transparent !important
 }
 
@@ -30432,7 +30432,7 @@ td > .kt-checkbox.kt-checkbox--single, th > .kt-checkbox.kt-checkbox--single {
 }
 
 .kt-checkbox.kt-checkbox--brand.kt-checkbox--solid > input:checked ~ span {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-checkbox.kt-checkbox--brand.kt-checkbox--tick > span {
@@ -30454,7 +30454,7 @@ td > .kt-checkbox.kt-checkbox--single, th > .kt-checkbox.kt-checkbox--single {
 }
 
 .kt-checkbox.kt-checkbox--brand.kt-checkbox--tick > input:checked ~ span:after {
-	border: solid #5d78ff
+	border: solid #ff4057
 }
 
 .kt-checkbox.kt-checkbox--light.kt-checkbox--disabled {
@@ -31135,24 +31135,24 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-radio.kt-radio--brand > span {
-	border: 1px solid #5d78ff
+	border: 1px solid #ff4057
 }
 
 .kt-radio.kt-radio--brand > span:after {
-	border: solid #5d78ff;
-	background: #5d78ff
+	border: solid #ff4057;
+	background: #ff4057
 }
 
 .kt-radio.kt-radio--brand > input:disabled ~ span:after {
-	border-color: #5d78ff
+	border-color: #ff4057
 }
 
 .kt-radio.kt-radio--brand > input:checked ~ span {
-	border: 1px solid #5d78ff
+	border: 1px solid #ff4057
 }
 
 .kt-radio.kt-radio--brand.kt-radio--bold > input:checked ~ span {
-	border: 2px solid #5d78ff
+	border: 2px solid #ff4057
 }
 
 .kt-radio.kt-radio--brand > input:disabled ~ span {
@@ -31160,7 +31160,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-radio.kt-radio--brand.kt-radio--solid > span {
-	background: #5d78ff;
+	background: #ff4057;
 	border: 1px solid transparent !important
 }
 
@@ -31174,7 +31174,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-radio.kt-radio--brand.kt-radio--solid > input:checked ~ span {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-radio.kt-radio--brand.kt-radio--tick > span {
@@ -31191,8 +31191,8 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-radio.kt-radio--brand.kt-radio--tick > input:checked ~ span:after {
-	border: solid #5d78ff;
-	background: #5d78ff
+	border: solid #ff4057;
+	background: #ff4057
 }
 
 .kt-radio.kt-radio--light.kt-radio--disabled {
@@ -31829,7 +31829,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-switch input:checked ~ span:after {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -31843,17 +31843,17 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-switch.kt-switch--brand:not(.kt-switch--outline) input:empty ~ span:before {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-switch.kt-switch--brand:not(.kt-switch--outline) input:empty ~ span:after {
-	color: #5d78ff;
+	color: #ff4057;
 	background-color: #fff;
 	opacity: .4
 }
 
 .kt-switch.kt-switch--brand:not(.kt-switch--outline) input:checked ~ span:before {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-switch.kt-switch--brand:not(.kt-switch--outline) input:checked ~ span:after {
@@ -31874,7 +31874,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-switch.kt-switch--outline.kt-switch--brand input:checked ~ span:after {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	opacity: 1
 }
 
@@ -32248,13 +32248,13 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-avatar .kt-avatar__upload i {
-	color: #5d78ff;
+	color: #ff4057;
 	font-size: .9rem
 }
 
 .kt-avatar .kt-avatar__upload:hover {
 	transition: all .3s;
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-avatar .kt-avatar__upload:hover i {
@@ -32285,7 +32285,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-avatar .kt-avatar__cancel:hover i {
 	transition: all .3s;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-avatar.kt-avatar--changed .kt-avatar__cancel {
@@ -32293,11 +32293,11 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-avatar.kt-avatar--brand .kt-avatar__upload i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-avatar.kt-avatar--brand .kt-avatar__upload:hover {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-avatar.kt-avatar--brand .kt-avatar__upload:hover i, .kt-avatar.kt-avatar--light .kt-avatar__upload i {
@@ -32480,7 +32480,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-spinner.kt-spinner--brand:before {
-	border: 2px solid #5d78ff;
+	border: 2px solid #ff4057;
 	border-right-color: transparent
 }
 
@@ -32606,7 +32606,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-loader.kt-loader--brand {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-loader.kt-loader--light {
@@ -32757,7 +32757,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-dialog.kt-dialog--loader.kt-dialog--brand {
 	background-color: rgba(93, 120, 255, .1);
-	color: #5d78ff;
+	color: #ff4057;
 	box-shadow: 0 0 20px 0 rgba(93, 120, 255, .3)
 }
 
@@ -32836,7 +32836,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-grid-nav-v2 .kt-grid-nav-v2__item .kt-grid-nav-v2__item-icon i {
 	font-size: 2.25rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-grid-nav-v2 .kt-grid-nav-v2__item .kt-grid-nav-v2__item-title {
@@ -32850,7 +32850,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 .kt-grid-nav-v2 .kt-grid-nav-v2__item:hover {
 	transition: all .3s;
 	text-transform: none;
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-grid-nav-v2 .kt-grid-nav-v2__item:hover .kt-grid-nav-v2__item-icon i, .kt-grid-nav-v2 .kt-grid-nav-v2__item:hover .kt-grid-nav-v2__item-title {
@@ -32936,7 +32936,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-grid-nav .kt-grid-nav__row .kt-grid-nav__item .kt-grid-nav__icon, .kt-grid-nav .kt-grid-nav__row .kt-grid-nav__item .kt-grid-nav__title {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-grid-nav .kt-grid-nav__row .kt-grid-nav__item .kt-grid-nav__desc {
@@ -32965,7 +32965,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-grid-nav.kt-grid-nav--skin-dark .kt-grid-nav__item .kt-grid-nav__icon {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-grid-nav.kt-grid-nav--skin-dark .kt-grid-nav__item .kt-grid-nav__title {
@@ -32981,7 +32981,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-grid-nav.kt-grid-nav--skin-dark .kt-grid-nav__item:hover .kt-grid-nav__icon {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-head {
@@ -33174,7 +33174,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-list-timeline .kt-list-timeline__items .kt-list-timeline__item .kt-list-timeline__badge.kt-list-timeline__badge--brand:before {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-list-timeline .kt-list-timeline__items .kt-list-timeline__item .kt-list-timeline__badge.kt-list-timeline__badge--light:before {
@@ -33585,12 +33585,12 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-arrow, .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-icon, .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-text, .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-arrow, .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-icon, .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-text, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-arrow, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-icon, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-icon g [fill], .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-icon g [fill], .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-icon g [fill] {
 	transition: fill .3s ease;
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-icon:hover g [fill], .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-icon:hover g [fill], .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-icon:hover g [fill] {
@@ -33598,7 +33598,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--dot > span, .kt-nav .kt-nav__item.active > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--line > span, .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--dot > span, .kt-nav .kt-nav__item.kt-nav__item--active > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--line > span, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--dot > span, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub) > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--line > span {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed {
@@ -33607,11 +33607,11 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed .kt-nav__link-arrow, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed .kt-nav__link-icon, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed .kt-nav__link-bullet.kt-nav__link-bullet--dot > span, .kt-nav .kt-nav__item:hover:not(.kt-nav__item--disabled).kt-nav__item--sub > .kt-nav__link.collapsed .kt-nav__link-bullet.kt-nav__link-bullet--line > span {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-nav .kt-nav__item.kt-nav__item--disabled {
@@ -33636,7 +33636,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav .kt-nav__section .kt-nav__section-text {
-	color: #5d78ff;
+	color: #ff4057;
 	font-weight: 600;
 	font-size: .9rem;
 	text-transform: uppercase
@@ -33763,7 +33763,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v2 .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-arrow, .kt-nav.kt-nav--v2 .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-icon, .kt-nav.kt-nav--v2 .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav.kt-nav--v2 .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--dot > span, .kt-nav.kt-nav--v2 .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-bullet.kt-nav__link-bullet--line > span {
@@ -33771,7 +33771,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v2 .kt-nav__item.kt-nav__item--active > .kt-nav__link {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	transition: none
 }
 
@@ -33784,7 +33784,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v2 .kt-nav__item.kt-nav__item--active:hover > .kt-nav__link {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-nav.kt-nav--v2 .kt-nav__item.kt-nav__item--active:hover > .kt-nav__link .kt-nav__link-arrow, .kt-nav.kt-nav--v2 .kt-nav__item.kt-nav__item--active:hover > .kt-nav__link .kt-nav__link-icon, .kt-nav.kt-nav--v2 .kt-nav__item.kt-nav__item--active:hover > .kt-nav__link .kt-nav__link-text {
@@ -33809,11 +33809,11 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 .kt-nav.kt-nav--v3 .kt-nav__item.active .kt-nav__link, .kt-nav.kt-nav--v3 .kt-nav__item.kt-nav__link--active .kt-nav__link {
 	transition: all .3s;
 	background-color: #f7f8fa;
-	border-left: 2px solid #5d78ff
+	border-left: 2px solid #ff4057
 }
 
 .kt-nav.kt-nav--v3 .kt-nav__item.active .kt-nav__link .kt-nav__link-text, .kt-nav.kt-nav--v3 .kt-nav__item.kt-nav__link--active .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav.kt-nav--v3 .kt-nav__item:hover {
@@ -33822,7 +33822,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v3 .kt-nav__item:hover .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav.kt-nav--v4 .kt-nav__item {
@@ -33843,7 +33843,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v4 .kt-nav__item.active .kt-nav__link {
-	border-left: 3px solid #5d78ff;
+	border-left: 3px solid #ff4057;
 	color: #48465b;
 	margin-left: 0
 }
@@ -33862,15 +33862,15 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-nav.kt-nav--v4 .kt-nav__item:hover .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav.kt-nav--v4--brand .kt-nav__item.active .kt-nav__link {
-	border-left: 3px solid #5d78ff
+	border-left: 3px solid #ff4057
 }
 
 .kt-nav.kt-nav--v4--brand .kt-nav__item:hover:not(.kt-nav__item--disabled):not(.kt-nav__item--sub):not(.kt-nav__item--active) > .kt-nav__link .kt-nav__link-text {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-nav.kt-nav--v4--light .kt-nav__item.active .kt-nav__link {
@@ -33949,7 +33949,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-notification .kt-notification__item .kt-notification__item-icon i {
 	font-size: 1.4rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-notification .kt-notification__item .kt-notification__item-icon svg {
@@ -33985,7 +33985,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-notification .kt-notification__item:hover .kt-notification__item-details .kt-notification__item-title {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-notification .kt-notification__item.kt-notification__item--read {
@@ -34024,7 +34024,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-notification.kt-notification--fit .kt-notification__item:hover .kt-notification__item-title {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-notification-item-padding-x {
@@ -34251,7 +34251,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-notes .kt-notes__items .kt-notes__item .kt-notes__content .kt-notes__section .kt-notes__info .kt-notes__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -34722,7 +34722,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-timeline-v3 .kt-timeline-v3__item.kt-timeline-v3__item--brand:before {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-timeline-v3 .kt-timeline-v3__item.kt-timeline-v3__item--light:before {
@@ -34859,7 +34859,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-user-card-v2 .kt-user-card-v2__details a.kt-user-card-v2__name:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-user-card-v2 .kt-user-card-v2__details .kt-user-card-v2__desc, .kt-user-card-v2 .kt-user-card-v2__details .kt-user-card-v2__email {
@@ -34873,7 +34873,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-user-card-v2 .kt-user-card-v2__details a.kt-user-card-v2__email:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-user-card-v2.kt-user-card-v2--uncircle .kt-user-card-v2__pic img {
@@ -34912,7 +34912,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-user-card-v3 .kt-user-card-v3__detalis a.kt-user-card-v3__name:hover {
 	transition: all .3s;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__desc {
@@ -34943,7 +34943,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item:hover .kt-user-card-v3__tag {
 	transition: all .3s;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-media {
@@ -34993,7 +34993,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-media.kt-media--brand span {
 	background: rgba(93, 120, 255, .1);
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-media.kt-media--light span {
@@ -35182,7 +35182,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-media-card .kt-media-card__info a.kt-media-card__title:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-media-card .kt-media-card__info .kt-media-card__desc {
@@ -35197,7 +35197,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-media-card .kt-media-card__info a.kt-media-card__desc:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-media-group {
@@ -35299,11 +35299,11 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-pagination.kt-pagination--brand .kt-pagination__links .kt-pagination__link--active {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-pagination.kt-pagination--brand .kt-pagination__links li:hover {
-	background: #5d78ff;
+	background: #ff4057;
 	transition: color .3s ease
 }
 
@@ -36000,7 +36000,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-iconbox--brand .kt-iconbox__body .kt-iconbox__icon svg g [fill] {
-	fill: #5d78ff !important
+	fill: #ff4057 !important
 }
 
 .kt-iconbox--brand.kt-iconbox--animate, .kt-iconbox--brand.kt-iconbox--animate-fast, .kt-iconbox--brand.kt-iconbox--animate-faster, .kt-iconbox--brand.kt-iconbox--animate-slow, .kt-iconbox--brand.kt-iconbox--animate-slower {
@@ -36100,7 +36100,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 	font-weight: 500;
 	padding: .5rem 1rem;
 	border-radius: 5px;
-	color: #5d78ff;
+	color: #ff4057;
 	background-color: rgba(93, 120, 255, .15)
 }
 
@@ -36149,7 +36149,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-infobox--brand .kt-infobox__header .kt-infobox__badge {
-	color: #5d78ff;
+	color: #ff4057;
 	background-color: rgba(93, 120, 255, .15)
 }
 
@@ -36199,7 +36199,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 	padding: 5px 10px;
 	position: absolute;
 	z-index: 1;
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -36345,7 +36345,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-ribbon--brand .kt-ribbon__target {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
@@ -36354,12 +36354,12 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-ribbon--brand .kt-ribbon__target > .kt-ribbon__inner {
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	color: #fff
 }
 
 .kt-ribbon--brand .kt-ribbon__target > .kt-ribbon__inner:after {
-	border-color: transparent #5d78ff
+	border-color: transparent #ff4057
 }
 
 .kt-ribbon--light .kt-ribbon__target {
@@ -36507,7 +36507,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-chat .kt-chat__head .kt-chat__label .kt-chat__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -36545,7 +36545,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-chat .kt-chat__messages .kt-chat__message .kt-chat__user .kt-chat__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -36671,7 +36671,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-chat .kt-chat__input .kt-chat__toolbar .kt_chat__tools a i:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -36728,7 +36728,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 	font-size: 1.3rem;
 	font-weight: 700;
 	text-transform: uppercase;
-	color: #5d78ff;
+	color: #ff4057;
 	letter-spacing: 3px
 }
 
@@ -36777,7 +36777,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-demo-panel .kt-demo-panel__head .kt-demo-panel__close:hover {
 	transition: all .3s;
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-demo-panel .kt-demo-panel__head .kt-demo-panel__close:hover i {
@@ -36861,7 +36861,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-demo-panel .kt-demo-panel__body .kt-demo-panel__item.kt-demo-panel__item--active .kt-demo-panel__item-preview {
 	transition: all .3s;
-	border: 4px solid #5d78ff
+	border: 4px solid #ff4057
 }
 
 .kt-demo-panel .kt-demo-panel__body .kt-demo-panel__item:hover .kt-demo-panel__item-preview {
@@ -37059,7 +37059,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-offcanvas-panel .kt-offcanvas-panel__head .kt-offcanvas-panel__close:hover {
 	transition: all .3s;
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-offcanvas-panel .kt-offcanvas-panel__head .kt-offcanvas-panel__close:hover i {
@@ -37232,7 +37232,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-quick-panel .kt-quick-panel__close:hover {
 	transition: all .3s;
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-quick-panel .kt-quick-panel__close:hover i {
@@ -37397,7 +37397,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-quick-panel-close:hover {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-quick-panel-close:hover > i {
@@ -37493,7 +37493,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 
 .kt-quick-search .kt-quick-search__form .kt-quick-search__close:hover {
 	transition: all .3s;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-quick-search .kt-quick-search__wrapper {
@@ -37521,7 +37521,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 	font-size: 1.2rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	color: #5d78ff;
+	color: #ff4057;
 	margin: .5rem 0 1rem
 }
 
@@ -37590,7 +37590,7 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-quick-search .kt-quick-search__result .kt-quick-search__item .kt-quick-search__item-wrapper .kt-quick-search__item-title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: all .3s
 }
 
@@ -37774,11 +37774,11 @@ td > .kt-radio.kt-radio--single, th > .kt-radio.kt-radio--single {
 }
 
 .kt-sticky-toolbar .kt-sticky-toolbar__item.kt-sticky-toolbar__item--brand > a > i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-sticky-toolbar .kt-sticky-toolbar__item.kt-sticky-toolbar__item--brand:hover > a {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-sticky-toolbar .kt-sticky-toolbar__item.kt-sticky-toolbar__item--brand:hover > a > i, .kt-sticky-toolbar .kt-sticky-toolbar__item.kt-sticky-toolbar__item--light > a > i {
@@ -38106,7 +38106,7 @@ and (max-width: 1024px) {
 	}
 
 	.kt-app__aside-close:hover > i {
-		color: #5d78ff
+		color: #ff4057
 	}
 }
 
@@ -38226,11 +38226,11 @@ and (max-width: 1024px) {
 
 .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-home:hover > i {
 	transition: all .3s;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-home.kt-subheader__breadcrumbs-home--active > i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-link {
@@ -38242,7 +38242,7 @@ and (max-width: 1024px) {
 }
 
 .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-link.kt-subheader__breadcrumbs-link--active, .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-link:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__main .kt-subheader__breadcrumbs .kt-subheader__breadcrumbs-link:hover {
@@ -38293,7 +38293,7 @@ and (max-width: 1024px) {
 
 .kt-subheader .kt-subheader__btn-primary.active, .kt-subheader .kt-subheader__btn-primary:active, .kt-subheader .kt-subheader__btn-primary:focus, .kt-subheader .kt-subheader__btn-primary:hover {
 	color: #fff;
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-subheader .kt-subheader__btn-primary.active i, .kt-subheader .kt-subheader__btn-primary:active i, .kt-subheader .kt-subheader__btn-primary:focus i, .kt-subheader .kt-subheader__btn-primary:hover i {
@@ -38329,12 +38329,12 @@ and (max-width: 1024px) {
 
 .kt-subheader .kt-subheader__btn-secondary.active, .kt-subheader .kt-subheader__btn-secondary:active, .kt-subheader .kt-subheader__btn-secondary:focus, .kt-subheader .kt-subheader__btn-secondary:hover {
 	background: #f2f3f7;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__btn-secondary.active g [fill], .kt-subheader .kt-subheader__btn-secondary:active g [fill], .kt-subheader .kt-subheader__btn-secondary:focus g [fill], .kt-subheader .kt-subheader__btn-secondary:hover g [fill] {
 	transition: fill .3s ease;
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .kt-subheader .kt-subheader__btn-secondary.active:hover g [fill], .kt-subheader .kt-subheader__btn-secondary:active:hover g [fill], .kt-subheader .kt-subheader__btn-secondary:focus:hover g [fill], .kt-subheader .kt-subheader__btn-secondary:hover:hover g [fill] {
@@ -38353,13 +38353,13 @@ and (max-width: 1024px) {
 
 .kt-subheader .kt-subheader__btn-daterange .kt-subheader__btn-daterange-date {
 	display: inline-block;
-	color: #5d78ff;
+	color: #ff4057;
 	margin-right: .75rem;
 	font-weight: 500
 }
 
 .kt-subheader .kt-subheader__btn-daterange i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__btn-daterange.active, .kt-subheader .kt-subheader__btn-daterange:active, .kt-subheader .kt-subheader__btn-daterange:focus, .kt-subheader .kt-subheader__btn-daterange:hover {
@@ -38367,7 +38367,7 @@ and (max-width: 1024px) {
 }
 
 .kt-subheader .kt-subheader__btn-daterange.active i, .kt-subheader .kt-subheader__btn-daterange:active i, .kt-subheader .kt-subheader__btn-daterange:focus i, .kt-subheader .kt-subheader__btn-daterange:hover i {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-subheader .kt-subheader__search {
@@ -38431,7 +38431,7 @@ and (max-width: 1024px) {
 }
 
 .kt-subheader--transparent .kt-subheader .kt-subheader__btn-primary.active, .kt-subheader--transparent .kt-subheader .kt-subheader__btn-primary:active, .kt-subheader--transparent .kt-subheader .kt-subheader__btn-primary:focus, .kt-subheader--transparent .kt-subheader .kt-subheader__btn-primary:hover {
-	background: #5d78ff;
+	background: #ff4057;
 	color: #fff
 }
 
@@ -38599,7 +38599,7 @@ and (max-width: 1024px) {
 	}
 
 	.kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle.kt-subheader__mobile-toggle--active span, .kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle.kt-subheader__mobile-toggle--active span:after, .kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle.kt-subheader__mobile-toggle--active span:before, .kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle:hover span, .kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle:hover span:after, .kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle:hover span:before {
-		background: #5d78ff
+		background: #ff4057
 	}
 
 	.kt-subheader .kt-subheader__main .kt-subheader__mobile-toggle {
@@ -38709,17 +38709,17 @@ and (max-width: 1024px) {
 
 .kt-badge.kt-badge--brand {
 	color: #fff;
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-badge.kt-badge--outline.kt-badge--brand {
 	background: transparent;
-	color: #5d78ff;
-	border: 1px solid #5d78ff
+	color: #ff4057;
+	border: 1px solid #ff4057
 }
 
 .kt-badge.kt-badge--outline.kt-badge--brand.kt-badge--outline-2x {
-	border: 2px solid #5d78ff
+	border: 2px solid #ff4057
 }
 
 .kt-badge.kt-badge--light {
@@ -38828,7 +38828,7 @@ and (max-width: 1024px) {
 }
 
 .kt-badge.kt-badge--unified-brand {
-	color: #5d78ff;
+	color: #ff4057;
 	background: rgba(93, 120, 255, .1)
 }
 
@@ -39113,7 +39113,7 @@ and (max-width: 1024px) {
 	text-decoration: none;
 	position: relative;
 	display: inline-block;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-link:after {
@@ -39145,7 +39145,7 @@ and (max-width: 1024px) {
 }
 
 .kt-link.kt-link--brand {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-link.kt-link--brand:hover {
@@ -39379,11 +39379,11 @@ and (max-width: 1024px) {
 }
 
 .kt-separator.kt-separator--brand {
-	border-bottom: 1px solid #5d78ff
+	border-bottom: 1px solid #ff4057
 }
 
 .kt-separator.kt-separator--brand.kt-separator--dashed {
-	border-bottom: 1px dashed #5d78ff
+	border-bottom: 1px dashed #ff4057
 }
 
 .kt-separator.kt-separator--light {
@@ -39448,11 +39448,11 @@ and (max-width: 1024px) {
 }
 
 .kt-svg-icon g [fill] {
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .kt-svg-icon.kt-svg-icon--brand g [fill] {
-	fill: #5d78ff !important
+	fill: #ff4057 !important
 }
 
 .kt-svg-icon.kt-svg-icon--light g [fill] {
@@ -39592,7 +39592,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget2 .kt-widget2__item .kt-widget2__info .kt-widget2__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -39605,7 +39605,7 @@ and (max-width: 1024px) {
 
 .kt-widget2 .kt-widget2__item .kt-widget2__info .kt-widget2__username:hover {
 	text-decoration: none;
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -39624,7 +39624,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget2 .kt-widget2__item.kt-widget2__item--brand:before {
-	background: #5d78ff
+	background: #ff4057
 }
 
 .kt-widget2 .kt-widget2__item.kt-widget2__item--light:before {
@@ -39684,7 +39684,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget3 .kt-widget3__item .kt-widget3__header .kt-widget3__info .kt-widget3__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -39765,7 +39765,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget4 .kt-widget4__item .kt-widget4__info .kt-widget4__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -39795,7 +39795,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget4 .kt-widget4__item .kt-widget4__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -39924,7 +39924,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget5 .kt-widget5__item .kt-widget5__content .kt-widget5__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -40203,7 +40203,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget11 .table tbody > tr .kt-widget11__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -40745,7 +40745,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget19 .kt-widget19__wrapper .kt-widget19__content .kt-widget19__info .kt-widget19__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -40772,7 +40772,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget19 .kt-widget19__wrapper .kt-widget19__content .kt-widget19__stats .kt-widget19__comment:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -40923,7 +40923,7 @@ and (max-width: 1024px) {
 
 .kt-widget24 .kt-widget24__details .kt-widget24__info .kt-widget24__title:hover {
 	transition: color .3s ease;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-widget24 .kt-widget24__details .kt-widget24__info .kt-widget24__desc {
@@ -41130,8 +41130,8 @@ and (max-width: 1024px) {
 }
 
 .kt-widget27 .kt-widget27__container .nav .nav-item > a.active {
-	background-color: #5d78ff;
-	border-color: #5d78ff !important;
+	background-color: #ff4057;
+	border-color: #ff4057 !important;
 	color: #fff
 }
 
@@ -41410,7 +41410,7 @@ and (max-width: 1024px) {
 
 .kt-widget30 .kt-widget30__head .owl-carousel .center > div {
 	cursor: auto;
-	background-color: #5d78ff;
+	background-color: #ff4057;
 	box-shadow: 0 2px 14px 2px rgba(93, 120, 255, .2)
 }
 
@@ -41458,7 +41458,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget30 .kt-widget30__body .owl-carousel .kt-widget30__items .kt-widget30__item .kt-widget30__info > a:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -41507,7 +41507,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget31 .kt-widget31__item .kt-widget31__content .kt-widget31__info .kt-widget31__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -41610,7 +41610,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget__files .kt-widget__desc:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: all .3s ease
 }
 
@@ -41633,7 +41633,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget33 .kt-widget33__head .kt-widget33__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: all .3s ease
 }
 
@@ -41644,7 +41644,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget33 .kt-widget33__body .kt-widget33__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: all .3s ease
 }
 
@@ -41768,7 +41768,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__head .kt-widget__content .kt-widget__section .kt-widget__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -41817,7 +41817,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__content .kt-widget__info a.kt-widget__data:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -41840,11 +41840,11 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__items .kt-widget__item.kt-widget__item--active .kt-widget__section .kt-widget__desc {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__items .kt-widget__item.kt-widget__item--active .kt-widget__section .kt-widget__icon .kt-svg-icon g [fill] {
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__items .kt-widget__item .kt-widget__section .kt-widget__icon svg {
@@ -41870,11 +41870,11 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__items .kt-widget__item:hover .kt-widget__desc {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-widget.kt-widget--user-profile-1 .kt-widget__body .kt-widget__items .kt-widget__item:hover .kt-widget__icon .kt-svg-icon g [fill] {
-	fill: #5d78ff
+	fill: #ff4057
 }
 
 .kt-portlet__body.kt-portlet__body--fit-y .kt-widget {
@@ -41982,7 +41982,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-2 .kt-widget__head .kt-widget__info .kt-widget__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -41993,7 +41993,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-2 .kt-widget__head .kt-widget__info .kt-widget__titel:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42076,7 +42076,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-2 .kt-widget__body .kt-widget__item .kt-widget__contact a.kt-widget__data:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42195,7 +42195,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-3 .kt-widget__top .kt-widget__content .kt-widget__head .kt-widget__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42213,7 +42213,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-3 .kt-widget__top .kt-widget__content .kt-widget__head .kt-widget__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42233,7 +42233,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-3 .kt-widget__top .kt-widget__content .kt-widget__subhead a:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42367,7 +42367,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-3 .kt-widget__bottom .kt-widget__item .kt-widget__details a.kt-widget__value:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-widget.kt-widget--user-profile-3 .kt-widget__bottom .kt-widget__item .kt-widget__details .kt-section__content {
@@ -42513,7 +42513,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-4 .kt-widget__head .kt-widget__content .kt-widget__section .kt-widget__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42554,7 +42554,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--user-profile-4 .kt-widget__body .kt-widget__item:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease;
 	background: #edf0fc;
 	cursor: pointer;
@@ -42564,7 +42564,7 @@ and (max-width: 1024px) {
 .kt-widget.kt-widget--user-profile-4 .kt-widget__body .kt-widget__item.kt-widget__item--active {
 	transition: color .3s ease;
 	background: #edf0fc;
-	color: #5d78ff;
+	color: #ff4057;
 	border-radius: 4px
 }
 
@@ -42614,7 +42614,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--users .kt-widget__item .kt-widget__info .kt-widget__section .kt-widget__username:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -42693,7 +42693,7 @@ and (max-width: 1024px) {
 }
 
 .kt-widget.kt-widget--project-1 .kt-widget__head .kt-widget__label .kt-widget__info .kt-widget__title:hover {
-	color: #5d78ff;
+	color: #ff4057;
 	transition: color .3s ease
 }
 
@@ -43280,7 +43280,7 @@ body {
 	}
 
 	.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler.kt-header-mobile__toggler--active span, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler.kt-header-mobile__toggler--active span:after, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler.kt-header-mobile__toggler--active span:before, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler:hover span, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler:hover span:after, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler:hover span:before {
-		background: #5d78ff
+		background: #ff4057
 	}
 
 	.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler {
@@ -43310,7 +43310,7 @@ body {
 
 	.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__topbar-toggler.kt-header-mobile__topbar-toggler--active i, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__topbar-toggler:hover i {
 		transition: all .3s;
-		color: #5d78ff
+		color: #ff4057
 	}
 }
 
@@ -44519,7 +44519,7 @@ and (max-width: 1024px) {
 	}
 
 	.kt-header-menu-wrapper-close:hover {
-		background-color: #5d78ff
+		background-color: #ff4057
 	}
 
 	.kt-header-menu-wrapper-close:hover > i {
@@ -44580,7 +44580,7 @@ and (max-width: 1024px) {
 
 	.kt-header-menu.kt-header-menu--layout-tab .kt-menu__nav > .kt-menu__item.kt-menu__item--active > .kt-menu__link, .kt-header-menu.kt-header-menu--layout-tab .kt-menu__nav > .kt-menu__item.kt-menu__item--here > .kt-menu__link {
 		background-color: transparent !important;
-		border-bottom: 1px solid #5d78ff !important
+		border-bottom: 1px solid #ff4057 !important
 	}
 }
 
@@ -44903,11 +44903,11 @@ and (max-width: 1024px) {
 .kt-aside .kt-aside__footer .btn i {
 	transition: all .3s;
 	font-size: 1.4rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-aside .kt-aside__footer .btn:hover {
-	background-color: #5d78ff
+	background-color: #ff4057
 }
 
 .kt-aside .kt-aside__footer .btn:hover i {
@@ -45841,7 +45841,7 @@ and (max-width: 1024px) {
 	}
 
 	.kt-aside-close:hover {
-		background-color: #5d78ff
+		background-color: #ff4057
 	}
 
 	.kt-aside-close:hover > i {
@@ -45916,11 +45916,11 @@ and (max-width: 1024px) {
 }
 
 .kt-footer .kt-footer__copyright .kt-link:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-footer .kt-footer__copyright .kt-link:hover:after {
-	border-bottom: 1px solid #5d78ff;
+	border-bottom: 1px solid #ff4057;
 	opacity: .3
 }
 
@@ -45940,11 +45940,11 @@ and (max-width: 1024px) {
 }
 
 .kt-footer .kt-footer__menu .kt-footer__menu-link:hover {
-	color: #5d78ff
+	color: #ff4057
 }
 
 .kt-footer .kt-footer__menu .kt-footer__menu-link:hover:after {
-	border-bottom: 1px solid #5d78ff;
+	border-bottom: 1px solid #ff4057;
 	opacity: .3
 }
 
@@ -45998,7 +45998,7 @@ and (max-width: 1024px) {
 
 .my-custom-style {
 	padding: 1rem .5rem;
-	color: #5d78ff
+	color: #ff4057
 }
 
 .my-custom-style .my-custom-element {

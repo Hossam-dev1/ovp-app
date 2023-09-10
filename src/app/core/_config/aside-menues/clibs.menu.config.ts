@@ -21,7 +21,7 @@ export class ClipMenuConfig {
 		title: 'Clips',
 		root: true,
 		translate: 'MENUS.CLIPS.TITLE',
-		//icon: SectionIconsName.TEMPLATE(),
+		icon: 'fas fa-play',
 		submenu: [
 			{
 				"title": "Clip",

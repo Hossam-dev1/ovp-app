@@ -21,7 +21,8 @@ export class CrewMenuConfig {
 		title: 'Crew',
 		root: true,
 		translate: 'MENUS.CREW.TITLE',
-		//icon: SectionIconsName.TEMPLATE(),
+
+		icon: 'flaticon-users-1',
 		submenu: [
 			{
 				"title": "Crew",

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {SystemPermissionsHelperService} from '../../services/Helpers/system.permissions.helper.service';
-import {SectionIconsName} from '../../Global/section.icons.name';
-import {RoutesName} from '../../Global/routes.name';
+import { Injectable } from '@angular/core';
+import { SystemPermissionsHelperService } from '../../services/Helpers/system.permissions.helper.service';
+import { SectionIconsName } from '../../Global/section.icons.name';
+import { RoutesName } from '../../Global/routes.name';
 
 
 @Injectable({
@@ -22,13 +22,50 @@ export class AddNewMenuConfig {
 		translate: 'MENU.ADD_NEW',
 		icon: 'flaticon-plus',
 		submenu: [
+			{
+				"title": 'Genere',
+				"translate": "MENUS.GENRE.SUBMENU",
+				"page": '/cms/genre/add'
+
+			},
+			{
+				"title": 'Crew',
+				"translate": "MENUS.CREW.SUBMENU",
+				"page": '/cms/crew/add'
+			},
+			{
+				"title": 'Clips',
+				"translate": "MENUS.CLIPS.SUBMENU",
+				"page": '/cms/clips/add'
+			},
+			{
+				"title": 'Company',
+				"translate": "MENUS.CLIPS.MENU.COMPANY.TITLE",
+				"page": '/cms/company/add'
+			},
+			{
+				"title": 'Nationalities',
+				"translate": "MENUS.CREW.MENU.NATIIONALITIES.TITLE",
+				"page": '/cms/nationalities/add'
+			},
+			{
+				"title": 'Content Providers',
+				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
+				"page": '/cms/content_provider/add'
+			},
+			{
+				"title": 'Series',
+				"translate": "MENUS.SERIES.SUBMENU",
+				"page": '/cms/series/add'
+			},
+
 		]
 	};
 
 	public TEMPLATE = {
 		//	icon: SectionIconsName.TEMPLATE(),
-		title: 'MENUS.TEMPLATE.MENU.TEMPLATE',
-		translate: 'MENUS.TEMPLATE.MENU.TEMPLATE',
+		// title: 'MENUS.TEMPLATE.MENU.TEMPLATE',
+		// translate: 'MENUS.TEMPLATE.MENU.TEMPLATE',
 		//page: RoutesName.TEMPLATE()
 	};
 
@@ -37,26 +74,26 @@ export class AddNewMenuConfig {
 		]
 	};
 
-	public checkRoutePermissions(){
+	public checkRoutePermissions() {
 
 		this.attachMenuItem([], this.TEMPLATE);
 
 		this.attachMenu();
 	}
 
-	attachMenuItem(permissions, url){
+	attachMenuItem(permissions, url) {
 		let check = this.systemPermissionsHelperService.checkPermissions(permissions);
-		if (check){
+		if (check) {
 			this.attach(url)
 		}
 	}
 
-	private attach(url){
+	private attach(url) {
 		this.section.submenu.push(url)
 	}
 
-	private attachMenu(){
-		if (this.section.submenu.length){
+	private attachMenu() {
+		if (this.section.submenu.length) {
 			this.menu.items.push(this.section);
 		}
 	}

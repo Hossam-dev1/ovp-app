@@ -43,15 +43,10 @@ export class AddComponent {
 			this.addForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			name: {
-				en: this.getAddForm["name"].value["en"] || '',
-				ar: this.getAddForm["name"].value["ar"] || ''
-			}
-		}
-		this._tagsService.add(formData).subscribe((resp) => {
+
+		this._tagsService.add(this.addForm.value).subscribe((resp) => {
 			this.addForm.reset()
-			this.toastr.success(resp.message + 'successfully');
+			this.toastr.success(resp.message + ' successfully');
 		},
 			(error) => {
 				this.toastr.error(error.error.message);

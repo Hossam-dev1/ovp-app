@@ -18,7 +18,7 @@ export class SeriesMenuConfig {
 		title: 'Series',
 		root: true,
 		translate: 'MENUS.SERIES.TITLE',
-		//icon: SectionIconsName.TEMPLATE(),
+		icon: 'fas fa-video',
 		submenu: [
 			{
 				"title": "Series",

@@ -23,10 +23,10 @@ export class IndexComponent {
 	) { }
 
 	ngOnInit() {
-		this.getListData()
 		this.route.queryParams.subscribe((params) => {
 			this.series_ID = params.series
 			this.seasons_ID = params.seasons
+			this.getListData()
 		});
 		this._episodesService.isListChanged.subscribe((resp) => {
 			return resp ? this.getListData() : false
@@ -34,9 +34,8 @@ export class IndexComponent {
 	}
 
 	getListData() {
-		this._episodesService.list().subscribe((resp) => {
+		this._episodesService.list(null, this.seasons_ID).subscribe((resp) => {
 			this.episodesData = resp.body
-			console.log(this.episodesData);
 			this.isLoadingResults = false
 			this.cdr.detectChanges();
 		})

@@ -21,7 +21,7 @@ export class TagsMenuConfig {
 		title: 'Tags',
 		root: true,
 		translate: 'MENUS.TAGS.TITLE',
-		//icon: SectionIconsName.TEMPLATE(),
+		icon: 'flaticon2-gear',
 		submenu: [
 			{
 				"title": "Tag",
