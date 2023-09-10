@@ -20,6 +20,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 
 	@Input() isLoadingResults = false;
 	@Input() HasAdd = false;
+	@Input() AddBtnParam = '';
 	@Input() ButtonAddName = '';
 	@Input() ButtonAddUrl = '';
 

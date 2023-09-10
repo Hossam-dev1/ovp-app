@@ -56,36 +56,51 @@ export const locale = {
 
 			CREW: {
 				TITLE: 'طاقم العمل',
-				SUBMENU:'الفريق',
+				SUBMENU: 'الفريق',
 				MENU: {
-					CREW_TYPE:{
-						TITLE:'نوع الطاقم',
+					CREW_TYPE: {
+						TITLE: 'نوع الطاقم',
 					},
-					NATIIONALITIES:{
-						TITLE:'الجنسيات',
+					NATIIONALITIES: {
+						TITLE: 'الجنسيات',
 					},
 				},
 			},
 
 			CLIPS: {
 				TITLE: 'مقاطع الفيديو',
-				SUBMENU:'الفيديو',
+				SUBMENU: 'الفيديو',
 				MENU: {
-					COMPANY:{
-						TITLE:'الشركات',
+					COMPANY: {
+						TITLE: 'الشركات',
 					},
-					COMPANY_TYPE:{
-						TITLE:'نوع الشركات',
+					COMPANY_TYPE: {
+						TITLE: 'نوع الشركات',
 					},
-					CONTENT_PROVIDER:{
-						TITLE:'مزود الخدمه',
+					CONTENT_PROVIDER: {
+						TITLE: 'مزود الخدمه',
 					},
 				},
 			},
 
-			TAGS:{
-				TITLE : "العلامات",
-				SUBMENU:"العلامة" ,
+			SERIES: {
+				TITLE: 'المسلسلات',
+				SUBMENU: 'المسلسل',
+				MENU: {
+					SEASIONS: {
+						TITLE: 'المواسم',
+						TEXT:'الموسم',
+					},
+					EPISODES: {
+						TITLE: 'الحلقات',
+						TEXT:'الحلقة',
+					},
+				},
+			},
+
+			TAGS: {
+				TITLE: "العلامات",
+				SUBMENU: "العلامة",
 			}
 
 		},

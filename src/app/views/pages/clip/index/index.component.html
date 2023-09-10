@@ -12,16 +12,9 @@
 							(keyup)="applySpecificFilter('name' ,$event.target.value)"
 							placeholder="Filter name.">
 					</mat-form-field> -->
-				<kt-filter
-					[currentService]="_clipsService"
-					[headerParams]="headerParams"
-					[currentComponent] = "this"
-					[HasActive]="true"
-					[HasExport]="true"
-					[HasSearchFilter]="true"
-					[isLoadingResults]="isLoadingResults"
-					[HasItemPerPage]="true"
-					[HasAdd]='true'>
+				<kt-filter [currentService]="_clipsService" [headerParams]="headerParams" [currentComponent]="this"
+					[HasActive]="true" [HasExport]="true" [HasSearchFilter]="true" [isLoadingResults]="isLoadingResults"
+					[HasItemPerPage]="true" [HasAdd]='true'>
 				</kt-filter>
 				<!--Table-->
 				<table mat-table [dataSource]="dataSource$" matSort class="mat-elevation-z8">
@@ -67,11 +60,11 @@
 						</ng-container>
 
 						<!-- status column -->
-						<ng-container matColumnDef="{{header}}"
-							*ngIf="header == 'clip_status'">
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'clip_status'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let elem">
-								<mat-icon>{{elem[header] == 1 ? 'check_mark' : 'clear'}}</mat-icon>
+								<i
+									[class]="elem[header] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
 							</td>
 						</ng-container>
 
@@ -91,7 +84,8 @@
 									<button mat-menu-item [routerLink]="'edit/'+ element.id">
 										{{ 'Components.Edit' | translate }}
 									</button>
-									<button mat-menu-item [routerLink]="element.id" (click)="deleteColumn(element.id, element)">
+									<button mat-menu-item [routerLink]="element.id"
+										(click)="deleteColumn(element.id, element)">
 										{{ 'Components.Delete' | translate }}
 									</button>
 								</mat-menu>

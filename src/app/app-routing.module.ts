@@ -69,6 +69,14 @@ const routes: Routes = [
 				path: "series", // <= Page URL ,
 				loadChildren: () => import('./views/pages/series/series.module').then(m => m.SeriesModule)
 			},
+			{
+				path: "seasons", // <= Page URL ,
+				loadChildren: () => import('./views/pages/seasons/seasons.module').then(m => m.SeasonsModule)
+			},
+			{
+				path: "episodes", // <= Page URL ,
+				loadChildren: () => import('./views/pages/episodes/episodes.module').then(m => m.EpisodesModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

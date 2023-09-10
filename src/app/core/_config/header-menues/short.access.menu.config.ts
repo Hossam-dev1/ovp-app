@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {SystemPermissionsHelperService} from '../../services/Helpers/system.permissions.helper.service';
-import {SectionIconsName} from '../../Global/section.icons.name';
-import {RoutesName} from '../../Global/routes.name';
+import { Injectable } from '@angular/core';
+import { SystemPermissionsHelperService } from '../../services/Helpers/system.permissions.helper.service';
+import { SectionIconsName } from '../../Global/section.icons.name';
+import { RoutesName } from '../../Global/routes.name';
 
 
 @Injectable({
@@ -21,15 +21,26 @@ export class ShortAccessMenuConfig {
 		title: 'Short Access',
 		root: true,
 		translate: 'MENU.SHORT_ACCESS',
-		icon: 'flaticon2-refresh-button',
+		// icon: 'flaticon2-refresh-button',
 		submenu: [
+			{
+				"title": 'Genere',
+				"translate": "MENUS.GENRE.SUBMENU",
+				"page": '/cms/genre'
+
+			},
+			{
+				"title": 'Crew',
+				"translate": "MENUS.CREW.SUBMENU",
+				"page": '/cms/crew'
+			}
 		]
 	};
 
 	public TEMPLATE = {
 		//	icon: SectionIconsName.TEMPLATE(),
-		title: 'MENUS.TEMPLATE.MENU.TEMPLATE',
-		translate: 'MENUS.TEMPLATE.MENU.TEMPLATE',
+		// title: 'MENUS.TEMPLATE.MENU.TEMPLATE',
+		// translate: 'MENUS.TEMPLATE.MENU.TEMPLATE',
 		//page: RoutesName.TEMPLATE()
 	};
 
@@ -39,26 +50,26 @@ export class ShortAccessMenuConfig {
 		]
 	};
 
-	public checkRoutePermissions(){
+	public checkRoutePermissions() {
 
 		this.attachMenuItem([], this.TEMPLATE);
 
 		this.attachMenu();
 	}
 
-	attachMenuItem(permissions, url){
+	attachMenuItem(permissions, url) {
 		let check = this.systemPermissionsHelperService.checkPermissions(permissions);
-		if (check){
+		if (check) {
 			this.attach(url)
 		}
 	}
 
-	private attach(url){
+	private attach(url) {
 		this.section.submenu.push(url)
 	}
 
-	private attachMenu(){
-		if (this.section.submenu.length){
+	private attachMenu() {
+		if (this.section.submenu.length) {
 			this.menu.items.push(this.section);
 		}
 	}

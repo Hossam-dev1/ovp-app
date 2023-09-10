@@ -93,11 +93,9 @@ export class FormYearDatePickerComponent implements OnChanges {
 		if (changes?.clearValue?.currentValue) {
 			this._inputCtrl.setValue('', { emitEvent: false });
 		}
-		console.log(changes);
 
 		if (changes?.control_value?.currentValue) {
-			console.log('control_value', this.control_value);
-			let value = changes.control_value.currentValue
+			let value = changes.control_value.currentValue.toString()
 			this._inputCtrl.setValue(value, { emitEvent: false });
 		}
 	}

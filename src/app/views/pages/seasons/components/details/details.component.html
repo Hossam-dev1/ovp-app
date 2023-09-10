@@ -1,0 +1,116 @@
+<div class="loader d-flex justify-content-center p-5" *ngIf="isLoading">
+	<mat-spinner diameter="50"></mat-spinner>
+</div>
+
+<kt-portlet [ngClass]="'kt-portlet--ngviewer'" *ngIf="!isLoading">
+	<kt-portlet-header [title]="'Season Deatils'"></kt-portlet-header>
+
+	<kt-portlet-body>
+		<mat-grid-list cols="2" rowHeight="60px">
+			<mat-grid-tile *ngFor="let item of headersData">
+				<div class="col-5 header">
+					{{item}} :
+				</div>
+				<div class="col-7">
+					{{ (item == 'name' || item == 'description' || item == 'content_provider') ?
+					toLang(seasonDetails[item], item) : seasonDetails[item] || '---' }}
+				</div>
+			</mat-grid-tile>
+
+			<!-- Series  Name -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Series Name:
+				</div>
+				<div class="col-7">
+					{{toLang(seasonDetails['series']['name'])}}
+				</div>
+			</mat-grid-tile>
+
+			<!-- is_asc: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					is Asc:
+				</div>
+				<div class="col-7">
+					<i [class]="seasonDetails['is_asc'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Geners List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Companies List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of seasonDetails.companies; index as i ">
+						<span>{{toLang(item.name) + (i < (seasonDetails.companies.length - 1) ? ',' : '' )}} </span>
+						</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Season Status: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Season Status:
+				</div>
+				<div class="col-7">
+					<i [class]="seasonDetails['status'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Tags List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Tags List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of seasonDetails.tags; index as i">
+						<span>{{ item.key }}</span> |
+						<small>{{toLang(item.name) + (i < (seasonDetails.tags.length - 1) ? ',' : '' )}} </small>
+					</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- is Exclusive: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					is Exclusive:
+				</div>
+				<div class="col-7">
+					<i [class]="seasonDetails['is_exclusive'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Crews List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Crews List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of seasonDetails.crews; index as i">
+						<span>{{toLang(item.name) + (i < (seasonDetails.crews.length - 1) ? ',' : '' )}} </span>
+						</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- is New: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					is New:
+				</div>
+				<div class="col-7">
+					<i [class]="seasonDetails['is_new'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+
+
+		</mat-grid-list>
+
+	</kt-portlet-body>
+
+	<kt-portlet-footer></kt-portlet-footer>
+</kt-portlet>
+
+<!--  -->

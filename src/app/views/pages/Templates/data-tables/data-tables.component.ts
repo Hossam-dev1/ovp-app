@@ -41,7 +41,8 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	@Input() Displayed_Columns: any;
 	@Input() isLoading_Results: boolean;
 	@Input() title: string;
-	@Input() route_path: any
+	@Input() route_path: any = ''
+	@Input() path_param: any
 	@Input() dynamicServiceName: string;
 
 	dataSource$: MatTableDataSource<any>;

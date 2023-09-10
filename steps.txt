@@ -1,35 +1,12 @@
 - compelete login page
 - menu-aside-service => base.component => menu.config => gen
--General-
-- index #
-- add #
--edit #
--delete #
-- show #
 
+ #Series
+ - edit
+ - delete
+ - update status
 
--nationalities-
-- index
-- add
-- edit
-- delete
-- show
-
-- crew -
-- details
-- edit
-
-
-- company type -
-- index
-- add
-- edit
-- delete
-- show
-
-- company -
-- index
-- add
-- edit
-- delete
-- show
+  #Seasons
+ - edit
+ - delete #
+ - update status

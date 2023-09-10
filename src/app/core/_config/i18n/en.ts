@@ -81,6 +81,21 @@ export const locale = {
 				},
 			},
 
+			SERIES: {
+				TITLE: 'SERIES',
+				SUBMENU: 'Series',
+				MENU: {
+					SEASIONS: {
+						TITLE: 'Seasons',
+						TEXT:'The Season',
+					},
+					EPISODES: {
+						TITLE: 'Episodes',
+						TEXT:'The Episode',
+					},
+				},
+			},
+
 			TAGS:{
 				TITLE : "Tags",
 				SUBMENU:"Tag" ,

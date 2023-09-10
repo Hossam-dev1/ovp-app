@@ -12,15 +12,15 @@ export class MaterialPreviewComponent implements OnInit, OnChanges {
 	@Input() viewItem: any;
 	@Input() title: string;
 	@Input() headers: [];
-	DataDetails:any
-	lang:string = 'en'
-	isLoadingResults:boolean = true
+	DataDetails: any
+	lang: string = 'en'
+	isLoadingResults: boolean = true
 	/**
 	 * Component constructor
 	 */
 	constructor(
-		private _langService:LangService,
-		private cdr:ChangeDetectorRef
+		private _langService: LangService,
+		private cdr: ChangeDetectorRef
 
 	) {
 	}
@@ -34,31 +34,31 @@ export class MaterialPreviewComponent implements OnInit, OnChanges {
 	 */
 	ngOnInit() {
 		this.checkLocalLang();
-		console.log(this.viewItem.content_images);
-
-
+		// console.log(this.viewItem.content_images);
 	}
+
 	ngOnChanges(changes: SimpleChanges): void {
-		if (changes['viewItem'] && changes['viewItem'].firstChange ){
+		if (changes['viewItem'] && changes['viewItem'].firstChange) {
 			this.isLoadingResults = false;
 			this.cdr.detectChanges();
 		}
 	}
+
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
 			this.lang = curreLang;
 			this.cdr.detectChanges();
 		})
 	}
-	check(param){
+	check(param) {
 		console.log('param', param);
 
 	}
-	toLang(param, header?){
-		if(header =="nationality" ){
+	toLang(param, header?) {
+		if (header == "nationality") {
 			return this.lang == 'en' ? param['name']?.en : param['name']?.ar
-		}else if(header == "types"){
-			return param[0]['key'] +' | ' + this.lang == 'en' ? param[0]['name']?.en : param[0]['name']?.ar
+		} else if (header == "types") {
+			return param[0]['key'] + ' | ' + this.lang == 'en' ? param[0]['name']?.en : param[0]['name']?.ar
 		}
 		return this.lang == 'en' ? param?.en : param?.ar
 	}

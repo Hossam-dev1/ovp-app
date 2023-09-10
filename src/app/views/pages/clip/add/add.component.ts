@@ -34,7 +34,7 @@ export class AddComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
-		private _tagsService:TagService
+		private _tagsService: TagService
 	) { }
 
 
@@ -50,7 +50,7 @@ export class AddComponent {
 	companyList: any[] = []
 	genreList: any[] = []
 	crewList: any[] = []
-	tagsList:any[] = []
+	tagsList: any[] = []
 	contentTypeID: number = null;
 
 	addForm: FormGroup;
@@ -212,25 +212,25 @@ export class AddComponent {
 				}
 			});
 			this.patchContentTypeID()
+			this.getDimensionList();
 			this.cdr.markForCheck()
 		})
+		this._tagsService.list().subscribe((resp) => {
+			this.tagsList = resp.body;
+			this.cdr.markForCheck()
+		})
+	}
+
+	getDimensionList() {
 		this._helperService.dimentionsList().subscribe((resp) => {
 			this.dimentionList = resp.body;
 			this.dimentionList = this.dimentionList.filter(item =>
 				item['content_type']['id'] == this.contentTypeID
 			)
 			this.patchContentImgs()
-			// console.log('contentTypeID', this.getContentImgs);
 			this.cdr.markForCheck()
 		})
-
-		this._tagsService.list().subscribe((resp)=>{
-			this.tagsList = resp.body;
-			this.cdr.markForCheck()
-		})
-
 	}
-
 
 	formattedDate(dateParam) {
 		const date = new Date(dateParam);

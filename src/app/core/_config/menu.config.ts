@@ -1,10 +1,10 @@
 import { CrewMenuConfig } from './aside-menues/crew.menu.config';
-import { NationalitiesModule } from './../../views/pages/nationalities/nationalities.module';
 import { ShortAccessMenuConfig } from './header-menues/short.access.menu.config';
 import { AddNewMenuConfig } from './header-menues/add.new.menu.config';
 import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 import { ClipMenuConfig } from './aside-menues/clibs.menu.config';
 import { TagsMenuConfig } from './aside-menues/tags.menu.config';
+import { SeriesMenuConfig } from './aside-menues/series.menu.config';
 
 
 
@@ -15,6 +15,7 @@ export class MenuConfig {
 	crewMenuConfig: CrewMenuConfig;
 	clipMenuConfig: ClipMenuConfig;
 	tagMenuConfig: TagsMenuConfig;
+	seriesMenuConfig: SeriesMenuConfig;
 
 	// Header Menu
 	shortAccessMenuConfig: ShortAccessMenuConfig;
@@ -25,6 +26,7 @@ export class MenuConfig {
 		this.crewMenuConfig = new CrewMenuConfig();
 		this.clipMenuConfig = new ClipMenuConfig();
 		this.tagMenuConfig = new TagsMenuConfig();
+		this.seriesMenuConfig = new SeriesMenuConfig();
 
 
 		this.shortAccessMenuConfig = new ShortAccessMenuConfig();
@@ -35,13 +37,13 @@ export class MenuConfig {
 		header: {
 			self: {},
 			items: [
-				{
-					title: 'Dashboards',
-					root: true,
-					alignment: 'left',
-					page: '/cms/dashboard',
-					translate: 'MENU.DASHBOARD',
-				},
+				// {
+				// 	title: 'Dashboards',
+				// 	root: true,
+				// 	alignment: 'left',
+				// 	page: '/cms/dashboard',
+				// 	translate: 'MENU.DASHBOARD',
+				// },
 
 			]
 		},
@@ -79,8 +81,12 @@ export class MenuConfig {
 		let clip_items = this.clipMenuConfig.configs;
 		this.attachAsideMenu(clip_items);
 
+		// Series Config
+		let series_items = this.seriesMenuConfig.configs;
+		this.attachAsideMenu(series_items);
+
+		// Tag Config
 		let tag_items = this.tagMenuConfig.configs;
-		console.log(tag_items);
 		this.attachAsideMenu(tag_items);
 	}
 

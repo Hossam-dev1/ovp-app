@@ -1,3 +1,4 @@
+
 :host {
 	.kt-aside {
 		height: 100%;
@@ -10,5 +11,17 @@
 	// fixed text line break issue on minimized aside hover
 	.kt-menu__link-text {
 		white-space: nowrap;
+
+		&:hover,
+		&:focus {
+			color: #ff4057 !important;
+		}
 	}
+
+	.kt-menu__item.kt-menu__item--active {
+		.kt-menu__link-text {
+			color: #ff4057 !important;
+		}
+	}
+
 }

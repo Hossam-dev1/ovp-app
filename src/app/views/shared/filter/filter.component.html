@@ -26,7 +26,7 @@
 
 		<div class="row col-sm-6 col-12 px-4 justify-content-end">
 			<!--Add New Item Button-->
-			<a [routerLink]="'add'">
+			<a [routerLink]="'add'" [queryParams]="AddBtnParam ? AddBtnParam : null">
 				<button mat-raised-button color="primary">{{ 'MENU.ADD_NEW' | translate }}
 				</button>
 			</a>

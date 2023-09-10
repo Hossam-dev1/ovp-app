@@ -1,0 +1,69 @@
+<div class="loader d-flex justify-content-center p-5" *ngIf="isLoading">
+	<mat-spinner diameter="50"></mat-spinner>
+</div>
+
+<kt-portlet [ngClass]="'kt-portlet--ngviewer'" *ngIf="!isLoading">
+	<kt-portlet-header [title]="'Season Deatils'"></kt-portlet-header>
+
+	<kt-portlet-body>
+		<mat-grid-list cols="2" rowHeight="60px">
+			<mat-grid-tile *ngFor="let item of headersData">
+				<div class="col-5 header">
+					{{item}} :
+				</div>
+				<div class="col-7">
+					{{ (item == 'name' || item == 'description' || item == 'content_provider') ?
+					toLang(episodesDetails[item], item) : episodesDetails[item] || '---' }}
+				</div>
+			</mat-grid-tile>
+
+			<!-- Series  Name -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Series Name:
+				</div>
+				<div class="col-7">
+					{{toLang(episodesDetails['series']['name'])}}
+				</div>
+			</mat-grid-tile>
+
+			<!-- Season  Name -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Season Name:
+				</div>
+				<div class="col-7">
+					{{toLang(episodesDetails['season']['name'])}}
+				</div>
+			</mat-grid-tile>
+
+			<!-- Episodes Status: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Status:
+				</div>
+				<div class="col-7">
+					<i [class]="episodesDetails['status'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Crews List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Crews List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of episodesDetails?.crews; index as i">
+						<span>{{toLang(item.name) + (i < (episodesDetails.crews.length - 1) ? ',' : '' )}} </span>
+						</span>
+				</div>
+			</mat-grid-tile>
+
+		</mat-grid-list>
+
+	</kt-portlet-body>
+
+	<kt-portlet-footer></kt-portlet-footer>
+</kt-portlet>
+
+<!--  -->
