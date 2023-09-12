@@ -13,11 +13,7 @@ export class DetailsComponent {
 	clipDetails: any;
 	isLoading: boolean = true;
 	lang: string = 'en';
-	headersData: string[] = ['name', 'description', 'clip_year', 'clip_duration', 'slug']
-	companiesHeaders: string[] = ['name', 'description', 'year', 'logo']
-	crewHeaders: string[] = ['name', 'description', 'birth_date', 'death_date', 'gender', 'social_links', 'thumb']
-	genresHeaders: string[] = ['key', 'name']
-
+	headersData: string[] = ['name', 'description', 'clip_year', 'clip_duration', 'clip_puplish_date', 'clip_puplish_end_date', 'clip_watch_rating']
 	companiesData;
 
 	constructor(

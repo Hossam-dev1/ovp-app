@@ -12,7 +12,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 export class DetailsComponent {
 	series_ID: number;
 	seriesDetails: any;
-	seasonsList: any;
+	seriesList: any;
 	isLoading: boolean = true;
 	lang: string = 'en';
 	headersData: string[] = ['name', 'description', 'series_start_year', 'slug']
@@ -29,7 +29,7 @@ export class DetailsComponent {
 		this.checkLocalLang()
 		this.series_ID = Number(this._activatedRoute.snapshot.paramMap.get('id')) as number
 		this.getSeriesDetails()
-		this.getSeasonsList()
+		// this.getSeriesList()
 	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
@@ -49,13 +49,13 @@ export class DetailsComponent {
 		})
 	}
 
-	getSeasonsList() {
-		this._seasonsService.list(this.series_ID).subscribe((resp: any) => {
-			this.seasonsList = resp.body;
-			console.log('seasonsList', this.seasonsList);
-			this.isLoading = false
-			this.cdr.markForCheck()
-		})
-	}
+	// getSeriesList() {
+	// 	this._seriesService.list(this.series_ID).subscribe((resp: any) => {
+	// 		this.seriesList = resp.body;
+	// 		console.log('seriesList', this.seriesList);
+	// 		this.isLoading = false
+	// 		this.cdr.markForCheck()
+	// 	})
+	// }
 }
 

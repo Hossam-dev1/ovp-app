@@ -63,7 +63,7 @@
 					Genres List:
 				</div>
 				<div class="col-7">
-					<span *ngFor="let item of seriesDetails.genres">
+					<span class="d-block" *ngFor="let item of seriesDetails.genres">
 						<span>{{ item.key }}</span> |
 						<small>{{toLang(item.name)}}</small>
 					</span>
@@ -76,7 +76,7 @@
 					Tags List:
 				</div>
 				<div class="col-7">
-					<span *ngFor="let item of seriesDetails.tags">
+					<span class="d-block" *ngFor="let item of seriesDetails.tags">
 						<span>{{ item.key }}</span> |
 						<small>{{toLang(item.name)}}</small>
 					</span>
@@ -84,7 +84,7 @@
 			</mat-grid-tile>
 
 			<!-- Content Imgs List  -->
-			<mat-grid-tile colspan="3" rowspan="1">
+			<!-- <mat-grid-tile colspan="3" rowspan="1">
 				<div class="col-5 header">
 					Content Imgs List:
 				</div>
@@ -94,7 +94,7 @@
 							onerror="this.src ='../../../../../../assets/img/Dummy-Person.png'">
 					</span>
 				</div>
-			</mat-grid-tile>
+			</mat-grid-tile> -->
 		</mat-grid-list>
 
 	</kt-portlet-body>

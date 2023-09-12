@@ -1,3 +1,4 @@
+import { LangService } from './../../../../../core/services/lang.service';
 import { NationalitiesService } from './../../../../../core/services/Crew-Module/nationalities.service';
 import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
@@ -13,16 +14,19 @@ import { ToastrService } from 'ngx-toastr';
 export class AddComponent implements OnInit {
 
 	// Data State
-	crewTypesList:any[]=[]
-	nationalitiesList:any[]=[]
-
+	crewTypesList: any[] = []
+	nationalitiesList: any[] = []
+	genderList: string[] = ['male', 'female']
 	addForm: UntypedFormGroup;
 	isLoadingResults: boolean;
-	clearImgSrc:boolean;
+	clearImgSrc: boolean;
+	lang: string = 'en'
+	socialLink_list: string[] = []
 
 	constructor(
 		private fb: UntypedFormBuilder,
 		private _crewService: CrewService,
+		private _langService: LangService,
 		private _crewTypeService: CrewTypeService,
 		private _nationalitiesService: NationalitiesService,
 		private toastr: ToastrService,
@@ -31,11 +35,21 @@ export class AddComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.checkLocalLang()
 		this.initForm()
 		this.getTypesList()
 		this.getNationalitiesList()
 	}
 
+	checkLocalLang() {
+		this._langService.localLang.subscribe((curreLang) => {
+			this.lang = curreLang;
+			this.cdr.markForCheck();
+		})
+	}
+	toLang(param) {
+		return this.lang == 'en' ? param.en : param.ar;
+	}
 	protected get getAddForm() {
 		return this.addForm.controls;
 	}
@@ -43,8 +57,8 @@ export class AddComponent implements OnInit {
 		this.addForm = this.fb.group({
 			gender: new UntypedFormControl('', [Validators.required]),
 			birth_date: new UntypedFormControl('', [Validators.required]),
-			death_date: new UntypedFormControl('', [Validators.required]),
-			social_links: new UntypedFormControl([], [Validators.required]),
+			death_date: new UntypedFormControl(''),
+			social_links: new UntypedFormControl([]),
 			types: new UntypedFormControl([], [Validators.required]),
 			thumb: new UntypedFormControl('', [Validators.required]),
 			nationality_id: new UntypedFormControl('', [Validators.required]),
@@ -59,60 +73,51 @@ export class AddComponent implements OnInit {
 		});
 	}
 
-	getTypesList(){
-		this._crewTypeService.list().subscribe((resp)=>{
+	getTypesList() {
+		this._crewTypeService.list().subscribe((resp) => {
 			this.crewTypesList = resp.body;
 			this.cdr.markForCheck()
 			// console.log(resp.body);
 		})
 	}
 
-	getNationalitiesList(){
-		this._nationalitiesService.list().subscribe((resp)=>{
+	getNationalitiesList() {
+		this._nationalitiesService.list().subscribe((resp) => {
 			this.nationalitiesList = resp.body;
 			this.cdr.markForCheck()
 			// console.log(resp.body);
 		})
 	}
+	addCustomLink = (term) => (term);
 
-	formattedDate(dateParam){
+	formattedDate(dateParam) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
-		console.log(this.getAddForm['thumb'].value);
-
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.toastr.error('Check all required fields');
 			return
 		}
-		const formData = {
-			gender: this.getAddForm['gender'].value,
-			birth_date:  this.formattedDate(this.getAddForm['birth_date'].value),
-			death_date:  this.formattedDate(this.getAddForm['death_date'].value),
-			social_links: [this.getAddForm['social_links'].value],
-			types: [this.getAddForm['types'].value],
-			thumb: this.getAddForm['thumb'].value,
-			nationality_id: this.getAddForm['nationality_id'].value,
-			name: {
-				en: this.getAddForm["name"].value["en"] || '',
-				ar: this.getAddForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getAddForm["description"].value["en"] || '',
-				ar: this.getAddForm["description"].value["ar"] || ''
+		const formData = this.addForm.value;
+			formData['birth_date'] = this.formattedDate(formData['birth_date'])
+			if (formData['death_date']) {
+				formData['death_date'] = this.formattedDate(formData['death_date'])
+			} else {
+				delete formData['death_date'];
 			}
-		}
+
 		this._crewService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
-			this.toastr.success(resp.message + 'successfully');
+			this.toastr.success(resp.message + ' successfully');
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
-				const errorControll = Object.keys(error.error.errors).toString();
-				this.getAddForm[errorControll].setErrors({ 'invalid': true })
+				// const errorControll = Object.keys(error.error.errors).toString();
+				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();
 			})
 	}

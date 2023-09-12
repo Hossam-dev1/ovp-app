@@ -1,3 +1,4 @@
+import { LangService } from './../../../../../core/services/lang.service';
 import { NationalitiesService } from './../../../../../core/services/Crew-Module/nationalities.service';
 import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
@@ -17,16 +18,21 @@ export class EditComponent implements OnInit {
 	// Data State
 	crewTypesList: any[] = []
 	nationalitiesList: any[] = []
+	genderList: string[] = ['male', 'female']
+	socialLink_list: string[] = []
+
 
 	editForm: UntypedFormGroup;
 	isLoadingResults: boolean;
 	clearImgSrc: boolean;
 	crew_ID: number;
 	crewDetails: any
+	lang: string = 'en'
 
 	constructor(
 		private fb: UntypedFormBuilder,
 		private _crewService: CrewService,
+		private _langService: LangService,
 		private _crewTypeService: CrewTypeService,
 		private _nationalitiesService: NationalitiesService,
 		private toastr: ToastrService,
@@ -36,11 +42,22 @@ export class EditComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.checkLocalLang()
 		this.getUrlID();
 		this.initForm()
 		this.getTypesList()
 		this.getNationalitiesList();
 	}
+	checkLocalLang() {
+		this._langService.localLang.subscribe((curreLang) => {
+			this.lang = curreLang;
+			this.cdr.markForCheck();
+		})
+	}
+	toLang(param) {
+		return this.lang == 'en' ? param.en : param.ar;
+	}
+
 	getUrlID() {
 		this.isLoadingResults = true
 		this._activatedRoute.paramMap.subscribe(params => {
@@ -63,8 +80,8 @@ export class EditComponent implements OnInit {
 		this.editForm = this.fb.group({
 			gender: new UntypedFormControl('', [Validators.required]),
 			birth_date: new UntypedFormControl('', [Validators.required]),
-			death_date: new UntypedFormControl('', [Validators.required]),
-			social_links: new UntypedFormControl([], [Validators.required]),
+			death_date: new UntypedFormControl(''),
+			social_links: new UntypedFormControl([]),
 			types: new UntypedFormControl([], [Validators.required]),
 			thumb: new UntypedFormControl('', [Validators.required]),
 			nationality_id: new UntypedFormControl('', [Validators.required]),
@@ -83,10 +100,7 @@ export class EditComponent implements OnInit {
 		this._crewTypeService.list().subscribe((resp) => {
 			this.crewTypesList = resp.body;
 			this.patchUserData()
-
 			this.cdr.markForCheck()
-
-			// console.log(resp.body);
 		})
 	}
 
@@ -94,78 +108,57 @@ export class EditComponent implements OnInit {
 		this._nationalitiesService.list().subscribe((resp) => {
 			this.nationalitiesList = resp.body;
 			this.cdr.markForCheck()
-			// console.log(resp.body);
 		})
 	}
 
 	patchUserData() {
-		if (this.crewTypesList.length) {
-			console.log(this.crewTypesList);
-
-			this.editForm.patchValue({
-				name: {
-					en: this.crewDetails["name"]["en"],
-					ar: this.crewDetails["name"]["ar"]
-				},
-				description: {
-					en: this.crewDetails["name"]["en"],
-					ar: this.crewDetails["name"]["ar"]
-				},
-				gender: this.crewDetails["gender"],
-				birth_date: this.crewDetails["birth_date"],
-				death_date: this.crewDetails["death_date"],
-				types: this.crewDetails["types"][0].id,
-				nationality_id: this.crewDetails["nationality"]['id'],
-				thumb: this.crewDetails["thumb"],
-				social_links: this.crewDetails["social_links"],
-			});
-		}
-		console.log(this.crewDetails.nationality);
-
+		this.editForm.patchValue({
+			name: {
+				en: this.crewDetails["name"]["en"],
+				ar: this.crewDetails["name"]["ar"]
+			},
+			description: {
+				en: this.crewDetails["name"]["en"],
+				ar: this.crewDetails["name"]["ar"]
+			},
+			gender: this.crewDetails["gender"],
+			birth_date: this.crewDetails["birth_date"],
+			death_date: this.crewDetails["death_date"],
+			types: this.crewDetails["types"].map((crew) => crew['id']),
+			nationality_id: this.crewDetails["nationality"]['id'],
+			thumb: this.crewDetails["thumb"],
+			social_links: this.crewDetails["social_links"],
+		});
+		this.socialLink_list = this.crewDetails["social_links"]
 	}
 
 
-
-
+	addCustomLink = (term) => (term);
 
 	formattedDate(dateParam) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
-		console.log(this.getEditForm['thumb'].value);
 
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			gender: this.getEditForm['gender'].value,
-			birth_date: this.formattedDate(this.getEditForm['birth_date'].value),
-			death_date: this.formattedDate(this.getEditForm['death_date'].value),
-			social_links: this.getEditForm['social_links'].value,
-			types: [this.getEditForm['types'].value],
-			thumb: this.getEditForm['thumb'].value,
-			nationality_id: this.getEditForm['nationality_id'].value,
-			name: {
-				en: this.getEditForm["name"].value["en"] || '',
-				ar: this.getEditForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getEditForm["description"].value["en"] || '',
-				ar: this.getEditForm["description"].value["ar"] || ''
+		const formData = this.editForm.value;
+			formData['birth_date'] = this.formattedDate(formData['birth_date'])
+			if (formData['death_date']) {
+				formData['death_date'] = this.formattedDate(formData['death_date'])
+			} else {
+				delete formData['death_date'];
 			}
-		}
-		this._crewService.add(formData).subscribe((resp) => {
-			this.editForm.reset()
-			this.clearImgSrc = true
-			this.toastr.success(resp.message + 'successfully');
+			console.log(this.editForm.value);
+		this._crewService.edit(this.crew_ID, formData).subscribe((resp) => {
+			this.toastr.success(resp.message + ' successfully');
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
-				const errorControll = Object.keys(error.error.errors).toString();
-				this.getEditForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();
 			})
 	}

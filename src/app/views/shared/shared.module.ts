@@ -44,6 +44,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { FormDatePickerComponent } from './forms/form-date-picker/form-date-picker.component';
 import { FormYearDatePickerComponent } from './forms/form-year-date-picker/form-year-date-picker.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatIconModule,
         MatListModule,
         MatMenuModule,
-		MatNativeDateModule
+		MatNativeDateModule,
+		MatGridListModule
     ],
     exports: [
         FilterComponent,
@@ -111,7 +113,9 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatMenuModule,
         FormDatePickerComponent,
 		FormYearDatePickerComponent,
-		FormStatusComponent
+		FormStatusComponent,
+		MatGridListModule
+
     ]
 })
 export class SharedModule {

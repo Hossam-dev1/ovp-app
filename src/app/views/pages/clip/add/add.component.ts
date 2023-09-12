@@ -112,17 +112,8 @@ export class AddComponent {
 
 			content_images: this.fb.array([this.contentImgsForm]),
 
-			clip_companies: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				company_id: new FormControl('', [Validators.required]),
-				company_order: new FormControl(1, [Validators.required]), // static value
-			}),
-
-			clip_genres: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				genre_id: new FormControl('', [Validators.required]),
-				genre_order: new FormControl(1, [Validators.required]), // static value
-			}),
+			clip_companies: this.fb.array([]),
+			clip_genres: this.fb.array([]),
 
 			clip_crews: this.fb.array([this.crewForm()]),
 
@@ -133,14 +124,7 @@ export class AddComponent {
 	patchContentTypeID() {
 		const value = {
 			content_type_id: this.contentTypeID,
-			clip_companies: {
-				content_type_id: this.contentTypeID
-			},
-			clip_genres: {
-				content_type_id: this.contentTypeID
-			},
 		}
-
 		this.addForm.patchValue(value)
 	}
 
@@ -149,7 +133,6 @@ export class AddComponent {
 			content_type_id: new FormControl(this.contentTypeID || 1, [Validators.required]),
 			crew_id: new FormControl('', [Validators.required]),
 			crew_order: new FormControl(1, [Validators.required]), // static value
-			// rating: new FormControl('', [Validators.required]),
 			is_star: new FormControl(false, [Validators.required]),
 		})
 	}
@@ -236,6 +219,37 @@ export class AddComponent {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
+
+	companyFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			company_id: new FormControl(id, [Validators.required]),
+			company_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
+
+	addCompanyRow(param) {
+		const clip_companies = this.addForm.get('clip_companies') as FormArray;
+		clip_companies.clear()
+		for (let i = 0; i < param.length; i++) {
+			clip_companies.push(this.companyFormGroup(param[i], i + 1))
+		}
+	}
+
+	genreFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			genre_id: new FormControl(id, [Validators.required]),
+			genre_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
+	addGenreRow(param) {
+		const clip_genres = this.addForm.get('clip_genres') as FormArray;
+		clip_genres.clear()
+		for (let i = 0; i < param.length; i++) {
+			clip_genres.push(this.genreFormGroup(param[i], i + 1))
+		}
+	}
 	submit() {
 		console.log(this.addForm.value);
 
@@ -244,44 +258,16 @@ export class AddComponent {
 			this.toastr.error('Check all required field');
 			return
 		}
-		const formData = {
-			name: {
-				en: this.getAddForm["name"].value["en"] || '',
-				ar: this.getAddForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getAddForm["description"].value["en"] || '',
-				ar: this.getAddForm["description"].value["ar"] || ''
-			},
-			slug: {
-				en: this.getAddForm["slug"].value["en"] || '',
-				ar: this.getAddForm["slug"].value["ar"] || ''
-			},
-			clip_year: this.getAddForm['clip_year'].value,
-			clip_duration: this.getAddForm['clip_duration'].value,
-			clip_watch_rating: this.getAddForm['clip_watch_rating'].value,
-			clip_status: Number(this.getAddForm['clip_status'].value),
-			clip_puplish_date: this.formattedDate(this.getAddForm['clip_puplish_date'].value),
-			clip_puplish_end_date: this.formattedDate(this.getAddForm['clip_puplish_end_date'].value),
-			asset_id: this.getAddForm['asset_id'].value,
-			smil_file: this.getAddForm['smil_file'].value,
-			video_status: this.getAddForm['video_status'].value,
-			clip_ftp_filename: this.getAddForm['clip_ftp_filename'].value,
-			clip_filename: this.getAddForm['clip_filename'].value,
-			content_type_id: this.getAddForm['content_type_id'].value,
-			content_provider_id: Number(this.getAddForm['content_provider_id'].value),
+		const formData = this.addForm.value
+			formData['clip_status'] = Number(this.getAddForm['clip_status'].value)
+			formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
+			formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value)
 
-			content_images: this.getAddForm['content_images'].value,
-			clip_companies: [this.getAddForm['clip_companies'].value],
-			clip_genres: [this.getAddForm['clip_genres'].value],
-			clip_crews: this.getAddForm['clip_crews'].value,
-			tags: this.getAddForm['tags'].value,
-		}
 		this._clipsService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.clearValue = true
-			this.toastr.success(resp.message + 'successfully');
+			this.toastr.success(resp.message + ' successfully');
 			this.cdr.markForCheck();
 		},
 			(error) => {

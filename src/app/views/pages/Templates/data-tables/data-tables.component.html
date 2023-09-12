@@ -10,9 +10,9 @@
 			</div>
 			<div class="example-table-container" *ngIf="!isLoading">
 				<!--Search Filter-->
-				<kt-filter [AddBtnParam]="path_param" [currentService]="dynamicServiceName" [headerParams]="headerParams" [currentComponent]="this"
-					[HasActive]="true" [HasExport]="true" [HasSearchFilter]="true" [isLoadingResults]="isLoading"
-					[HasItemPerPage]="true" [HasAdd]='true'>
+				<kt-filter [AddBtnParam]="path_param" [currentService]="dynamicServiceName"
+					[headerParams]="headerParams" [currentComponent]="this" [HasActive]="true" [HasExport]="true"
+					[HasSearchFilter]="true" [isLoadingResults]="isLoading" [HasItemPerPage]="true" [HasAdd]='true'>
 				</kt-filter>
 				<!-- <form>
 					<mat-form-field class="w-25 pr-3 pl-3 py-4">
@@ -104,12 +104,13 @@
 									<i class="flaticon-settings"></i>
 								</button>
 								<mat-menu #menu="matMenu">
-									<button mat-raised-button *ngIf="title == 'Series'" mat-menu-item [queryParams]="{series:element.id}"
-										[routerLink]="'/cms/seasons'">
+									<button mat-raised-button *ngIf="title == 'Series'" mat-menu-item
+										[queryParams]="{series:element.id}" [routerLink]="'/cms/seasons'">
 										Seasons
 									</button>
 									<button mat-raised-button *ngIf="title == 'Seasons'" mat-menu-item
-										[queryParams]="{series:path_param['series'], seasons:element.id}" [routerLink]="'/cms/episodes'">
+										[queryParams]="{series:path_param['series'], seasons:element.id}"
+										[routerLink]="'/cms/episodes'">
 										Episodes
 									</button>
 									<button mat-raised-button
@@ -119,12 +120,11 @@
 									</button>
 									<button mat-raised-button [queryParams]="
 											(title == 'Seasons' ?  {series:path_param['series']} : null) ||
-											(title == 'Episodes' ?  {series:path_param['series'], seasons:path_param['seasons']} : null)"
-										mat-menu-item [routerLink]="'edit/'+ element.id">
+											(title == 'Episodes' ?  {series:path_param['series'], seasons:path_param['seasons']} : null)" mat-menu-item
+										[routerLink]="'edit/'+ element.id">
 										{{ 'Components.Edit' | translate }}
 									</button>
-									<button  mat-raised-button mat-menu-item [routerLink]="element.id"
-										(click)="deleteColumn(element.id, element)">
+									<button mat-raised-button mat-menu-item (click)="deleteColumn(element.id, element)">
 										{{ 'Components.Delete' | translate }}
 									</button>
 								</mat-menu>
@@ -133,10 +133,16 @@
 
 					</ng-container>
 
+
+
 					<tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
 					<tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
 					<!-- <tr mat-footer-row *matFooterRowDef="tableHeaders"></tr> -->
 				</table>
+
+				<ng-container  *ngIf="dataSource$.data.length === 0">
+					<div class="no-data-message text-center p-5">No data available.</div>
+				</ng-container>
 				<!--Table-->
 			</div>
 			<!-- <mat-paginator #paginator

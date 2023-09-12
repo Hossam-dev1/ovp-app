@@ -99,7 +99,12 @@ export class EditComponent {
 	}
 
 	patchClipData() {
-		console.log('clip_object', this.clip_object);
+		const companiesIDs = this.clip_object['companies'].map((company) => company.id)
+		this.addCompanyRow(companiesIDs)
+
+		const genresIDs = this.clip_object['genres'].map((company) => company.id)
+		this.addGenreRow(genresIDs)
+
 		this.editForm.patchValue({
 			name: {
 				en: this.clip_object["name"]["en"],
@@ -121,20 +126,14 @@ export class EditComponent {
 			content_type_id: this.clip_object['content_type_id'],
 			content_provider_id: this.clip_object['content_provider_id'],
 			clip_watch_rating: this.clip_object['clip_watch_rating'],
-
+			company_ids: companiesIDs,
+			genre_ids: genresIDs,
 			content_images: this.clip_object['content_images'],
-			clip_companies: {
-				company_id: this.clip_object['companies'][0]['id'],
-				content_type_id: this.contentTypeID
-			},
-			clip_genres: {
-				genre_id: this.clip_object['genres'][0]['id'],
-				content_type_id: this.contentTypeID,
-			},
 
-			tags: [this.clip_object['tags'][0]['id']],
+			tags: this.clip_object['tags'].map((tag) => tag.id),
 		});
 		this.selectedClipYear = this.clip_object['clip_year']
+
 		this.patchFormArrayValues()
 		console.log(this.editForm.value);
 
@@ -175,17 +174,10 @@ export class EditComponent {
 
 			content_images: this.fb.array([]),
 
-			clip_companies: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				company_id: new FormControl('', [Validators.required]),
-				company_order: new FormControl(1, [Validators.required]), // static
-			}),
-
-			clip_genres: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				genre_id: new FormControl('', [Validators.required]),
-				genre_order: new FormControl(1, [Validators.required]), // static
-			}),
+			clip_companies: this.fb.array([]),
+			company_ids: new FormControl([]),
+			clip_genres: this.fb.array([]),
+			genre_ids: new FormControl([]),
 
 			clip_crews: this.fb.array([]),
 
@@ -196,12 +188,6 @@ export class EditComponent {
 	patchContentTypeID() {
 		const value = {
 			content_type_id: this.contentTypeID,
-			clip_companies: {
-				content_type_id: this.contentTypeID
-			},
-			clip_genres: {
-				content_type_id: this.contentTypeID
-			},
 		}
 
 		this.editForm.patchValue(value)
@@ -301,7 +287,40 @@ export class EditComponent {
 		})
 	}
 
+	companyFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			company_id: new FormControl(id, [Validators.required]),
+			company_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
 
+	addCompanyRow(param) {
+
+		const clip_companies = this.editForm.get('clip_companies') as FormArray;
+		clip_companies.clear()
+		for (let i = 0; i < param.length; i++) {
+			clip_companies.push(this.companyFormGroup(param[i], i + 1))
+		}
+		this.cdr.markForCheck();
+		console.log(this.editForm.value);
+
+	}
+
+	genreFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			genre_id: new FormControl(id, [Validators.required]),
+			genre_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
+	addGenreRow(param) {
+		const clip_genres = this.editForm.get('clip_genres') as FormArray;
+		clip_genres.clear()
+		for (let i = 0; i < param.length; i++) {
+			clip_genres.push(this.genreFormGroup(param[i], i + 1))
+		}
+	}
 	formattedDate(dateParam) {
 		const date = new Date(dateParam);
 		return date?.toISOString().slice(0, 10);
@@ -309,7 +328,6 @@ export class EditComponent {
 	submit() {
 
 		const contentImg = this.getEditForm['content_images'].value;
-
 		const isContentImgNull = contentImg.some(obj => obj.img == '');
 		// Perform any additional actions here
 		// return
@@ -318,44 +336,18 @@ export class EditComponent {
 			this.toastr.error('Check all required field');
 			return
 		}
-		const formData: any = {
-			name: {
-				en: this.getEditForm["name"].value["en"] || '',
-				ar: this.getEditForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getEditForm["description"].value["en"] || '',
-				ar: this.getEditForm["description"].value["ar"] || ''
-			},
-			slug: {
-				en: this.getEditForm["slug"].value["en"] || '',
-				ar: this.getEditForm["slug"].value["ar"] || ''
-			},
-			clip_year: this.getEditForm['clip_year'].value,
-			clip_duration: this.getEditForm['clip_duration'].value,
-			clip_status: Number(this.getEditForm['clip_status'].value),
-			clip_puplish_date: this.formattedDate(this.getEditForm['clip_puplish_date'].value),
-			clip_puplish_end_date: this.formattedDate(this.getEditForm['clip_puplish_end_date'].value),
-			asset_id: this.getEditForm['asset_id'].value,
-			smil_file: this.getEditForm['smil_file'].value,
-			video_status: this.getEditForm['video_status'].value,
-			clip_ftp_filename: this.getEditForm['clip_ftp_filename'].value,
-			clip_filename: this.getEditForm['clip_filename'].value,
-			content_type_id: this.getEditForm['content_type_id'].value,
-			content_provider_id: Number(this.getEditForm['content_provider_id'].value),
+		const formData = this.editForm.value
+		formData['clip_status'] = Number(this.getEditForm['clip_status'].value)
+		formData['clip_watch_rating'] = (this.getEditForm['clip_watch_rating'].value).toString()
+		formData['clip_puplish_date'] = this.formattedDate(this.getEditForm['clip_puplish_date'].value)
+		formData['clip_puplish_end_date'] = this.formattedDate(this.getEditForm['clip_puplish_end_date'].value)
 
-			// content_images: this.getEditForm['content_images'].value,
-			clip_companies: [this.getEditForm['clip_companies'].value],
-			clip_genres: [this.getEditForm['clip_genres'].value],
-			clip_crews: this.getEditForm['clip_crews'].value,
-			tags: this.getEditForm['tags'].value,
-		}
 		if (!isContentImgNull) {
 			formData.content_images = this.getEditForm['content_images'].value
 		}
 		this._clipsService.edit(this.clip_ID, formData).subscribe((resp) => {
 			// this.editForm.reset()
-			this.toastr.success(resp.message + 'successfully');
+			this.toastr.success(resp.message + ' successfully');
 			this.cdr.markForCheck();
 		},
 			(error) => {

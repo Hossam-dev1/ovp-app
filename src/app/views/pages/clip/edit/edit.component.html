@@ -1,5 +1,5 @@
 <div class="header p-3">
-	<h5>Edit Clip</h5>
+	<h5>Add Clip</h5>
 </div>
 <div class="loader d-flex justify-content-center p-5" *ngIf="isLoading">
 	<mat-spinner diameter="50"></mat-spinner>
@@ -48,7 +48,7 @@
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input  [form]="editForm" [label]="'clip_duration (min)'"
+					<kt-form-input [type]="'text'" [form]="editForm" [label]="'clip_duration (min)'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-3">
@@ -59,13 +59,13 @@
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">Clip Status</label>
 					</div>
-					<mat-slide-toggle [checked]="true" formControlName="clip_status"></mat-slide-toggle>
+					<mat-slide-toggle formControlName="clip_status"></mat-slide-toggle>
 				</div>
 			</div>
 			<!-- clip_year && clip_puplish_date &&  clip_puplish_end_date -->
 			<div class="row">
 				<div class="col-md-4">
-					<kt-form-year-date-picker [control_value]="selectedClipYear" [form]="editForm" [label]="'clip_year'"
+					<kt-form-year-date-picker [control_value]="selectedClipYear" [form]="editForm" [label]="'clip_year*'"
 						[form_control_name]="'clip_year'"></kt-form-year-date-picker>
 				</div>
 				<div class="col-md-4">
@@ -80,27 +80,11 @@
 
 
 			<ng-container class="selectList">
-				<!-- Content Types && content_images -->
-				<mat-divider class="my-3"></mat-divider>
-				<div class="loader d-flex justify-content-center p-5" *ngIf="!isDimentionReady">
-					<mat-spinner diameter="50"></mat-spinner>
-				</div>
-				<div class="row py-4" *ngIf="isDimentionReady">
-					<ng-container *ngFor="let item of dimentionList; index as i"  formArrayName="content_images">
-						<div class="col-md-4" [formGroupName]="i">
-							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i" [dimentionID]="item.id" [clear_src]="clearImgSrc"
-								[to_base64]="true" [form]="editForm" [form_control_name]="'img'"
-								[label]="item.key">
-							</kt-form-upload-image>
-						</div>
-					</ng-container>
-				</div>
-				<mat-divider class="mt-5 mb-3"></mat-divider>
 				<!-- Companies && Providers -->
 				<div class="row py-4">
-					<div class="col-md-6" formGroupName="clip_companies">
+					<div class="col-md-6">
 						<label>Clip Companies</label>
-						<ng-select formControlName="company_id" [loading]="!companyList.length">
+						<ng-select [multiple]="true" formControlName="company_ids" (change)="addCompanyRow($event)"  [loading]="!companyList.length">
 							<ng-option *ngFor="let item of companyList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
@@ -108,18 +92,17 @@
 
 					<div class="col-md-6">
 						<label>Content Providers</label>
-						<ng-select formControlName="content_provider_id"
-							[loading]="!providerList.length">
+						<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
 							<ng-option *ngFor="let item of providerList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 				</div>
-				<!-- Genres && Tags -->
+				<!-- Genres && Crews -->
 				<div class="row">
-					<div class="col-md-6" formGroupName="clip_genres">
+					<div class="col-md-6" >
 						<label>Clip Genres</label>
-						<ng-select  formControlName="genre_id" [loading]="!genreList.length">
+						<ng-select [multiple]="true" (change)="addGenreRow($event)"   formControlName="genre_ids" [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
@@ -136,7 +119,6 @@
 						<button mat-raised-button (click)="addCrewRow()">New Crew</button>
 					</div>
 				</div>
-				<!-- Crews -->
 				<ng-container formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
 					<div class="row py-3" [formGroupName]="i">
 						<div class="col-md-6">
@@ -157,13 +139,28 @@
 								(click)="removeCrewRow(i)"><mat-icon>remove</mat-icon></button>
 						</div>
 					</div>
-					<hr>
+					<mat-divider class="mt-5 mb-3"></mat-divider>
 				</ng-container>
+
+				<!-- Content Types && content_images -->
+				<div class="loader d-flex justify-content-center p-5" *ngIf="!isDimentionReady">
+					<mat-spinner diameter="50"></mat-spinner>
+				</div>
+				<div class="row py-4" *ngIf="isDimentionReady || dimentionList.length">
+					<ng-container *ngFor="let item of dimentionList; index as i" formArrayName="content_images">
+						<div class="col-md-4" [formGroupName]="i">
+							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i"
+								[dimentionID]="item.id" [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
+								[form_control_name]="'img'" [label]="item.key">
+							</kt-form-upload-image>
+						</div>
+					</ng-container>
+				</div>
 
 			</ng-container>
 
 			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
-					(click)="submit()">Update</button>
+					(click)="submit()">Add</button>
 			</div>
 		</form>
 	</div>

@@ -1,3 +1,7 @@
+import { SeasonsService } from './../../../../core/services/Series-Module/seasons.service';
+import { SeriesService } from './../../../../core/services/Series-Module/series.service';
+import { EpisdosService } from './../../../../core/services/Series-Module/episdos.service';
+
 import { GenreService } from './../../../../core/services/Genre-Module/genre.service';
 import { HelperService } from './../../../../core/services/helper.service';
 import { AuthNoticeService } from './../../../../core/services/auth-notice.service';
@@ -71,8 +75,11 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private cdr: ChangeDetectorRef,
 		private helper: HelperService,
 		private authNoticeService: AuthNoticeService,
+		private _seriesService: SeriesService,
+		private _seasonsService: SeasonsService,
+		private _eposidesService: EpisdosService,
 		private _nationalitiesService: NationalitiesService,
-		private _genereService:GenreService,
+		private _genereService: GenreService,
 		private _contentProviderService: ContentProviderService,
 		private _crewTypeService: CrewTypeService,
 		private _crewService: CrewService,
@@ -87,17 +94,10 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	}
 
 	ngAfterViewInit() {
-		if (!this.isLoading) {
-			console.log('hi');
-
-
-		}
 	}
 	ngOnInit() {
 		this.checkLocalLang()
-		// this.dataSource$.paginator = this.paginator;
-		// this.dataSource.sort = this.sort;
-		// this.dataSource.filterPredicate = this.customFilterPredicate
+
 	}
 
 	toLang(param) {

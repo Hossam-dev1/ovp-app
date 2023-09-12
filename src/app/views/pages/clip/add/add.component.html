@@ -82,9 +82,9 @@
 			<ng-container class="selectList">
 				<!-- Companies && Providers -->
 				<div class="row py-4">
-					<div class="col-md-6" formGroupName="clip_companies">
+					<div class="col-md-6" >
 						<label>Clip Companies</label>
-						<ng-select formControlName="company_id" [loading]="!companyList.length">
+						<ng-select [multiple]="true" (change)="addCompanyRow($event)"  [loading]="!companyList.length">
 							<ng-option *ngFor="let item of companyList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
@@ -100,9 +100,9 @@
 				</div>
 				<!-- Genres && Crews -->
 				<div class="row">
-					<div class="col-md-6" formGroupName="clip_genres">
+					<div class="col-md-6" >
 						<label>Clip Genres</label>
-						<ng-select formControlName="genre_id" [loading]="!genreList.length">
+						<ng-select [multiple]="true" (change)="addGenreRow($event)"   [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>

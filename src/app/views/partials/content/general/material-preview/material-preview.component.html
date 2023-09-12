@@ -27,7 +27,7 @@
 					<div class="col-7">
 						{{ (item == 'name' || item == 'description' || item == 'nationality' || item == 'types'|| item
 						== 'slug') ?
-						toLang(viewItem[item], item) : viewItem[item] }}
+						toLang(viewItem[item], item) : viewItem[item] || '---' }}
 					</div>
 
 				</mat-grid-tile>

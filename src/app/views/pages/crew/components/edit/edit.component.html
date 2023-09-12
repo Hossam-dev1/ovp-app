@@ -1,4 +1,3 @@
-<p>edit works!</p>
 <div class="header p-3">
 	<h5>Edit Crew</h5>
 </div>
@@ -45,29 +44,39 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row py-2">
 				<div class="col-md-6">
-					<kt-form-select [form]="editForm" [label]="'Gender'" [genderList]="['male','female']"
-						[form_control_name]="'gender'"></kt-form-select>
+					<label>Gender </label>
+					<ng-select formControlName="gender" [loading]="!genderList.length">
+						<ng-option *ngFor="let item of genderList" [value]="item">{{item}}</ng-option>
+					</ng-select>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form]="editForm" [label]="'Social link'"
-						[form_control_name]="'social_links'"></kt-form-input>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<kt-form-select [form]="editForm" [label]="'Types'" [is_multi]="false" [typesList]="crewTypesList"
-						[form_control_name]="'types'"></kt-form-select>
-				</div>
-				<div class="col-md-6">
-					<kt-form-select [form]="editForm" [label]="'Nationality'" [typesList]="nationalitiesList"
-						[form_control_name]="'nationality_id'"></kt-form-select>
+					<label>Socail Links </label>
+					<ng-select [items]="socialLink_list" bindLabel="name" formControlName="social_links"
+						[addTag]="addCustomLink" [multiple]="true">
+					</ng-select>
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row py-2">
+				<div class="col-md-6">
+					<label>Crew Types </label>
+					<ng-select formControlName="types" [multiple]="true" [loading]="!crewTypesList.length">
+						<ng-option *ngFor="let item of crewTypesList"
+							[value]="item.id">{{toLang(item.name)}}</ng-option>
+					</ng-select>
+				</div>
+				<div class="col-md-6">
+					<label>Nationality</label>
+					<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
+						<ng-option *ngFor="let item of nationalitiesList"
+							[value]="item.id">{{toLang(item.name)}}</ng-option>
+					</ng-select>
+				</div>
+			</div>
+
+			<div class="row py-2">
 				<div class="col-12">
 					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
 						[form_control_name]="'thumb'" [label]="'Upload img'">
