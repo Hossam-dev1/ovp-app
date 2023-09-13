@@ -12,10 +12,10 @@ MatPaginator
 	styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-	displayedColumns = ['id', 'key', 'name', 'options'];
+	displayedColumns = ['key', 'name', 'options'];
 	dataSource = new MatTableDataSource([]);;
 	isLoadingResults: boolean = false;
-
+	genresData:[] = []
 	// pagination variables
 	resultsLength = 0;
 	pageIndex = 0;
@@ -47,9 +47,8 @@ export class IndexComponent implements OnInit {
 	getData() {
 		this.isLoadingResults = true;
 		this._genreService.list().subscribe((resp) => {
-
+			this.genresData = resp.body;
 			this.dataSource = resp.body
-			console.log(this.dataSource);
 			this.isLoadingResults = false;
 			this.cdr.detectChanges();
 		})

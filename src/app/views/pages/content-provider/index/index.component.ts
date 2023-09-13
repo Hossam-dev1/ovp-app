@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class IndexComponent {
 	isLoadingResults: boolean = true;
 	contentProviderData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'name', 'email', 'image', 'options'];
+	displayedColumns: string[] = ['name', 'email', 'image', 'options'];
 
 	constructor(
 		private _contentProviderSerivce: ContentProviderService,

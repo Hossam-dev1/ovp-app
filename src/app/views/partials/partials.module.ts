@@ -4,31 +4,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MatButtonModule} from "@angular/material/button";
-import {MatCardModule} from "@angular/material/card";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatInputModule} from "@angular/material/input";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatRadioModule} from "@angular/material/radio";
-import {MatSelectModule} from "@angular/material/select";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatSortModule} from "@angular/material/sort";
-import {MatTableModule} from "@angular/material/table";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatIconModule} from "@angular/material/icon";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSortModule } from "@angular/material/sort";
+import { MatTableModule } from "@angular/material/table";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 // NgBootstrap
-import {NgbDropdownModule, NgbTabsetModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbTabsetModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // Perfect Scrollbar
-import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
-import {CoreModule} from '../../core/core.module';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { CoreModule } from '../../core/core.module';
 // CRUD Partials
 import {
 	ActionNotificationComponent,
@@ -55,16 +55,19 @@ import {
 	UserProfileComponent,
 } from './layout';
 // General
-import {NoticeComponent} from './content/general/notice/notice.component';
-import {PortletModule} from './content/general/portlet/portlet.module';
+import { NoticeComponent } from './content/general/notice/notice.component';
+import { PortletModule } from './content/general/portlet/portlet.module';
 // Errpr
-import {ErrorComponent} from './content/general/error/error.component';
+import { ErrorComponent } from './content/general/error/error.component';
 // Extra module
-import {WidgetModule} from './content/widgets/widget.module';
+import { WidgetModule } from './content/widgets/widget.module';
 // SVG inline
-import {InlineSVGModule} from 'ng-inline-svg';
-import {CartComponent} from './layout/topbar/cart/cart.component';
-import {TranslateModule} from "@ngx-translate/core";
+import { InlineSVGModule } from 'ng-inline-svg';
+import { CartComponent } from './layout/topbar/cart/cart.component';
+import { TranslateModule } from "@ngx-translate/core";
+import { SimpleGridListComponent } from './layout/simple-grid-list/simple-grid-list.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -94,6 +97,7 @@ import {TranslateModule} from "@ngx-translate/core";
 		CartComponent,
 
 		ErrorComponent,
+		SimpleGridListComponent,
 	],
 	exports: [
 		WidgetModule,
@@ -123,7 +127,7 @@ import {TranslateModule} from "@ngx-translate/core";
 		SearchDropdownComponent,
 		UserProfileComponent,
 		CartComponent,
-
+		SimpleGridListComponent,
 		ErrorComponent,
 	],
 	imports: [
@@ -163,6 +167,8 @@ import {TranslateModule} from "@ngx-translate/core";
 		NgbTabsetModule,
 		NgbTooltipModule,
 		TranslateModule,
+		MatGridListModule,
+		SharedModule
 	],
 })
 export class PartialsModule {

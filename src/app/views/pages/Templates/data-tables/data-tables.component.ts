@@ -99,6 +99,9 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		this.checkLocalLang()
 
 	}
+	check(param){
+		console.log(param);
+	}
 
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;

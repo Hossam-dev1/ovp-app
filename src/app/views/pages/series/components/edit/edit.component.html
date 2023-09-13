@@ -54,7 +54,8 @@
 			<!-- series_start_year && is_exclusive -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-year-date-picker [control_value]="selectedSeiresYear" [clearValue]="clearValue" [form]="editForm" [label]="'series_start_year*'"
+					<kt-form-year-date-picker [control_value]="selectedSeiresYear" [clearValue]="clearValue"
+						[form]="editForm" [label]="'series_start_year*'"
 						[form_control_name]="'series_start_year'"></kt-form-year-date-picker>
 				</div>
 				<div class="col-md-6">
@@ -85,9 +86,10 @@
 			<ng-container class="selectList">
 				<!-- Genres & Tags -->
 				<div class="row">
-					<div class="col-md-6" formGroupName="series_genres">
+					<div class="col-md-6">
 						<label>Series Genres</label>
-						<ng-select formControlName="genre_id" [loading]="!genreList.length">
+						<ng-select [multiple]="true" (change)="addGenreRow($event)" formControlName="genre_ids"
+							[loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>

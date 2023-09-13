@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="col-12">
+		<kt-portlet-header [title]="title"> </kt-portlet-header>
+		<div class="example-container px-3 py-1">
+			<div class="example-loading-shade text-center d-flex justify-content-center p-5" *ngIf="isLoading">
+				<mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
+			</div>
+			<div class="example-table-container" *ngIf="!isLoading">
+				<!--Search Filter-->
+				<kt-filter [AddBtnParam]="path_param" [currentService]="dynamicServiceName" [gridList]="dataList"
+					[headerParams]="headerParams" [currentComponent]="this" [HasActive]="true" [HasExport]="true"
+					[HasSearchFilter]="true" [isLoadingResults]="isLoading" [HasItemPerPage]="true" [HasAdd]='true'>
+				</kt-filter>
+
+				<mat-grid-list cols="2" rowHeight="7:2">
+					<mat-grid-tile *ngFor="let item of dataList">
+						<mat-card class="w-100 mx-3">
+							<div class="row d-flex align-items-center">
+								<div class="col-10 ">
+									<div *ngIf="item.hasOwnProperty('key')" class="row">
+										<div class="col-2 header"> Key: </div>
+										<div class="col-10 value"> {{item['key']}} </div>
+									</div>
+									<hr *ngIf="item.hasOwnProperty('key')">
+									<div *ngIf="item.hasOwnProperty('name')" class="row">
+										<div class="col-2 header"> Name: </div>
+										<div class="col-10 value"> {{toLang(item['name'])}} </div>
+									</div>
+								</div>
+								<div class="col-2 action">
+									<ng-container>
+										<button [matMenuTriggerFor]="menu"
+											class="btn btn-outline-hover-dark btn-outline-secondary btn-circle">
+											<i class="flaticon-settings"></i>
+										</button>
+										<mat-menu #menu="matMenu">
+											<!-- <button *ngIf="title == ''" mat-raised-button mat-menu-item [routerLink]="'details/'+item.id">
+												{{ 'Components.Details' | translate }}
+											</button> -->
+											<button mat-raised-button mat-menu-item [routerLink]="'edit/'+item.id">
+												{{ 'Components.Edit' | translate }}
+											</button>
+											<button mat-raised-button mat-menu-item (click)="deleteItem(item.id, item)">
+												{{ 'Components.Delete' | translate }}
+											</button>
+										</mat-menu>
+									</ng-container>
+								</div>
+							</div>
+
+							<!-- <mat-card-actions>
+								</mat-card-actions> -->
+						</mat-card>
+					</mat-grid-tile>
+				</mat-grid-list>
+				<ng-container *ngIf="dataList.length === 0">
+					<div class="no-data-message text-center p-5">No data available.</div>
+				</ng-container>
+			</div>
+
+		</div>
+	</div>
+</div>

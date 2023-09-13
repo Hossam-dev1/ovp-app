@@ -1,13 +1,7 @@
-<!-- <p>index works!</p> -->
-<div class="contianer">
-
-	<kt-data-tables
-		[title]="'Tags'"
-		[route_path]="'tags'"
-		[dynamicServiceName]="'_tagsService'"
-		[isLoading_Results]="isLoadingResults"
-		[Data_Source]="tagsData"
-		[Displayed_Columns]="displayedColumns"
-	></kt-data-tables>
-
-</div>
+<kt-simple-grid-list
+	[dataList]="tagsData"
+	[title]="'Tags'"
+	[route_path]="'tags'"
+	[dynamicServiceName]="'_tagsService'"
+	[isLoading]="isLoadingResults"
+></kt-simple-grid-list>

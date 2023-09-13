@@ -100,10 +100,7 @@ export class EditComponent {
 
 	patchClipData() {
 		const companiesIDs = this.clip_object['companies'].map((company) => company.id)
-		this.addCompanyRow(companiesIDs)
-
 		const genresIDs = this.clip_object['genres'].map((company) => company.id)
-		this.addGenreRow(genresIDs)
 
 		this.editForm.patchValue({
 			name: {
@@ -133,10 +130,10 @@ export class EditComponent {
 			tags: this.clip_object['tags'].map((tag) => tag.id),
 		});
 		this.selectedClipYear = this.clip_object['clip_year']
-
+		this.contentTypeID = this.clip_object['content_type_id'];
 		this.patchFormArrayValues()
-		console.log(this.editForm.value);
-
+		this.addCompanyRow(companiesIDs) //patch companies value
+		this.addGenreRow(genresIDs) //patch generes value
 	}
 	protected get getEditForm() {
 		return this.editForm.controls;
@@ -278,7 +275,6 @@ export class EditComponent {
 			)
 			this.cdr.markForCheck()
 			this.patchContentImgs()
-			// console.log('contentTypeID', this.getContentImgs);
 		})
 
 		this._tagsService.list().subscribe((resp) => {
@@ -296,15 +292,12 @@ export class EditComponent {
 	}
 
 	addCompanyRow(param) {
-
 		const clip_companies = this.editForm.get('clip_companies') as FormArray;
 		clip_companies.clear()
 		for (let i = 0; i < param.length; i++) {
 			clip_companies.push(this.companyFormGroup(param[i], i + 1))
 		}
 		this.cdr.markForCheck();
-		console.log(this.editForm.value);
-
 	}
 
 	genreFormGroup(id, order) {
@@ -326,6 +319,7 @@ export class EditComponent {
 		return date?.toISOString().slice(0, 10);
 	}
 	submit() {
+		console.log(this.editForm.value);
 
 		const contentImg = this.getEditForm['content_images'].value;
 		const isContentImgNull = contentImg.some(obj => obj.img == '');
@@ -351,8 +345,8 @@ export class EditComponent {
 			this.cdr.markForCheck();
 		},
 			(error) => {
-				console.log(error);
-				this.toastr.error(error.error.errors.failed[0]);
+				console.log(error.error.message);
+				this.toastr.error(error.error.message || 'something went wrong!');
 				// this.toastr.error(error.error.errors);
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getEditForm[errorControll].setErrors({ 'invalid': true })

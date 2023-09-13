@@ -82,18 +82,6 @@
 				</div>
 			</mat-grid-tile>
 
-			<!-- Crews List  -->
-			<mat-grid-tile>
-				<div class="col-5 header">
-					Crews List:
-				</div>
-				<div class="col-7">
-					<span class="d-block" *ngFor="let item of seasonDetails.crews; index as i">
-						<span>{{toLang(item.name) + (i < (seasonDetails.crews.length - 1) ? ',' : '' )}} </span>
-						</span>
-				</div>
-			</mat-grid-tile>
-
 			<!-- is New: -->
 			<mat-grid-tile>
 				<div class="col-5 header">

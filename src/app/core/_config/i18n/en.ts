@@ -47,14 +47,14 @@ export const locale = {
 				},
 			},
 			GENRE: {
-				TITLE: 'GENRE',
+				TITLE: 'Genres',
 				SUBMENU:'Genre',
 				MENU: {
 					GENRE: 'Genre',
 				},
 			},
 			CREW: {
-				TITLE: 'CREW',
+				TITLE: 'Crews',
 				SUBMENU:'Crew',
 				MENU: {
 					CREW_TYPE:{
@@ -67,7 +67,7 @@ export const locale = {
 			},
 
 			CLIPS: {
-				TITLE: 'CLIPS',
+				TITLE: 'Clips',
 				SUBMENU:'Clip',
 				MENU: {
 					COMPANY:{
@@ -83,7 +83,7 @@ export const locale = {
 			},
 
 			SERIES: {
-				TITLE: 'SERIES',
+				TITLE: 'Series',
 				SUBMENU: 'Series',
 				MENU: {
 					SEASIONS: {

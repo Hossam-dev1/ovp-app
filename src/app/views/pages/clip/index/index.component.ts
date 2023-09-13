@@ -24,17 +24,22 @@ export class IndexComponent {
 	isLoadingResults: boolean = true;
 	Data_Source: any;
 	dataSourceWithPageSize;
-	displayedColumns: string[] = ['id', 'name', 'companies', 'content_images', 'genres','clip_status',  'options'];
+	displayedColumns: string[] = ['name', 'companies', 'content_images', 'genres', 'clip_status', 'options'];
 	lang: string = 'en';
 
+	// //filter variables
+	// headerParams: PaginateParams = {
+	// 	active: 1,
+	// 	per_page: GlobalConfig.pagination_per_page,
+	// 	search_key: null,
+	// 	sort_key: null,
+	// 	sort_order: null,
+	// 	next_page_index: 0,
+	// };
 	//filter variables
 	headerParams: PaginateParams = {
 		active: 1,
-		per_page: GlobalConfig.pagination_per_page,
-		search_key: null,
-		sort_key: null,
-		sort_order: null,
-		next_page_index: 0,
+		is_pagination:1
 	};
 	constructor(
 		private _langService: LangService,
@@ -42,15 +47,20 @@ export class IndexComponent {
 		private cdr: ChangeDetectorRef,
 		public dialog: MatDialog,
 		private translate: TranslateService,
-		private _toaster:ToastrService
+		private _toaster: ToastrService
 	) { }
 
+	filterList = (filterParam) => {
+		console.log(filterParam);
+
+		this.getListData(filterParam)
+	}
 	ngOnInit() {
 		this.checkLocalLang()
-		this.getListData()
+		this.getListData(this.headerParams)
 		this._clipsService.isListChanged.subscribe((isChanged) => {
 			if (isChanged) {
-				this.getListData()
+				this.getListData(this.headerParams)
 			}
 		})
 	}
@@ -64,8 +74,8 @@ export class IndexComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
-	getListData() {
-		this._clipsService.list().subscribe((resp) => {
+	getListData(filterParam?:PaginateParams) {
+		this._clipsService.list(filterParam).subscribe((resp) => {
 			this.dataSource$ = new MatTableDataSource(resp.body)
 			this.Data_Source = resp.body;
 			this.paginationTable();
@@ -88,7 +98,7 @@ export class IndexComponent {
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				this._clipsService.delete(id).subscribe((res:any )=> {
+				this._clipsService.delete(id).subscribe((res: any) => {
 					this._clipsService.isListChanged.next(true);
 					this._toaster.success(res.message)
 				}, handler => {

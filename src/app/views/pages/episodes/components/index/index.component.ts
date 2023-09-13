@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class IndexComponent {
 
 	isLoadingResults: boolean = true;
-	displayedColumns: string[] = ['id', 'name', 'status', 'options'];
+	displayedColumns: string[] = ['name', 'status', 'options'];
 	episodesData: Observable<any[]>;
 	series_ID: number;
 	seasons_ID: number;

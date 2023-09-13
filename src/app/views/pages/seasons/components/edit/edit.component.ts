@@ -19,13 +19,12 @@ import { GenreService } from './../../../../../core/services/Genre-Module/genre.
 })
 export class EditComponent {
 
-	selectedValues: number[] = [2, 4, 6];
-
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
 	clearValue: boolean
 	seasons_ID: number;
+	series_ID: number;
 	lang: string = 'en'
 	selectedSeasonsYear: string
 
@@ -57,7 +56,6 @@ export class EditComponent {
 
 	editForm: FormGroup;
 	isLoadingResults: boolean;
-	clearImgSrc: boolean;
 
 	isListLoading: boolean = true
 	isDimentionReady: boolean = false
@@ -81,10 +79,13 @@ export class EditComponent {
 	}
 	getUrlID() {
 		this.isLoadingResults = true
-		this._activatedRoute.paramMap.subscribe(params => {
+		this._activatedRoute.paramMap.subscribe((params:any) => {
 			this.seasons_ID = Number(params.get('id'));
 			this.getDataByID();
 		});
+		this._activatedRoute.queryParams.subscribe((params:any)=>{
+			this.series_ID = params.series
+		})
 	}
 	getDataByID() {
 		this._seasonsService.show(this.seasons_ID).subscribe((resp: any) => {
@@ -99,6 +100,8 @@ export class EditComponent {
 	}
 
 	patchSeasonsData() {
+		console.log(this.series_ID, 'patchSeasonsData');
+
 		this.editForm.patchValue({
 			name: {
 				en: this.seasons_object["name"]["en"],
@@ -116,15 +119,15 @@ export class EditComponent {
 			is_new: this.seasons_object['is_new'],
 			is_asc: this.seasons_object['is_asc'],
 			rate: this.seasons_object['rate'],
+			series_id: this.series_ID,
 
-			content_provider_id: this.seasons_object['content_provider_id'],
+			content_provider_id: this.seasons_object['content_provider']['id'],
 			content_images: this.seasons_object['content_images'],
 
 			tags: [this.seasons_object['tags'][0]['id']],
 			companies: [this.seasons_object['companies'][0]['id']],
 		});
 		this.selectedSeasonsYear = this.seasons_object['year'];
-		console.log(this.selectedSeasonsYear);
 	}
 
 	protected get geteditForm() {
@@ -148,8 +151,10 @@ export class EditComponent {
 			is_new: new FormControl(0, [Validators.required]), //boolen
 			is_asc: new FormControl(0, [Validators.required]), //boolen
 			rate: new FormControl('', [Validators.required]), //boolen
+			series_id: new FormControl(this.series_ID  as number || ''),
 
 			content_type_id: new FormControl('', [Validators.required]),
+			content_provider_id: new FormControl('', [Validators.required]),
 			content_images: this.fb.array([this.contentImgsForm]),
 
 			tags: new FormControl([], [Validators.required]),
@@ -232,7 +237,7 @@ export class EditComponent {
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check all required field');
-			// return
+			return
 		}
 		this._seasonsService.edit(this.seasons_ID, this.editForm.value).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');

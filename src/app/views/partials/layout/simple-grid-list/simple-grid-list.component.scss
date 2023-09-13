@@ -1,0 +1,19 @@
+.header {
+	font-weight: 600;
+	color: #646c9a;
+}
+
+.header,
+.value {
+	font-size: 1.1rem;
+}
+
+.action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mat-card:hover {
+	box-shadow: 0 2px 1px -1px #ff405733, 0 1px 1px #ff405724, 0 4px 21px #ff40571f;
+}

@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { LangService } from './../../../core/services/lang.service';
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { PaginateParams } from '../../../core/models/paginateParams.interface';
@@ -34,6 +35,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 	@Input() ApiRoute = '';
 
 	@Input() currentComponent;
+	@Input() gridList;
 
 	@Output() myEvent = new EventEmitter();
 
@@ -50,7 +52,8 @@ export class FilterComponent implements OnInit, OnDestroy {
 	@Input() HasExport = false;
 
 	@Input() currentService: BaseService<ModelBase> = null;
-	lang:string = 'en'
+	lang: string = 'en'
+	currentList: [] = []
 
 	constructor(private translateService: TranslateService,
 		private authNoticeService: AuthNoticeService,
@@ -62,6 +65,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.checkLocalLang()
+		this.currentList = this.gridList
 	}
 
 	// change records per page
@@ -82,11 +86,25 @@ export class FilterComponent implements OnInit, OnDestroy {
 	}
 
 	// Filter Datatable based on filter Input
-	FilterDataTable(value:string) {
+	FilterDataTable(searchTerm: string) {
+		searchTerm = searchTerm.trim().toLowerCase();
 
-		let dataList = this.currentComponent.Data_Source;
-		value = value.trim().toLowerCase();
-		this.currentComponent.dataSource$ = new MatTableDataSource(dataList.filter((item) => item['name'][this.lang].includes(value)))
+		// filter gridList
+		if (this.gridList) {
+			if (!searchTerm) {
+				return this.currentComponent.dataList = this.currentList
+			}
+			this.currentComponent.dataList = this.currentList.filter((item: any) => {
+				return item.name[this.lang].toLowerCase().includes(searchTerm)
+			});
+			return
+		}
+
+		// filter DataSource Table
+		const DataSource = this.currentComponent.Data_Source;
+		this.currentComponent.dataSource$ = new MatTableDataSource(DataSource.filter((item) => {
+			return item.name[this.lang].toLowerCase().includes(searchTerm)
+		}));
 
 		if (this.currentComponent.dataSource$.paginator) {
 			this.currentComponent.dataSource$.paginator.firstPage();
@@ -99,7 +117,8 @@ export class FilterComponent implements OnInit, OnDestroy {
 		else if (number == 0) { this.headerParams.active = '0'; }
 		else { this.headerParams.active = null; }
 
-		this.currentComponent.get(this.headerParams);
+		// this.currentComponent.get(this.headerParams);
+		this.currentComponent.filterList(this.headerParams)
 	}
 
 	export() {

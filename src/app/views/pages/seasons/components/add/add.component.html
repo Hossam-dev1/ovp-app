@@ -57,13 +57,13 @@
 						[form]="addForm" [label]="'Seasons_start_year*'"
 						[form_control_name]="'year'"></kt-form-year-date-picker>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">Status</label>
 					</div>
 					<mat-slide-toggle formControlName="status"></mat-slide-toggle>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">is_exclusive</label>
 					</div>
@@ -78,13 +78,13 @@
 						<ng-option *ngFor="let item of providerList" [value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">is_new</label>
 					</div>
 					<mat-slide-toggle formControlName="is_new"></mat-slide-toggle>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">is_asc</label>
 					</div>
@@ -95,7 +95,7 @@
 
 			<ng-container class="selectList">
 				<!-- Genres & Tags -->
-				<div class="row">
+				<div class="row pt-2">
 					<div class="col-md-6">
 						<label>Season Tags</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">

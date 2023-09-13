@@ -10,7 +10,7 @@ export class IndexComponent implements OnInit {
 
 	isLoadingResults: boolean = true;
 	crewTypesData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'key', 'name', 'options'];
+	displayedColumns: string[] = ['key', 'name', 'options'];
 
 	constructor(
 		private _crewTypeService: CrewTypeService,

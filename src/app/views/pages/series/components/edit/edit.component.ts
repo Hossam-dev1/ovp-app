@@ -96,9 +96,8 @@ export class EditComponent {
 	}
 
 	patchSeriesData() {
-		this.series_object['genres'].forEach(item => {
-			this.genres_IDs.push(item.id)
-		});
+		const genresIDs = this.series_object['genres'].map((genre) => genre.id)
+		console.log('genresIDs', genresIDs);
 
 		this.editForm.patchValue({
 			name: {
@@ -117,15 +116,20 @@ export class EditComponent {
 			content_provider_id: this.series_object['content_provider_id'],
 
 			content_images: this.series_object['content_images'],
+			genre_ids: genresIDs,
 
-			series_genres: {
-				genre_id: this.series_object['genres'][0]['id'],
-				content_type_id: this.contentTypeID,
-			},
+			// series_genres: {
+			// 	genre_id: this.series_object['genres'][0]['id'],
+			// 	content_type_id: this.contentTypeID,
+			// },
 
 			tags: [this.series_object['tags'][0]['id']],
 		});
+		this.cdr.markForCheck()
+		this.contentTypeID = this.series_object['content_type_id'];
 		this.selectedSeiresYear = this.series_object['series_start_year']
+
+		this.addGenreRow(genresIDs) //patch generes value
 	}
 
 	protected get geteditForm() {
@@ -151,12 +155,15 @@ export class EditComponent {
 			content_type_id: new FormControl('', [Validators.required]),
 
 			content_images: this.fb.array([this.contentImgsForm]),
+			series_genres: this.fb.array([]),
+			genre_ids: new FormControl([]),
 
-			series_genres: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				genre_id: new FormControl('', [Validators.required]),
-				genre_order: new FormControl(1, [Validators.required]), // static value
-			}),
+
+			// series_genres: this.fb.group({
+			// 	content_type_id: new FormControl('', [Validators.required]),
+			// 	genre_id: new FormControl('', [Validators.required]),
+			// 	genre_order: new FormControl(1, [Validators.required]), // static value
+			// }),
 			tags: new FormControl([], [Validators.required]),
 		})
 	}
@@ -206,6 +213,7 @@ export class EditComponent {
 				}
 			});
 			this.patchContentTypeID()
+			this.patchSeriesData();
 			this.getDimentionList();
 			this.cdr.markForCheck()
 		})
@@ -226,6 +234,22 @@ export class EditComponent {
 			this.cdr.markForCheck()
 		})
 	}
+
+	genreFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			genre_id: new FormControl(id, [Validators.required]),
+			genre_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
+	addGenreRow(param) {
+		const series_genres = this.editForm.get('series_genres') as FormArray;
+		series_genres.clear()
+		for (let i = 0; i < param.length; i++) {
+			series_genres.push(this.genreFormGroup(param[i], i + 1))
+		}
+	}
+
 	formattedDate(dateParam) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);

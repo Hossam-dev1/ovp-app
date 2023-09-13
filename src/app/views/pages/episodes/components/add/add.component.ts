@@ -207,18 +207,18 @@ export class AddComponent {
 		return date.toISOString().slice(0, 10) +' '+ formattedTime;
 	}
 	submit() {
-		console.log(this.addForm.value);
 
 		let formData = this.addForm.value;
 		formData['publish_date'] = this.formattedDate(this.addForm.value['publish_date'])
 		formData['publish_end_date'] = this.formattedDate(this.addForm.value['publish_end_date'])
+		console.log(this.addForm.value);
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check all required field');
 			return
 		}
-		this._episodesService.add(this.addForm.value).subscribe((resp) => {
+		this._episodesService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.clearValue = true

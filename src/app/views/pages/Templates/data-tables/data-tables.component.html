@@ -25,10 +25,10 @@
 					<!-- Position Column -->
 					<ng-container *ngFor="let header of tableHeaders;">
 						<!-- id column -->
-						<ng-container matColumnDef="{{header}}" *ngIf="header == 'id'">
+						<!-- <ng-container matColumnDef="{{header}}" *ngIf="header == 'id'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
 							<td mat-cell *matCellDef="let element"> {{element.id}} </td>
-						</ng-container>
+						</ng-container> -->
 
 						<!-- key column -->
 						<ng-container matColumnDef="{{header}}"
@@ -90,7 +90,7 @@
 							*ngIf="header == 'thumb'||header == 'logo'||header == 'image'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let element">
-								<img class="img-thumbnail" src="../../../../../assets/img/Dummy-Person.png" alt="">
+								<img class="img-thumbnail" onerror="this.src ='../../../../../assets/img/Dummy-Person.png'" [src]="element.thumb || element.logo || element.image" alt="">
 							</td>
 						</ng-container>
 

@@ -11,7 +11,7 @@ import { SeasonsService } from './../../../../../core/services/Series-Module/sea
 export class IndexComponent {
 
 	isLoadingResults: boolean = true;
-	displayedColumns: string[] = ['id', 'name', 'series_name', 'no_of_episodes', 'status', 'options'];
+	displayedColumns: string[] = ['name', 'series_name', 'no_of_episodes', 'status', 'options'];
 	seasonsData: Observable<any[]>;
 	series_ID: number;
 

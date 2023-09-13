@@ -11,7 +11,7 @@ export class IndexComponent {
 
 	isLoadingResults: boolean = true;
 	companiesData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'name', 'company_types', 'logo', 'options'];
+	displayedColumns: string[] = ['name', 'company_types', 'logo', 'options'];
 
 	constructor(
 		private _companiesService: CompanyService,

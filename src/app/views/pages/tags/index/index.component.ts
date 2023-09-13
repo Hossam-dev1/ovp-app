@@ -10,7 +10,7 @@ export class IndexComponent {
 
 	isLoadingResults: boolean = true;
 	tagsData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'key', 'name', 'options'];
+	displayedColumns: string[] = ['key', 'name', 'options'];
 
 
 	constructor(

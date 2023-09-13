@@ -11,7 +11,7 @@ export class IndexComponent {
 
 	isLoadingResults: boolean = true;
 	seriesData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'name', 'genres', 'series_no_of_seasons', 'series_status', 'options'];
+	displayedColumns: string[] = ['name', 'genres', 'series_no_of_seasons', 'series_status', 'options'];
 
 
 	constructor(

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class IndexComponent implements OnInit {
 	isLoadingResults: boolean = true;
 	nationalitiesData: Observable<any[]>;
-	displayedColumns: string[] = ['id', 'name', 'options'];
+	displayedColumns: string[] = ['name', 'options'];
 
 
 	constructor(

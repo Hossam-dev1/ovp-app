@@ -1,10 +1,7 @@
-<div class="contianer">
-	<kt-data-tables
-		[title]="'Crew Type'"
-		[route_path]="'crew_type'"
-		[dynamicServiceName]="'_crewTypeService'"
-		[isLoading_Results]="isLoadingResults"
-		[Data_Source]="crewTypesData"
-		[Displayed_Columns]="displayedColumns"
-	></kt-data-tables>
-</div>
+<kt-simple-grid-list
+	[dataList]="crewTypesData"
+	[title]="'Crew Type'"
+	[route_path]="'crew_type'"
+	[dynamicServiceName]="'_crewTypeService'"
+	[isLoading]="isLoadingResults"
+></kt-simple-grid-list>
