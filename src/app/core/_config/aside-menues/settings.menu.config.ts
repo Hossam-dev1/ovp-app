@@ -7,7 +7,7 @@ import {RoutesName} from '../../Global/routes.name';
 @Injectable({
 	providedIn: 'root'
 })
-export class TagsMenuConfig {
+export class SettingsMenuConfig {
 
 	systemPermissionsHelperService: SystemPermissionsHelperService;
 
@@ -15,18 +15,23 @@ export class TagsMenuConfig {
 		this.systemPermissionsHelperService = new SystemPermissionsHelperService();
 	}
 
-	private header = {section: 'Tags', translate: 'MENUS.TAGS.TITLE'};
+	private header = {section: 'Settings', translate: 'MENUS.TAGS.TITLE'};
 
 	private section = {
-		title: 'Tags',
+		title: 'Settings',
 		root: true,
-		translate: 'MENUS.TAGS.TITLE',
+		translate: 'MENUS.SETTINGS.TITLE',
 		icon: 'flaticon2-gear',
 		submenu: [
 			{
-				"title": "Tag",
-				"translate": "MENUS.TAGS.SUBMENU",
+				"title": "Tags",
+				"translate": "MENUS.SETTINGS.MENU.TAGS.TITLE",
 				"page": '/cms/tags'
+			},
+			{
+				"title": "Content Provider",
+				"translate": "MENUS.SETTINGS.MENU.CONTENT_PROVIDER.TITLE",
+				"page": '/cms/content_provider'
 			},
 		]
 	};

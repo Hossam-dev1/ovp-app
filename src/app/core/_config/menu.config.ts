@@ -3,7 +3,7 @@ import { ShortAccessMenuConfig } from './header-menues/short.access.menu.config'
 import { AddNewMenuConfig } from './header-menues/add.new.menu.config';
 import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 import { ClipMenuConfig } from './aside-menues/clibs.menu.config';
-import { TagsMenuConfig } from './aside-menues/tags.menu.config';
+import { SettingsMenuConfig } from './aside-menues/settings.menu.config';
 import { SeriesMenuConfig } from './aside-menues/series.menu.config';
 
 
@@ -14,7 +14,7 @@ export class MenuConfig {
 	genreMenuConfig: GenreMenuConfig;
 	crewMenuConfig: CrewMenuConfig;
 	clipMenuConfig: ClipMenuConfig;
-	tagMenuConfig: TagsMenuConfig;
+	settingsMenuConfig: SettingsMenuConfig;
 	seriesMenuConfig: SeriesMenuConfig;
 
 	// Header Menu
@@ -25,7 +25,7 @@ export class MenuConfig {
 		this.genreMenuConfig = new GenreMenuConfig();
 		this.crewMenuConfig = new CrewMenuConfig();
 		this.clipMenuConfig = new ClipMenuConfig();
-		this.tagMenuConfig = new TagsMenuConfig();
+		this.settingsMenuConfig = new SettingsMenuConfig();
 		this.seriesMenuConfig = new SeriesMenuConfig();
 
 
@@ -86,7 +86,7 @@ export class MenuConfig {
 		this.attachAsideMenu(series_items);
 
 		// Tag Config
-		let tag_items = this.tagMenuConfig.configs;
+		let tag_items = this.settingsMenuConfig.configs;
 		this.attachAsideMenu(tag_items);
 	}
 

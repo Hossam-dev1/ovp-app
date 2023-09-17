@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from './../../../../core/services/Clips-Module/company.service';
 import { GenreService } from './../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
+
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
@@ -42,6 +43,11 @@ export class AddComponent {
 	// 	this.isStarChecked = event.checked ? true : false;
 	// }
 
+	ratingList: any[] = [
+		'All Ages',
+		'+15',
+		'+18',
+	]
 
 	// Data State
 	contentTypeList: any[] = []
@@ -87,10 +93,6 @@ export class AddComponent {
 				ar: new FormControl('', [Validators.required]),
 			}),
 			description: this.fb.group({
-				en: new FormControl('', [Validators.required]),
-				ar: new FormControl('', [Validators.required]),
-			}),
-			slug: this.fb.group({
 				en: new FormControl('', [Validators.required]),
 				ar: new FormControl('', [Validators.required]),
 			}),

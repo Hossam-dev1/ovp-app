@@ -25,38 +25,38 @@ export class AddNewMenuConfig {
 			{
 				"title": 'Genere',
 				"translate": "MENUS.GENRE.SUBMENU",
-				"page": '/cms/genre/add'
+				"page": '/cms/genre'
 
 			},
 			{
 				"title": 'Crew',
 				"translate": "MENUS.CREW.SUBMENU",
-				"page": '/cms/crew/add'
+				"page": '/cms/crew'
 			},
 			{
 				"title": 'Clips',
 				"translate": "MENUS.CLIPS.SUBMENU",
-				"page": '/cms/clips/add'
+				"page": '/cms/clips'
 			},
 			{
 				"title": 'Company',
-				"translate": "MENUS.CLIPS.MENU.COMPANY.TITLE",
-				"page": '/cms/company/add'
+				"translate": "MENUS.GENRE.MENU.COMPANY.TITLE",
+				"page": '/cms/company'
 			},
 			{
 				"title": 'Nationalities',
 				"translate": "MENUS.CREW.MENU.NATIIONALITIES.TITLE",
-				"page": '/cms/nationalities/add'
+				"page": '/cms/nationalities'
 			},
 			{
 				"title": 'Content Providers',
-				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
-				"page": '/cms/content_provider/add'
+				"translate": "MENUS.SETTINGS.MENU.CONTENT_PROVIDER.TITLE",
+				"page": '/cms/content_provider'
 			},
 			{
 				"title": 'Series',
 				"translate": "MENUS.SERIES.SUBMENU",
-				"page": '/cms/series/add'
+				"page": '/cms/series'
 			},
 
 		]

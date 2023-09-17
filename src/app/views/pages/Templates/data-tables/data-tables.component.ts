@@ -99,8 +99,14 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		this.checkLocalLang()
 
 	}
-	check(param){
+	check(param) {
 		console.log(param);
+	}
+
+	dynamicParam(key, value): any {
+		const obj = {};
+		obj[key] = value;
+		return obj;
 	}
 
 	toLang(param) {

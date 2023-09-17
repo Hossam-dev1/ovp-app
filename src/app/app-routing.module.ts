@@ -57,6 +57,14 @@ const routes: Routes = [
 				loadChildren: () => import('./views/pages/clip/clip.module').then(m => m.ClipModule)
 			},
 			{
+				path: "movies", // <= Page URL ,
+				loadChildren: () => import('./views/pages/movies/movies.module').then(m => m.MoviesModule)
+			},
+			{
+				path: "plays", // <= Page URL ,
+				loadChildren: () => import('./views/pages/plays/plays.module').then(m => m.PlaysModule)
+			},
+			{
 				path: "content_provider", // <= Page URL ,
 				loadChildren: () => import('./views/pages/content-provider/content-provider.module').then(m => m.ContentProviderModule)
 			},
@@ -64,10 +72,13 @@ const routes: Routes = [
 				path: "tags", // <= Page URL ,
 				loadChildren: () => import('./views/pages/tags/tags.module').then(m => m.TagsModule)
 			},
-
 			{
 				path: "series", // <= Page URL ,
 				loadChildren: () => import('./views/pages/series/series.module').then(m => m.SeriesModule)
+			},
+			{
+				path: "shows", // <= Page URL ,
+				loadChildren: () => import('./views/pages/shows/shows.module').then(m => m.ShowsModule)
 			},
 			{
 				path: "seasons", // <= Page URL ,

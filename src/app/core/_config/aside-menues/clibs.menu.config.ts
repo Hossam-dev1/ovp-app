@@ -24,24 +24,19 @@ export class ClipMenuConfig {
 		icon: 'fas fa-play',
 		submenu: [
 			{
-				"title": "Clip",
+				"title": "Clips",
 				"translate": "MENUS.CLIPS.SUBMENU",
 				"page": '/cms/clips'
 			},
 			{
-				"title": "Company",
-				"translate": "MENUS.CLIPS.MENU.COMPANY.TITLE",
-				"page": '/cms/company'
+				"title": "Movies",
+				"translate": "MENUS.CLIPS.MENU.MOVIES.TITLE",
+				"page": '/cms/movies'
 			},
 			{
-				"title": "Company Type",
-				"translate": "MENUS.CLIPS.MENU.COMPANY_TYPE.TITLE",
-				"page": '/cms/company_type'
-			},
-			{
-				"title": "Content Provider",
-				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
-				"page": '/cms/content_provider'
+				"title": "Plays",
+				"translate": "MENUS.CLIPS.MENU.PLAYS.TITLE",
+				"page": '/cms/plays'
 			},
 		]
 	};

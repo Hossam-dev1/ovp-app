@@ -1,3 +1,4 @@
+import { HelperService } from './../../../../core/services/helper.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DeleteModalComponent } from './../../../shared/delete-modal/delete-modal.component';
 import { LangService } from './../../../../core/services/lang.service';
@@ -26,6 +27,9 @@ export class IndexComponent {
 	dataSourceWithPageSize;
 	displayedColumns: string[] = ['name', 'companies', 'content_images', 'genres', 'clip_status', 'options'];
 	lang: string = 'en';
+	contentTypeList: any[] = []
+	contentTypeID: number;
+	contentTypeKey: string = 'clips'
 
 	// //filter variables
 	// headerParams: PaginateParams = {
@@ -39,7 +43,7 @@ export class IndexComponent {
 	//filter variables
 	headerParams: PaginateParams = {
 		active: 1,
-		is_pagination:1
+		is_pagination: 1
 	};
 	constructor(
 		private _langService: LangService,
@@ -47,17 +51,28 @@ export class IndexComponent {
 		private cdr: ChangeDetectorRef,
 		public dialog: MatDialog,
 		private translate: TranslateService,
-		private _toaster: ToastrService
+		private _toaster: ToastrService,
+		private _helperService: HelperService,
+
 	) { }
 
 	filterList = (filterParam) => {
-		console.log(filterParam);
-
 		this.getListData(filterParam)
+	}
+	getContentType() {
+		this._helperService.contentTypesList().subscribe((resp) => {
+			this.contentTypeList = resp.body;
+			this.contentTypeList.forEach(item => {
+				if (item['key'] == this.contentTypeKey) {
+					this.contentTypeID = item.id
+				}
+			});
+			this.getListData(this.headerParams);
+		})
 	}
 	ngOnInit() {
 		this.checkLocalLang()
-		this.getListData(this.headerParams)
+		this.getContentType();
 		this._clipsService.isListChanged.subscribe((isChanged) => {
 			if (isChanged) {
 				this.getListData(this.headerParams)
@@ -74,10 +89,12 @@ export class IndexComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
-	getListData(filterParam?:PaginateParams) {
+	getListData(filterParam?: PaginateParams) {
 		this._clipsService.list(filterParam).subscribe((resp) => {
-			this.dataSource$ = new MatTableDataSource(resp.body)
-			this.Data_Source = resp.body;
+			this.Data_Source = resp.body.filter((item) =>
+				item.content_type_id == this.contentTypeID
+			);
+			this.dataSource$ = new MatTableDataSource(this.Data_Source)
 			this.paginationTable();
 			this.isLoadingResults = false
 			this.cdr.detectChanges();

@@ -41,7 +41,7 @@ export class ShortAccessMenuConfig {
 			},
 			{
 				"title": 'Company',
-				"translate": "MENUS.CLIPS.MENU.COMPANY.TITLE",
+				"translate": "MENUS.GENRE.MENU.COMPANY.TITLE",
 				"page": '/cms/company'
 			},
 			{
@@ -51,7 +51,7 @@ export class ShortAccessMenuConfig {
 			},
 			{
 				"title": 'Content Providers',
-				"translate": "MENUS.CLIPS.MENU.CONTENT_PROVIDER.TITLE",
+				"translate": "MENUS.SETTINGS.MENU.CONTENT_PROVIDER.TITLE",
 				"page": '/cms/content_provider'
 			},
 			{

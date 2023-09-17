@@ -25,16 +25,11 @@ export class SeriesMenuConfig {
 				"translate": "MENUS.SERIES.SUBMENU",
 				"page": '/cms/series'
 			},
-			// {
-			// 	"title": "Seasons",
-			// 	"translate": "MENUS.SERIES.MENU.SEASIONS.TITLE",
-			// 	"page": '/cms/seasons'
-			// },
-			// {
-			// 	"title": "Episodes",
-			// 	"translate": "MENUS.SERIES.MENU.EPISODES.TITLE",
-			// 	"page": '/cms/episodes'
-			// },
+			{
+				"title": "Shows",
+				"translate": "MENUS.SERIES.MENU.SHOWS.TITLE",
+				"page": '/cms/shows'
+			},
 		]
 	};
 

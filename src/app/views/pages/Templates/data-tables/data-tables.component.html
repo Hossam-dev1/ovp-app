@@ -32,8 +32,17 @@
 
 						<!-- key column -->
 						<ng-container matColumnDef="{{header}}"
-							*ngIf="header == 'key' || header == 'email' || header == 'series_no_of_seasons' || header== 'no_of_episodes'">
+							*ngIf="header == 'key' || header == 'email'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let element"> {{element[header] }} </td>
+						</ng-container>
+
+						<!-- key column -->
+						<ng-container matColumnDef="{{header}}"
+							*ngIf="header == 'series_no_of_seasons' || header== 'no_of_episodes'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>
+								{{header == 'series_no_of_seasons' ? 'num of seasons' : 'num of episodes'}}
+							</th>
 							<td mat-cell *matCellDef="let element"> {{element[header] }} </td>
 						</ng-container>
 
@@ -71,7 +80,7 @@
 
 						<!-- status column -->
 						<ng-container matColumnDef="{{header}}" *ngIf="header == 'series_status' || header == 'status'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
 							<td mat-cell *matCellDef="let elem">
 								<i [class]="elem[header] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
 							</td>
@@ -86,11 +95,13 @@
 						</ng-container>
 
 						<!-- thumb column -->
+						<!-- onerror="this.src ='../../../../../assets/img/Dummy-Person.png'" -->
 						<ng-container matColumnDef="{{header}}"
 							*ngIf="header == 'thumb'||header == 'logo'||header == 'image'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let element">
-								<img class="img-thumbnail" onerror="this.src ='../../../../../assets/img/Dummy-Person.png'" [src]="element.thumb || element.logo || element.image" alt="">
+								<img class="img-thumbnail" [src]="element.thumb || element.logo || element.image"
+									alt="">
 							</td>
 						</ng-container>
 
@@ -105,7 +116,8 @@
 								</button>
 								<mat-menu #menu="matMenu">
 									<button mat-raised-button *ngIf="title == 'Series'" mat-menu-item
-										[queryParams]="{series:element.id}" [routerLink]="'/cms/seasons'">
+										[queryParams]="dynamicParam(route_path, element.id)"
+										[routerLink]="'/cms/seasons'">
 										Seasons
 									</button>
 									<button mat-raised-button *ngIf="title == 'Seasons'" mat-menu-item
@@ -140,7 +152,7 @@
 					<!-- <tr mat-footer-row *matFooterRowDef="tableHeaders"></tr> -->
 				</table>
 
-				<ng-container  *ngIf="dataSource$.data.length === 0">
+				<ng-container *ngIf="dataSource$.data.length === 0">
 					<div class="no-data-message text-center p-5">No data available.</div>
 				</ng-container>
 				<!--Table-->
@@ -151,7 +163,7 @@
 				[pageSize]="pageSize"
 				(page)="getServerData($event)"
 			></mat-paginator> -->
-			<mat-paginator #paginator [pageSizeOptions]="[4, 10, 20]" showFirstLastButtons></mat-paginator>
+			<mat-paginator #paginator [pageSizeOptions]="[15, 25, 40]" showFirstLastButtons></mat-paginator>
 		</div>
 	</div>
 </div>

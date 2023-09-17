@@ -1,0 +1,99 @@
+<div class="loader d-flex justify-content-center p-5" *ngIf="isLoading">
+	<mat-spinner diameter="50"></mat-spinner>
+</div>
+
+<kt-portlet [ngClass]="'kt-portlet--ngviewer'" *ngIf="!isLoading">
+	<kt-portlet-header [title]="'Movie Deatils'"></kt-portlet-header>
+
+	<kt-portlet-body>
+		<mat-grid-list cols="2" rowHeight="60px">
+			<mat-grid-tile *ngFor="let item of headersData">
+				<div class="col-5 header">
+					{{item}} :
+				</div>
+				<div class="col-7">
+					{{ (item == 'name' || item == 'description' || item == 'slug') ?
+					toLang(clipDetails[item], item) : clipDetails[item] || '---' }}
+				</div>
+			</mat-grid-tile>
+
+			<!-- Clip Status: -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Status:
+				</div>
+				<div class="col-7">
+					<i [class]="clipDetails['clip_status'] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Geners List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Genres List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of clipDetails.genres">
+						<span>{{ item.key }}</span> |
+						<small>{{toLang(item.name)}}</small>
+					</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Tags List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Tags List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of clipDetails.tags">
+						<span>{{ item.key }}</span> |
+						<small>{{toLang(item.name)}}</small>
+					</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Crews List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Crews List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of clipDetails.crews">
+						<span>{{toLang(item.name) + (i < (clipDetails.crews.length - 1) ? ',' : '' )}} </span>
+					</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Companies List  -->
+			<mat-grid-tile>
+				<div class="col-5 header">
+					Companies List:
+				</div>
+				<div class="col-7">
+					<span class="d-block" *ngFor="let item of clipDetails.companies">
+						<span>{{toLang(item.name) + (i < (clipDetails.companies.length - 1) ? ',' : '' )}} </span>
+					</span>
+				</div>
+			</mat-grid-tile>
+
+			<!-- Content Imgs List  -->
+			<!-- <mat-grid-tile colspan="3" rowspan="1">
+				<div class="col-5 header">
+					Content Imgs List:
+				</div>
+				<div class="col-7">
+					<span class="p-3" *ngFor="let item of clipDetails.content_images">
+						<img height="100px" width="100px" class="img-thumbnail" [src]="item.image"
+							onerror="this.src ='../../../../../../assets/img/Dummy-Person.png'">
+					</span>
+				</div>
+			</mat-grid-tile> -->
+		</mat-grid-list>
+
+	</kt-portlet-body>
+
+	<kt-portlet-footer></kt-portlet-footer>
+</kt-portlet>
+
+<!--  -->

@@ -15,33 +15,22 @@
 			<!--  name -->
 			<div class="row" formGroupName="name">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (en)'"
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (En)'"
 						[form_control_name]="'en'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (ar)'"
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (Ar)'"
 						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
 			<!--  description -->
 			<div class="row" formGroupName="description">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (en)'"
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (En)'"
 						[form_control_name]="'en'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (ar)'"
-						[form_control_name]="'ar'"></kt-form-input>
-				</div>
-			</div>
-			<!--  slug -->
-			<div class="row" formGroupName="slug">
-				<div class="col-md-6">
-					<kt-form-input [form_group]="'slug'" [form]="addForm" [label]="'Slug (en)'"
-						[form_control_name]="'en'"></kt-form-input>
-				</div>
-				<div class="col-md-6">
-					<kt-form-input [form_group]="'slug'" [form]="addForm" [label]="'Slug (ar)'"
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (Ar)'"
 						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
@@ -52,8 +41,12 @@
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-3">
-					<kt-form-input [type]="'number'" [form]="addForm" [label]="'Clip Rating'"
-						[form_control_name]="'clip_watch_rating'"></kt-form-input>
+					<label>Rating</label>
+					<ng-select formControlName="rating" >
+						<ng-option *ngFor="let item of ratingList" [value]="item">{{item}}</ng-option>
+					</ng-select>
+					<!-- <kt-form-input [type]="'number'" [form]="addForm" [label]="'Clip Rating'"
+						[form_control_name]="'clip_watch_rating'"></kt-form-input> -->
 				</div>
 				<div class="col-md-3">
 					<div class="example-label-container">
@@ -82,9 +75,9 @@
 			<ng-container class="selectList">
 				<!-- Companies && Providers -->
 				<div class="row py-4">
-					<div class="col-md-6" >
-						<label>Clip Companies</label>
-						<ng-select [multiple]="true" (change)="addCompanyRow($event)"  [loading]="!companyList.length">
+					<div class="col-md-6">
+						<label>Companies</label>
+						<ng-select [multiple]="true" (change)="addCompanyRow($event)" [loading]="!companyList.length">
 							<ng-option *ngFor="let item of companyList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
@@ -100,15 +93,15 @@
 				</div>
 				<!-- Genres && Crews -->
 				<div class="row">
-					<div class="col-md-6" >
-						<label>Clip Genres</label>
-						<ng-select [multiple]="true" (change)="addGenreRow($event)"   [loading]="!genreList.length">
+					<div class="col-md-6">
+						<label>Genres</label>
+						<ng-select [multiple]="true" (change)="addGenreRow($event)" [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 					<div class="col-md-6">
-						<label>Clip Tags</label>
+						<label>Tags</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
@@ -122,7 +115,7 @@
 				<ng-container formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
 					<div class="row py-3" [formGroupName]="i">
 						<div class="col-md-6">
-							<label>Clip Crews ({{i+1}})</label>
+							<label>Crews ({{i+1}})</label>
 							<ng-select formControlName="crew_id" [loading]="!crewList.length">
 								<ng-option *ngFor="let item of crewList"
 									[value]="item.id">{{toLang(item.name)}}</ng-option>

@@ -25,9 +25,19 @@ export class GenreMenuConfig {
 		submenu: [
 			{
 				"title": "Genre",
-				"translate": "MENUS.GENRE.MENU.GENRE",
+				"translate": "MENUS.GENRE.SUBMENU",
 				"page": '/cms/genre'
-			}
+			},
+			{
+				"title": "Company",
+				"translate": "MENUS.GENRE.MENU.COMPANY.TITLE",
+				"page": '/cms/company'
+			},
+			{
+				"title": "Company Type",
+				"translate": "MENUS.GENRE.MENU.COMPANY_TYPE.TITLE",
+				"page": '/cms/company_type'
+			},
 		]
 	};
 

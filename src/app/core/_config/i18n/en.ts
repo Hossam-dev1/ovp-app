@@ -48,36 +48,41 @@ export const locale = {
 			},
 			GENRE: {
 				TITLE: 'Genres',
-				SUBMENU:'Genre',
+				SUBMENU: 'Genre',
 				MENU: {
-					GENRE: 'Genre',
+					GENRE: {
+						TITLE: 'Genre',
+					},
+					COMPANY: {
+						TITLE: 'Company',
+					},
+					COMPANY_TYPE: {
+						TITLE: 'Company Type',
+					},
 				},
 			},
 			CREW: {
 				TITLE: 'Crews',
-				SUBMENU:'Crew',
+				SUBMENU: 'Crew',
 				MENU: {
-					CREW_TYPE:{
-						TITLE:'Crew Type',
+					CREW_TYPE: {
+						TITLE: 'Crew Type',
 					},
-					NATIIONALITIES:{
-						TITLE:'Nationalities',
+					NATIIONALITIES: {
+						TITLE: 'Nationalities',
 					},
 				},
 			},
 
 			CLIPS: {
 				TITLE: 'Clips',
-				SUBMENU:'Clip',
+				SUBMENU: 'Clip',
 				MENU: {
-					COMPANY:{
-						TITLE:'Company',
+					MOVIES: {
+						TITLE: 'Movies',
 					},
-					COMPANY_TYPE:{
-						TITLE:'Company Type',
-					},
-					CONTENT_PROVIDER:{
-						TITLE:'Content Provider',
+					PLAYS: {
+						TITLE: 'Plays',
 					},
 				},
 			},
@@ -86,20 +91,30 @@ export const locale = {
 				TITLE: 'Series',
 				SUBMENU: 'Series',
 				MENU: {
+					SHOWS: {
+						TITLE: 'Shows',
+					},
 					SEASIONS: {
 						TITLE: 'Seasons',
-						TEXT:'The Season',
+						TEXT: 'The Season',
 					},
 					EPISODES: {
 						TITLE: 'Episodes',
-						TEXT:'The Episode',
+						TEXT: 'The Episode',
 					},
 				},
 			},
 
-			TAGS:{
-				TITLE : "Tags",
-				SUBMENU:"Tag" ,
+			SETTINGS: {
+				TITLE: "Settings",
+				MENU: {
+					TAGS: {
+						TITLE: 'Tags',
+					},
+					CONTENT_PROVIDER: {
+						TITLE: 'Content Provider',
+					},
+				}
 			}
 		},
 
