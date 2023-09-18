@@ -205,7 +205,7 @@ export const locale = {
 				view_image: 'View Image',
 				change_image: 'Add / Change imageِِ',
 				upload: 'Upload',
-				choose_img: 'Choose Img',
+				choose_img: 'Choose Image',
 				no_images: 'No Gallery Image yet',
 				no_attached_images: 'No Images attached yet',
 				selected_images: 'Selected Images',

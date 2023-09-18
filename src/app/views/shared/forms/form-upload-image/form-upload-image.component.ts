@@ -18,6 +18,7 @@ export class FormUploadImageComponent implements OnInit, OnChanges {
 	@Input() clear_src: boolean;
 	@Input() dimentionID: any;
 	@Input() control_index: any
+	@Input() addClass: any
 
 
 	constructor(private cdr: ChangeDetectorRef,) {

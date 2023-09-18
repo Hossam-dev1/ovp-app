@@ -46,37 +46,43 @@
 
 			<div class="row py-2">
 				<div class="col-md-6">
-					<label>Gender </label>
-					<ng-select formControlName="gender" [loading]="!genderList.length">
-						<ng-option *ngFor="let item of genderList" [value]="item">{{item}}</ng-option>
-					</ng-select>
-				</div>
-				<div class="col-md-6">
-						<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
-							[form_control_name]="'thumb'" [label]="'Upload img'">
-						</kt-form-upload-image>
-					<!-- <label>Socail Links </label>
-					<ng-select [items]="socialLink_list" bindLabel="name" formControlName="social_links"
-						[addTag]="addCustomLink" [multiple]="true">
-					</ng-select> -->
-				</div>
-			</div>
+					<div class="py-1 d-flex flex-column">
+						<div class="py-2">
+							<label>Gender </label>
+							<ng-select formControlName="gender" [loading]="!genderList.length">
+								<ng-option *ngFor="let item of genderList" [value]="item">{{item}}</ng-option>
+							</ng-select>
+						</div>
+						<div class="py-2">
+							<label>Nationality</label>
+							<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
+								<ng-option *ngFor="let item of nationalitiesList"
+									[value]="item.id">{{toLang(item.name)}}</ng-option>
+							</ng-select>
+						</div>
 
-			<div class="row py-2">
-				<div class="col-md-6">
-					<label>Crew Types </label>
-					<ng-select formControlName="types" [multiple]="true" [loading]="!crewTypesList.length">
-						<ng-option *ngFor="let item of crewTypesList"
-							[value]="item.id">{{toLang(item.name)}}</ng-option>
-					</ng-select>
+						<div class="py-2">
+							<label>Crew Types </label>
+							<ng-select formControlName="types" [multiple]="true" [loading]="!crewTypesList.length">
+								<ng-option *ngFor="let item of crewTypesList"
+									[value]="item.id">{{toLang(item.name)}}</ng-option>
+							</ng-select>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-6">
-					<label>Nationality</label>
-					<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
-						<ng-option *ngFor="let item of nationalitiesList"
-							[value]="item.id">{{toLang(item.name)}}</ng-option>
-					</ng-select>
+					<kt-form-upload-image [addClass]="'crewImg'" [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
+						[form_control_name]="'thumb'" [label]="'Upload image'">
+					</kt-form-upload-image>
 				</div>
+				<!-- <label>Socail Links </label> -->
+				<!-- <ng-select [items]="socialLink_list"
+								bindLabel="name"
+								formControlName="social_links"
+								[addTag]="addCustomLink"
+								[multiple]="true"
+								>
+					</ng-select> -->
 			</div>
 
 			<div class="row py-2" formGroupName="social_links">

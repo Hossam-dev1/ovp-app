@@ -14,7 +14,7 @@
 			></kt-form-error>
 		</div>
 		<!-- <div class="col-6"> -->
-			<div *ngIf="imgURL" class="uploaded-preview my-4">
+			<div *ngIf="imgURL" class="uploaded-preview my-4" [ngClass]="{'crew_img' : addClass}">
 				<div>
 					<img  class="img-thumbnail" src="{{ imgURL }}" alt="" class="">
 				</div>

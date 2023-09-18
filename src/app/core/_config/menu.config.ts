@@ -68,17 +68,17 @@ export class MenuConfig {
 	}
 
 	public attachAsideMenuItems() {
-		// Genre Config
-		let genre_items = this.genreMenuConfig.configs;
-		this.attachAsideMenu(genre_items);
+		// Content Config
+		let content_items = this.contentMenuConfig.configs;
+		this.attachAsideMenu(content_items);
 
 		// Crew Config
 		let crew_items = this.crewMenuConfig.configs;
 		this.attachAsideMenu(crew_items);
 
-		// Content Config
-		let content_items = this.contentMenuConfig.configs;
-		this.attachAsideMenu(content_items);
+		// Genre Config
+		let genre_items = this.genreMenuConfig.configs;
+		this.attachAsideMenu(genre_items);
 
 		// Tag Config
 		let tag_items = this.settingsMenuConfig.configs;
