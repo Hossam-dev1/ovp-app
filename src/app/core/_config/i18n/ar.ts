@@ -83,6 +83,36 @@ export const locale = {
 				},
 			},
 
+
+			CONTENT: {
+				TITLE: 'Content',
+				MENU: {
+					CLIPS: {
+						TITLE: 'مقاطع الفيديو',
+					},
+					MOVIES: {
+						TITLE: 'الافلام',
+					},
+					PLAYS: {
+						TITLE: 'المسرحيات',
+					},
+					SERIES: {
+						TITLE: 'المسلسلات',
+					},
+					SHOWS: {
+						TITLE: 'العروض',
+					},
+					SEASIONS: {
+						TITLE: 'المواسم',
+						TEXT: 'الموسم',
+					},
+					EPISODES: {
+						TITLE: 'الحلقات',
+						TEXT: 'الحلقة',
+					},
+				},
+			},
+
 			SERIES: {
 				TITLE: 'المسلسلات',
 				SUBMENU: 'المسلسل',

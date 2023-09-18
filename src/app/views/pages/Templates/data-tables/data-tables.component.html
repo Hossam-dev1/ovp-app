@@ -3,14 +3,14 @@
 </kt-notice> -->
 <div class="row">
 	<div class="col-12">
-		<kt-portlet-header [title]="title"> </kt-portlet-header>
+		<!-- <kt-portlet-header [title]="title"> </kt-portlet-header> -->
 		<div class="example-container px-3 py-1">
 			<div class="example-loading-shade text-center d-flex justify-content-center p-5" *ngIf="isLoading">
 				<mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
 			</div>
 			<div class="example-table-container" *ngIf="!isLoading">
 				<!--Search Filter-->
-				<kt-filter [AddBtnParam]="path_param" [currentService]="dynamicServiceName"
+				<kt-filter [HeaderTitle]="title" [AddBtnParam]="path_param" [currentService]="dynamicServiceName"
 					[headerParams]="headerParams" [currentComponent]="this" [HasActive]="true" [HasExport]="true"
 					[HasSearchFilter]="true" [isLoadingResults]="isLoading" [HasItemPerPage]="true" [HasAdd]='true'>
 				</kt-filter>
@@ -31,8 +31,7 @@
 						</ng-container> -->
 
 						<!-- key column -->
-						<ng-container matColumnDef="{{header}}"
-							*ngIf="header == 'key' || header == 'email'">
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'key' || header == 'email'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let element"> {{element[header] }} </td>
 						</ng-container>
@@ -48,9 +47,23 @@
 
 						<!-- name column -->
 						<ng-container matColumnDef="{{header}}" *ngIf="header == 'name'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} ({{lang}}) </th>
 							<td mat-cell *matCellDef="let elem">
 								{{ toLang(elem[header]) }}
+							</td>
+						</ng-container>
+						<!-- nameEn column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'nameEn'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> Name En </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem['name']['en'] }}
+							</td>
+						</ng-container>
+						<!-- nameAr column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'nameAr'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> Name Ar </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem['name']['ar'] }}
 							</td>
 						</ng-container>
 
@@ -110,36 +123,37 @@
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Components.options' | translate}}
 							</th>
 							<td mat-cell *matCellDef="let element">
-								<button [matMenuTriggerFor]="menu"
-									class="btn btn-outline-hover-dark btn-outline-secondary btn-circle">
+								<!-- <button [matMenuTriggerFor]="menu"
+									class="btn btn-outline-hover-dark btn-outline-watext-warning btn-circle">
 									<i class="flaticon-settings"></i>
+								</button> -->
+								<!-- <mat-menu #menu="matMenu"> -->
+								<button mat-icon-button matTooltip="Seasons" *ngIf="title == 'Series'"
+									[queryParams]="dynamicParam(route_path, element.id)" [routerLink]="'/cms/seasons'">
+									<mat-icon>video_library</mat-icon>
 								</button>
-								<mat-menu #menu="matMenu">
-									<button mat-raised-button *ngIf="title == 'Series'" mat-menu-item
-										[queryParams]="dynamicParam(route_path, element.id)"
-										[routerLink]="'/cms/seasons'">
-										Seasons
-									</button>
-									<button mat-raised-button *ngIf="title == 'Seasons'" mat-menu-item
-										[queryParams]="{series:path_param['series'], seasons:element.id}"
-										[routerLink]="'/cms/episodes'">
-										Episodes
-									</button>
-									<button mat-raised-button
-										*ngIf="title == 'Crew'|| title == 'Content Providers'|| title == 'Company' || title == 'Series' || title == 'Seasons' || title == 'Episodes'"
-										mat-menu-item [routerLink]="'details/'+ element.id">
-										{{ 'Components.Details' | translate }}
-									</button>
-									<button mat-raised-button [queryParams]="
+								<button mat-icon-button matTooltip="Episodes" *ngIf="title == 'Seasons'"
+									[queryParams]="{series:path_param['series'], seasons:element.id}"
+									[routerLink]="'/cms/episodes'">
+									<mat-icon>video_library</mat-icon>
+								</button>
+								<button mat-icon-button matTooltip="Details"
+									*ngIf="title == 'Crew'|| title == 'Content Providers'|| title == 'Company' || title == 'Series' || title == 'Seasons' || title == 'Episodes'"
+									[routerLink]="'details/'+ element.id">
+									<mat-icon>remove_red_eye</mat-icon>
+								</button>
+								<button mat-icon-button matTooltip="Edit" [queryParams]="
 											(title == 'Seasons' ?  {series:path_param['series']} : null) ||
-											(title == 'Episodes' ?  {series:path_param['series'], seasons:path_param['seasons']} : null)" mat-menu-item
-										[routerLink]="'edit/'+ element.id">
-										{{ 'Components.Edit' | translate }}
-									</button>
-									<button mat-raised-button mat-menu-item (click)="deleteColumn(element.id, element)">
-										{{ 'Components.Delete' | translate }}
-									</button>
-								</mat-menu>
+											(title == 'Episodes' ?  {series:path_param['series'], seasons:path_param['seasons']} : null)"
+									[routerLink]="'edit/'+ element.id">
+									<mat-icon>edit</mat-icon>
+									<!-- {{ 'Components.Edit' | translate }} -->
+								</button>
+								<button mat-icon-button color="warn" matTooltip="Delete"
+									(click)="deleteColumn(element.id, element)">
+									<mat-icon>delete</mat-icon>
+								</button>
+								<!-- </mat-menu> -->
 							</td>
 						</ng-container>
 

@@ -24,22 +24,22 @@
 
 			<div class="row py-2" formGroupName="description">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (En)'"
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Bio (En)'"
 						[form_control_name]="'en'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (Ar)'"
+					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Bio (Ar)'"
 						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
 
 			<div class="row py-2">
 				<div class="col-md-6">
-					<kt-form-date-picker [form]="addForm" [label]="'Birth_date'"
+					<kt-form-date-picker [form]="addForm" [label]="'Date of Birth'"
 						[form_control_name]="'birth_date'"></kt-form-date-picker>
 				</div>
 				<div class="col-md-6">
-					<kt-form-date-picker [form]="addForm" [label]="'Death_date'"
+					<kt-form-date-picker [form]="addForm" [label]="'Date of Death'"
 						[form_control_name]="'death_date'"></kt-form-date-picker>
 				</div>
 			</div>
@@ -52,16 +52,10 @@
 					</ng-select>
 				</div>
 				<div class="col-md-6">
-					<label>Socail Links </label>
-					<ng-select [items]="socialLink_list"
-								bindLabel="name"
-								formControlName="social_links"
-								[addTag]="addCustomLink"
-								[multiple]="true"
-								>
+					<label>Nationality</label>
+					<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
+						<ng-option *ngFor="let item of nationalitiesList" [value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>
-					<!-- <kt-form-input [form]="addForm" [label]="'Social link'"
-						[form_control_name]="'social_links'"></kt-form-input> -->
 				</div>
 			</div>
 
@@ -73,18 +67,46 @@
 					</ng-select>
 				</div>
 				<div class="col-md-6">
-					<label>Nationality</label>
-					<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
-						<ng-option *ngFor="let item of nationalitiesList" [value]="item.id">{{toLang(item.name)}}</ng-option>
-					</ng-select>
+					<!-- <label>Socail Links </label> -->
+					<!-- <ng-select [items]="socialLink_list"
+								bindLabel="name"
+								formControlName="social_links"
+								[addTag]="addCustomLink"
+								[multiple]="true"
+								>
+					</ng-select> -->
+					<div class="col-12">
+						<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
+							[form_control_name]="'thumb'" [label]="'Upload image'">
+						</kt-form-upload-image>
+					</div>
 				</div>
 			</div>
 
-			<div class="row py-2">
-				<div class="col-12">
-					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-						[form_control_name]="'thumb'" [label]="'Upload img'">
-					</kt-form-upload-image>
+			<div class="row py-2" formGroupName="social_links">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Facebook link'"
+						[form_control_name]="'facebook'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Instagram link'"
+						[form_control_name]="'instagram'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Twitter link'"
+						[form_control_name]="'twitter'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Youtube link'"
+						[form_control_name]="'youtube'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Tiktok link'"
+						[form_control_name]="'tiktok'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="addForm" [label]="'Snapchat link'"
+						[form_control_name]="'snapchat'"></kt-form-input>
 				</div>
 			</div>
 

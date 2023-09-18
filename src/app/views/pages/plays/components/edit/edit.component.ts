@@ -39,7 +39,12 @@ export class EditComponent {
 		private _tagsService: TagService
 	) { }
 
-
+	ratingList: any[] = [
+		'+13',
+		'+15',
+		'+18',
+		'All Ages',
+	]
 	// Data State
 	contentTypeList: any[] = []
 	dimentionList: any[] = []
@@ -69,7 +74,9 @@ export class EditComponent {
 		this.checkLocalLang();
 
 	}
-
+	convertLable(param:string) {
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
 			this.lang = curreLang;

@@ -9,6 +9,7 @@ import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { SharedModule } from '../../shared/shared.module';
 import { PagesModule } from '../pages.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PagesModule } from '../pages.module';
 		ClipRoutingModule,
 		SharedModule,
 		PagesModule,
+		MatTooltipModule
 	]
 })
 export class ClipModule { }

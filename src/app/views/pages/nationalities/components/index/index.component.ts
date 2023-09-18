@@ -1,4 +1,3 @@
-import { MatTableDataSource } from '@angular/material/table';
 import { NationalitiesService } from './../../../../../core/services/Crew-Module/nationalities.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,7 +9,7 @@ import { Observable } from 'rxjs';
 export class IndexComponent implements OnInit {
 	isLoadingResults: boolean = true;
 	nationalitiesData: Observable<any[]>;
-	displayedColumns: string[] = ['name', 'options'];
+	displayedColumns = ['nameEn', 'nameAr', 'options'];
 
 
 	constructor(

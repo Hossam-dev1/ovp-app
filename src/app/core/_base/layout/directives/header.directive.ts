@@ -34,9 +34,9 @@ export class HeaderDirective implements AfterViewInit {
 	 * After view init
 	 */
 	ngAfterViewInit(): void {
-		this.setupOptions();
+		// this.setupOptions();
 
-		const header = new KTHeader(this.el.nativeElement, this.options);
+		// const header = new KTHeader(this.el.nativeElement, this.options);
 	}
 
 	/**

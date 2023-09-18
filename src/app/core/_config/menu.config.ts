@@ -5,6 +5,7 @@ import { GenreMenuConfig } from './aside-menues/genre.menu.config';
 import { ClipMenuConfig } from './aside-menues/clibs.menu.config';
 import { SettingsMenuConfig } from './aside-menues/settings.menu.config';
 import { SeriesMenuConfig } from './aside-menues/series.menu.config';
+import { ContentMenuConfig } from './aside-menues/content.menu.config';
 
 
 
@@ -13,9 +14,8 @@ export class MenuConfig {
 	// Aside Menu
 	genreMenuConfig: GenreMenuConfig;
 	crewMenuConfig: CrewMenuConfig;
-	clipMenuConfig: ClipMenuConfig;
+	contentMenuConfig: ContentMenuConfig;
 	settingsMenuConfig: SettingsMenuConfig;
-	seriesMenuConfig: SeriesMenuConfig;
 
 	// Header Menu
 	shortAccessMenuConfig: ShortAccessMenuConfig;
@@ -24,9 +24,8 @@ export class MenuConfig {
 	constructor() {
 		this.genreMenuConfig = new GenreMenuConfig();
 		this.crewMenuConfig = new CrewMenuConfig();
-		this.clipMenuConfig = new ClipMenuConfig();
+		this.contentMenuConfig = new ContentMenuConfig();
 		this.settingsMenuConfig = new SettingsMenuConfig();
-		this.seriesMenuConfig = new SeriesMenuConfig();
 
 
 		this.shortAccessMenuConfig = new ShortAccessMenuConfig();
@@ -77,13 +76,9 @@ export class MenuConfig {
 		let crew_items = this.crewMenuConfig.configs;
 		this.attachAsideMenu(crew_items);
 
-		// Crew Config
-		let clip_items = this.clipMenuConfig.configs;
-		this.attachAsideMenu(clip_items);
-
-		// Series Config
-		let series_items = this.seriesMenuConfig.configs;
-		this.attachAsideMenu(series_items);
+		// Content Config
+		let content_items = this.contentMenuConfig.configs;
+		this.attachAsideMenu(content_items);
 
 		// Tag Config
 		let tag_items = this.settingsMenuConfig.configs;

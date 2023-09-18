@@ -81,7 +81,14 @@ export class EditComponent implements OnInit {
 			gender: new UntypedFormControl('', [Validators.required]),
 			birth_date: new UntypedFormControl('', [Validators.required]),
 			death_date: new UntypedFormControl(''),
-			social_links: new UntypedFormControl([]),
+			social_links: this.fb.group({
+				facebook: new UntypedFormControl('', [Validators.required]),
+				instagram: new UntypedFormControl('', [Validators.required]),
+				twitter: new UntypedFormControl('', [Validators.required]),
+				youtube: new UntypedFormControl('', [Validators.required]),
+				tiktok: new UntypedFormControl('', [Validators.required]),
+				snapchat: new UntypedFormControl('', [Validators.required]),
+			}),
 			types: new UntypedFormControl([], [Validators.required]),
 			thumb: new UntypedFormControl('', [Validators.required]),
 			nationality_id: new UntypedFormControl('', [Validators.required]),
@@ -127,7 +134,14 @@ export class EditComponent implements OnInit {
 			types: this.crewDetails["types"].map((crew) => crew['id']),
 			nationality_id: this.crewDetails["nationality"]['id'],
 			thumb: this.crewDetails["thumb"],
-			social_links: this.crewDetails["social_links"],
+			social_links: {
+				facebook: this.crewDetails["social_links"]["facebook"],
+				instagram: this.crewDetails["social_links"]["instagram"],
+				twitter: this.crewDetails["social_links"]["twitter"],
+				youtube: this.crewDetails["social_links"]["youtube"],
+				tiktok: this.crewDetails["social_links"]["tiktok"],
+				snapchat: this.crewDetails["social_links"]["snapchat"],
+			},
 		});
 		this.socialLink_list = this.crewDetails["social_links"]
 	}
@@ -146,13 +160,13 @@ export class EditComponent implements OnInit {
 			return
 		}
 		const formData = this.editForm.value;
-			formData['birth_date'] = this.formattedDate(formData['birth_date'])
-			if (formData['death_date']) {
-				formData['death_date'] = this.formattedDate(formData['death_date'])
-			} else {
-				delete formData['death_date'];
-			}
-			console.log(this.editForm.value);
+		formData['birth_date'] = this.formattedDate(formData['birth_date'])
+		if (formData['death_date']) {
+			formData['death_date'] = this.formattedDate(formData['death_date'])
+		} else {
+			delete formData['death_date'];
+		}
+		console.log(this.editForm.value);
 		this._crewService.edit(this.crew_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
 			this.cdr.detectChanges();

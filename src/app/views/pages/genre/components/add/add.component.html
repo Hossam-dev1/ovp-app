@@ -7,11 +7,11 @@
 <div class="example-container container-fluid">
 	<div [hidden]="isLoadingResults">
 		<form class="example-form p-3" [formGroup]="addForm" autocomplete="off">
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-md-6">
 					<kt-form-input [form]="addForm" [label]="'Key'" [form_control_name]="'key'"></kt-form-input>
 				</div>
-			</div>
+			</div> -->
 			<div class="row" formGroupName="name">
 				<div class="col-md-6">
 					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (En)'" [form_control_name]="'en'"></kt-form-input>

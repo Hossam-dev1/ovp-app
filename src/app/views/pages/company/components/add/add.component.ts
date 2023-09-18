@@ -39,9 +39,10 @@ export class AddComponent {
 	}
 	private initForm() {
 		this.addForm = this.fb.group({
-			year: new FormControl('', [Validators.required]),
-			company_types: new FormControl([], [Validators.required]),
+			// year: new FormControl('', [Validators.required]),
+			// company_types: new FormControl([], [Validators.required]),
 			logo: new FormControl('', [Validators.required]),
+			country: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),
 				ar: new FormControl('', [Validators.required]),
@@ -64,26 +65,23 @@ export class AddComponent {
 	}
 
 	submit() {
-		// console.log(this.getAddForm['thumb'].value);
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			year: this.getAddForm['year'].value,
-			logo: this.getAddForm['logo'].value,
-			company_types: [this.getAddForm['company_types'].value],
-			name: {
-				en: this.getAddForm["name"].value["en"] || '',
-				ar: this.getAddForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getAddForm["description"].value["en"] || '',
-				ar: this.getAddForm["description"].value["ar"] || ''
-			}
-		}
-		this._companyService.add(formData).subscribe((resp) => {
+		// const formData = {
+		// 	logo: this.getAddForm['logo'].value,
+		// 	name: {
+		// 		en: this.getAddForm["name"].value["en"] || '',
+		// 		ar: this.getAddForm["name"].value["ar"] || ''
+		// 	},
+		// 	description: {
+		// 		en: this.getAddForm["description"].value["en"] || '',
+		// 		ar: this.getAddForm["description"].value["ar"] || ''
+		// 	}
+		// }
+		this._companyService.add(this.addForm.value).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.clearValue = true

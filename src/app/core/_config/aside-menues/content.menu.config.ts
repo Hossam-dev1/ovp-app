@@ -7,7 +7,7 @@ import {RoutesName} from '../../Global/routes.name';
 @Injectable({
 	providedIn: 'root'
 })
-export class SettingsMenuConfig {
+export class ContentMenuConfig {
 
 	systemPermissionsHelperService: SystemPermissionsHelperService;
 
@@ -15,24 +15,39 @@ export class SettingsMenuConfig {
 		this.systemPermissionsHelperService = new SystemPermissionsHelperService();
 	}
 
-	private header = {section: 'Settings', translate: 'MENUS.TAGS.TITLE'};
+	private header = {section: 'Content', translate: 'MENUS.Content.TITLE'};
 
 	private section = {
-		title: 'Settings',
+		title: 'Content',
 		root: true,
-		translate: 'MENUS.SETTINGS.TITLE',
-		icon: 'flaticon2-gear',
+		translate: 'MENUS.CONTENT.TITLE',
+		icon: 'fas fa-play',
 		submenu: [
 			{
-				"title": "Tags",
-				"translate": "MENUS.SETTINGS.MENU.TAGS.TITLE",
-				"page": '/cms/tags'
+				"title": "Clips",
+				"translate": "MENUS.CONTENT.MENU.CLIPS.TITLE",
+				"page": '/cms/clips'
 			},
-			// {
-			// 	"title": "Content Provider",
-			// 	"translate": "MENUS.SETTINGS.MENU.CONTENT_PROVIDER.TITLE",
-			// 	"page": '/cms/content_provider'
-			// },
+			{
+				"title": "Movies",
+				"translate": "MENUS.CONTENT.MENU.MOVIES.TITLE",
+				"page": '/cms/movies'
+			},
+			{
+				"title": "Plays",
+				"translate": "MENUS.CONTENT.MENU.PLAYS.TITLE",
+				"page": '/cms/plays'
+			},
+			{
+				"title": "Series",
+				"translate": "MENUS.CONTENT.MENU.SERIES.TITLE",
+				"page": '/cms/series'
+			},
+			{
+				"title": "Shows",
+				"translate": "MENUS.CONTENT.MENU.SHOWS.TITLE",
+				"page": '/cms/shows'
+			},
 		]
 	};
 

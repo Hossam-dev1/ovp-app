@@ -25,7 +25,7 @@ export class IndexComponent {
 	isLoadingResults: boolean = true;
 	Data_Source: any;
 	dataSourceWithPageSize;
-	displayedColumns: string[] = ['name', 'companies', 'content_images', 'genres', 'clip_status', 'options'];
+	displayedColumns: string[] = ['name', 'genres', 'clip_year', 'clip_puplish_date', 'companies', 'content_images', 'options'];
 	lang: string = 'en';
 	contentTypeList: any[] = []
 	contentTypeID: number;

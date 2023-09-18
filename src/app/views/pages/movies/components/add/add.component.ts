@@ -42,7 +42,12 @@ export class AddComponent {
 	// onSlideToggleChange(event: any) {
 	// 	this.isStarChecked = event.checked ? true : false;
 	// }
-
+	ratingList: any[] = [
+		'+13',
+		'+15',
+		'+18',
+		'All Ages',
+	]
 
 	// Data State
 	contentTypeList: any[] = []
@@ -68,6 +73,9 @@ export class AddComponent {
 		this.checkLocalLang()
 	}
 
+	convertLable(param:string) {
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
 			this.lang = curreLang;
@@ -80,6 +88,7 @@ export class AddComponent {
 	protected get getAddForm() {
 		return this.addForm.controls;
 	}
+
 
 	private initForm() {
 		this.addForm = this.fb.group({
@@ -96,7 +105,7 @@ export class AddComponent {
 				ar: new FormControl('', [Validators.required]),
 			}),
 			clip_year: new FormControl('', [Validators.required]),
-			clip_duration: new FormControl('', [Validators.required]),
+			clip_duration: new FormControl('00:00:00', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
 			clip_puplish_end_date: new FormControl('', [Validators.required]),

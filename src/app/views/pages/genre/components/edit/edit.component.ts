@@ -15,14 +15,14 @@ export class EditComponent implements OnInit {
 	editForm: UntypedFormGroup;
 	isLoadingResults: boolean
 	genre_ID: number;
-	genre_object:any = {}
+	genre_object: any = {}
 
 	constructor(
 		private _fb: UntypedFormBuilder,
 		private _genreService: GenreService,
 		private _toastr: ToastrService,
 		private _activatedRoute: ActivatedRoute,
-		private cdr:ChangeDetectorRef
+		private cdr: ChangeDetectorRef
 	) { }
 
 	protected get getEditForm() {
@@ -34,7 +34,7 @@ export class EditComponent implements OnInit {
 	}
 	private initForm() {
 		this.editForm = this._fb.group({
-			key: new UntypedFormControl('', [Validators.required]),
+			// key: new UntypedFormControl('', [Validators.required]),
 			name: this._fb.group({
 				en: new UntypedFormControl('', [Validators.required]),
 				ar: new UntypedFormControl('', [Validators.required]),
@@ -58,7 +58,7 @@ export class EditComponent implements OnInit {
 			this.patchUserData();
 			console.log(this.genre_object);
 			this.isLoadingResults = false;
-			 this.cdr.detectChanges();
+			this.cdr.detectChanges();
 		}, (error: HttpErrorResponse) => {
 			this._toastr.error('someThing went wrong!');
 			// this.router.navigate(['/']);
@@ -67,9 +67,9 @@ export class EditComponent implements OnInit {
 	patchUserData() {
 		console.log(this.genre_object);
 		this.editForm.patchValue({
-			key: this.genre_object["key"],
-			name:{
-				en : this.genre_object["name"]["en"] ,
+			// key: this.genre_object["key"],
+			name: {
+				en: this.genre_object["name"]["en"],
 				ar: this.genre_object["name"]["ar"]
 			}
 		});
@@ -80,22 +80,16 @@ export class EditComponent implements OnInit {
 			this.editForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			key: this.getEditForm['key'].value,
-			name: {
-				en: this.getEditForm["name"].value["en"] || '',
-				ar: this.getEditForm["name"].value["ar"] || ''
-			}
-		}
-		this._genreService.edit(this.genre_ID, formData).subscribe((resp) => {
+
+		this._genreService.edit(this.genre_ID, this.editForm.value).subscribe((resp) => {
 			this._toastr.success(resp.message + ' successfully');
 		},
-		(error)=>{
-			const errorControll = Object.keys(error.error.errors).toString();
-			this.getEditForm[errorControll].setErrors({'invalid':true})
-			this.cdr.detectChanges();
-			this._toastr.error(error.error.message);
-		})
+			(error) => {
+				const errorControll = Object.keys(error.error.errors).toString();
+				this.getEditForm[errorControll].setErrors({ 'invalid': true })
+				this.cdr.detectChanges();
+				this._toastr.error(error.error.message);
+			})
 	}
 
 }

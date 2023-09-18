@@ -24,22 +24,22 @@
 
 			<div class="row" formGroupName="description">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Description (En)'"
+					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Bio (En)'"
 						[form_control_name]="'en'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Description (Ar)'"
+					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Bio (Ar)'"
 						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-date-picker [form]="editForm" [label]="'Birth_date'"
+					<kt-form-date-picker [form]="editForm" [label]="'Date of Birth'"
 						[form_control_name]="'birth_date'"></kt-form-date-picker>
 				</div>
 				<div class="col-md-6">
-					<kt-form-date-picker [form]="editForm" [label]="'Death_date'"
+					<kt-form-date-picker [form]="editForm" [label]="'Date of Death'"
 						[form_control_name]="'death_date'"></kt-form-date-picker>
 				</div>
 			</div>
@@ -52,10 +52,13 @@
 					</ng-select>
 				</div>
 				<div class="col-md-6">
-					<label>Socail Links </label>
+						<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
+							[form_control_name]="'thumb'" [label]="'Upload img'">
+						</kt-form-upload-image>
+					<!-- <label>Socail Links </label>
 					<ng-select [items]="socialLink_list" bindLabel="name" formControlName="social_links"
 						[addTag]="addCustomLink" [multiple]="true">
-					</ng-select>
+					</ng-select> -->
 				</div>
 			</div>
 
@@ -76,11 +79,30 @@
 				</div>
 			</div>
 
-			<div class="row py-2">
-				<div class="col-12">
-					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
-						[form_control_name]="'thumb'" [label]="'Upload img'">
-					</kt-form-upload-image>
+			<div class="row py-2" formGroupName="social_links">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Facebook link'"
+						[form_control_name]="'facebook'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Instagram link'"
+						[form_control_name]="'instagram'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Twitter link'"
+						[form_control_name]="'twitter'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Youtube link'"
+						[form_control_name]="'youtube'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Tiktok link'"
+						[form_control_name]="'tiktok'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'social_links'" [form]="editForm" [label]="'Snapchat link'"
+						[form_control_name]="'snapchat'"></kt-form-input>
 				</div>
 			</div>
 

@@ -127,7 +127,7 @@ import { SharedModule } from '../shared/shared.module';
 		SearchDropdownComponent,
 		UserProfileComponent,
 		CartComponent,
-		SimpleGridListComponent,
+		// SimpleGridListComponent,
 		ErrorComponent,
 	],
 	imports: [

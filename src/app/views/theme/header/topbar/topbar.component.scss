@@ -1,7 +1,15 @@
 :host {
 	::ng-deep {
+		.mat-select-value{
+			color: whitesmoke !important;
+		}
+		.mat-select-arrow{
+			color: whitesmoke !important;
+		}
 		// override default version style
 		.kt-header__topbar {
+			justify-content: space-evenly;
+
 			> :last-child:not([role="tooltip"]) {
 				.kt-header__topbar-item {
 					margin-right: 0 !important;
@@ -12,6 +20,10 @@
 				margin-right: 0.36rem !important;
 			}
 		}
+	}
+
+	.mat-select-min-line {
+		color: white !important;
 	}
 }
 
@@ -41,4 +53,12 @@
 	border: none !important;
 	background-color: transparent !important;
 	margin-top: -5px !important;
+}
+
+.ng-select .ng-option-selected {
+	color: whitesmoke !important;
+	/* Replace "red" with the desired color */
+}
+.mat-select-value{
+	color: whitesmoke !important;
 }

@@ -74,23 +74,21 @@ export const locale = {
 				},
 			},
 
-			CLIPS: {
-				TITLE: 'Clips',
-				SUBMENU: 'Clip',
+			CONTENT: {
+				TITLE: 'Content',
 				MENU: {
+					CLIPS: {
+						TITLE: 'Clips',
+					},
 					MOVIES: {
 						TITLE: 'Movies',
 					},
 					PLAYS: {
 						TITLE: 'Plays',
 					},
-				},
-			},
-
-			SERIES: {
-				TITLE: 'Series',
-				SUBMENU: 'Series',
-				MENU: {
+					SERIES: {
+						TITLE: 'Series',
+					},
 					SHOWS: {
 						TITLE: 'Shows',
 					},

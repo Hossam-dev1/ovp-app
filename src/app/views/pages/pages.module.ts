@@ -39,7 +39,7 @@ import {IndexComponent} from './Templates/Template CRUD/index/index.component';
 import {FormComponent} from './Templates/Template CRUD/form/form.component';
 import {TranslateModule} from '@ngx-translate/core';
 import { SimpleTableComponent } from './Templates/simple-table/simple-table.component';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
 	imports: [
@@ -70,6 +70,7 @@ import { SimpleTableComponent } from './Templates/simple-table/simple-table.comp
 		RouterModule,
 		GalleryModule,
 		TranslateModule,
+		MatTooltipModule
 	],
 	exports: [
 		CommonModule,
@@ -99,7 +100,8 @@ import { SimpleTableComponent } from './Templates/simple-table/simple-table.comp
 		CustomDatePipe,
 		TranslateModule,
 		DataTablesComponent,
-		SimpleTableComponent
+		SimpleTableComponent,
+		MatTooltipModule
 	],
 	providers: [
 		{

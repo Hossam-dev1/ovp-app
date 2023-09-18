@@ -40,6 +40,12 @@ export class EditComponent {
 
 
 	// Data State
+	ratingList: any[] = [
+		'+13',
+		'+15',
+		'+18',
+		'All Ages',
+	]
 	contentTypeList: any[] = []
 	dimentionList: any[] = []
 	providerList: any[] = []
@@ -69,6 +75,9 @@ export class EditComponent {
 
 	}
 
+	convertLable(param:string) {
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
 			this.lang = curreLang;

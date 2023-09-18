@@ -56,9 +56,10 @@ export class EditComponent {
 	}
 	private initForm() {
 		this.editForm = this.fb.group({
-			year: new FormControl('', [Validators.required]),
-			company_types: new FormControl([], [Validators.required]),
+			// year: new FormControl('', [Validators.required]),
+			// company_types: new FormControl([], [Validators.required]),
 			logo: new FormControl('', [Validators.required]),
+			country: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),
 				ar: new FormControl('', [Validators.required]),
@@ -91,9 +92,10 @@ export class EditComponent {
 					en: this.companyDetails["name"]["en"],
 					ar: this.companyDetails["name"]["ar"]
 				},
-				year: this.companyDetails["year"],
+				// year: this.companyDetails["year"],
 				logo: this.companyDetails["logo"],
-				company_types: this.companyDetails["company_types"][0].id,
+				country: this.companyDetails["country"],
+				// company_types: this.companyDetails["company_types"][0].id,
 			});
 		}
 	}
@@ -104,20 +106,8 @@ export class EditComponent {
 			this.editForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			year: this.getEditForm['year'].value,
-			logo: this.getEditForm['logo'].value,
-			company_types: [this.getEditForm['company_types'].value],
-			name: {
-				en: this.getEditForm["name"].value["en"] || '',
-				ar: this.getEditForm["name"].value["ar"] || ''
-			},
-			description: {
-				en: this.getEditForm["description"].value["en"] || '',
-				ar: this.getEditForm["description"].value["ar"] || ''
-			}
-		}
-		this._companyService.edit(this.company_ID, formData).subscribe((resp) => {
+
+		this._companyService.edit(this.company_ID, this.editForm.value).subscribe((resp) => {
 			// this.editForm.reset()
 			this.clearImgSrc = true
 			this.toastr.success(resp.message + 'successfully');

@@ -1,7 +1,9 @@
-<kt-simple-grid-list
-	[dataList]="tagsData"
+
+<kt-data-tables
 	[title]="'Tags'"
 	[route_path]="'tags'"
 	[dynamicServiceName]="'_tagsService'"
-	[isLoading]="isLoadingResults"
-></kt-simple-grid-list>
+	[isLoading_Results]="isLoadingResults"
+	[Data_Source]="tagsData"
+	[Displayed_Columns]="displayedColumns"
+></kt-data-tables>

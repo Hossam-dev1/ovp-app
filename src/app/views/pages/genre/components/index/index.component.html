@@ -1,7 +1,15 @@
-<kt-simple-grid-list
+<!-- <kt-simple-grid-list
 	[dataList]="genresData"
-	[title]="'Geners'"
+	[title]="'Genres'"
 	[route_path]="'genere'"
 	[dynamicServiceName]="'_genereService'"
 	[isLoading]="isLoadingResults"
-></kt-simple-grid-list>
+></kt-simple-grid-list> -->
+<kt-data-tables
+	[title]="'Genres'"
+	[route_path]="'genere'"
+	[dynamicServiceName]="'_genereService'"
+	[isLoading_Results]="isLoadingResults"
+	[Data_Source]="genresData"
+	[Displayed_Columns]="displayedColumns"
+></kt-data-tables>

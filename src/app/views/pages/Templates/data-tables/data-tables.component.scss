@@ -5,3 +5,9 @@ table , th , td ,tr ,.mat-sort-header-container {
 table{
 	width: 100%;
 }
+th{
+	text-transform: capitalize !important;
+}
+.mat-icon{
+	font-size: 1.8rem !important;
+}

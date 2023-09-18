@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-12">
-		<kt-portlet-header [title]="'Movies'"> </kt-portlet-header>
+		<!-- <kt-portlet-header [title]="'Movies'"> </kt-portlet-header> -->
 		<div class="example-container  px-3 py-1">
 			<div class="example-loading-shade text-center d-flex justify-content-center p-5" *ngIf="isLoadingResults">
 				<mat-spinner diameter="50" *ngIf="isLoadingResults"></mat-spinner>
@@ -12,7 +12,7 @@
 							(keyup)="applySpecificFilter('name' ,$event.target.value)"
 							placeholder="Filter name.">
 					</mat-form-field> -->
-				<kt-filter [currentService]="_clipsService" [headerParams]="headerParams" [currentComponent]="this"
+				<kt-filter [HeaderTitle]="'Movies'"  [currentService]="_clipsService" [headerParams]="headerParams" [currentComponent]="this"
 					[HasActive]="true" [HasExport]="true" [HasSearchFilter]="true" [isLoadingResults]="isLoadingResults"
 					[HasItemPerPage]="true" [HasAdd]='true'>
 				</kt-filter>
@@ -22,16 +22,40 @@
 					<ng-container *ngFor="let header of displayedColumns;">
 
 						<!-- id column -->
-						<ng-container matColumnDef="{{header}}" *ngIf="header == 'id'">
+						<!-- <ng-container matColumnDef="{{header}}" *ngIf="header == 'id'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
 							<td mat-cell *matCellDef="let element"> {{element.id}} </td>
-						</ng-container>
+						</ng-container> -->
 
 						<!-- name column -->
 						<ng-container matColumnDef="{{header}}" *ngIf="header == 'name'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} ({{lang}}) </th>
 							<td mat-cell *matCellDef="let elem">
 								{{ toLang(elem[header]) }}
+							</td>
+						</ng-container>
+
+						<!-- genres column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'genres'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem[header][0]?.key || '---' }}
+							</td>
+						</ng-container>
+
+						<!-- Year column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'clip_year'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem[header] }}
+							</td>
+						</ng-container>
+
+						<!-- clip_puplish_date column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'clip_puplish_date'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem[header] }}
 							</td>
 						</ng-container>
 
@@ -45,26 +69,11 @@
 
 						<!-- content_images column -->
 						<ng-container matColumnDef="{{header}}" *ngIf="header == 'content_images'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> Content Type</th>
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> image</th>
 							<td mat-cell *matCellDef="let elem">
-								{{ elem[header][0]['content_type'] }}
-							</td>
-						</ng-container>
-
-						<!-- genres column -->
-						<ng-container matColumnDef="{{header}}" *ngIf="header == 'genres'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
-							<td mat-cell *matCellDef="let elem">
-								{{ elem[header][0]?.key || '---'  }}
-							</td>
-						</ng-container>
-
-						<!-- status column -->
-						<ng-container matColumnDef="{{header}}" *ngIf="header == 'clip_status'">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
-							<td mat-cell *matCellDef="let elem">
-								<i
-									[class]="elem[header] ? 'flaticon2-check-mark': 'flaticon2-cancel-music'"></i>
+								<!-- {{ elem[header][0]['image'] }} -->
+								<img class="img-thumbnail" [src]="elem[header][0]['image']"
+								alt="">
 							</td>
 						</ng-container>
 

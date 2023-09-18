@@ -12,7 +12,7 @@ MatPaginator
 	styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-	displayedColumns = ['key', 'name', 'options'];
+	displayedColumns = ['nameEn', 'nameAr', 'options'];
 	dataSource = new MatTableDataSource([]);;
 	isLoadingResults: boolean = false;
 	genresData:[] = []

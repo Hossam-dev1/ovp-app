@@ -12,7 +12,7 @@ export class IndexComponent implements OnInit {
 
 	isLoadingResults: boolean = true;
 	companyTypesData: Observable<any[]>;
-	displayedColumns: string[] = ['key', 'name', 'options'];
+	displayedColumns = ['nameEn', 'nameAr', 'options'];
 
 	constructor(
 		private _companyTypeService: CompanyTypeService,

@@ -1,8 +1,16 @@
-<kt-simple-grid-list
+<!-- <kt-simple-grid-list
 	[dataList]="nationalitiesData"
 	[title]="'Nationalities'"
 	[route_path]="'nationalities'"
 	[dynamicServiceName]="'_nationalitiesService'"
 	[isLoading]="isLoadingResults"
-></kt-simple-grid-list>
+></kt-simple-grid-list> -->
 
+<kt-data-tables
+	[title]="'Nationalities'"
+	[route_path]="'nationalities'"
+	[dynamicServiceName]="'_nationalitiesService'"
+	[isLoading_Results]="isLoadingResults"
+	[Data_Source]="nationalitiesData"
+	[Displayed_Columns]="displayedColumns"
+></kt-data-tables>

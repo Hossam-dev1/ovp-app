@@ -43,7 +43,12 @@ export class AddComponent {
 	// 	this.isStarChecked = event.checked ? true : false;
 	// }
 
-
+	ratingList: any[] = [
+		'+13',
+		'+15',
+		'+18',
+		'All Ages',
+	]
 	// Data State
 	contentTypeList: any[] = []
 	dimentionList: any[] = []
@@ -66,6 +71,9 @@ export class AddComponent {
 		this.getNeededList()
 		this.initForm()
 		this.checkLocalLang()
+	}
+	convertLable(param:string) {
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 	}
 
 	checkLocalLang() {
@@ -96,7 +104,7 @@ export class AddComponent {
 				ar: new FormControl('', [Validators.required]),
 			}),
 			clip_year: new FormControl('', [Validators.required]),
-			clip_duration: new FormControl('', [Validators.required]),
+			clip_duration: new FormControl('00:00:00', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
 			clip_puplish_end_date: new FormControl('', [Validators.required]),

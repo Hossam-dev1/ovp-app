@@ -33,6 +33,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 	@Input() SearchFilterTitle = '';
 
 	@Input() ApiRoute = '';
+	@Input() HeaderTitle = '';
 
 	@Input() currentComponent;
 	@Input() gridList;

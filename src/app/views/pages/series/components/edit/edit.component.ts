@@ -97,7 +97,6 @@ export class EditComponent {
 
 	patchSeriesData() {
 		const genresIDs = this.series_object['genres'].map((genre) => genre.id)
-		console.log('genresIDs', genresIDs);
 
 		this.editForm.patchValue({
 			name: {
@@ -118,18 +117,13 @@ export class EditComponent {
 			content_images: this.series_object['content_images'],
 			genre_ids: genresIDs,
 
-			// series_genres: {
-			// 	genre_id: this.series_object['genres'][0]['id'],
-			// 	content_type_id: this.contentTypeID,
-			// },
-
 			tags: [this.series_object['tags'][0]['id']],
 		});
-		this.cdr.markForCheck()
 		this.contentTypeID = this.series_object['content_type_id'];
 		this.selectedSeiresYear = this.series_object['series_start_year']
 
 		this.addGenreRow(genresIDs) //patch generes value
+		this.cdr.markForCheck()
 	}
 
 	protected get geteditForm() {
@@ -176,6 +170,8 @@ export class EditComponent {
 
 
 	patchContentImgs(): void {
+		console.log(this.dimentionList);
+
 		if (this.dimentionList.length > 0) {
 			for (let i = 1; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
@@ -212,10 +208,10 @@ export class EditComponent {
 					this.contentTypeID = item.id
 				}
 			});
+			this.getDimentionList();
 			this.patchContentTypeID()
 			this.patchSeriesData();
-			this.getDimentionList();
-			this.cdr.markForCheck()
+			this.cdr.detectChanges()
 		})
 
 		this._tagsService.list().subscribe((resp) => {
@@ -225,11 +221,13 @@ export class EditComponent {
 	}
 
 	getDimentionList() {
+		const contentID = this.contentTypeID
 		this._helperService.dimentionsList().subscribe((resp) => {
 			this.dimentionList = resp.body;
 			this.dimentionList = this.dimentionList.filter(item =>
-				item['content_type']['id'] == this.contentTypeID
+				item['content_type']['id'] == contentID
 			)
+
 			this.patchContentImgs()
 			this.cdr.markForCheck()
 		})

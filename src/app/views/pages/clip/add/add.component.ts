@@ -44,9 +44,10 @@ export class AddComponent {
 	// }
 
 	ratingList: any[] = [
-		'All Ages',
+		'+13',
 		'+15',
 		'+18',
+		'All Ages',
 	]
 
 	// Data State
@@ -73,6 +74,9 @@ export class AddComponent {
 		this.checkLocalLang()
 	}
 
+	convertLable(param:string) {
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
 			this.lang = curreLang;
@@ -97,7 +101,7 @@ export class AddComponent {
 				ar: new FormControl('', [Validators.required]),
 			}),
 			clip_year: new FormControl('', [Validators.required]),
-			clip_duration: new FormControl('', [Validators.required]),
+			clip_duration: new FormControl('00:00:00', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
 			clip_puplish_end_date: new FormControl('', [Validators.required]),
@@ -261,9 +265,9 @@ export class AddComponent {
 			return
 		}
 		const formData = this.addForm.value
-			formData['clip_status'] = Number(this.getAddForm['clip_status'].value)
-			formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
-			formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value)
+		formData['clip_status'] = Number(this.getAddForm['clip_status'].value)
+		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
+		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value)
 
 		this._clipsService.add(formData).subscribe((resp) => {
 			this.addForm.reset()

@@ -16,18 +16,17 @@
 					<mat-grid-tile *ngFor="let item of dataList">
 						<mat-card class="w-100 mx-3">
 							<div class="row d-flex align-items-center">
-								<div class="col-10 ">
-									<div *ngIf="item.hasOwnProperty('key')" class="row">
+								<div class="col-10">
+									<div *ngIf="item.hasOwnProperty('key')" class="row py-1">
 										<div class="col-2 header"> Key: </div>
 										<div class="col-10 value"> {{item['key']}} </div>
 									</div>
-									<hr *ngIf="item.hasOwnProperty('key')">
-									<div *ngIf="item.hasOwnProperty('name')" class="row">
+									<div *ngIf="item.hasOwnProperty('name')" class="row py-1">
 										<div class="col-2 header"> Name: </div>
 										<div class="col-10 value"> {{toLang(item['name'])}} </div>
 									</div>
 								</div>
-								<div class="col-2 action">
+								<div class="col-2 action ">
 									<ng-container>
 										<button [matMenuTriggerFor]="menu"
 											class="btn btn-outline-hover-dark btn-outline-secondary btn-circle">

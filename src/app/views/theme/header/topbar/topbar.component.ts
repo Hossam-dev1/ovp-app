@@ -47,7 +47,10 @@ export class TopbarComponent implements OnInit {
 	}
 
 	generateName(){
-		let name = localStorage.getItem('name');
+		let name = localStorage.getItem('name') || 'User Name';
+		if(name == 'undefined'){
+			name = 'User Name'
+		}
 		let name_partition = name.split(' ');
 		let generated_name = null;
 		let name_partition_length = name_partition.length;

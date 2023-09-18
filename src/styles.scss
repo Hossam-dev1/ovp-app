@@ -56,7 +56,9 @@
 .mat-raised-button.mat-primary {
 	background-color: #ff4057 !important
 }
-
+th{
+	text-transform: capitalize !important;
+}
 .mat-radio-button.mat-radio-checked {
 	.mat-radio-outer-circle {
 		border-color: #ff4057 !important;
@@ -66,7 +68,10 @@
 		background-color: #ff4057 !important;
 	}
 }
-
+.info_icon{
+	color: #ff4057 !important;
+	margin: 0 5px;
+}
 .mat-menu-content:not(:empty) {
 	padding: 1rem 0.5rem !important;
 

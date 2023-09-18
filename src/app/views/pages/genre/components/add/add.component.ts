@@ -29,7 +29,7 @@ export class AddComponent implements OnInit {
 	}
 	private initForm() {
 		this.addForm = this.fb.group({
-			key: new UntypedFormControl('', [Validators.required]),
+			// key: new UntypedFormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new UntypedFormControl('', [Validators.required]),
 				ar: new UntypedFormControl('', [Validators.required]),
@@ -42,14 +42,8 @@ export class AddComponent implements OnInit {
 			this.addForm.markAllAsTouched();
 			return
 		}
-		const formData = {
-			key: this.getAddForm['key'].value,
-			name: {
-				en: this.getAddForm["name"].value["en"] || '',
-				ar: this.getAddForm["name"].value["ar"] || ''
-			}
-		}
-		this.genreService.add(formData).subscribe((resp) => {
+
+		this.genreService.add(this.addForm.value).subscribe((resp) => {
 			this.addForm.reset()
 			this.toastr.success(resp.message + 'successfully');
 		},

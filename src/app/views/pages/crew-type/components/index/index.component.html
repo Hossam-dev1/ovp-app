@@ -1,7 +1,13 @@
-<kt-simple-grid-list
+<!-- <kt-simple-grid-list
 	[dataList]="crewTypesData"
+
+	[isLoading]="isLoadingResults"
+></kt-simple-grid-list> -->
+<kt-data-tables
 	[title]="'Crew Type'"
 	[route_path]="'crew_type'"
 	[dynamicServiceName]="'_crewTypeService'"
-	[isLoading]="isLoadingResults"
-></kt-simple-grid-list>
+	[isLoading_Results]="isLoadingResults"
+	[Data_Source]="crewTypesData"
+	[Displayed_Columns]="displayedColumns"
+></kt-data-tables>

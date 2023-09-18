@@ -34,7 +34,7 @@
 			</div>
 
 
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-md-6">
 					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'Select Year'"
 					[form_control_name]="'year'"></kt-form-year-date-picker>
@@ -43,12 +43,16 @@
 					<kt-form-select  [form]="addForm" [label]="'Company Types'" [is_multi]="false"
 						[typesList]="companyTypesList" [form_control_name]="'company_types'"></kt-form-select>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="row">
-				<div class="col-12">
+				<div class="col-md-6">
+					<kt-form-input  [form]="addForm" [label]="'Country'"
+						[form_control_name]="'country'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
 					<kt-form-upload-image [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-						[form_control_name]="'logo'" [label]="'Upload img'">
+						[form_control_name]="'logo'" [label]="'Upload Logo'">
 					</kt-form-upload-image>
 				</div>
 			</div>

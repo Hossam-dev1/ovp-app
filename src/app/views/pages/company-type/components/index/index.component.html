@@ -1,7 +1,8 @@
-<kt-simple-grid-list
-	[dataList]="companyTypesData"
+<kt-data-tables
 	[title]="'Company Types'"
 	[route_path]="'company_type'"
 	[dynamicServiceName]="'_companyTypeService'"
-	[isLoading]="isLoadingResults"
-></kt-simple-grid-list>
+	[isLoading_Results]="isLoadingResults"
+	[Data_Source]="companyTypesData"
+	[Displayed_Columns]="displayedColumns"
+></kt-data-tables>

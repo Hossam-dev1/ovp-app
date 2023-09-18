@@ -5,7 +5,9 @@ tr,
 .mat-sort-header-container {
 	text-align: center;
 }
-
+th{
+	text-transform: capitalize !important;
+}
 table {
 	width: 100%;
 }

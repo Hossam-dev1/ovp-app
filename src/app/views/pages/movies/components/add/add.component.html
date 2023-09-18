@@ -34,30 +34,22 @@
 						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
-			<!--  slug -->
-			<div class="row" formGroupName="slug">
-				<div class="col-md-6">
-					<kt-form-input [form_group]="'slug'" [form]="addForm" [label]="'Slug (en)'"
-						[form_control_name]="'en'"></kt-form-input>
-				</div>
-				<div class="col-md-6">
-					<kt-form-input [form_group]="'slug'" [form]="addForm" [label]="'Slug (ar)'"
-						[form_control_name]="'ar'"></kt-form-input>
-				</div>
-			</div>
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input [type]="'number'" [form]="addForm" [label]="'clip_duration (min)'"
+					<kt-form-input  [form]="addForm" [label]="'clip_duration'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-3">
-					<kt-form-input [type]="'number'" [form]="addForm" [label]="'Clip Rating'"
-						[form_control_name]="'clip_watch_rating'"></kt-form-input>
+					<label>Rating</label>
+					<ng-select formControlName="clip_watch_rating">
+						<ng-option *ngFor="let item of ratingList" [value]="item">{{item}}</ng-option>
+					</ng-select>
 				</div>
 				<div class="col-md-3">
-					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">Clip Status</label>
+					<div class="example-label-container d-flex">
+						<label id="example-name-label" class="example-name-label">Status </label>
+						<mat-icon class="info_icon" matTooltip="Show This Clip on Frontends">info</mat-icon>
 					</div>
 					<mat-slide-toggle formControlName="clip_status"></mat-slide-toggle>
 				</div>
@@ -65,7 +57,7 @@
 			<!-- clip_year && clip_puplish_date &&  clip_puplish_end_date -->
 			<div class="row">
 				<div class="col-md-4">
-					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'clip_year*'"
+					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'Clip Year*'"
 						[form_control_name]="'clip_year'"></kt-form-year-date-picker>
 				</div>
 				<div class="col-md-4">
@@ -78,37 +70,35 @@
 				</div>
 			</div>
 
-
 			<ng-container class="selectList">
-				<!-- Companies && Providers -->
+				<!-- Companies && Genres -->
 				<div class="row py-4">
-					<div class="col-md-6" >
-						<label>Clip Companies</label>
-						<ng-select [multiple]="true" (change)="addCompanyRow($event)"  [loading]="!companyList.length">
-							<ng-option *ngFor="let item of companyList"
-								[value]="item.id">{{toLang(item.name)}}</ng-option>
-						</ng-select>
-					</div>
-
 					<div class="col-md-6">
-						<label>Content Providers</label>
-						<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
-							<ng-option *ngFor="let item of providerList"
-								[value]="item.id">{{toLang(item.name)}}</ng-option>
-						</ng-select>
-					</div>
-				</div>
-				<!-- Genres && Crews -->
-				<div class="row">
-					<div class="col-md-6" >
-						<label>Clip Genres</label>
-						<ng-select [multiple]="true" (change)="addGenreRow($event)"   [loading]="!genreList.length">
+						<label>Genres</label>
+						<ng-select [multiple]="true" (change)="addGenreRow($event)" [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 					<div class="col-md-6">
-						<label>Clip Tags</label>
+						<label>Companies</label>
+						<ng-select [multiple]="true" (change)="addCompanyRow($event)" [loading]="!companyList.length">
+							<ng-option *ngFor="let item of companyList"
+								[value]="item.id">{{toLang(item.name)}}</ng-option>
+						</ng-select>
+					</div>
+					<!-- <div class="col-md-6">
+						<label>Content Providers</label>
+						<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
+							<ng-option *ngFor="let item of providerList"
+								[value]="item.id">{{toLang(item.name)}}</ng-option>
+						</ng-select>
+					</div> -->
+				</div>
+				<!-- Genres && Crews -->
+				<div class="row">
+					<div class="col-md-6">
+						<label>Tags</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
@@ -119,28 +109,31 @@
 						<button mat-raised-button (click)="addCrewRow()">New Crew</button>
 					</div>
 				</div>
-				<ng-container formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
-					<div class="row py-3" [formGroupName]="i">
-						<div class="col-md-6">
-							<label>Clip Crews ({{i+1}})</label>
-							<ng-select formControlName="crew_id" [loading]="!crewList.length">
-								<ng-option *ngFor="let item of crewList"
-									[value]="item.id">{{toLang(item.name)}}</ng-option>
-							</ng-select>
-						</div>
-						<div class="col-md-4 px-3">
-							<div class="example-label-container">
-								<label id="example-name-label" class="example-name-label">Is Star</label>
+				<!-- Crew Rows -->
+				<div class="row">
+					<div class="col-md-6" formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
+						<div class="row py-3" [formGroupName]="i">
+							<div class="col-md-8">
+								<label>Crews ({{i+1}})</label>
+								<ng-select formControlName="crew_id" [loading]="!crewList.length">
+									<ng-option *ngFor="let item of crewList"
+										[value]="item.id">{{toLang(item.name)}}</ng-option>
+								</ng-select>
 							</div>
-							<mat-slide-toggle formControlName="is_star"></mat-slide-toggle>
-						</div>
-						<div class="col-md-2 button-box">
-							<button mat-mini-fab color="warn" [disabled]="i == 0"
-								(click)="removeCrewRow(i)"><mat-icon>remove</mat-icon></button>
+							<div class="col-md-2 px-3">
+								<div class="example-label-container">
+									<label id="example-name-label" class="example-name-label">Is Star</label>
+								</div>
+								<mat-slide-toggle formControlName="is_star"></mat-slide-toggle>
+							</div>
+							<div class="col-md-2 button-box">
+								<button mat-mini-fab color="warn" [disabled]="i == 0"
+									(click)="removeCrewRow(i)"><mat-icon>remove</mat-icon></button>
+							</div>
 						</div>
 					</div>
-					<mat-divider class="mt-5 mb-3"></mat-divider>
-				</ng-container>
+				</div>
+				<mat-divider class="my-3"></mat-divider>
 
 				<!-- Content Types && content_images -->
 				<div class="loader d-flex justify-content-center p-5" *ngIf="!isDimentionReady">
@@ -151,7 +144,7 @@
 						<div class="col-md-4" [formGroupName]="i">
 							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i"
 								[dimentionID]="item.id" [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-								[form_control_name]="'img'" [label]="item.key">
+								[form_control_name]="'img'" [label]="convertLable(item.key)">
 							</kt-form-upload-image>
 						</div>
 					</ng-container>

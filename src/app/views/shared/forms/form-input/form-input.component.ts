@@ -11,6 +11,7 @@ export class FormInputComponent implements OnInit {
 	@Input() form_group: string;
 	@Input() title: string;
 	@Input() label: string;
+	@Input() value: any;
 	@Input() placeholder: string;
 	@Input() tooltip: string;
 	@Input() example_label: string;

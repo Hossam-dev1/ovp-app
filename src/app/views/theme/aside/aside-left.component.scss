@@ -8,6 +8,14 @@
 		}
 	}
 
+	.topbar_menu{
+		background-color: #1a1a27;
+	}
+
+	.ng-select .ng-option-selected {
+		color: whitesmoke !important;
+		/* Replace "red" with the desired color */
+	}
 	// fixed text line break issue on minimized aside hover
 	.kt-menu__link-text {
 		white-space: nowrap;
