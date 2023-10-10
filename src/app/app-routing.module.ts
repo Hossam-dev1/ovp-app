@@ -88,6 +88,14 @@ const routes: Routes = [
 				path: "episodes", // <= Page URL ,
 				loadChildren: () => import('./views/pages/episodes/episodes.module').then(m => m.EpisodesModule)
 			},
+			{
+				path: "admins", // <= Page URL ,
+				loadChildren: () => import('./views/pages/users/users.module').then(m => m.UsersModule)
+			},
+			{
+				path: "roles", // <= Page URL ,
+				loadChildren: () => import('./views/pages/roles/roles.module').then(m => m.RolesModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

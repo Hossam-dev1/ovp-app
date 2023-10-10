@@ -109,6 +109,12 @@ export const locale = {
 					TAGS: {
 						TITLE: 'Tags',
 					},
+					USERS: {
+						TITLE: 'CMS Users',
+					},
+					ROLES: {
+						TITLE: 'Roles',
+					},
 					CONTENT_PROVIDER: {
 						TITLE: 'Content Provider',
 					},

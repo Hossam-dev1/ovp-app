@@ -1,3 +1,5 @@
+import { RolesService } from './../../../../core/services/ACL-Module/roles.service';
+import { AdminsService } from './../../../../core/services/User-Module/admins.service';
 import { SeasonsService } from './../../../../core/services/Series-Module/seasons.service';
 import { SeriesService } from './../../../../core/services/Series-Module/series.service';
 import { EpisdosService } from './../../../../core/services/Series-Module/episdos.service';
@@ -48,6 +50,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	@Input() route_path: any = ''
 	@Input() path_param: any
 	@Input() dynamicServiceName: string;
+	@Input() dynamicComponentName: any;
 
 	dataSource$: MatTableDataSource<any>;
 	dataSourceWithPageSize;
@@ -85,6 +88,8 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private _crewService: CrewService,
 		private _companyTypeService: CompanyTypeService,
 		private _companyService: CompanyService,
+		private _adminsService: AdminsService,
+		private _rolesService: RolesService,
 		private _toaster: ToastrService,
 		public dialog: MatDialog,
 		private translate: TranslateService
@@ -101,6 +106,9 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	}
 	check(param) {
 		console.log(param);
+	}
+	filterListByParam = (param)=>{
+		console.log(this.dynamicComponentName.filterList(param));
 	}
 
 	dynamicParam(key, value): any {
@@ -132,9 +140,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	}
 
 	applySpecificFilter(columnNames, value: string) {
-
 		this.dataSource$ = new MatTableDataSource(this.Data_Source.filter((item) => item['name'][this.lang].includes(value)))
-		console.log(this.dataSource$);
 		this.cdr.detectChanges();
 
 		if (this.dataSource$.paginator) {

@@ -91,19 +91,22 @@ export class FilterComponent implements OnInit, OnDestroy {
 		searchTerm = searchTerm.trim().toLowerCase();
 
 		// filter gridList
-		if (this.gridList) {
-			if (!searchTerm) {
-				return this.currentComponent.dataList = this.currentList
-			}
-			this.currentComponent.dataList = this.currentList.filter((item: any) => {
-				return item.name[this.lang].toLowerCase().includes(searchTerm)
-			});
-			return
-		}
+		// if (this.gridList) {
+		// 	if (!searchTerm) {
+		// 		return this.currentComponent.dataList = this.currentList
+		// 	}
+		// 	this.currentComponent.dataList = this.currentList.filter((item: any) => {
+		// 		return item.name[this.lang].toLowerCase().includes(searchTerm)
+		// 	});
+		// 	return
+		// }
 
 		// filter DataSource Table
 		const DataSource = this.currentComponent.Data_Source;
 		this.currentComponent.dataSource$ = new MatTableDataSource(DataSource.filter((item) => {
+			if(typeof item.name == 'string'){ // only name without object of lang
+				return item.name.toLowerCase().includes(searchTerm)
+			}
 			return item.name[this.lang].toLowerCase().includes(searchTerm)
 		}));
 
@@ -118,8 +121,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 		else if (number == 0) { this.headerParams.active = '0'; }
 		else { this.headerParams.active = null; }
 
-		// this.currentComponent.get(this.headerParams);
-		this.currentComponent.filterList(this.headerParams)
+		this.currentComponent.filterListByParam(this.headerParams)
 	}
 
 	export() {

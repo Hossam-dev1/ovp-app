@@ -24,6 +24,16 @@ export class SettingsMenuConfig {
 		icon: 'flaticon2-gear',
 		submenu: [
 			{
+				"title": "CMS Users",
+				"translate": "MENUS.SETTINGS.MENU.USERS.TITLE",
+				"page": '/cms/admins'
+			},
+			{
+				"title": "Roles",
+				"translate": "MENUS.SETTINGS.MENU.ROLES.TITLE",
+				"page": '/cms/roles'
+			},
+			{
 				"title": "Tags",
 				"translate": "MENUS.SETTINGS.MENU.TAGS.TITLE",
 				"page": '/cms/tags'

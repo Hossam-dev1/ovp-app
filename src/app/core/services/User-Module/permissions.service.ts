@@ -9,15 +9,13 @@ import {CmsUsersSerializer} from '../../Serializers/User-Module/cms.users.serial
 	providedIn: 'root'
 })
 
-export class AdminsService extends BaseService<CmsUsersModel> {
+export class PermissionsService extends BaseService<CmsUsersModel> {
 	constructor(Http: HttpClient) {
 		super(
 			Http,
 			environment.url(),
-			'admins/admins',
+			'admins/permissions',
 			new CmsUsersSerializer());
 	}
-
-
 
 }
