@@ -29,8 +29,8 @@ export class IndexComponent {
 			}
 		})
 	}
-	filterList = (filterParam) => {
-		this.getListData(filterParam)
+	filterList = (param)=>{
+		this.getListData(param)
 	}
 
 	getListData(headerParams) {

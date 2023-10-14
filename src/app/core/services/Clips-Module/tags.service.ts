@@ -21,7 +21,7 @@ export class TagService {
 		if (paginationParams) {
 			params = params.append("is_pagination", paginationParams.is_pagination);
 		}
-		params = params.append("is_pagination", String(1))
+//		params = params.append("is_pagination", String(1))
 		return this.HttpClient.get(environment.url() + 'admins/tags',
 			{ params: params, headers: { "Accept-Language": "all" } })
 	}

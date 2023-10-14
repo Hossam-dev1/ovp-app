@@ -40,12 +40,12 @@
 			<!-- series_no_of_seasons && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input [type]="'number'" [form]="addForm" [label]="'series_no_of_seasons'"
+					<kt-form-input [type]="'number'" [form]="addForm" [label]="'Num of seasons'"
 						[form_control_name]="'series_no_of_seasons'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
 					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">Series Status</label>
+						<label id="example-name-label" class="example-name-label">Status</label>
 					</div>
 					<mat-slide-toggle formControlName="series_status"></mat-slide-toggle>
 				</div>
@@ -54,26 +54,16 @@
 			<!-- series_start_year && is_exclusive -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'series_start_year*'"
+					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'Start Year *'"
 						[form_control_name]="'series_start_year'"></kt-form-year-date-picker>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">is_exclusive</label>
 					</div>
 					<mat-slide-toggle formControlName="is_exclusive"></mat-slide-toggle>
 				</div>
-			</div>
-
-			<!-- Providers & is_new -->
-			<div class="row">
-				<div class="col-md-6">
-					<label>Content Providers</label>
-					<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
-						<ng-option *ngFor="let item of providerList" [value]="item.id">{{toLang(item.name)}}</ng-option>
-					</ng-select>
-				</div>
-				<div class="col-md-6">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">is_new</label>
 					</div>
@@ -81,19 +71,29 @@
 				</div>
 			</div>
 
+			<!-- Providers & is_new -->
+			<div class="row">
+				<!-- <div class="col-md-6">
+					<label>Content Providers</label>
+					<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
+						<ng-option *ngFor="let item of providerList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+					</ng-select>
+				</div> -->
+			</div>
+
 
 			<ng-container class="selectList">
 				<!-- Genres & Tags -->
 				<div class="row">
 					<div class="col-md-6" formGroupName="series_genres">
-						<label>Series Genres</label>
-						<ng-select formControlName="genre_id" [loading]="!genreList.length">
+						<label>Series Genres *</label>
+						<ng-select [multiple]="true" (change)="addGenreRow($event)" formControlName="genre_id" [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 					<div class="col-md-6">
-						<label>Series Tags</label>
+						<label>Series Tags *</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
@@ -111,7 +111,7 @@
 						<div class="col-md-4" [formGroupName]="i">
 							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i"
 								[dimentionID]="item.id" [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-								[form_control_name]="'img'" [label]="item.key">
+								[form_control_name]="'img'" [label]="convertLable(item.key, i)">
 							</kt-form-upload-image>
 						</div>
 					</ng-container>

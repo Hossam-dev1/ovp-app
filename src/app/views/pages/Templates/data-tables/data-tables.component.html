@@ -36,7 +36,7 @@
 							<td mat-cell *matCellDef="let element"> {{element[header] }} </td>
 						</ng-container>
 
-						<!-- key column -->
+						<!-- series_no_of_seasons column -->
 						<ng-container matColumnDef="{{header}}"
 							*ngIf="header == 'series_no_of_seasons' || header== 'no_of_episodes'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -75,11 +75,28 @@
 							</td>
 						</ng-container>
 
+						<!-- companies column -->
+						<ng-container matColumnDef="{{header}}" *ngIf="header == 'companies'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ toLang(elem[header][0]['name']) }}
+							</td>
+						</ng-container>
+
+						<!-- Year & clip_puplish_date column -->
+						<ng-container matColumnDef="{{header}}"
+							*ngIf="header == 'clip_year' || header == 'clip_puplish_date'">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
+							<td mat-cell *matCellDef="let elem">
+								{{ elem[header] }}
+							</td>
+						</ng-container>
+
 						<!-- Roles column -->
 						<ng-container matColumnDef="{{header}}" *ngIf="header == 'roles'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let elem">
-								{{ elem[header][0]['name']  }}
+								{{ elem[header][0]['name'] }}
 							</td>
 						</ng-container>
 
@@ -119,10 +136,10 @@
 						<!-- thumb column -->
 						<!-- onerror="this.src ='../../../../../assets/img/Dummy-Person.png'" -->
 						<ng-container matColumnDef="{{header}}"
-							*ngIf="header == 'thumb'||header == 'logo'||header == 'image'">
+							*ngIf="header == 'thumb'||header == 'logo'||header == 'image'||header == 'content_images'">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </th>
 							<td mat-cell *matCellDef="let element">
-								<img class="img-thumbnail" [src]="element.thumb || element.logo || element.image"
+								<img class="img-thumbnail" [src]="element[header][0]['image'] || element[header]"
 									alt="">
 							</td>
 						</ng-container>
@@ -147,7 +164,15 @@
 									<mat-icon>video_library</mat-icon>
 								</button>
 								<button mat-icon-button matTooltip="Details"
-									*ngIf="title == 'Crew'|| title == 'Content Providers'|| title == 'Company' || title == 'Series' || title == 'Seasons' || title == 'Episodes'"
+									*ngIf="title == 'Crew'||
+									title == 'Content Providers'||
+									title == 'Company' ||
+									title == 'Clips' ||
+									title == 'Movies' ||
+									title == 'Plays' ||
+									title == 'Series' ||
+									title == 'Seasons' ||
+									title == 'Episodes'"
 									[routerLink]="'details/'+ element.id">
 									<mat-icon>remove_red_eye</mat-icon>
 								</button>
@@ -158,7 +183,7 @@
 									<mat-icon>edit</mat-icon>
 									<!-- {{ 'Components.Edit' | translate }} -->
 								</button>
-								<button mat-icon-button color="warn" matTooltip="Delete"
+								<button *ngIf="isInActiveList" mat-icon-button color="warn" matTooltip="Delete"
 									(click)="deleteColumn(element.id, element)">
 									<mat-icon>delete</mat-icon>
 								</button>
@@ -167,8 +192,6 @@
 						</ng-container>
 
 					</ng-container>
-
-
 
 					<tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
 					<tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>

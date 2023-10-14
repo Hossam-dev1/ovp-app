@@ -29,11 +29,15 @@ export class IndexComponent {
 		private _helperService: HelperService,
 	) { }
 
+	filterList = (param) => {
+		this.getListData(param)
+	}
+
 	ngOnInit() {
 		this.getContentType()
 		this._seriesService.isListChanged.subscribe((resp) => {
 			if (resp) {
-				this.getListData()
+				this.getListData(this.headerParams)
 			}
 		})
 	}
@@ -55,7 +59,6 @@ export class IndexComponent {
 			this.showsData = resp.body.filter((item) =>
 				item.content_type_id == this.contentTypeID
 			);
-			console.log(this.showsData);
 			this.isLoadingResults = false
 			this.cdr.detectChanges();
 		})

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {SystemPermissionsHelperService} from '../../services/Helpers/system.permissions.helper.service';
-import {SectionIconsName} from '../../Global/section.icons.name';
-import {RoutesName} from '../../Global/routes.name';
+import { Injectable } from '@angular/core';
+import { SystemPermissionsHelperService } from '../../services/Helpers/system.permissions.helper.service';
+import { SectionIconsName } from '../../Global/section.icons.name';
+import { RoutesName } from '../../Global/routes.name';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ContentMenuConfig {
 		this.systemPermissionsHelperService = new SystemPermissionsHelperService();
 	}
 
-	private header = {section: 'Content', translate: 'MENUS.Content.TITLE'};
+	private header = { section: 'Content', translate: 'MENUS.Content.TITLE' };
 
 	private section = {
 		title: 'Content',
@@ -48,6 +48,11 @@ export class ContentMenuConfig {
 				"translate": "MENUS.CONTENT.MENU.SHOWS.TITLE",
 				"page": '/cms/shows'
 			},
+			{
+				"title": "Content Tags",
+				"translate": "MENUS.CONTENT.MENU.TAGS.TITLE",
+				"page": '/cms/tags'
+			},
 		]
 	};
 
@@ -56,8 +61,8 @@ export class ContentMenuConfig {
 		]
 	};
 
-	private attachMenu(){
-		if (this.section.submenu.length){
+	private attachMenu() {
+		if (this.section.submenu.length) {
 			// this.menu.items.push(this.header);
 			this.menu.items.push(this.section);
 		}
@@ -68,19 +73,19 @@ export class ContentMenuConfig {
 		return this.menu.items;
 	}
 
-	public checkRoutePermissions(){
+	public checkRoutePermissions() {
 		// this.attachMenuItem([],this.GENRE);
 		this.attachMenu();
 	}
 
-	attachMenuItem(permissions, url){
+	attachMenuItem(permissions, url) {
 		let check = this.systemPermissionsHelperService.checkPermissions(permissions);
-		if (check){
+		if (check) {
 			this.attach(url)
 		}
 	}
 
-	private attach(url){
+	private attach(url) {
 		// this.section.submenu.push(url)
 	}
 

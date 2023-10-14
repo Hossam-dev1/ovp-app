@@ -44,74 +44,77 @@
 						[form_control_name]="'no_of_episodes'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [type]="'number'" [form]="addForm" [label]="'Rate'"
-						[form_control_name]="'rate'"></kt-form-input>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="example-label-container">
+								<label id="example-name-label" class="example-name-label">Status</label>
+							</div>
+							<mat-slide-toggle formControlName="status"></mat-slide-toggle>
+						</div>
+						<div class="col-md-3">
+							<div class="example-label-container">
+								<label id="example-name-label" class="example-name-label">is_exclusive</label>
+							</div>
+							<mat-slide-toggle formControlName="is_exclusive"></mat-slide-toggle>
+						</div>
+						<div class="col-md-3">
+							<div class="example-label-container">
+								<label id="example-name-label" class="example-name-label">is_new</label>
+							</div>
+							<mat-slide-toggle formControlName="is_new"></mat-slide-toggle>
+						</div>
+						<div class="col-md-3">
+							<div class="example-label-container">
+								<label id="example-name-label" class="example-name-label">is_asc</label>
+							</div>
+							<mat-slide-toggle formControlName="is_asc"></mat-slide-toggle>
+						</div>
+					</div>
 				</div>
-
 			</div>
 
 			<!-- year && is_exclusive -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-year-date-picker  [clearValue]="clearValue"
-						[form]="addForm" [label]="'Seasons_start_year*'"
+					<kt-form-year-date-picker [clearValue]="clearValue" [form]="addForm" [label]="'Seasons Start Year*'"
 						[form_control_name]="'year'"></kt-form-year-date-picker>
 				</div>
-				<div class="col-md-3">
-					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">Status</label>
-					</div>
-					<mat-slide-toggle formControlName="status"></mat-slide-toggle>
-				</div>
-				<div class="col-md-3">
-					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">is_exclusive</label>
-					</div>
-					<mat-slide-toggle formControlName="is_exclusive"></mat-slide-toggle>
-				</div>
-			</div>
-
-			<div class="row">
 				<div class="col-md-6">
-					<label>Content Providers</label>
-					<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
-						<ng-option *ngFor="let item of providerList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+					<label>Rating *</label>
+					<ng-select formControlName="rate">
+						<ng-option *ngFor="let item of ratingList" [value]="item">{{item}}</ng-option>
 					</ng-select>
 				</div>
-				<div class="col-md-3">
-					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">is_new</label>
-					</div>
-					<mat-slide-toggle formControlName="is_new"></mat-slide-toggle>
-				</div>
-				<div class="col-md-3">
-					<div class="example-label-container">
-						<label id="example-name-label" class="example-name-label">is_asc</label>
-					</div>
-					<mat-slide-toggle formControlName="is_asc"></mat-slide-toggle>
-				</div>
 			</div>
-
 
 			<ng-container class="selectList">
 				<!-- Genres & Tags -->
 				<div class="row pt-2">
 					<div class="col-md-6">
-						<label>Season Tags</label>
+						<label>Season Tags *</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 					<div class="col-md-6">
-						<label>Season Companies</label>
+						<label>Season Production Company *</label>
 						<ng-select [multiple]="true" formControlName="companies" [loading]="!companyList.length">
 							<ng-option *ngFor="let item of companyList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 				</div>
+				<!-- Toggle Status -->
+				<div class="row pt-3">
+					<!-- <div class="col-md-6">
+						<label>Content Providers</label>
+						<ng-select formControlName="content_provider_id" [loading]="!providerList.length">
+							<ng-option *ngFor="let item of providerList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+						</ng-select>
+					</div> -->
 
+				</div>
 				<!-- content_images -->
 				<mat-divider class="mt-5 mb-3"></mat-divider>
 				<div class="loader d-flex justify-content-center p-5" *ngIf="!isDimentionReady">
@@ -122,7 +125,7 @@
 						<div class="col-md-4" [formGroupName]="i">
 							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i"
 								[dimentionID]="item.id" [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-								[form_control_name]="'img'" [label]="item.key">
+								[form_control_name]="'img'" [label]="convertLable(item.key, i)">
 							</kt-form-upload-image>
 						</div>
 					</ng-container>

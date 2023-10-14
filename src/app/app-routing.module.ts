@@ -22,11 +22,16 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'dashboard',
+
 				loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
 			},
 
 			{
 				path: "genre", // <= Page URL ,
+					// canActivate: [PermissionsGuard],
+					// data: {
+					// 	permissions: permissionCatalogueConfig.product_permissions,
+					// },
 				loadChildren: () => import('./views/pages/genre/genre.module').then(m => m.GenreModule)
 			},
 

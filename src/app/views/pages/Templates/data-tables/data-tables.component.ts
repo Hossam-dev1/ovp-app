@@ -61,11 +61,13 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	tableHeaders: string[] = [];
 	displayedColumns: any
 	isLoading = true;
+	isInActiveList:boolean = false;
 	lang: string = 'en';
 
 	//filter variables
 	headerParams: PaginateParams = {
 		active: 1,
+		is_pagination: 1,
 		per_page: GlobalConfig.pagination_per_page,
 		search_key: null,
 		sort_key: null,
@@ -107,8 +109,11 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	check(param) {
 		console.log(param);
 	}
-	filterListByParam = (param)=>{
-		console.log(this.dynamicComponentName.filterList(param));
+	filterListByParam = (param) => {
+		this.isLoading = true
+		// inActive
+		this.isInActiveList = param.active == '0' ? true : false
+		this.dynamicComponentName.filterList(param);
 	}
 
 	dynamicParam(key, value): any {
@@ -129,7 +134,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes.Data_Source.currentValue) {
+		if (changes.Data_Source?.currentValue) {
 			this.dataSource$ = new MatTableDataSource(this.Data_Source)
 			this.tableHeaders = this.Displayed_Columns;
 			this.dataSourceWithPageSize = new MatTableDataSource(this.Data_Source);

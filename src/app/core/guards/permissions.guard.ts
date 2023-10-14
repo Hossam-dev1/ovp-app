@@ -1,24 +1,25 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {AccountPermissionsService} from '../services/ACL-Module/account.permissions.service';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { AccountPermissionsService } from '../services/ACL-Module/account.permissions.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class PermissionsGuard {
 
-	route_permissions:Array<string>;
+	route_permissions: Array<string>;
 	constructor(private router: Router,
-				private AccountPermissionsService: AccountPermissionsService) {
+		private AccountPermissionsService: AccountPermissionsService) {
 
 	}
 
 	canActivate(route: ActivatedRouteSnapshot,
-				state: RouterStateSnapshot): boolean {
+		state: RouterStateSnapshot): boolean {
 
 		let permissions = route.data.permissions as Array<string>;
 
 		this.route_permissions = permissions;
+		console.log('route_permissions', this.route_permissions);
 
 		let stored_permissions = JSON.parse(localStorage.getItem('permissions'));
 
@@ -30,11 +31,11 @@ export class PermissionsGuard {
 		}
 	}
 
-	checkPermissions(stored_permissions, permissions){
+	checkPermissions(stored_permissions, permissions) {
 
-		permissions.forEach((permission)=>{
+		permissions.forEach((permission) => {
 			let check = stored_permissions.includes(permission);
-			if (!check){
+			if (!check) {
 				this.router.navigate(['/cms/dashboard']);
 				return false;
 			}
@@ -47,6 +48,8 @@ export class PermissionsGuard {
 		let check = false;
 		this.AccountPermissionsService.list().subscribe(
 			(resp) => {
+				console.log('AccountPermissionsService', resp);
+
 				let permissions = this.AccountPermissionsService.preparePermissions(resp);
 				localStorage.setItem('permissions', JSON.stringify(permissions));
 				check = this.reactivate(permissions);
@@ -57,7 +60,7 @@ export class PermissionsGuard {
 		return check;
 	}
 
-	reactivate(stored_permissions){
+	reactivate(stored_permissions) {
 		return this.checkPermissions(stored_permissions, this.route_permissions);
 	}
 

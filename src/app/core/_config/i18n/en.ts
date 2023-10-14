@@ -100,23 +100,25 @@ export const locale = {
 						TITLE: 'Episodes',
 						TEXT: 'The Episode',
 					},
+					TAGS: {
+						TITLE: 'Content Tags',
+						TEXT: 'Tags',
+					},
 				},
 			},
 
 			SETTINGS: {
 				TITLE: "Settings",
 				MENU: {
-					TAGS: {
-						TITLE: 'Tags',
-					},
+
 					USERS: {
 						TITLE: 'CMS Users',
 					},
 					ROLES: {
 						TITLE: 'Roles',
 					},
-					CONTENT_PROVIDER: {
-						TITLE: 'Content Provider',
+					PERMISSIONS: {
+						TITLE: 'Permissions',
 					},
 				}
 			}

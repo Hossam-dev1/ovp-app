@@ -33,11 +33,11 @@ export class SettingsMenuConfig {
 				"translate": "MENUS.SETTINGS.MENU.ROLES.TITLE",
 				"page": '/cms/roles'
 			},
-			{
-				"title": "Tags",
-				"translate": "MENUS.SETTINGS.MENU.TAGS.TITLE",
-				"page": '/cms/tags'
-			},
+			// {
+			// 	"title": "Tags",
+			// 	"translate": "MENUS.SETTINGS.MENU.TAGS.TITLE",
+			// 	"page": '/cms/tags'
+			// },
 			// {
 			// 	"title": "Content Provider",
 			// 	"translate": "MENUS.SETTINGS.MENU.CONTENT_PROVIDER.TITLE",

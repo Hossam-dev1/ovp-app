@@ -78,6 +78,10 @@ export class AddComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
+	}
 	get getContentImgs() {
 		return this.addForm.get('content_images') as FormArray
 	}
@@ -99,16 +103,16 @@ export class AddComponent {
 			number: new FormControl('', [Validators.required]),
 			duration: new FormControl('', [Validators.required]),
 			publish_date: new FormControl('', [Validators.required]),
-			publish_end_date: new FormControl('', [Validators.required]),
+			publish_end_date: new FormControl(''),
 			status: new FormControl(false, [Validators.required]), //boolen
 
 			series_id: new FormControl(this.series_ID as number || ''),
 			season_id: new FormControl(this.seasons_ID as number || ''),
 
 			content_type_id: new FormControl('', [Validators.required]),
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 
-			content_images: this.fb.array([this.contentImgsForm]),
+			content_images: this.fb.array([]),
 			crews: this.fb.array([this.crewForm()]),
 
 			tags: new FormControl([], [Validators.required]),
@@ -131,9 +135,16 @@ export class AddComponent {
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	getNeededList() {
@@ -184,18 +195,22 @@ export class AddComponent {
 		this.addForm.patchValue(value)
 	}
 
-	patchContentImgs(): void {
+	patchContentImgs() {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 	}
 
 
-	formattedDate(dateParam) {
+	formattedDate(dateParam: string) {
+		if (!dateParam) {
+			return
+		}
 		const date = new Date(dateParam);
 		const time = new Date()
 		const formattedTime = time.toLocaleTimeString('en-US', {
@@ -204,18 +219,19 @@ export class AddComponent {
 			second: '2-digit',
 			hour12: false
 		});
-		return date.toISOString().slice(0, 10) +' '+ formattedTime;
+		return date.toISOString().slice(0, 10) + ' ' + formattedTime;
 	}
 	submit() {
 
 		let formData = this.addForm.value;
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['publish_date'] = this.formattedDate(this.addForm.value['publish_date'])
-		formData['publish_end_date'] = this.formattedDate(this.addForm.value['publish_end_date'])
-		console.log(this.addForm.value);
+		// check if user added publish_end_date or not
+		formData['publish_end_date'] ? formData['publish_end_date'] = this.formattedDate(this.addForm.value['publish_end_date']) : delete formData['publish_end_date'];
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			return
 		}
 		this._episodesService.add(formData).subscribe((resp) => {

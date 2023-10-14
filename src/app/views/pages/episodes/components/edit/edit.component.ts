@@ -82,6 +82,10 @@ export class EditComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
+	}
 	getUrlID() {
 		this.isLoadingResults = true
 		const queryParam = this._activatedRoute.snapshot.queryParams;
@@ -126,7 +130,7 @@ export class EditComponent {
 			series_id: this.episodes_object['series']['id'],
 			season_id: this.episodes_object['season']['id'],
 
-			content_provider_id: this.episodes_object['content_provider']['id'],
+			// content_provider_id: this.episodes_object['content_provider']['id'],
 			content_images: this.episodes_object['content_images'],
 
 
@@ -156,12 +160,12 @@ export class EditComponent {
 			number: new FormControl('', [Validators.required]),
 			duration: new FormControl('', [Validators.required]),
 			publish_date: new FormControl('', [Validators.required]),
-			publish_end_date: new FormControl('', [Validators.required]),
+			publish_end_date: new FormControl(''),
 			status: new FormControl('', [Validators.required]),
 			series_id: new FormControl('', [Validators.required]),
 			season_id: new FormControl('', [Validators.required]),
 
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 			content_type_id: new FormControl('', [Validators.required]),
 			content_images: this.fb.array([]),
 
@@ -180,21 +184,29 @@ export class EditComponent {
 		})
 	}
 
-	patchContentImgs(): void {
+	patchContentImgs() {
 		if (this.dimentionList.length > 0) {
 			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 	}
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	get getCrews() {
@@ -265,7 +277,7 @@ export class EditComponent {
 			this.cdr.markForCheck()
 		})
 	}
-	formattedDate(dateParam) {
+	formattedDate(dateParam:string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
@@ -286,11 +298,11 @@ export class EditComponent {
 
 		let formData = this.editForm.value;
 		formData['publish_date'] = this.formatteDateWithTime(this.editForm.value['publish_date'])
-		formData['publish_end_date'] = this.formatteDateWithTime(this.editForm.value['publish_end_date'])
+		formData['publish_end_date'] ? formData['publish_end_date'] = this.formattedDate(this.editForm.value['publish_end_date']) : delete formData['publish_end_date'];
 
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			// return
 		}
 		this._episdosService.edit(this.episodes_ID, this.editForm.value).subscribe((resp) => {

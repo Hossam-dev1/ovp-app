@@ -51,7 +51,12 @@ export class AddComponent {
 	tagsList: any[] = []
 	crewTypeList: any[] = []
 	seriesList: any[] = []
-
+	ratingList: any[] = [
+		'+13',
+		'+15',
+		'+18',
+		'All Ages',
+	]
 	contentTypeID: number = null;
 
 	isLoadingResults: boolean;
@@ -81,6 +86,10 @@ export class AddComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
+	}
 	get getContentImgs() {
 		return this.addForm.get('content_images') as FormArray
 	}
@@ -107,12 +116,12 @@ export class AddComponent {
 			is_asc: new FormControl(false, [Validators.required]), //boolen
 			rate: new FormControl('', [Validators.required]), //boolen
 
-			series_id: new FormControl(this.series_ID  as number || ''),
+			series_id: new FormControl(this.series_ID as number || ''),
 
 			content_type_id: new FormControl('', [Validators.required]),
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 
-			content_images: this.fb.array([this.contentImgsForm]),
+			content_images: this.fb.array([]),
 
 			companies: new FormControl([], [Validators.required]),
 			tags: new FormControl([], [Validators.required]),
@@ -121,9 +130,16 @@ export class AddComponent {
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	getNeededList() {
@@ -177,18 +193,19 @@ export class AddComponent {
 		this.addForm.patchValue(value)
 	}
 
-	patchContentImgs(): void {
+	patchContentImgs() {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 	}
 
 
-	formattedDate(dateParam) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
@@ -200,7 +217,7 @@ export class AddComponent {
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			return
 		}
 		this._seasonsService.add(this.addForm.value).subscribe((resp) => {

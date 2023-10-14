@@ -18,10 +18,13 @@ export class SeriesService {
 		paginationParams?
 	): Observable<any> {
 		let params = new HttpParams();
-		if (paginationParams) {
+		if (paginationParams?.is_pagination) {
 			params = params.append("is_pagination", paginationParams.is_pagination);
 		}
-		params = params.append("is_pagination", String(1))
+		if (paginationParams?.active) {
+			params = params.append("is_active", paginationParams.active);
+		}
+		//		params = params.append("is_pagination", String(1))
 		return this.HttpClient.get(environment.url() + 'admins/series',
 			{ params: params, headers: { "Accept-Language": "all" } })
 	}

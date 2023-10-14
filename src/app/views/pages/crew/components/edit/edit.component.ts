@@ -82,12 +82,12 @@ export class EditComponent implements OnInit {
 			birth_date: new UntypedFormControl('', [Validators.required]),
 			death_date: new UntypedFormControl(''),
 			social_links: this.fb.group({
-				facebook: new UntypedFormControl('', [Validators.required]),
-				instagram: new UntypedFormControl('', [Validators.required]),
-				twitter: new UntypedFormControl('', [Validators.required]),
-				youtube: new UntypedFormControl('', [Validators.required]),
-				tiktok: new UntypedFormControl('', [Validators.required]),
-				snapchat: new UntypedFormControl('', [Validators.required]),
+				facebook: new UntypedFormControl(''),
+				instagram: new UntypedFormControl(''),
+				twitter: new UntypedFormControl(''),
+				youtube: new UntypedFormControl(''),
+				tiktok: new UntypedFormControl(''),
+				snapchat: new UntypedFormControl(''),
 			}),
 			types: new UntypedFormControl([], [Validators.required]),
 			thumb: new UntypedFormControl('', [Validators.required]),
@@ -149,7 +149,7 @@ export class EditComponent implements OnInit {
 
 	addCustomLink = (term) => (term);
 
-	formattedDate(dateParam) {
+	formattedDate(dateParam:string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}

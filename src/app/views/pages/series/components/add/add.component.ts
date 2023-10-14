@@ -4,7 +4,7 @@ import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
 import { ActivatedRoute } from '@angular/router';
 import { LangService } from './../../../../../core/services/lang.service';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
@@ -14,7 +14,7 @@ import { GenreService } from './../../../../../core/services/Genre-Module/genre.
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
-export class AddComponent {
+export class AddComponent implements AfterViewInit{
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -52,9 +52,11 @@ export class AddComponent {
 
 
 	ngOnInit() {
-		this.getNeededList()
 		this.initForm()
 		this.checkLocalLang()
+	}
+	ngAfterViewInit(): void {
+		this.getNeededList()
 	}
 
 	checkLocalLang() {
@@ -65,6 +67,10 @@ export class AddComponent {
 	}
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
+	}
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
 	}
 	protected get getAddForm() {
 		return this.addForm.controls;
@@ -87,49 +93,59 @@ export class AddComponent {
 			is_new: new FormControl(0, [Validators.required]), //boolen
 
 			content_type_id: new FormControl('', [Validators.required]),
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 
-			content_images: this.fb.array([this.contentImgsForm]),
+			content_images: this.fb.array([]),
+			series_genres: this.fb.array([]),
 
-			series_genres: this.fb.group({
-				content_type_id: new FormControl('', [Validators.required]),
-				genre_id: new FormControl('', [Validators.required]),
-				genre_order: new FormControl(1, [Validators.required]), // static value
-			}),
+			// series_genres: this.fb.group({
+			// 	content_type_id: new FormControl('', [Validators.required]),
+			// 	genre_id: new FormControl('', [Validators.required]),
+			// 	genre_order: new FormControl(1, [Validators.required]), // static value
+			// }),
 			tags: new FormControl([], [Validators.required]),
 		})
 	}
 
 	patchContentTypeID() {
-		const value = {
-			content_type_id: this.contentTypeID,
-			series_genres: {
-				content_type_id: this.contentTypeID
-			},
-		}
-		this.addForm.patchValue(value)
+		this.addForm.patchValue({
+			content_type_id: this.contentTypeID
+		})
+		this.getSeriesGenres?.controls.forEach((item: any) => {
+			item.controls.content_type_id.setValue(this.contentTypeID)
+		});
 	}
 
-
-	patchContentImgs(): void {
+	patchContentImgs() {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 	}
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	get getContentImgs() {
 		return this.addForm.get('content_images') as FormArray
+	}
+	get getSeriesGenres() {
+		return this.addForm.get('series_genres') as FormArray
 	}
 
 	getNeededList() {
@@ -148,7 +164,6 @@ export class AddComponent {
 					this.contentTypeID = item.id
 				}
 			});
-			this.patchContentTypeID()
 			this.getDimentionList();
 			this.cdr.markForCheck()
 		})
@@ -169,17 +184,33 @@ export class AddComponent {
 			this.cdr.markForCheck()
 		})
 	}
-	formattedDate(dateParam) {
+	genreFormGroup(id, order) {
+		return this.fb.group({
+			content_type_id: new FormControl('', [Validators.required]),
+			genre_id: new FormControl(id, [Validators.required]),
+			genre_order: new FormControl(order, [Validators.required]), // static value
+		})
+	}
+	addGenreRow(param) {
+		const series_genres = this.addForm.get('series_genres') as FormArray;
+		series_genres.clear()
+		for (let i = 0; i < param.length; i++) {
+			series_genres.push(this.genreFormGroup(param[i], i + 1))
+		}
+	}
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
+		this.patchContentTypeID()
 		let formData = this.addForm.value;
-			formData['series_genres'] = [this.addForm.value['series_genres']]
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
+		formData['series_genres'] = this.addForm.value['series_genres']
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			return
 		}
 		this._seriesService.add(this.addForm.value).subscribe((resp) => {

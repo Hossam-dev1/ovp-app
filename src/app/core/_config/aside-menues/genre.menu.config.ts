@@ -33,11 +33,11 @@ export class GenreMenuConfig {
 				"translate": "MENUS.GENRE.MENU.COMPANY.TITLE",
 				"page": '/cms/company'
 			},
-			{
-				"title": "Company Type",
-				"translate": "MENUS.GENRE.MENU.COMPANY_TYPE.TITLE",
-				"page": '/cms/company_type'
-			},
+			// {
+			// 	"title": "Company Type",
+			// 	"translate": "MENUS.GENRE.MENU.COMPANY_TYPE.TITLE",
+			// 	"page": '/cms/company_type'
+			// },
 		]
 	};
 

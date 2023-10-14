@@ -48,13 +48,13 @@
 				<div class="col-md-6">
 					<div class="py-1 d-flex flex-column">
 						<div class="py-2">
-							<label>Gender </label>
+							<label>Gender *</label>
 							<ng-select formControlName="gender" [loading]="!genderList.length">
 								<ng-option *ngFor="let item of genderList" [value]="item">{{item}}</ng-option>
 							</ng-select>
 						</div>
 						<div class="py-2">
-							<label>Nationality</label>
+							<label>Nationality *</label>
 							<ng-select formControlName="nationality_id" [loading]="!nationalitiesList.length">
 								<ng-option *ngFor="let item of nationalitiesList"
 									[value]="item.id">{{toLang(item.name)}}</ng-option>
@@ -62,7 +62,7 @@
 						</div>
 
 						<div class="py-2">
-							<label>Crew Types </label>
+							<label>Crew Types  *</label>
 							<ng-select formControlName="types" [multiple]="true" [loading]="!crewTypesList.length">
 								<ng-option *ngFor="let item of crewTypesList"
 									[value]="item.id">{{toLang(item.name)}}</ng-option>

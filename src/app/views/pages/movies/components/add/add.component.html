@@ -37,11 +37,11 @@
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input  [form]="addForm" [label]="'clip_duration'"
+					<kt-form-input  [form]="addForm" [label]="'Clip Duration'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-3">
-					<label>Rating</label>
+					<label>Rating *</label>
 					<ng-select formControlName="clip_watch_rating">
 						<ng-option *ngFor="let item of ratingList" [value]="item">{{item}}</ng-option>
 					</ng-select>
@@ -74,14 +74,14 @@
 				<!-- Companies && Genres -->
 				<div class="row py-4">
 					<div class="col-md-6">
-						<label>Genres</label>
+						<label>Genres *</label>
 						<ng-select [multiple]="true" (change)="addGenreRow($event)" [loading]="!genreList.length">
 							<ng-option *ngFor="let item of genreList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 					<div class="col-md-6">
-						<label>Companies</label>
+						<label>Companies *</label>
 						<ng-select [multiple]="true" (change)="addCompanyRow($event)" [loading]="!companyList.length">
 							<ng-option *ngFor="let item of companyList"
 								[value]="item.id">{{toLang(item.name)}}</ng-option>
@@ -98,7 +98,7 @@
 				<!-- Genres && Crews -->
 				<div class="row">
 					<div class="col-md-6">
-						<label>Tags</label>
+						<label>Tags *</label>
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
@@ -114,7 +114,7 @@
 					<div class="col-md-6" formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
 						<div class="row py-3" [formGroupName]="i">
 							<div class="col-md-8">
-								<label>Crews ({{i+1}})</label>
+								<label>Crews * ({{i+1}})</label>
 								<ng-select formControlName="crew_id" [loading]="!crewList.length">
 									<ng-option *ngFor="let item of crewList"
 										[value]="item.id">{{toLang(item.name)}}</ng-option>
@@ -144,7 +144,7 @@
 						<div class="col-md-4" [formGroupName]="i">
 							<kt-form-upload-image [formGroup]="'content_images'" [control_index]="i"
 								[dimentionID]="item.id" [clear_src]="clearImgSrc" [to_base64]="true" [form]="addForm"
-								[form_control_name]="'img'" [label]="convertLable(item.key)">
+								[form_control_name]="'img'" [label]="convertLable(item.key, i)">
 							</kt-form-upload-image>
 						</div>
 					</ng-container>

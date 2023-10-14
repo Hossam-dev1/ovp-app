@@ -1,3 +1,4 @@
+import { PaginateParams } from './../../../../../core/models/paginateParams.interface';
 import { EpisdosService } from './../../../../../core/services/Series-Module/episdos.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef, Component } from '@angular/core';
@@ -16,25 +17,33 @@ export class IndexComponent {
 	series_ID: number;
 	seasons_ID: number;
 
+	headerParams: PaginateParams = {
+		active: 1,
+		is_pagination: 1
+	};
 	constructor(
 		private _episodesService: EpisdosService,
 		private cdr: ChangeDetectorRef,
 		private route: ActivatedRoute,
 	) { }
 
+	filterList = (param) => {
+		this.getListData(param)
+	}
+
 	ngOnInit() {
 		this.route.queryParams.subscribe((params) => {
 			this.series_ID = params.series
 			this.seasons_ID = params.seasons
-			this.getListData()
+			this.getListData(this.headerParams)
 		});
 		this._episodesService.isListChanged.subscribe((resp) => {
-			return resp ? this.getListData() : false
+			return resp ? this.getListData(this.headerParams) : false
 		})
 	}
 
-	getListData() {
-		this._episodesService.list(null, this.seasons_ID).subscribe((resp) => {
+	getListData(param) {
+		this._episodesService.list(param, this.seasons_ID).subscribe((resp) => {
 			this.episodesData = resp.body
 			this.isLoadingResults = false
 			this.cdr.detectChanges();

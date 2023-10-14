@@ -1,3 +1,4 @@
+import { PaginateParams } from './../../../../../core/models/paginateParams.interface';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,29 +10,34 @@ import { Observable } from 'rxjs';
 })
 export class IndexComponent implements OnInit {
 
+	headerParams: PaginateParams = {
+		active: 1,
+		is_pagination: 1
+	};
 	isLoadingResults: boolean = true;
 	crewData: Observable<any[]>;
 	displayedColumns: string[] = ['name', 'nationality', 'types', 'thumb', 'options'];
 
 	constructor(
-		private _crewTypeService: CrewService,
+		private _crewService: CrewService,
 		private cdr: ChangeDetectorRef
 	) { }
 
+	filterList = (param) => {
+		this.getListData(param)
+	}
 	ngOnInit() {
-		this.getListData()
-		this._crewTypeService.isListChanged.subscribe((resp) => {
+		this.getListData(this.headerParams)
+		this._crewService.isListChanged.subscribe((resp) => {
 			if (resp) {
-				this.getListData()
+				this.getListData(this.headerParams)
 			}
 		})
 	}
 
-	getListData() {
-		this._crewTypeService.list().subscribe((resp) => {
+	getListData(param?) {
+		this._crewService.list(param).subscribe((resp) => {
 			this.crewData = resp.body
-			console.log(this.crewData);
-
 			this.isLoadingResults = false
 			this.cdr.detectChanges();
 		})

@@ -1,3 +1,4 @@
+import { PaginateParams } from './../../../../../core/models/paginateParams.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -12,18 +13,21 @@ MatPaginator
 	styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+
+	headerParams: PaginateParams = {
+		active: 1,
+		is_pagination: 1
+	};
 	displayedColumns = ['nameEn', 'nameAr', 'options'];
 	dataSource = new MatTableDataSource([]);;
 	isLoadingResults: boolean = false;
-	genresData:[] = []
+	genresData: [] = []
 	// pagination variables
 	resultsLength = 0;
 	pageIndex = 0;
 	lang: string = 'en'
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
-
-
 
 	constructor(
 		private _genreService: GenreService,
@@ -33,20 +37,21 @@ export class IndexComponent implements OnInit {
 
 	) { }
 
+	filterList = (param) => {
+		this.getData(param)
+	}
 	ngOnInit() {
-		this.getData()
+		this.getData(this.headerParams)
 		this._genreService.isListChanged.subscribe((resp) => {
 			if (resp) {
-				this.getData()
+				this.getData(this.headerParams)
 			}
 		})
 	}
 
-
-
-	getData() {
+	getData(param?) {
 		this.isLoadingResults = true;
-		this._genreService.list().subscribe((resp) => {
+		this._genreService.list(param).subscribe((resp) => {
 			this.genresData = resp.body;
 			this.dataSource = resp.body
 			this.isLoadingResults = false;

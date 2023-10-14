@@ -43,6 +43,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 	search_filter = null;
 	@Input() headerParams: PaginateParams = {
 		active: 1,
+		is_pagination: 1,
 		per_page: GlobalConfig.pagination_per_page,
 		search_key: null,
 		sort_key: null,

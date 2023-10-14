@@ -7,7 +7,7 @@
 img{
     width: 10rem;
     height: 6rem;
-	object-fit: cover;
+	object-fit: fill;
 }
 label.btn{
 	padding: 10px !important;
@@ -15,6 +15,6 @@ label.btn{
 .uploaded-preview.crew_img{
 	img{
 		width: 12rem !important;
-		height: 100% !important;
+		height: 12rem !important;
 	}
 }

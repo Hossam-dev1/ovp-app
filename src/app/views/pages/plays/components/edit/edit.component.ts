@@ -74,8 +74,9 @@ export class EditComponent {
 		this.checkLocalLang();
 
 	}
-	convertLable(param:string) {
-		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	convertLable(param: string, index: number = 0) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
 	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
@@ -129,7 +130,7 @@ export class EditComponent {
 			clip_puplish_date: this.clip_object['clip_puplish_date'],
 			clip_puplish_end_date: this.clip_object['clip_puplish_end_date'],
 			content_type_id: this.clip_object['content_type_id'],
-			content_provider_id: this.clip_object['content_provider_id'],
+//			content_provider_id: this.clip_object['content_provider_id'],
 			clip_watch_rating: this.clip_object['clip_watch_rating'],
 			company_ids: companiesIDs,
 			genre_ids: genresIDs,
@@ -165,7 +166,7 @@ export class EditComponent {
 			clip_duration: new FormControl('', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
-			clip_puplish_end_date: new FormControl('', [Validators.required]),
+			clip_puplish_end_date: new FormControl(''),
 			clip_watch_rating: new FormControl('', [Validators.required]),
 
 			asset_id: new FormControl('dfsdfdsfsdfsdgdsfsdfsd', [Validators.required]),
@@ -175,7 +176,7 @@ export class EditComponent {
 			clip_filename: new FormControl('atbtab', [Validators.required]),
 
 			content_type_id: new FormControl('', [Validators.required]),
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 
 			content_images: this.fb.array([]),
 
@@ -229,6 +230,7 @@ export class EditComponent {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 	}
@@ -238,6 +240,13 @@ export class EditComponent {
 			img: new FormControl(''),
 			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	addCrewRow() {
@@ -321,7 +330,7 @@ export class EditComponent {
 			clip_genres.push(this.genreFormGroup(param[i], i + 1))
 		}
 	}
-	formattedDate(dateParam) {
+	formattedDate(dateParam:string) {
 		const date = new Date(dateParam);
 		return date?.toISOString().slice(0, 10);
 	}
@@ -334,10 +343,12 @@ export class EditComponent {
 		// return
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			return
 		}
 		const formData = this.editForm.value
+		// Remove null values from the formControls array
+		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
 		formData['clip_status'] = Number(this.getEditForm['clip_status'].value)
 		formData['clip_watch_rating'] = (this.getEditForm['clip_watch_rating'].value).toString()
 		formData['clip_puplish_date'] = this.formattedDate(this.getEditForm['clip_puplish_date'].value)

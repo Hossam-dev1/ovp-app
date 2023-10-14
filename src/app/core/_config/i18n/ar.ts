@@ -85,7 +85,7 @@ export const locale = {
 
 
 			CONTENT: {
-				TITLE: 'Content',
+				TITLE: 'المحتوي',
 				MENU: {
 					CLIPS: {
 						TITLE: 'مقاطع الفيديو',
@@ -110,7 +110,26 @@ export const locale = {
 						TITLE: 'الحلقات',
 						TEXT: 'الحلقة',
 					},
+					TAGS: {
+						TITLE: 'علامات المحتوي',
+						TEXT: 'العلامات',
+					},
 				},
+			},
+
+			SETTINGS: {
+				TITLE: "الاعدادات",
+				MENU: {
+					USERS: {
+						TITLE: 'مستخدمين منصة التحكم',
+					},
+					ROLES: {
+						TITLE:'الادوار',
+					},
+					PERMISSIONS: {
+						TITLE: 'الصلاحيات',
+					},
+				}
 			},
 
 			SERIES: {
@@ -119,11 +138,11 @@ export const locale = {
 				MENU: {
 					SEASIONS: {
 						TITLE: 'المواسم',
-						TEXT:'الموسم',
+						TEXT: 'الموسم',
 					},
 					EPISODES: {
 						TITLE: 'الحلقات',
-						TEXT:'الحلقة',
+						TEXT: 'الحلقة',
 					},
 				},
 			},

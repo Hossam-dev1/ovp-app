@@ -28,8 +28,9 @@ export class IndexComponent {
 			}
 		})
 	}
-	filterList = (filterParam) => {
-		this.getListData(filterParam)
+	filterList = (param)=>{
+		this.isLoadingResults = true
+		this.getListData(param)
 	}
 
 	getListData(headerParams) {

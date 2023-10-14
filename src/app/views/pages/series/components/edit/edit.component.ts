@@ -5,7 +5,7 @@ import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
 import { ActivatedRoute } from '@angular/router';
 import { LangService } from './../../../../../core/services/lang.service';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
@@ -15,7 +15,7 @@ import { GenreService } from './../../../../../core/services/Genre-Module/genre.
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
-export class EditComponent {
+export class EditComponent implements AfterViewInit {
 	selectedValues: number[] = [2, 4, 6];
 
 	isLoading: boolean = false;
@@ -61,10 +61,12 @@ export class EditComponent {
 
 
 	ngOnInit() {
-		this.getUrlID()
-		this.getNeededList()
 		this.initForm()
 		this.checkLocalLang()
+	}
+	ngAfterViewInit(): void {
+		this.getUrlID()
+		this.getNeededList()
 	}
 
 	checkLocalLang() {
@@ -76,6 +78,10 @@ export class EditComponent {
 	toLang(param) {
 		return this.lang == 'en' ? param.en : param.ar;
 	}
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
+	}
 	getUrlID() {
 		this.isLoadingResults = true
 		this._activatedRoute.paramMap.subscribe(params => {
@@ -86,9 +92,11 @@ export class EditComponent {
 	getDataByID() {
 		this._seriesService.show(this.series_ID).subscribe((resp: any) => {
 			this.series_object = resp.body;
-			this.patchSeriesData();
+			if(this.series_object){
+				this.patchSeriesData();
+			}
 			this.isLoadingResults = false;
-			this.cdr.detectChanges();
+			this.cdr.markForCheck();
 		}, (error: HttpErrorResponse) => {
 			this.toastr.error('someThing went wrong!');
 			// this.router.navigate(['/']);
@@ -96,7 +104,7 @@ export class EditComponent {
 	}
 
 	patchSeriesData() {
-		const genresIDs = this.series_object['genres'].map((genre) => genre.id)
+		const genresIDs = this.series_object?.genres.map((genre) => genre.id)
 
 		this.editForm.patchValue({
 			name: {
@@ -112,15 +120,15 @@ export class EditComponent {
 			series_status: this.series_object['series_status'],
 			is_exclusive: this.series_object['is_exclusive'],
 			is_new: this.series_object['is_new'],
-			content_provider_id: this.series_object['content_provider_id'],
+			//content_provider_id: this.series_object['content_provider_id'],
 
 			content_images: this.series_object['content_images'],
 			genre_ids: genresIDs,
 
 			tags: [this.series_object['tags'][0]['id']],
 		});
-		this.contentTypeID = this.series_object['content_type_id'];
 		this.selectedSeiresYear = this.series_object['series_start_year']
+		console.log(this.contentTypeID);
 
 		this.addGenreRow(genresIDs) //patch generes value
 		this.cdr.markForCheck()
@@ -148,10 +156,9 @@ export class EditComponent {
 
 			content_type_id: new FormControl('', [Validators.required]),
 
-			content_images: this.fb.array([this.contentImgsForm]),
+			content_images: this.fb.array([]),
 			series_genres: this.fb.array([]),
 			genre_ids: new FormControl([]),
-
 
 			// series_genres: this.fb.group({
 			// 	content_type_id: new FormControl('', [Validators.required]),
@@ -166,30 +173,41 @@ export class EditComponent {
 		this.editForm.patchValue({
 			content_type_id: this.contentTypeID
 		})
+		this.getSeriesGenres?.controls.forEach((item:any) => {
+			item.controls.content_type_id.setValue(this.contentTypeID)
+		});
 	}
 
-
 	patchContentImgs(): void {
-		console.log(this.dimentionList);
-
 		if (this.dimentionList.length > 0) {
 			for (let i = 1; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation();
 			this.isDimentionReady = true
 		}
 	}
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
+	}
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
 	}
 
 	get getContentImgs() {
 		return this.editForm.get('content_images') as FormArray
+	}
+	get getSeriesGenres() {
+		return this.editForm.get('series_genres') as FormArray
 	}
 
 	getNeededList() {
@@ -209,8 +227,6 @@ export class EditComponent {
 				}
 			});
 			this.getDimentionList();
-			this.patchContentTypeID()
-			this.patchSeriesData();
 			this.cdr.detectChanges()
 		})
 
@@ -227,15 +243,15 @@ export class EditComponent {
 			this.dimentionList = this.dimentionList.filter(item =>
 				item['content_type']['id'] == contentID
 			)
-
 			this.patchContentImgs()
+			this.patchContentTypeID();
 			this.cdr.markForCheck()
 		})
 	}
 
 	genreFormGroup(id, order) {
 		return this.fb.group({
-			content_type_id: new FormControl(this.contentTypeID, [Validators.required]),
+			content_type_id: new FormControl('', [Validators.required]),
 			genre_id: new FormControl(id, [Validators.required]),
 			genre_order: new FormControl(order, [Validators.required]), // static value
 		})
@@ -248,21 +264,22 @@ export class EditComponent {
 		}
 	}
 
-	formattedDate(dateParam) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
 		let formData = this.editForm.value;
-		formData['series_genres'] = [this.editForm.value['series_genres']]
-		console.log('this.editForm.value', this.editForm.value);
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
+		formData['series_genres'] = this.editForm.value['series_genres']
+		delete formData['genre_ids']
 
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
-			// return
+			this.toastr.error('Check required fields');
+			return
 		}
-		this._seriesService.edit(this.series_ID, this.editForm.value).subscribe((resp) => {
+		this._seriesService.edit(this.series_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
 			this.cdr.markForCheck();
 		},

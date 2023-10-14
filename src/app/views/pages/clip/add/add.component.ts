@@ -69,13 +69,14 @@ export class AddComponent {
 
 
 	ngOnInit() {
-		this.getNeededList()
 		this.initForm()
+		this.getNeededList()
 		this.checkLocalLang()
 	}
 
-	convertLable(param:string) {
-		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+	convertLable(param: string, index: number) {
+		const requriedLabel = index == 0 ? ' *' : ''
+		return param.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) + requriedLabel;
 	}
 	checkLocalLang() {
 		this._langService.localLang.subscribe((curreLang) => {
@@ -104,7 +105,7 @@ export class AddComponent {
 			clip_duration: new FormControl('00:00:00', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
-			clip_puplish_end_date: new FormControl('', [Validators.required]),
+			clip_puplish_end_date: new FormControl(''),
 			clip_watch_rating: new FormControl('', [Validators.required]),
 
 			asset_id: new FormControl('dfsdfdsfsdfsdgdsfsdfsd', [Validators.required]),
@@ -114,9 +115,9 @@ export class AddComponent {
 			clip_filename: new FormControl('atbtab', [Validators.required]),
 
 			content_type_id: new FormControl('', [Validators.required]),
-			content_provider_id: new FormControl('', [Validators.required]),
+			// content_provider_id: new FormControl('', [Validators.required]),
 
-			content_images: this.fb.array([this.contentImgsForm]),
+			content_images: this.fb.array([]),
 
 			clip_companies: this.fb.array([]),
 			clip_genres: this.fb.array([]),
@@ -145,10 +146,11 @@ export class AddComponent {
 
 	patchContentImgs(): void {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
+			this.setContentImgsValidation()
 			this.isDimentionReady = true
 		}
 		// this.addForm.setControl('content_images', this.contentImgsForm());
@@ -156,11 +158,18 @@ export class AddComponent {
 
 	contentImgsForm() {
 		return this.fb.group({
-			img: new FormControl('', [Validators.required]),
-			dimention_id: new FormControl('', [Validators.required]),
+			img: new FormControl(''),
+			dimention_id: new FormControl(''),
 		})
 	}
 
+	setContentImgsValidation() {
+		// Make the first content img control required
+		if (this.getContentImgs.length > 0) {
+			this.getContentImgs.controls[0]['controls']['img'].setValidators(Validators.required);
+			this.getContentImgs.controls[0]['controls']['img'].updateValueAndValidity();
+		}
+	}
 
 	get getCrews() {
 		return this.addForm.get('clip_crews') as FormArray
@@ -221,7 +230,7 @@ export class AddComponent {
 		})
 	}
 
-	formattedDate(dateParam) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
@@ -257,17 +266,17 @@ export class AddComponent {
 		}
 	}
 	submit() {
-		console.log(this.addForm.value);
-
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
-			this.toastr.error('Check all required field');
+			this.toastr.error('Check required fields');
 			return
 		}
 		const formData = this.addForm.value
+		// Remove null values from the formControls array
+		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
 		formData['clip_status'] = Number(this.getAddForm['clip_status'].value)
 		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
-		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value)
+		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value || null)
 
 		this._clipsService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
