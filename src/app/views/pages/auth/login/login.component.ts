@@ -132,8 +132,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 				localStorage.setItem('token_expired', String(resp.body.expire_at));
 
 				this.cdr.markForCheck();
-				location.reload();
-			//	this.getPermission();
+				// location.reload();
+				this.getPermission();
 			},
 			(handler) => {
 				this.authNoticeService.setNotice(this.helper.showingErrors(handler.error), 'danger');
@@ -145,10 +145,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
 	getPermission() {
+		console.log('getPermission');
 
 		this.loading = true;
 		this.AccountPermissionsService.list().subscribe(
 			(resp) => {
+				console.log('user resp', resp);
 
 				let permissions = this.AccountPermissionsService.preparePermissions(resp);
 				localStorage.setItem('permissions', JSON.stringify(permissions));

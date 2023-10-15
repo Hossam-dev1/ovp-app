@@ -1,3 +1,4 @@
+import { PermissionsGuard } from './../../../core/guards/permissions.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleComponent } from './role.component';
@@ -9,18 +10,29 @@ const routes: Routes = [
 	{
 		path: '',
 		component: RoleComponent,
+		canActivateChild: [PermissionsGuard],
+
 		children: [
 			{
 				path: '',
-				component: IndexComponent
+				component: IndexComponent,
+				data: {
+					permissions: ['ADMINS_ROLES_INDEX'],
+				},
 			},
 			{
 				path: 'add',
-				component: AddComponent
+				component: AddComponent,
+				data: {
+					permissions: ['ADMINS_ROLES_STORE'],
+				},
 			},
 			{
 				path: 'edit/:id',
-				component: EditComponent
+				component: EditComponent,
+				data: {
+					permissions: ['ADMINS_ROLES_UPDATE'],
+				},
 			},
 			{ path: '**', redirectTo: '', pathMatch: 'full' },
 		]

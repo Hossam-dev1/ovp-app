@@ -1,3 +1,4 @@
+import { PermissionsGuard } from './../../../core/guards/permissions.guard';
 import { DetailsComponent } from './components/details/details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,31 +12,45 @@ const routes: Routes = [
 	{
 		path: '',
 		component: CrewComponent,
+		canActivateChild: [PermissionsGuard],
+
 		children: [
 			{
 				path: '',
-				component: IndexComponent
-			} ,
-			{
-				path: 'details/:id',
-				component: DetailsComponent
-			} ,
+				component: IndexComponent,
+				data: {
+					permissions: ['ADMINS_CREWS_INDEX'],
+				},
+			},
 			{
 				path: 'add',
-				component: AddComponent
-			} ,
+				component: AddComponent,
+				data: {
+					permissions: ['ADMINS_CREWS_STORE'],
+				},
+			},
+			{
+				path: 'details/:id',
+				component: DetailsComponent,
+				data: {
+					permissions: ['ADMINS_CREWS_SHOW'],
+				},
+			},
 			{
 				path: 'edit/:id',
-				component: EditComponent
-			} ,
-			{path: '**', redirectTo: '', pathMatch: 'full'},
+				component: EditComponent,
+				data: {
+					permissions: ['ADMINS_CREWS_UPDATE'],
+				},
+			},
+			{ path: '**', redirectTo: '', pathMatch: 'full' },
 		]
 	}
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
 export class CrewRoutingModule { }

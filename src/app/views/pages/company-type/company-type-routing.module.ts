@@ -1,3 +1,4 @@
+import { PermissionsGuard } from './../../../core/guards/permissions.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompanyTypeComponent } from './company-type.component';
@@ -10,18 +11,29 @@ const routes: Routes = [
 	{
 		path: '',
 		component: CompanyTypeComponent,
+		canActivateChild: [PermissionsGuard],
+
 		children: [
 			{
 				path: '',
-				component: IndexComponent
+				component: IndexComponent,
+				data: {
+					permissions: ['ADMINS_COMPANY_TYPES_INDEX'],
+				},
 			},
 			{
 				path: 'add',
-				component: AddComponent
+				component: AddComponent,
+				data: {
+					permissions: ['ADMINS_COMPANY_TYPES_STORE'],
+				},
 			},
 			{
 				path: 'edit/:id',
-				component: EditComponent
+				component: EditComponent,
+				data: {
+					permissions: ['ADMINS_COMPANY_TYPES_UPDATE'],
+				},
 			},
 			{ path: '**', redirectTo: '', pathMatch: 'full' },
 		]
