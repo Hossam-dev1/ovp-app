@@ -13,7 +13,7 @@ export class IndexComponent {
 
 	isLoadingResults: boolean = true;
 	showsData: Observable<any[]>;
-	displayedColumns: string[] = ['name', 'genres', 'series_no_of_seasons', 'series_status', 'options'];
+	displayedColumns: string[] = ['name', 'genres', 'series_no_of_seasons', 'series_status', 'is_featured', 'options'];
 	contentTypeList: any[] = []
 	contentTypeID: number;
 	contentTypeKey: string = 'shows'

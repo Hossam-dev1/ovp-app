@@ -126,6 +126,7 @@ export class EditComponent {
 			},
 			clip_duration: this.clip_object['clip_duration'],
 			clip_status: this.clip_object['clip_status'],
+			is_featured: this.clip_object['is_featured'] || false,
 			clip_year: this.clip_object['clip_year'],
 			clip_puplish_date: this.clip_object['clip_puplish_date'],
 			clip_puplish_end_date: this.clip_object['clip_puplish_end_date'],
@@ -165,6 +166,7 @@ export class EditComponent {
 			clip_year: new FormControl('', [Validators.required]),
 			clip_duration: new FormControl('', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
+			is_featured: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
 			clip_puplish_end_date: new FormControl(''),
 			clip_watch_rating: new FormControl('', [Validators.required]),

@@ -1,0 +1,46 @@
+<div class="header p-3">
+	<h5>Add Category</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div class="loader d-flex justify-content-center">
+		<kt-api-loader diameter="50" class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
+	</div>
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="addForm" autocomplete="off">
+			<div class="row py-3">
+				<div class="col-md-6">
+					<label>Category Type *</label>
+					<ng-select (change)="checkCategoryType($event)">
+						<ng-option *ngFor="let item of categoryTypeList" [value]="item">{{item}}</ng-option>
+					</ng-select>
+				</div>
+
+				<div class="col-md-6" *ngIf="!isMainCategory">
+					<label>Parent Category *</label>
+					<ng-select formControlName="parent_id">
+						<ng-option *ngFor="let item of parentList" [value]="item.id">{{item.name['en']}}</ng-option>
+					</ng-select>
+				</div>
+			</div>
+			<div class="row" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (En)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (Ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
+					(click)="submit()">Add</button>
+			</div>
+		</form>
+	</div>
+
+</div>

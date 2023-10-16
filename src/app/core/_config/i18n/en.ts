@@ -104,6 +104,10 @@ export const locale = {
 						TITLE: 'Content Tags',
 						TEXT: 'Tags',
 					},
+					CATEGORIES: {
+						TITLE: 'Categories',
+						TEXT: 'Categories',
+					},
 				},
 			},
 

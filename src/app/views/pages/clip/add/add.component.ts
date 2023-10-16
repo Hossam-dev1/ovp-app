@@ -104,6 +104,7 @@ export class AddComponent {
 			clip_year: new FormControl('', [Validators.required]),
 			clip_duration: new FormControl('00:00:00', [Validators.required]),
 			clip_status: new FormControl(false, [Validators.required]), //boolen
+			is_featured: new FormControl(false, [Validators.required]), //boolen
 			clip_puplish_date: new FormControl('', [Validators.required]),
 			clip_puplish_end_date: new FormControl(''),
 			clip_watch_rating: new FormControl('', [Validators.required]),

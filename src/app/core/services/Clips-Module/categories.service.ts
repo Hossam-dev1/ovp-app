@@ -6,7 +6,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
 	providedIn: 'root'
 })
-export class TagService {
+export class CategoriesService {
 	isListChanged = new BehaviorSubject(false)
 	requestOptions = {
 		headers: new HttpHeaders({ "Accept-Language": "all" }),
@@ -25,24 +25,24 @@ export class TagService {
 			params = params.append("is_active", paginationParams.active);
 		}
 		//		params = params.append("is_pagination", String(1))
-		return this.HttpClient.get(environment.url() + 'admins/tags',
+		return this.HttpClient.get(environment.url() + 'admins/categories',
 			{ params: params, headers: { "Accept-Language": "all" } })
 	}
 
 	add(data): Observable<any> {
-		return this.HttpClient.post(environment.url() + 'admins/tags', data)
+		return this.HttpClient.post(environment.url() + 'admins/categories', data)
 	}
 
 	show(id: number) {
-		return this.HttpClient.get(environment.url() + `admins/tags/${id}`, this.requestOptions)
+		return this.HttpClient.get(environment.url() + `admins/categories/${id}`, this.requestOptions)
 	}
 
 	edit(id: number, data): Observable<any> {
-		return this.HttpClient.put(environment.url() + `admins/tags/${id}`, data)
+		return this.HttpClient.put(environment.url() + `admins/categories/${id}`, data)
 	}
 
 	delete(id: number) {
-		return this.HttpClient.delete(environment.url() + `admins/tags/${id}`)
+		return this.HttpClient.delete(environment.url() + `admins/categories/${id}`)
 	}
 
 }

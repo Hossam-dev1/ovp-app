@@ -114,6 +114,10 @@ export const locale = {
 						TITLE: 'علامات المحتوي',
 						TEXT: 'العلامات',
 					},
+					CATEGORIES: {
+						TITLE: 'الفئات',
+						TEXT: 'الفئات',
+					},
 				},
 			},
 

@@ -7,8 +7,6 @@ import { SettingsMenuConfig } from './aside-menues/settings.menu.config';
 import { SeriesMenuConfig } from './aside-menues/series.menu.config';
 import { ContentMenuConfig } from './aside-menues/content.menu.config';
 
-
-
 export class MenuConfig {
 
 	// Aside Menu

@@ -91,6 +91,7 @@ export class AddComponent {
 			series_status: new FormControl(0, [Validators.required]), //boolen
 			is_exclusive: new FormControl(0, [Validators.required]), //boolen
 			is_new: new FormControl(0, [Validators.required]), //boolen
+			is_featured: new FormControl(false, [Validators.required]), //boolen
 
 			content_type_id: new FormControl('', [Validators.required]),
 			// content_provider_id: new FormControl('', [Validators.required]),

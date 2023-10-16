@@ -120,6 +120,7 @@ export class EditComponent implements AfterViewInit {
 			series_status: this.series_object['series_status'],
 			is_exclusive: this.series_object['is_exclusive'],
 			is_new: this.series_object['is_new'],
+			is_featured: this.series_object['is_featured'],
 			//content_provider_id: this.series_object['content_provider_id'],
 
 			content_images: this.series_object['content_images'],
@@ -153,6 +154,7 @@ export class EditComponent implements AfterViewInit {
 			series_status: new FormControl(0, [Validators.required]), //boolen
 			is_exclusive: new FormControl(0, [Validators.required]), //boolen
 			is_new: new FormControl(0, [Validators.required]), //boolen
+			is_featured: new FormControl(false, [Validators.required]), //boolen
 
 			content_type_id: new FormControl('', [Validators.required]),
 

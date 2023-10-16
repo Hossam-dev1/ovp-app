@@ -1,3 +1,5 @@
+import { TagService } from './../../../../core/services/Clips-Module/tags.service';
+import { CategoriesService } from './../../../../core/services/Clips-Module/categories.service';
 import { RolesService } from './../../../../core/services/ACL-Module/roles.service';
 import { AdminsService } from './../../../../core/services/User-Module/admins.service';
 import { SeasonsService } from './../../../../core/services/Series-Module/seasons.service';
@@ -81,6 +83,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private helper: HelperService,
 		private authNoticeService: AuthNoticeService,
 		private _seriesService: SeriesService,
+		private _tagsService: TagService,
 		private _seasonsService: SeasonsService,
 		private _eposidesService: EpisdosService,
 		private _nationalitiesService: NationalitiesService,
@@ -92,6 +95,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private _companyService: CompanyService,
 		private _adminsService: AdminsService,
 		private _rolesService: RolesService,
+		private _categoriesService:CategoriesService,
 		private _toaster: ToastrService,
 		public dialog: MatDialog,
 		private translate: TranslateService

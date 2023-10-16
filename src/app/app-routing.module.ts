@@ -162,6 +162,10 @@ const routes: Routes = [
 				},
 				loadChildren: () => import('./views/pages/roles/roles.module').then(m => m.RolesModule)
 			},
+			{
+				path: "categories", // <= Page URL ,
+				loadChildren: () => import('./views/pages/categories/categories.module').then(m => m.CategoriesModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

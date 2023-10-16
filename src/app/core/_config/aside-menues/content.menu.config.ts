@@ -49,10 +49,16 @@ export class ContentMenuConfig {
 				"page": '/cms/shows'
 			},
 			{
+				"title": "Categories",
+				"translate": "MENUS.CONTENT.MENU.CATEGORIES.TITLE",
+				"page": '/cms/categories'
+			},
+			{
 				"title": "Content Tags",
 				"translate": "MENUS.CONTENT.MENU.TAGS.TITLE",
 				"page": '/cms/tags'
 			},
+
 		]
 	};
 

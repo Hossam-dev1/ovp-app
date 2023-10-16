@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class IndexComponent {
 	isLoadingResults: boolean = true;
 	Data_Source: any;
-	displayedColumns: string[] = ['name', 'genres', 'clip_year', 'clip_puplish_date', 'companies', 'content_images', 'options'];
+	displayedColumns: string[] = ['name', 'genres', 'clip_year', 'clip_puplish_date', 'companies', 'content_images', 'is_featured',  'options'];
 	contentTypeList: any[] = []
 	contentTypeID: number;
 	contentTypeKey: string = 'clips'

@@ -43,12 +43,19 @@
 					<kt-form-input [type]="'number'" [form]="addForm" [label]="'Num of seasons'"
 						[form_control_name]="'series_no_of_seasons'"></kt-form-input>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-3">
 					<div class="example-label-container">
 						<label id="example-name-label" class="example-name-label">Status</label>
 					</div>
 					<mat-slide-toggle formControlName="series_status"></mat-slide-toggle>
 				</div>
+					<div class="col-md-3">
+						<div class="example-label-container d-flex">
+							<label id="example-name-label" class="example-name-label">is_featured </label>
+							<mat-icon class="info_icon" matTooltip="Show This Clip as featured in homepage">info</mat-icon>
+						</div>
+						<mat-slide-toggle formControlName="is_featured"></mat-slide-toggle>
+					</div>
 			</div>
 
 			<!-- series_start_year && is_exclusive -->
