@@ -166,6 +166,10 @@ const routes: Routes = [
 				path: "categories", // <= Page URL ,
 				loadChildren: () => import('./views/pages/categories/categories.module').then(m => m.CategoriesModule)
 			},
+			{
+				path: "collections", // <= Page URL ,
+				loadChildren: () => import('./views/pages/collections/collection.module').then(m => m.CollectionModule)
+			},
 			// admins
 			// {
 			// 	path: RoutesName.admins(), // <= Page URL ,

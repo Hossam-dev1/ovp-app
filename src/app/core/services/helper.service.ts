@@ -21,6 +21,11 @@ export class HelperService {
 			{ headers: { "Accept-Language": "all" } })
 	}
 
+	deviceTypesList(): Observable<any> {
+		return this.HttpClient.get(environment.url() + 'admins/device_types',
+			{ headers: { "Accept-Language": "all" } })
+	}
+
 	showingErrors(handler: errors) {
 		let messages = [];
 		for (let errors in handler.errors) {

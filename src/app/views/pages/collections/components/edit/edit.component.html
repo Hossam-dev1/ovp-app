@@ -1,0 +1,65 @@
+<div class="header p-3">
+	<h5>Edit Collections</h5>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Form-->
+<div class="example-container container-fluid">
+	<div class="loader d-flex justify-content-center">
+		<kt-api-loader diameter="50" class="text-center" [isLoadingResults]="isLoadingResults"></kt-api-loader>
+	</div>
+	<div [hidden]="isLoadingResults">
+		<form class="example-form p-3" [formGroup]="editForm" autocomplete="off">
+
+			<div class="row py-2" formGroupName="name">
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="editForm" [label]="'Name (En)'"
+						[form_control_name]="'en'"></kt-form-input>
+				</div>
+				<div class="col-md-6">
+					<kt-form-input [form_group]="'name'" [form]="editForm" [label]="'Name (Ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
+				</div>
+			</div>
+
+			<div class="row py-2">
+				<div class="col-md-6">
+					<kt-form-input [type]="'number'" [form_control_name]="'sorting_order'" [form]="editForm"
+						[label]="'Sorting Order'"></kt-form-input>
+				</div>
+
+				<div class="col-md-6">
+					<label>Device Type *</label>
+					<ng-select formControlName="device_type_id" [loading]="!deviceTypesList.length">
+						<ng-option *ngFor="let item of deviceTypesList"
+							[value]="item.id">{{toLang(item.name)}}</ng-option>
+					</ng-select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<label id="content_types">Content Type *</label>
+					<mat-radio-group formControlName="contentTypeOption" (change)="contentTypesOnChange($event)" aria-label="content_types"
+						class="example-radio-group">
+						<mat-radio-button *ngFor="let item of contentTypesGroup"
+							[value]="item.key">{{toLang(item.name)}}</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				<div class="col-md-6" *ngIf="contentList.length">
+					<label>Content *</label>
+					<ng-select formControlName="contentListControl" [items]="contentList" bindLabel="name.en"
+						bindValue="id" (change)="detectContentList($event)" [multiple]="true"
+						[loading]="!contentList.length">
+					</ng-select>
+				</div>
+			</div>
+
+
+			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
+					(click)="submit()">Update</button>
+			</div>
+		</form>
+	</div>
+
+</div>
