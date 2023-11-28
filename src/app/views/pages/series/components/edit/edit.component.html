@@ -49,13 +49,13 @@
 					</div>
 					<mat-slide-toggle formControlName="series_status"></mat-slide-toggle>
 				</div>
-					<div class="col-md-3">
-						<div class="example-label-container d-flex">
-							<label id="example-name-label" class="example-name-label">is_featured </label>
-							<mat-icon class="info_icon" matTooltip="Show This Clip as featured in homepage">info</mat-icon>
-						</div>
-						<mat-slide-toggle formControlName="is_featured"></mat-slide-toggle>
+				<div class="col-md-3">
+					<div class="example-label-container d-flex">
+						<label id="example-name-label" class="example-name-label">is_featured </label>
+						<mat-icon class="info_icon" matTooltip="Show This Clip as featured in homepage">info</mat-icon>
 					</div>
+					<mat-slide-toggle formControlName="is_featured"></mat-slide-toggle>
+				</div>
 			</div>
 
 			<!-- series_start_year && is_exclusive -->
@@ -107,6 +107,17 @@
 						<ng-select [multiple]="true" formControlName="tags" [loading]="!tagsList.length">
 							<ng-option *ngFor="let item of tagsList" [value]="item.id">{{item.key +' | '+
 								toLang(item.name)}}</ng-option>
+						</ng-select>
+					</div>
+				</div>
+
+				<!-- Categories Rows -->
+				<div class="row">
+					<div class="col-md-6  pt-4">
+						<label>Categories *</label>
+						<ng-select [multiple]="true" formControlName="categories" [loading]="!categoriesList.length">
+							<ng-option *ngFor="let item of categoriesList"
+								[value]="item.id">{{toLang(item.name)}}</ng-option>
 						</ng-select>
 					</div>
 				</div>

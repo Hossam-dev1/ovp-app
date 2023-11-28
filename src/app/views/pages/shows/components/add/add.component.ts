@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
@@ -30,6 +31,7 @@ export class AddComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
+		private _categoriesService: CategoriesService,
 		private _tagsService: TagService
 	) { }
 
@@ -41,8 +43,8 @@ export class AddComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	contentTypeID: number = null;
-
 	addForm: FormGroup;
 	isLoadingResults: boolean;
 	clearImgSrc: boolean;
@@ -104,7 +106,9 @@ export class AddComponent {
 			// 	genre_id: new FormControl('', [Validators.required]),
 			// 	genre_order: new FormControl(1, [Validators.required]), // static value
 			// }),
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -171,6 +175,10 @@ export class AddComponent {
 
 		this._tagsService.list().subscribe((resp) => {
 			this.tagsList = resp.body;
+			this.cdr.markForCheck()
+		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

@@ -121,6 +121,9 @@ export const locale = {
 					ROLES: {
 						TITLE: 'Roles',
 					},
+					COLLECTIONS: {
+						TITLE: 'Collections',
+					},
 					PERMISSIONS: {
 						TITLE: 'Permissions',
 					},

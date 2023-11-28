@@ -24,10 +24,11 @@
 
 			<div class="row py-2">
 				<div class="col-md-6">
-					<kt-form-input [type]="'number'" [form_control_name]="'sorting_order'" [form]="addForm"
-						[label]="'Sorting Order'"></kt-form-input>
+					<label>Display Type *</label>
+					<ng-select formControlName="display_type_id" [loading]="!displayTypesList.length">
+						<ng-option *ngFor="let item of displayTypesList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+					</ng-select>
 				</div>
-
 				<div class="col-md-6">
 					<label>Device Type *</label>
 					<ng-select formControlName="device_type_id" [loading]="!deviceTypesList.length">
@@ -36,7 +37,7 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row pt-4 pb-2">
 				<div class="col-md-6">
 					<label id="content_types">Content Type *</label>
 					<mat-radio-group (change)="contentTypesOnChange($event)" aria-label="content_types"
@@ -52,6 +53,13 @@
 						[multiple]="true"
 						[loading]="!contentList.length">
 					</ng-select>
+				</div>
+			</div>
+
+			<div class="row py-2">
+				<div class="col-md-6">
+					<kt-form-input [type]="'number'" [form_control_name]="'sorting_order'" [form]="addForm"
+						[label]="'Sorting Order'"></kt-form-input>
 				</div>
 			</div>
 

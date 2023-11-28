@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../core/services/Clips-Module/categories.service';
 import { TagService } from './../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../core/services/Clips-Module/content-provider.service';
@@ -35,6 +36,7 @@ export class AddComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
+		private _categoriesService: CategoriesService,
 		private _tagsService: TagService
 	) { }
 
@@ -58,6 +60,7 @@ export class AddComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	contentTypeID: number = null;
 
 	addForm: FormGroup;
@@ -126,6 +129,7 @@ export class AddComponent {
 			clip_crews: this.fb.array([this.crewForm()]),
 
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -218,6 +222,14 @@ export class AddComponent {
 			this.tagsList = resp.body;
 			this.cdr.markForCheck()
 		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
+			this.cdr.markForCheck()
+		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
+			this.cdr.markForCheck()
+		})
 	}
 
 	getDimensionList() {
@@ -274,7 +286,7 @@ export class AddComponent {
 		}
 		const formData = this.addForm.value
 		// Remove null values from the formControls array
-		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['clip_status'] = Number(this.getAddForm['clip_status'].value)
 		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
 		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value || null)

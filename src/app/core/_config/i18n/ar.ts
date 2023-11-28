@@ -130,6 +130,9 @@ export const locale = {
 					ROLES: {
 						TITLE:'الادوار',
 					},
+					COLLECTIONS: {
+						TITLE:'مجموعات الصفحة الرئيسية',
+					},
 					PERMISSIONS: {
 						TITLE: 'الصلاحيات',
 					},

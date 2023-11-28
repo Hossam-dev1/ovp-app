@@ -49,6 +49,7 @@ export class AddComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	crewTypeList: any[] = []
 	seriesList: any[] = []
 
@@ -115,7 +116,9 @@ export class AddComponent {
 			content_images: this.fb.array([]),
 			crews: this.fb.array([this.crewForm()]),
 
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 

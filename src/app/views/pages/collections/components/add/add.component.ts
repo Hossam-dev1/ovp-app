@@ -16,6 +16,7 @@ export class AddComponent implements OnInit {
 
 	// Data State
 	deviceTypesList: any[] = []
+	displayTypesList: any[] = []
 	contentTypeList: any[] = []
 	contentList: any[] = []
 	contentTypesGroup: any[] = []
@@ -40,6 +41,7 @@ export class AddComponent implements OnInit {
 		this.checkLocalLang()
 		this.initForm()
 		this.getDeviceTypesList()
+		this.getDisplayTypesList()
 		this.getContentTypeList()
 	}
 
@@ -61,12 +63,13 @@ export class AddComponent implements OnInit {
 				Validators.required,
 				Validators.pattern('^-?[0-9]\\d*(\\.\\d+)?$')]),
 			device_type_id: new FormControl('', [Validators.required]),
+			display_type_id: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),
 				ar: new FormControl('', [Validators.required]),
 			}),
 			contents: this.fb.array([]),
-			contentListControl: new FormControl()
+			contentListControl: new FormControl(),
 		});
 	}
 
@@ -103,6 +106,13 @@ export class AddComponent implements OnInit {
 	getDeviceTypesList() {
 		this._helperService.deviceTypesList().subscribe((resp) => {
 			this.deviceTypesList = resp.body;
+			this.cdr.markForCheck()
+		})
+	}
+
+	getDisplayTypesList() {
+		this._helperService.displayTypesList().subscribe((resp) => {
+			this.displayTypesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

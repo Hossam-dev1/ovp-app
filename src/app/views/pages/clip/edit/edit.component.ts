@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../core/services/Clips-Module/categories.service';
 import { TagService } from './../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../core/services/Clips-Module/content-provider.service';
@@ -35,7 +36,8 @@ export class EditComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
-		private _tagsService: TagService
+		private _tagsService: TagService,
+		private _categoriesService: CategoriesService,
 	) { }
 
 
@@ -53,6 +55,7 @@ export class EditComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	contentTypeID: number = null;
 	clip_ID: number;
 	clip_object: any;
@@ -132,13 +135,14 @@ export class EditComponent {
 			clip_puplish_date: this.clip_object['clip_puplish_date'],
 			clip_puplish_end_date: this.clip_object['clip_puplish_end_date'],
 			content_type_id: this.clip_object['content_type_id'],
-//			content_provider_id: this.clip_object['content_provider_id'],
+			//			content_provider_id: this.clip_object['content_provider_id'],
 			clip_watch_rating: this.clip_object['clip_watch_rating'],
 			company_ids: companiesIDs,
 			genre_ids: genresIDs,
 			content_images: this.clip_object['content_images'],
 
 			tags: this.clip_object['tags'].map((tag) => tag.id),
+			categories: this.clip_object.categories?.map((category) => category.id) || [],
 		});
 		this.selectedClipYear = this.clip_object['clip_year']
 		this.contentTypeID = this.clip_object['content_type_id'];
@@ -191,6 +195,7 @@ export class EditComponent {
 			clip_crews: this.fb.array([]),
 
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -301,6 +306,10 @@ export class EditComponent {
 			this.tagsList = resp.body;
 			this.cdr.markForCheck()
 		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
+			this.cdr.markForCheck()
+		})
 	}
 
 	companyFormGroup(id, order) {
@@ -334,7 +343,7 @@ export class EditComponent {
 			clip_genres.push(this.genreFormGroup(param[i], i + 1))
 		}
 	}
-	formattedDate(dateParam:string) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date?.toISOString().slice(0, 10);
 	}
@@ -352,7 +361,7 @@ export class EditComponent {
 		}
 		const formData = this.editForm.value
 		// Remove null values from the formControls array
-		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['clip_status'] = Number(this.getEditForm['clip_status'].value)
 		formData['clip_watch_rating'] = (this.getEditForm['clip_watch_rating'].value).toString()
 		formData['clip_puplish_date'] = this.formattedDate(this.getEditForm['clip_puplish_date'].value)

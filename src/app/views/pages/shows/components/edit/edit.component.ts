@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
@@ -36,6 +37,7 @@ export class EditComponent {
 		private _activatedRoute: ActivatedRoute,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
+		private _categoriesService: CategoriesService,
 		private _tagsService: TagService
 	) { }
 
@@ -47,8 +49,8 @@ export class EditComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	contentTypeID: number = null;
-
 	series_object: any
 	genres_IDs: number[] = []
 
@@ -167,7 +169,9 @@ export class EditComponent {
 			// 	genre_id: new FormControl('', [Validators.required]),
 			// 	genre_order: new FormControl(1, [Validators.required]), // static value
 			// }),
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -234,6 +238,10 @@ export class EditComponent {
 
 		this._tagsService.list().subscribe((resp) => {
 			this.tagsList = resp.body;
+			this.cdr.markForCheck()
+		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

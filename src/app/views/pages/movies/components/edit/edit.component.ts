@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -36,6 +37,7 @@ export class EditComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
+		private _categoriesService: CategoriesService,
 		private _tagsService: TagService
 	) { }
 
@@ -48,8 +50,8 @@ export class EditComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
-	contentTypeID: number = null;
-	clip_ID: number;
+	categoriesList: any[] = []
+	contentTypeID: number = null;	clip_ID: number;
 	clip_object: any;
 	selectedClipYear: string;
 	editForm: FormGroup;
@@ -139,6 +141,7 @@ export class EditComponent {
 			content_images: this.clip_object['content_images'],
 
 			tags: this.clip_object['tags'].map((tag) => tag.id),
+			categories: this.clip_object.categories?.map((category) => category.id) || [],
 		});
 		this.selectedClipYear = this.clip_object['clip_year']
 		this.contentTypeID = this.clip_object['content_type_id'];
@@ -190,7 +193,9 @@ export class EditComponent {
 
 			clip_crews: this.fb.array([]),
 
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -298,6 +303,10 @@ export class EditComponent {
 
 		this._tagsService.list().subscribe((resp) => {
 			this.tagsList = resp.body;
+			this.cdr.markForCheck()
+		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

@@ -1,7 +1,6 @@
 import { EpisdosService } from './../../../../../core/services/Series-Module/episdos.service';
 import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
-import { CompanyService } from './../../../../../core/services/Clips-Module/company.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -170,7 +169,9 @@ export class EditComponent {
 			content_images: this.fb.array([]),
 
 			crews: this.fb.array([]),
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 

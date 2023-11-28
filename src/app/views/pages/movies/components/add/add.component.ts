@@ -1,3 +1,4 @@
+import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from './../../../../../core/services/Clips-Module/company.service';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
+
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
@@ -35,6 +37,7 @@ export class AddComponent {
 		private toastr: ToastrService,
 		private _providerService: ContentProviderService,
 		private _helperService: HelperService,
+		private _categoriesService: CategoriesService,
 		private _tagsService: TagService
 	) { }
 
@@ -57,8 +60,8 @@ export class AddComponent {
 	genreList: any[] = []
 	crewList: any[] = []
 	tagsList: any[] = []
+	categoriesList: any[] = []
 	contentTypeID: number = null;
-
 	addForm: FormGroup;
 	isLoadingResults: boolean;
 	clearImgSrc: boolean;
@@ -129,7 +132,9 @@ export class AddComponent {
 
 			clip_crews: this.fb.array([this.crewForm()]),
 
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -223,6 +228,10 @@ export class AddComponent {
 		})
 		this._tagsService.list().subscribe((resp) => {
 			this.tagsList = resp.body;
+			this.cdr.markForCheck()
+		})
+		this._categoriesService.list().subscribe((resp) => {
+			this.categoriesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

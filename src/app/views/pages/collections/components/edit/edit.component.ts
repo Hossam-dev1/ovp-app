@@ -18,6 +18,7 @@ export class EditComponent implements OnInit {
 
 	// Data State
 	deviceTypesList: any[] = []
+	displayTypesList: any[] = []
 	contentTypeList: any[] = []
 	contentList: any[] = []
 	contentTypesGroup: any[] = []
@@ -50,6 +51,7 @@ export class EditComponent implements OnInit {
 		this.initForm()
 		this.getUrlID();
 		this.getDeviceTypesList()
+		this.getDisplayTypesList()
 		this.getContentTypeList()
 	}
 	getUrlID() {
@@ -88,6 +90,8 @@ export class EditComponent implements OnInit {
 				item.content_type.id
 			)
 		}
+		console.log('selectedContentList', selectedContentList);
+
 
 		this.selectedContentTypeID = selectedContentList[0]
 		this.editForm.patchValue({
@@ -97,6 +101,7 @@ export class EditComponent implements OnInit {
 			},
 			sorting_order: this.collection_object["sorting_order"],
 			device_type_id: this.collection_object["device_type"]['id'],
+			display_type_id: this.collection_object?.display_type?.id,
 			contentTypeOption: selectedContentTypeOption,
 			contentListControl: selectedContentList
 		});
@@ -120,6 +125,7 @@ export class EditComponent implements OnInit {
 		this.editForm = this.fb.group({
 			sorting_order: new FormControl('', [Validators.required]),
 			device_type_id: new FormControl('', [Validators.required]),
+			display_type_id: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),
 				ar: new FormControl('', [Validators.required]),
@@ -164,6 +170,12 @@ export class EditComponent implements OnInit {
 	getDeviceTypesList() {
 		this._helperService.deviceTypesList().subscribe((resp) => {
 			this.deviceTypesList = resp.body;
+			this.cdr.markForCheck()
+		})
+	}
+	getDisplayTypesList() {
+		this._helperService.displayTypesList().subscribe((resp) => {
+			this.displayTypesList = resp.body;
 			this.cdr.markForCheck()
 		})
 	}

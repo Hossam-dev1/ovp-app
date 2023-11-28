@@ -1,5 +1,4 @@
 import { SeasonsService } from '../../../../../core/services/Series-Module/seasons.service';
-import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
 import { CompanyService } from './../../../../../core/services/Clips-Module/company.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
@@ -124,7 +123,9 @@ export class AddComponent {
 			content_images: this.fb.array([]),
 
 			companies: new FormControl([], [Validators.required]),
+
 			tags: new FormControl([], [Validators.required]),
+			categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -170,6 +171,7 @@ export class AddComponent {
 			this.tagsList = resp.body;
 			this.cdr.markForCheck()
 		})
+
 	}
 
 	getDimentionList() {
