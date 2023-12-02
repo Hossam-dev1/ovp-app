@@ -22,47 +22,62 @@
 				</div>
 			</div>
 
-			<div class="row py-2">
+			<div class="row py-2 pb-0">
 				<div class="col-md-6">
 					<label>Display Type *</label>
 					<ng-select formControlName="display_type_id" [loading]="!displayTypesList.length">
-						<ng-option *ngFor="let item of displayTypesList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+						<ng-option *ngFor="let item of displayTypesList"
+							[value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-md-6">
 					<label>Device Type *</label>
 					<ng-select formControlName="device_type_id" [loading]="!deviceTypesList.length">
-						<ng-option *ngFor="let item of deviceTypesList" [value]="item.id">{{toLang(item.name)}}</ng-option>
+						<ng-option *ngFor="let item of deviceTypesList"
+							[value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>
 				</div>
 			</div>
 
-			<div class="row pt-4 pb-2">
-				<div class="col-md-6">
-					<label id="content_types">Content Type *</label>
-					<mat-radio-group (change)="contentTypesOnChange($event)" aria-label="content_types"
-						class="example-radio-group">
-						<mat-radio-button *ngFor="let item of contentTypesGroup"
-							[value]="item">{{toLang(item.name)}}</mat-radio-button>
-					</mat-radio-group>
-				</div>
-				<div class="col-md-6" *ngIf="contentList.length">
-					<label>Content *</label>
-					<ng-select formControlName="contentListControl" [items]="contentList" bindLabel="name.en" bindValue="id"
-						(change)="detectContentList($event)"
-						[multiple]="true"
-						[loading]="!contentList.length">
-					</ng-select>
-				</div>
-			</div>
-
+			<!-- sorting order -->
 			<div class="row py-2">
 				<div class="col-md-6">
 					<kt-form-input [type]="'number'" [form_control_name]="'sorting_order'" [form]="addForm"
 						[label]="'Sorting Order'"></kt-form-input>
 				</div>
 			</div>
+			<!-- content & types -->
+			<div class="row pb-2">
+				<div class="col-md-12 button-box text-right py-4">
+					<button (click)="addContentRow()" mat-mini-fab>
+						<mat-icon>add</mat-icon>
+					</button>
+				</div>
 
+				<div class="col-md-6 pb-4" formArrayName="contents"
+					*ngFor="let item of getContent.controls; index as i">
+					<div class="row" [formGroupName]="i">
+						<div class="col-md-5">
+							<label id="content_types">Content Type *</label>
+							<ng-select formControlName="content_type_id" [items]="mainContentTypeList" bindLabel="name.en"
+								bindValue="id" (change)="contentTypesOnChange($event, i)"
+								[loading]="!mainContentTypeList.length">
+							</ng-select>
+						</div>
+						<div class="col-md-6">
+							<label>Content *</label>
+							<ng-select formControlName="content_id" [items]="contentList[i]" bindLabel="name.en"
+								bindValue="id" (change)="detectContentList($event)">
+							</ng-select>
+						</div>
+						<div class="col-md-1 remove_box p-0">
+							<span class="counter">({{i+1}})</span>
+							<button mat-mini-fab color="warn" [disabled]="i == 0"
+								(click)="removeContentwRow(i)"><mat-icon>remove</mat-icon></button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
 					(click)="submit()">Add</button>

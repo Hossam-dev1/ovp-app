@@ -50,6 +50,8 @@ export class IndexComponent {
 					this.contentTypeID = item.id
 				}
 			});
+			console.log('contentTypeID', this.contentTypeID);
+
 			this.getListData(this.headerParams);
 		})
 	}
@@ -57,7 +59,7 @@ export class IndexComponent {
 	getListData(filterParam?) {
 		this._seriesService.list(filterParam).subscribe((resp) => {
 			this.showsData = resp.body.filter((item) =>
-				item.content_type_id == this.contentTypeID
+				item.content_type.id == this.contentTypeID
 			);
 			this.isLoadingResults = false
 			this.cdr.detectChanges();

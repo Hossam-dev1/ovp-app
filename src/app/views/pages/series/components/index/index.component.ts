@@ -1,3 +1,4 @@
+import { HelperService } from './../../../../../core/services/helper.service';
 import { PaginateParams } from './../../../../../core/models/paginateParams.interface';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,6 +14,9 @@ export class IndexComponent {
 	isLoadingResults: boolean = true;
 	seriesData: Observable<any[]>;
 	displayedColumns: string[] = ['name', 'genres', 'series_no_of_seasons', 'series_status', 'is_featured', 'options'];
+	contentTypeKey: string = 'series'
+	contentTypeList: any[] = []
+	contentTypeID: number;
 
 	headerParams: PaginateParams = {
 		active: 1,
@@ -21,14 +25,16 @@ export class IndexComponent {
 
 	constructor(
 		private _seriesService: SeriesService,
-		private cdr: ChangeDetectorRef
+		private cdr: ChangeDetectorRef,
+		private _helperService: HelperService,
 	) { }
+
 	filterList = (param) => {
 		this.getListData(param)
 	}
 
 	ngOnInit() {
-		this.getListData(this.headerParams)
+		this.getContentType()
 		this._seriesService.isListChanged.subscribe((resp) => {
 			if (resp) {
 				this.getListData(this.headerParams)
@@ -36,9 +42,25 @@ export class IndexComponent {
 		})
 	}
 
-	getListData(param?) {
-		this._seriesService.list(param).subscribe((resp) => {
-			this.seriesData = resp.body
+	getContentType() {
+		this._helperService.contentTypesList().subscribe((resp) => {
+			this.contentTypeList = resp.body;
+			this.contentTypeList.forEach(item => {
+				if (item['key'] == this.contentTypeKey) {
+					this.contentTypeID = item.id
+				}
+			});
+			console.log('contentTypeID', this.contentTypeID);
+
+			this.getListData(this.headerParams);
+		})
+	}
+
+	getListData(filterParam?) {
+		this._seriesService.list(filterParam).subscribe((resp) => {
+			this.seriesData = resp.body.filter((item) =>
+				item.content_type.id == this.contentTypeID
+			);
 			this.isLoadingResults = false
 			this.cdr.detectChanges();
 		})
