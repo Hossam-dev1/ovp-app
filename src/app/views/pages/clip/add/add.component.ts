@@ -46,10 +46,22 @@ export class AddComponent {
 	// }
 
 	ratingList: any[] = [
-		'+13',
-		'+15',
-		'+18',
-		'All Ages',
+		{
+			key: '+13',
+			value: 13
+		},
+		{
+			key: '+15',
+			value: 15
+		},
+		{
+			key: '+18',
+			value: 18
+		},
+		{
+			key: "All Ages",
+			value: 0
+		},
 	]
 
 	// Data State
@@ -279,6 +291,8 @@ export class AddComponent {
 		}
 	}
 	submit() {
+		console.log(this.getAddForm);
+
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');

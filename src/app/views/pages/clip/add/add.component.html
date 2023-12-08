@@ -43,7 +43,7 @@
 				<div class="col-md-6">
 					<label>Rating *</label>
 					<ng-select formControlName="clip_watch_rating">
-						<ng-option *ngFor="let item of ratingList" [value]="item">{{item}}</ng-option>
+						<ng-option *ngFor="let item of ratingList" [value]="item.value">{{item.key}}</ng-option>
 					</ng-select>
 				</div>
 			</div>

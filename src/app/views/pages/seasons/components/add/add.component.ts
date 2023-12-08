@@ -51,10 +51,22 @@ export class AddComponent {
 	crewTypeList: any[] = []
 	seriesList: any[] = []
 	ratingList: any[] = [
-		'+13',
-		'+15',
-		'+18',
-		'All Ages',
+		{
+			key: '+13',
+			value: 13
+		},
+		{
+			key: '+15',
+			value: 15
+		},
+		{
+			key: '+18',
+			value: 18
+		},
+		{
+			key: "All Ages",
+			value: 0
+		},
 	]
 	contentTypeID: number = null;
 

@@ -166,7 +166,7 @@
 									<i class="flaticon-settings"></i>
 								</button> -->
 								<!-- <mat-menu #menu="matMenu"> -->
-								<button mat-icon-button matTooltip="Seasons" *ngIf="title == 'Series'"
+								<button mat-icon-button matTooltip="Seasons" *ngIf="title == 'Series' || title == 'Shows'"
 									[queryParams]="dynamicParam(route_path, element.id)" [routerLink]="'/cms/seasons'">
 									<mat-icon>video_library</mat-icon>
 								</button>
@@ -175,13 +175,15 @@
 									[routerLink]="'/cms/episodes'">
 									<mat-icon>video_library</mat-icon>
 								</button>
-								<button mat-icon-button matTooltip="Details" *ngIf="title == 'Crew'||
+								<button mat-icon-button matTooltip="Details"
+									*ngIf="title == 'Crew'||
 									title == 'Content Providers'||
 									title == 'Company' ||
 									title == 'Clips' ||
 									title == 'Movies' ||
 									title == 'Plays' ||
 									title == 'Series' ||
+									title == 'Shows' ||
 									title == 'Seasons' ||
 									title == 'Episodes'" [routerLink]="'details/'+ element.id">
 									<mat-icon>remove_red_eye</mat-icon>
