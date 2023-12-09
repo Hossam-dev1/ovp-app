@@ -1,16 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { TagService } from './../../../../core/services/Clips-Module/tags.service';
+import { Location } from '@angular/common';
+ import { TagService } from './../../../../core/services/Clips-Module/tags.service';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 
 	editForm: FormGroup;
 	isLoadingResults: boolean
@@ -21,6 +22,7 @@ export class EditComponent {
 
 	constructor(
 		private _fb: FormBuilder,
+		private _location: Location,
 		private _tagsService: TagService,
 		private _toastr: ToastrService,
 		private _activatedRoute: ActivatedRoute,
@@ -76,8 +78,10 @@ export class EditComponent {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = {
@@ -89,6 +93,7 @@ export class EditComponent {
 		}
 		this._tagsService.edit(this.tag_ID, formData).subscribe((resp) => {
 			this._toastr.success(resp.message + ' successfully');
+			this._location.back();
 			// this.clearValue = true
 		},
 			(error) => {

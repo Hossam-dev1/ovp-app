@@ -3,20 +3,23 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
+	btnLoading: boolean = false;
 	addForm: UntypedFormGroup;
 	isLoadingResults: boolean
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private genreService: GenreService,
 		private toastr: ToastrService,
-		private cdr:ChangeDetectorRef
+		private cdr: ChangeDetectorRef
 
 	) { }
 
@@ -38,21 +41,23 @@ export class AddComponent implements OnInit {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 
 		this.genreService.add(this.addForm.value).subscribe((resp) => {
 			this.addForm.reset()
 			this.toastr.success(resp.message + 'successfully');
+			this.btnLoading = false;
 		},
-		(error)=>{
-			const errorControll = Object.keys(error.error.errors).toString();
-			this.getAddForm[errorControll].setErrors({'invalid':true})
-			this.cdr.detectChanges();
-			this.toastr.error(error.error.message);
-		})
+			(error) => {
+				this.toastr.error(error.error.message);
+				this.btnLoading = false;
+				this.cdr.detectChanges();
+			})
 	}
 
 }

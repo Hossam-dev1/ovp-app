@@ -1,7 +1,7 @@
 import { CompanyService } from './../../../../../core/services/Clips-Module/company.service';
 import { SeasonsService } from './../../../../../core/services/Series-Module/seasons.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
+import { Location } from '@angular/common';import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -10,14 +10,13 @@ import { LangService } from './../../../../../core/services/lang.service';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
@@ -30,6 +29,7 @@ export class EditComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _seasonsService: SeasonsService,
 		private _companiesSerivce: CompanyService,
@@ -101,11 +101,11 @@ export class EditComponent {
 	}
 	getUrlID() {
 		this.isLoadingResults = true
-		this._activatedRoute.paramMap.subscribe((params:any) => {
+		this._activatedRoute.paramMap.subscribe((params: any) => {
 			this.seasons_ID = Number(params.get('id'));
 			this.getDataByID();
 		});
-		this._activatedRoute.queryParams.subscribe((params:any)=>{
+		this._activatedRoute.queryParams.subscribe((params: any) => {
 			this.series_ID = params.series
 		})
 	}
@@ -173,7 +173,7 @@ export class EditComponent {
 			is_new: new FormControl(0, [Validators.required]), //boolen
 			is_asc: new FormControl(0, [Validators.required]), //boolen
 			rate: new FormControl('', [Validators.required]), //boolen
-			series_id: new FormControl(this.series_ID  as number || ''),
+			series_id: new FormControl(this.series_ID as number || ''),
 
 			content_type_id: new FormControl('', [Validators.required]),
 			// content_provider_id: new FormControl('', [Validators.required]),
@@ -257,24 +257,27 @@ export class EditComponent {
 			this.cdr.markForCheck()
 		})
 	}
-	formattedDate(dateParam:string) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
-		console.log('this.editForm.value', this.editForm.value);
-
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seasonsService.edit(this.seasons_ID, this.editForm.value).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				this.cdr.markForCheck();
 			})
 	}

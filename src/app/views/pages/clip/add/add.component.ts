@@ -11,13 +11,14 @@ import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from './../../../../core/services/Clips-Module/company.service';
 import { GenreService } from './../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -26,6 +27,7 @@ export class AddComponent {
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _clipsService: ClipsService,
 		private _companyService: CompanyService,
@@ -292,10 +294,11 @@ export class AddComponent {
 	}
 	submit() {
 		console.log(this.getAddForm);
-
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.addForm.value
@@ -310,10 +313,13 @@ export class AddComponent {
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.markForCheck();

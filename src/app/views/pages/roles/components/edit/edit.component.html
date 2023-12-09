@@ -62,10 +62,15 @@
 			<!-- Permissions  -->
 
 			<div class="col-12 text-right px-3">
-				<button type="submit" class="btn primary-button-color mx-3" mat-raised-button color="primary"
-					(click)="submitForm()">
-					Update
-				</button>
+				<div class="btn float-right">
+					<button class="action-btn d-flex justify-content-center align-items-center" type="button"
+						mat-raised-button color="primary" [disabled]="btnLoading" (click)="submitForm()">
+						<span *ngIf="!btnLoading">Update</span>
+						<span *ngIf="btnLoading">
+							<mat-spinner diameter="20"></mat-spinner>
+						</span>
+					</button>
+				</div>
 			</div>
 		</form>
 	</div>

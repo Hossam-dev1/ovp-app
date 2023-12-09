@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {InitializeComponentInterface} from '../../../../shared/Base-Interface/Initialize.Component.Interface';
 import {TranslateService} from '@ngx-translate/core';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',

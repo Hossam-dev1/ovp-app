@@ -1,6 +1,6 @@
 import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
+import { Location } from '@angular/common'; import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -10,13 +10,13 @@ import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements AfterViewInit {
+	btnLoading: boolean = false;
 	selectedValues: number[] = [2, 4, 6];
 
 	isLoading: boolean = false;
@@ -29,6 +29,7 @@ export class EditComponent implements AfterViewInit {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _seriesService: SeriesService,
 		private _genresService: GenreService,
@@ -94,7 +95,7 @@ export class EditComponent implements AfterViewInit {
 	getDataByID() {
 		this._seriesService.show(this.series_ID).subscribe((resp: any) => {
 			this.series_object = resp.body;
-			if(this.series_object){
+			if (this.series_object) {
 				this.patchSeriesData();
 			}
 			this.isLoadingResults = false;
@@ -107,6 +108,7 @@ export class EditComponent implements AfterViewInit {
 
 	patchSeriesData() {
 		const genresIDs = this.series_object?.genres.map((genre) => genre.id)
+		const categoriesID = this.series_object['categories'].map((category) => category.id);
 
 		this.editForm.patchValue({
 			name: {
@@ -129,10 +131,9 @@ export class EditComponent implements AfterViewInit {
 			genre_ids: genresIDs,
 
 			tags: [this.series_object['tags'][0]['id']],
-			categories: this.series_object['categories'],
+			categories: categoriesID,
 		});
 		this.selectedSeiresYear = this.series_object['series_start_year']
-		console.log(this.contentTypeID);
 
 		this.addGenreRow(genresIDs) //patch generes value
 		this.cdr.markForCheck()
@@ -180,19 +181,20 @@ export class EditComponent implements AfterViewInit {
 		this.editForm.patchValue({
 			content_type_id: this.contentTypeID
 		})
-		this.getSeriesGenres?.controls.forEach((item:any) => {
+		this.getSeriesGenres?.controls.forEach((item: any) => {
 			item.controls.content_type_id.setValue(this.contentTypeID)
 		});
 	}
 
 	patchContentImgs(): void {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
 			this.setContentImgsValidation();
-			this.isDimentionReady = true
+			this.isDimentionReady = true;
+			console.log(this.getContentImgs);
 		}
 	}
 
@@ -280,22 +282,28 @@ export class EditComponent implements AfterViewInit {
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
+		this.btnLoading = true;
 		let formData = this.editForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['series_genres'] = this.editForm.value['series_genres']
 		delete formData['genre_ids']
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seriesService.edit(this.series_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				this.cdr.markForCheck();
 			})
 	}

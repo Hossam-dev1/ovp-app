@@ -4,13 +4,14 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { Location } from '@angular/common';
 @Component({
-  selector: 'kt-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+	selector: 'kt-edit',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+	btnLoading: boolean = false;
 
 	editForm: UntypedFormGroup;
 	isLoadingResults: boolean
@@ -19,6 +20,7 @@ export class EditComponent implements OnInit {
 
 	constructor(
 		private _fb: UntypedFormBuilder,
+		private _location:Location,
 		private _crewTypeService: CrewTypeService,
 		private _toastr: ToastrService,
 		private _activatedRoute: ActivatedRoute,
@@ -74,8 +76,10 @@ export class EditComponent implements OnInit {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = {
@@ -87,12 +91,15 @@ export class EditComponent implements OnInit {
 		}
 		this._crewTypeService.edit(this.genre_ID, formData).subscribe((resp) => {
 			this._toastr.success(resp.message + ' successfully');
+			this._location.back();
+			this.btnLoading = false;
 		},
 			(error) => {
-				const errorControll = Object.keys(error.error.errors).toString();
-				this.getEditForm[errorControll].setErrors({ 'invalid': true })
-				this.cdr.detectChanges();
 				this._toastr.error(error.error.message);
+				this.btnLoading = false;
+				// const errorControll = Object.keys(error.error.errors).toString();
+				// this.getEditForm[errorControll].setErrors({ 'invalid': true })
+				this.cdr.detectChanges();
 			})
 	}
 

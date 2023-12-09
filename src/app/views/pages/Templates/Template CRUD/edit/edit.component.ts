@@ -8,7 +8,7 @@ import {HelperService} from '../../../../../core/services/helper.service';
 import {FormErrorService} from '../../../../../core/services/FormError.service';
 import {InitializeComponentInterface} from '../../../../shared/Base-Interface/Initialize.Component.Interface';
 import {TranslateService} from '@ngx-translate/core';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',

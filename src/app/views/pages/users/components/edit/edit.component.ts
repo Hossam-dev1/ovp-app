@@ -6,13 +6,14 @@ import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements AfterViewInit {
+	btnLoading: boolean = false;
 	editForm: FormGroup;
 	isLoadingResults: boolean = true
 	admin_ID: number;
@@ -25,6 +26,7 @@ export class EditComponent implements AfterViewInit {
 	};
 	constructor(
 		private _fb: FormBuilder,
+		private _location:Location,
 		private _toastr: ToastrService,
 		private _adminsService: AdminsService,
 		private _rolesService: RolesService,
@@ -91,17 +93,22 @@ export class EditComponent implements AfterViewInit {
 	submit() {
 		console.log(this.editForm.value);
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 
 		this._adminsService.update(this.admin_ID, this.editForm.value).subscribe((resp: any) => {
 			this._toastr.success(resp.message || 'Updated' + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 		},
 			(error) => {
-				this.cdr.detectChanges();
 				this._toastr.error(error.error.message);
+				this.btnLoading = false;
+				this.cdr.detectChanges();
 			})
 	}
 

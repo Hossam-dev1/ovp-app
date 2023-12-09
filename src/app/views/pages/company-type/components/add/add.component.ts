@@ -3,12 +3,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
+	btnLoading: boolean = false;
 
 
 	addForm: UntypedFormGroup;
@@ -16,6 +18,7 @@ export class AddComponent implements OnInit {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _companyTypeService: CompanyTypeService,
 		private toastr: ToastrService,
 		private cdr: ChangeDetectorRef
@@ -40,8 +43,10 @@ export class AddComponent implements OnInit {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = {

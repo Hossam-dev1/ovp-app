@@ -8,12 +8,14 @@ import { RolesService } from './../../../../../core/services/ACL-Module/roles.se
 import { PermissionsService } from './../../../../../core/services/ACL-Module/permissions.service';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	// Data State
 	role_ID: number;
 	selectedMainOperation: string[] = [];
@@ -150,8 +152,10 @@ export class AddComponent {
 
 
 	submitForm() {
+		this.btnLoading = true;
 		if (this.selectedMainOperation.length < 1 || this.SelectedPermissions.length < 1) {
 			this._toastrService.error('Select Permissions first')
+			this.btnLoading = false;
 			return
 		}
 		let selectedPermissions_IDs = []
@@ -186,9 +190,11 @@ export class AddComponent {
 			this.clearForm();
 			this._toastrService.success(resp.message || 'Added Successfuly')
 			this.router.navigate(['../'], { relativeTo: this._activatedRoute }).then();
+			this.btnLoading = false;
 		}, handler => {
 			this.isLoadingResults = false;
 			this.isValidationError = true;
+			this.btnLoading = false;
 		});
 	}
 

@@ -10,12 +10,14 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -24,6 +26,7 @@ export class AddComponent {
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _seriesService: SeriesService,
 		private _genresService: GenreService,

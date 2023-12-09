@@ -12,12 +12,14 @@ import { CompanyService } from './../../../../../core/services/Clips-Module/comp
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -27,6 +29,7 @@ export class AddComponent {
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _clipsService: ClipsService,
 		private _companyService: CompanyService,
@@ -292,16 +295,18 @@ export class AddComponent {
 		}
 	}
 	submit() {
+		this.btnLoading = true;
 		console.log(this.addForm);
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.addForm.value
 		// Remove null values from the formControls array
-		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['clip_status'] = Number(this.addForm['clip_status'].value)
 		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
 		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value || null)
@@ -311,10 +316,13 @@ export class AddComponent {
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.markForCheck();

@@ -12,12 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	addForm: FormGroup;
 	clearValue: boolean
 	isLoading: boolean = false;
@@ -29,6 +31,7 @@ export class AddComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private route: ActivatedRoute,
 		private _langService: LangService,
 		private _crewService: CrewService,
@@ -130,9 +133,9 @@ export class AddComponent {
 	}
 	crewForm() {
 		return this.fb.group({
-			crew_id: new FormControl('', [Validators.required]),
-			order: new FormControl(1, [Validators.required]), // static value
-			crew_type_id: new FormControl('', [Validators.required]), // static value
+			crew_id: new FormControl(''),
+			order: new FormControl(1), // static value
+			crew_type_id: new FormControl(''), // static value
 		})
 	}
 
@@ -242,6 +245,7 @@ export class AddComponent {
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + ' successfully');
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {

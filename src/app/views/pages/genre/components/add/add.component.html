@@ -14,14 +14,23 @@
 			</div> -->
 			<div class="row" formGroupName="name">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (En)'" [form_control_name]="'en'"></kt-form-input>
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (En)'"
+						[form_control_name]="'en'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (Ar)'" [form_control_name]="'ar'"></kt-form-input>
+					<kt-form-input [form_group]="'name'" [form]="addForm" [label]="'Name (Ar)'"
+						[form_control_name]="'ar'"></kt-form-input>
 				</div>
 			</div>
 
-			<div class="btn float-right"> <button type="button" mat-raised-button color="primary" (click)="submit()">Add</button>
+ 			<div class="btn float-right">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button" mat-raised-button color="primary"
+					[disabled]="btnLoading" (click)="submit()">
+					<span *ngIf="!btnLoading">Add</span>
+					<span *ngIf="btnLoading">
+						<mat-spinner diameter="20"></mat-spinner>
+					</span>
+				</button>
 			</div>
 		</form>
 	</div>

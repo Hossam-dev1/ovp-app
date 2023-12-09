@@ -5,12 +5,14 @@ import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	// Data State
 	companyTypesList: any[] = []
 	nationalitiesList: any[] = []
@@ -18,10 +20,11 @@ export class AddComponent {
 	addForm: UntypedFormGroup;
 	isLoadingResults: boolean;
 	clearImgSrc: boolean;
-	clearValue:boolean
+	clearValue: boolean
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _companyService: CompanyService,
 		private _companyTypeService: CompanyTypeService,
 		private toastr: ToastrService,
@@ -65,31 +68,23 @@ export class AddComponent {
 	}
 
 	submit() {
-
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
-		// const formData = {
-		// 	logo: this.getAddForm['logo'].value,
-		// 	name: {
-		// 		en: this.getAddForm["name"].value["en"] || '',
-		// 		ar: this.getAddForm["name"].value["ar"] || ''
-		// 	},
-		// 	description: {
-		// 		en: this.getAddForm["description"].value["en"] || '',
-		// 		ar: this.getAddForm["description"].value["ar"] || ''
-		// 	}
-		// }
 		this._companyService.add(this.addForm.value).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + 'successfully');
+			this.btnLoading = false;
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				const errorControll = Object.keys(error.error.errors).toString();
 				this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

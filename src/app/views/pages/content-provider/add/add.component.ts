@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 
 	addForm: UntypedFormGroup;
 	isLoadingResults: boolean
@@ -15,6 +16,7 @@ export class AddComponent {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _contentProviderService: ContentProviderService,
 		private toastr: ToastrService,
 		private cdr: ChangeDetectorRef
@@ -51,8 +53,10 @@ export class AddComponent {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = {

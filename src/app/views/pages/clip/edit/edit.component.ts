@@ -2,7 +2,7 @@ import { CategoriesService } from './../../../../core/services/Clips-Module/cate
 import { TagService } from './../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../core/services/Clips-Module/content-provider.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClipsService } from './../../../../core/services/Clips-Module/clips.service';
 import { LangService } from './../../../../core/services/lang.service';
 import { Component, ChangeDetectorRef } from '@angular/core';
@@ -12,12 +12,14 @@ import { CompanyService } from './../../../../core/services/Clips-Module/company
 import { GenreService } from './../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../core/services/Crew-Module/crew.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -26,6 +28,7 @@ export class EditComponent {
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _clipsService: ClipsService,
 		private _companyService: CompanyService,
@@ -357,15 +360,16 @@ export class EditComponent {
 		return date?.toISOString().slice(0, 10);
 	}
 	submit() {
-		console.log(this.editForm.value);
-
+		this.btnLoading = true;
 		const contentImg = this.getEditForm['content_images'].value;
 		const isContentImgNull = contentImg.some(obj => obj.img == '');
 		// Perform any additional actions here
 		// return
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.editForm.value
@@ -382,11 +386,14 @@ export class EditComponent {
 		this._clipsService.edit(this.clip_ID, formData).subscribe((resp) => {
 			// this.editForm.reset()
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				console.log(error.error.message);
 				this.toastr.error(error.error.message || 'something went wrong!');
+				this.btnLoading = false;
 				// this.toastr.error(error.error.errors);
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getEditForm[errorControll].setErrors({ 'invalid': true })

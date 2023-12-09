@@ -56,9 +56,18 @@
 .mat-raised-button.mat-primary {
 	background-color: #ff4057 !important
 }
-th{
+.action-btn{
+	width: 3rem;
+	height: 3rem;
+	display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+th {
 	text-transform: capitalize !important;
 }
+
 .mat-radio-button.mat-radio-checked {
 	.mat-radio-outer-circle {
 		border-color: #ff4057 !important;
@@ -68,10 +77,12 @@ th{
 		background-color: #ff4057 !important;
 	}
 }
-.info_icon{
+
+.info_icon {
 	color: #ff4057 !important;
 	margin: 0 5px;
 }
+
 .mat-menu-content:not(:empty) {
 	padding: 1rem 0.5rem !important;
 
@@ -102,7 +113,14 @@ th{
 
 .mat-progress-spinner circle,
 .mat-spinner circle {
-	stroke: #ff4057 !important;
+	stroke: #ff4057;
+}
+
+.action-btn {
+	.mat-progress-spinner circle,
+	.mat-spinner circle {
+		stroke: white !important;
+	}
 }
 
 .kt-aside-dark .kt-aside-menu .kt-menu__nav>.kt-menu__item:not(.kt-menu__item--parent):not(.kt-menu__item--open):not(.kt-menu__item--here):not(.kt-menu__item--active):hover>.kt-menu__heading .kt-menu__link-icon,

@@ -1,5 +1,6 @@
 import { CategoriesService } from './../../../../../core/services/Clips-Module/categories.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
@@ -10,13 +11,13 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	selectedValues: number[] = [2, 4, 6];
 
 	isLoading: boolean = false;
@@ -29,6 +30,7 @@ export class EditComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _seriesService: SeriesService,
 		private _genresService: GenreService,
@@ -186,7 +188,7 @@ export class EditComponent {
 
 	patchContentImgs(): void {
 		if (this.dimentionList.length > 0) {
-			for (let i = 1; i < this.dimentionList.length; i++) {
+			for (let i = 0; i < this.dimentionList.length; i++) {
 				this.getContentImgs.push(this.contentImgsForm())
 				this.cdr.markForCheck()
 			}
@@ -284,6 +286,7 @@ export class EditComponent {
 		formData['series_genres'] = this.editForm.value['series_genres']
 		delete formData['genre_ids']
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
@@ -291,6 +294,7 @@ export class EditComponent {
 		}
 		this._seriesService.edit(this.series_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {

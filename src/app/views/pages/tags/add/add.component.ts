@@ -3,18 +3,21 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 
 	addForm: FormGroup;
 	isLoadingResults: boolean
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _tagsService: TagService,
 		private toastr: ToastrService,
 		private cdr: ChangeDetectorRef
@@ -39,8 +42,10 @@ export class AddComponent {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 

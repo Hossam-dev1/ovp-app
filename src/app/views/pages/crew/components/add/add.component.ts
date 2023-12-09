@@ -6,12 +6,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
+	btnLoading: boolean = false;
 
 	// Data State
 	crewTypesList: any[] = []
@@ -25,6 +27,7 @@ export class AddComponent implements OnInit {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _crewService: CrewService,
 		private _langService: LangService,
 		private _crewTypeService: CrewTypeService,
@@ -97,32 +100,37 @@ export class AddComponent implements OnInit {
 	}
 	addCustomLink = (term) => (term);
 
-	formattedDate(dateParam:string) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
-			this.toastr.error('Check all required fields');
+			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.addForm.value;
-			formData['birth_date'] = this.formattedDate(formData['birth_date'])
-			if (formData['death_date']) {
-				formData['death_date'] = this.formattedDate(formData['death_date'])
-			} else {
-				delete formData['death_date'];
-			}
+		formData['birth_date'] = this.formattedDate(formData['birth_date'])
+		if (formData['death_date']) {
+			formData['death_date'] = this.formattedDate(formData['death_date'])
+		} else {
+			delete formData['death_date'];
+		}
 
 		this._crewService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

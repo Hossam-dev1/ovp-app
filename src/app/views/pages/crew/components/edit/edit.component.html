@@ -24,12 +24,12 @@
 
 			<div class="row" formGroupName="description">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Bio (En)'"
-						[form_control_name]="'en'"></kt-form-input>
+					<kt-form-textarea [form_group]="'description'" [form]="editForm" [label]="'Bio (En)'"
+						[form_control_name]="'en'"></kt-form-textarea>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="editForm" [label]="'Bio (Ar)'"
-						[form_control_name]="'ar'"></kt-form-input>
+					<kt-form-textarea [form_group]="'description'" [form]="editForm" [label]="'Bio (Ar)'"
+						[form_control_name]="'ar'"></kt-form-textarea>
 				</div>
 			</div>
 
@@ -62,7 +62,7 @@
 						</div>
 
 						<div class="py-2">
-							<label>Crew Types  *</label>
+							<label>Crew Types *</label>
 							<ng-select formControlName="types" [multiple]="true" [loading]="!crewTypesList.length">
 								<ng-option *ngFor="let item of crewTypesList"
 									[value]="item.id">{{toLang(item.name)}}</ng-option>
@@ -71,8 +71,8 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<kt-form-upload-image [addClass]="'crewImg'" [clear_src]="clearImgSrc" [to_base64]="true" [form]="editForm"
-						[form_control_name]="'thumb'" [label]="'Upload image'">
+					<kt-form-upload-image [addClass]="'crewImg'" [clear_src]="clearImgSrc" [to_base64]="true"
+						[form]="editForm" [form_control_name]="'thumb'" [label]="'Upload image'">
 					</kt-form-upload-image>
 				</div>
 				<!-- <label>Socail Links </label> -->
@@ -112,8 +112,14 @@
 				</div>
 			</div>
 
-			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
-					(click)="submit()">Update</button>
+			<div class="btn float-right">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button"
+					mat-raised-button color="primary" [disabled]="btnLoading" (click)="submit()">
+					<span *ngIf="!btnLoading">Update</span>
+					<span *ngIf="btnLoading">
+						<mat-spinner diameter="20"></mat-spinner>
+					</span>
+				</button>
 			</div>
 		</form>
 	</div>

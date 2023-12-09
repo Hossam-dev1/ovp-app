@@ -12,13 +12,15 @@ import { CompanyService } from './../../../../../core/services/Clips-Module/comp
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
 import { CrewService } from './../../../../../core/services/Crew-Module/crew.service';
 import { HttpErrorResponse } from '@angular/common/http';
-@Component({
+import { Location } from '@angular/common';@Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
+
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
 	clea: boolean
@@ -27,6 +29,7 @@ export class EditComponent {
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _clipsService: ClipsService,
 		private _companyService: CompanyService,
@@ -51,7 +54,7 @@ export class EditComponent {
 	crewList: any[] = []
 	tagsList: any[] = []
 	categoriesList: any[] = []
-	contentTypeID: number = null;	clip_ID: number;
+	contentTypeID: number = null; clip_ID: number;
 	clip_object: any;
 	selectedClipYear: string;
 	editForm: FormGroup;
@@ -146,7 +149,7 @@ export class EditComponent {
 			clip_puplish_date: this.clip_object['clip_puplish_date'],
 			clip_puplish_end_date: this.clip_object['clip_puplish_end_date'],
 			content_type_id: this.clip_object['content_type_id'],
-//			content_provider_id: this.clip_object['content_provider_id'],
+			//			content_provider_id: this.clip_object['content_provider_id'],
 			clip_watch_rating: this.clip_object['clip_watch_rating'],
 			company_ids: companiesIDs,
 			genre_ids: genresIDs,
@@ -351,25 +354,25 @@ export class EditComponent {
 			clip_genres.push(this.genreFormGroup(param[i], i + 1))
 		}
 	}
-	formattedDate(dateParam:string) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date?.toISOString().slice(0, 10);
 	}
 	submit() {
-		console.log(this.editForm.value);
-
 		const contentImg = this.getEditForm['content_images'].value;
 		const isContentImgNull = contentImg.some(obj => obj.img == '');
 		// Perform any additional actions here
 		// return
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.editForm.value
 		// Remove null values from the formControls array
-		formData['content_images'] = this.getContentImgs.value.filter((item:any)=> item.img)
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['clip_status'] = Number(this.getEditForm['clip_status'].value)
 		formData['clip_watch_rating'] = (this.getEditForm['clip_watch_rating'].value).toString()
 		formData['clip_puplish_date'] = this.formattedDate(this.getEditForm['clip_puplish_date'].value)
@@ -381,11 +384,14 @@ export class EditComponent {
 		this._clipsService.edit(this.clip_ID, formData).subscribe((resp) => {
 			// this.editForm.reset()
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				console.log(error.error.message);
 				this.toastr.error(error.error.message || 'something went wrong!');
+				this.btnLoading = false;
 				// this.toastr.error(error.error.errors);
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getEditForm[errorControll].setErrors({ 'invalid': true })

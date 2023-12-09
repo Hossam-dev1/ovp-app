@@ -9,8 +9,8 @@ import { PermissionsService } from './../../../../../core/services/ACL-Module/pe
 import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { MatCheckbox } from '@angular/material/checkbox';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
@@ -18,6 +18,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
 })
 export class EditComponent implements AfterViewInit {
 	@ViewChild('header_checkbox') header_checkbox: MatCheckbox;
+	btnLoading: boolean = false;
+
 	// Data State
 	editUserObj: any = {}
 
@@ -49,6 +51,7 @@ export class EditComponent implements AfterViewInit {
 
 	constructor(private fb: FormBuilder,
 		private service: RolesService,
+		private _location: Location,
 		private formErrorService: FormErrorService,
 		private authNoticeService: AuthNoticeService,
 		private _toastrService: ToastrService,
@@ -241,6 +244,7 @@ export class EditComponent implements AfterViewInit {
 	submitForm() {
 		const selectedOperations = Array.from(this.selectedMainOperation)
 		const SelectedPermissions = Array.from(this.SelectedPermissions)
+		this.btnLoading = true;
 
 		if (selectedOperations.length < 1 || SelectedPermissions.length < 1) {
 			this._toastrService.error('Select Permissions first')
@@ -264,7 +268,9 @@ export class EditComponent implements AfterViewInit {
 		const controls = this.form.controls;
 		/** showing Errors  */
 		if (this.form.invalid) {
-			return this.formErrorService.markAsTouched(controls);
+			this.formErrorService.markAsTouched(controls);
+			this.btnLoading = false;
+			return
 		}
 
 		let rolesModel = {
@@ -279,11 +285,14 @@ export class EditComponent implements AfterViewInit {
 		this.service.update(this.role_ID, rolesModel).subscribe(resp => {
 			// this.clearForm();
 			this._toastrService.success(resp.message || 'Updated Successfuly')
+			this.btnLoading = false;
+			this._location.back();
 			// this.router.navigate(['../'], { relativeTo: this.route }).then();
 		}, handler => {
 			this._toastrService.error(handler.errors.message || 'Updated Successfuly')
 			this.isLoadingResults = false;
 			this.isValidationError = true;
+			this.btnLoading = false;
 		});
 	}
 

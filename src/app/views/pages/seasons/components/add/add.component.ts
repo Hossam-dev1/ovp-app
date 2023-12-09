@@ -11,12 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 	addForm: FormGroup;
 	clearValue: boolean
 	isLoading: boolean = false;
@@ -28,6 +30,7 @@ export class AddComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private route: ActivatedRoute,
 		private _langService: LangService,
 		private _companyService: CompanyService,
@@ -225,6 +228,7 @@ export class AddComponent {
 	}
 	submit() {
 		console.log(this.addForm.value);
+		this.btnLoading = true;
 
 		// let formData = this.addForm.value;
 		// formData['series_genres'] = [this.addForm.value['series_genres']]
@@ -232,6 +236,7 @@ export class AddComponent {
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seasonsService.add(this.addForm.value).subscribe((resp) => {
@@ -239,10 +244,13 @@ export class AddComponent {
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.markForCheck();

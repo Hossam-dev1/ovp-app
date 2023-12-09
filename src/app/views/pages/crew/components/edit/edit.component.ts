@@ -6,13 +6,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+	btnLoading: boolean = false;
 
 
 	// Data State
@@ -31,6 +32,7 @@ export class EditComponent implements OnInit {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _crewService: CrewService,
 		private _langService: LangService,
 		private _crewTypeService: CrewTypeService,
@@ -149,14 +151,16 @@ export class EditComponent implements OnInit {
 
 	addCustomLink = (term) => (term);
 
-	formattedDate(dateParam:string) {
+	formattedDate(dateParam: string) {
 		const date = new Date(dateParam);
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = this.editForm.value;
@@ -169,10 +173,14 @@ export class EditComponent implements OnInit {
 		console.log(this.editForm.value);
 		this._crewService.edit(this.crew_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
+
 				this.cdr.detectChanges();
 			})
 	}

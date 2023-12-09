@@ -10,13 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	selectedValues: number[] = [2, 4, 6];
 
 	isLoading: boolean = false;
@@ -31,6 +32,7 @@ export class EditComponent {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _episdosService: EpisdosService,
 		private _crewService: CrewService,
@@ -216,9 +218,9 @@ export class EditComponent {
 
 	crewForm(crewID?: number, crewTypeID?: number, index?: number) {
 		return this.fb.group({
-			crew_id: new FormControl(crewID || '', [Validators.required]),
-			crew_type_id: new FormControl(crewTypeID || '', [Validators.required]),
-			order: new FormControl(index || '', [Validators.required]),
+			crew_id: new FormControl(crewID || ''),
+			crew_type_id: new FormControl(crewTypeID || ''),
+			order: new FormControl(index || ''),
 		})
 	}
 
@@ -301,13 +303,14 @@ export class EditComponent {
 		formData['publish_date'] = this.formatteDateWithTime(this.editForm.value['publish_date'])
 		formData['publish_end_date'] ? formData['publish_end_date'] = this.formattedDate(this.editForm.value['publish_end_date']) : delete formData['publish_end_date'];
 
-		if (this.editForm.invalid) {
-			this.editForm.markAllAsTouched();
+		this.btnLoading = true;
+		if (this.editForm.invalid) {			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
 			// return
 		}
 		this._episdosService.edit(this.episodes_ID, this.editForm.value).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {

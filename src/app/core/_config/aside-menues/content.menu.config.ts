@@ -54,6 +54,11 @@ export class ContentMenuConfig {
 				"page": '/cms/categories'
 			},
 			{
+				"title": "Collections",
+				"translate": "MENUS.SETTINGS.MENU.COLLECTIONS.TITLE",
+				"page": '/cms/collections'
+			},
+			{
 				"title": "Content Tags",
 				"translate": "MENUS.CONTENT.MENU.TAGS.TITLE",
 				"page": '/cms/tags'

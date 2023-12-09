@@ -10,12 +10,14 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ToastrService } from 'ngx-toastr';
 import { GenreService } from './../../../../../core/services/Genre-Module/genre.service';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements AfterViewInit{
+export class AddComponent implements AfterViewInit {
+	btnLoading: boolean = false;
 	isLoading: boolean = false;
 	// isStarChecked: boolean = false;
 	isStatusChecked: boolean = false;
@@ -24,6 +26,7 @@ export class AddComponent implements AfterViewInit{
 	lang: string = 'en'
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _langService: LangService,
 		private _seriesService: SeriesService,
 		private _genresService: GenreService,
@@ -212,6 +215,7 @@ export class AddComponent implements AfterViewInit{
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
+		this.btnLoading = true;
 		this.patchContentTypeID()
 		let formData = this.addForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
@@ -220,6 +224,7 @@ export class AddComponent implements AfterViewInit{
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seriesService.add(this.addForm.value).subscribe((resp) => {
@@ -227,10 +232,12 @@ export class AddComponent implements AfterViewInit{
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + 'successfully');
+			this.btnLoading = false;
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.markForCheck();

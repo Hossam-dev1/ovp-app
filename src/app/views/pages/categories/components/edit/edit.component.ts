@@ -4,13 +4,14 @@ import { CategoriesService } from './../../../../../core/services/Clips-Module/c
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	editForm: FormGroup;
 	isLoadingResults: boolean
 	isMainCategory: boolean = true
@@ -28,6 +29,7 @@ export class EditComponent {
 	parentList: any[] = []
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _categoriesService: CategoriesService,
 		private toastr: ToastrService,
 		private cdr: ChangeDetectorRef,
@@ -108,8 +110,10 @@ export class EditComponent {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		this.isMainCategory ? this.editForm.removeControl('parent_id') : false
@@ -118,9 +122,12 @@ export class EditComponent {
 
 		this._categoriesService.edit(this.category_ID, this.editForm.value).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				const errorControll = Object.keys(error.error.errors).toString();
 				this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

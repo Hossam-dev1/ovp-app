@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-md-6">
 					<label>Device Type *</label>
-					<ng-select formControlName="device_type_id" [loading]="!deviceTypesList.length">
+					<ng-select formControlName="device_type_id" [multiple]="true" [loading]="!deviceTypesList.length">
 						<ng-option *ngFor="let item of deviceTypesList"
 							[value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>
@@ -67,7 +67,7 @@
 						<div class="col-md-6">
 							<label>Content *</label>
 							<ng-select formControlName="content_id" [items]="contentList[i]" bindLabel="name.en"
-								bindValue="id" (change)="detectContentList($event)">
+								bindValue="id">
 							</ng-select>
 						</div>
 						<div class="col-md-1 remove_box p-0">
@@ -79,8 +79,14 @@
 				</div>
 			</div>
 
-			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
-					(click)="submit()">Update</button>
+			<div class="btn float-right">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button" mat-raised-button color="primary"
+					[disabled]="btnLoading" (click)="submit()">
+					<span *ngIf="!btnLoading">Update</span>
+					<span *ngIf="btnLoading">
+						<mat-spinner diameter="20"></mat-spinner>
+					</span>
+				</button>
 			</div>
 		</form>
 	</div>

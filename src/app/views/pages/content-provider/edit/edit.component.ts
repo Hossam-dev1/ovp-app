@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 
 	// Data State
 	editForm: UntypedFormGroup;
@@ -20,6 +21,7 @@ export class EditComponent {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _contentProviderService: ContentProviderService,
 		private toastr: ToastrService,
 		private cdr: ChangeDetectorRef,
@@ -90,8 +92,9 @@ export class EditComponent {
 	}
 
 	submit() {
-		if (this.editForm.invalid) {
-			this.editForm.markAllAsTouched();
+		this.btnLoading = true;
+		if (this.editForm.invalid) {			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		const formData = {

@@ -5,12 +5,14 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+	btnLoading: boolean = false;
 
 	addForm: FormGroup;
 	isLoadingResults: boolean
@@ -21,6 +23,7 @@ export class AddComponent {
 	};
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _adminsService: AdminsService,
 		private _rolesService: RolesService,
 		private toastr: ToastrService,
@@ -53,16 +56,20 @@ export class AddComponent {
 	}
 
 	submit() {
+		this.btnLoading = true;
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 		this._adminsService.create(this.addForm.value).subscribe((resp: any) => {
 			this.addForm.reset()
 			this.toastr.success(resp.message || 'Added' + ' successfully');
+			this.btnLoading = false;
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				const errorControll = Object.keys(error.error.errors).toString();
 				this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

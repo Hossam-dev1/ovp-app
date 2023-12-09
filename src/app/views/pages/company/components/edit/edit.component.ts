@@ -4,13 +4,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+	btnLoading: boolean = false;
 	// Data State
 	companyTypesList: any[] = []
 	nationalitiesList: any[] = []
@@ -23,6 +24,7 @@ export class EditComponent {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private _location:Location,
 		private _companyService: CompanyService,
 		private _companyTypeService: CompanyTypeService,
 		private toastr: ToastrService,
@@ -102,8 +104,10 @@ export class EditComponent {
 
 	submit() {
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
+			this.btnLoading = false;
 			return
 		}
 
@@ -111,10 +115,12 @@ export class EditComponent {
 			// this.editForm.reset()
 			this.clearImgSrc = true
 			this.toastr.success(resp.message + 'successfully');
+			this.btnLoading = false;
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				const errorControll = Object.keys(error.error.errors).toString();
 				this.getEditForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

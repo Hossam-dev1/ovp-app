@@ -7,12 +7,14 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
+import { Location } from '@angular/common';
 @Component({
 	selector: 'kt-add',
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
+	btnLoading: boolean = false;
 
 	// Data State
 	clipsOptions = ['clips', 'plays', 'movies'];
@@ -35,6 +37,7 @@ export class AddComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _collectionService: CollectionService,
 		private _langService: LangService,
 		private _helperService: HelperService,
@@ -159,23 +162,29 @@ export class AddComponent implements OnInit {
 	}
 
 	submit() {
+		console.log(this.getAddForm);
+
 		const formData = this.addForm.value;
 		delete formData['contentListControl']
-		console.log('formData', formData);
+		this.btnLoading = true;
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check all required fields');
+			this.btnLoading = false;
 			return
 		}
 
 		this._collectionService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

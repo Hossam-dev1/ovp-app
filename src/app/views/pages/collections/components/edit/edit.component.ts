@@ -2,22 +2,20 @@ import { BehaviorSubject } from 'rxjs';
 import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { ClipsService } from './../../../../../core/services/Clips-Module/clips.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CollectionService } from './../../../../../core/services/Collection-Module/collection.service';
+import { Location } from '@angular/common'; import { CollectionService } from './../../../../../core/services/Collection-Module/collection.service';
 import { ActivatedRoute } from '@angular/router';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { LangService } from './../../../../../core/services/lang.service';
-import { CrewTypeService } from './../../../../../core/services/Crew-Module/crew-type.service';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
 	selector: 'kt-edit',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-
+	btnLoading: boolean = false;
 	// Data State
 	clipsOptions = ['clips', 'plays', 'movies'];
 	seriesOptions = ['series', 'shows'];
@@ -44,6 +42,7 @@ export class EditComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
+		private _location: Location,
 		private _collectionService: CollectionService,
 		private _langService: LangService,
 		private _helperService: HelperService,
@@ -129,7 +128,7 @@ export class EditComponent implements OnInit {
 	private initForm() {
 		this.editForm = this.fb.group({
 			sorting_order: new FormControl('', [Validators.required]),
-			device_type_id: new FormControl('', [Validators.required]),
+			device_type_id: new FormControl([], [Validators.required]),
 			display_type_id: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),
@@ -215,14 +214,6 @@ export class EditComponent implements OnInit {
 		})
 	}
 
-	detectContentList(contentList) {
-		// const contentTypeArr = this.editForm.get('contents') as FormArray;
-		// contentTypeArr.clear()
-		// for (let i = 0; i < contentList.length; i++) {
-		// 	contentTypeArr.push(this.patchContentGroup(contentList[i]?.id || contentList[i], this.selectedContentTypeID))
-		// }
-
-	}
 
 	submit() {
 		const formData = this.editForm.value;
@@ -231,9 +222,11 @@ export class EditComponent implements OnInit {
 
 		console.log('formData', formData);
 
+		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
-			this.toastr.error('Check all required fields');
+			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 
@@ -241,10 +234,13 @@ export class EditComponent implements OnInit {
 		this._collectionService.edit(this.collection_ID, formData).subscribe((resp) => {
 			// this.editForm.reset()
 			this.toastr.success(resp.message + ' successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.detectChanges();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.detectChanges();

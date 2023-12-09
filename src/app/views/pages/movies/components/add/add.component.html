@@ -26,18 +26,18 @@
 			<!--  description -->
 			<div class="row" formGroupName="description">
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (En)'"
-						[form_control_name]="'en'"></kt-form-input>
+					<kt-form-textarea [form_group]="'description'" [form]="addForm" [label]="'Description (En)'"
+						[form_control_name]="'en'"></kt-form-textarea>
 				</div>
 				<div class="col-md-6">
-					<kt-form-input [form_group]="'description'" [form]="addForm" [label]="'Description (Ar)'"
-						[form_control_name]="'ar'"></kt-form-input>
+					<kt-form-textarea [form_group]="'description'" [form]="addForm" [label]="'Description (Ar)'"
+						[form_control_name]="'ar'"></kt-form-textarea>
 				</div>
 			</div>
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input  [form]="addForm" [label]="'Clip Duration'"
+					<kt-form-input [form]="addForm" [label]="'Clip Duration'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
@@ -132,7 +132,7 @@
 					<div class="col-md-6" formArrayName="clip_crews" *ngFor="let item of getCrews.controls; index as i">
 						<div class="row py-3" [formGroupName]="i">
 							<div class="col-md-8">
-								<label>Crews *  ({{i+1}})</label>
+								<label>Crews * ({{i+1}})</label>
 								<ng-select formControlName="crew_id" [loading]="!crewList.length">
 									<ng-option *ngFor="let item of crewList"
 										[value]="item.id">{{toLang(item.name)}}</ng-option>
@@ -170,8 +170,14 @@
 
 			</ng-container>
 
-			<div class="btn float-right"> <button type="button" mat-raised-button color="primary"
-					(click)="submit()">Add</button>
+			<div class="btn float-right">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button" mat-raised-button color="primary"
+					[disabled]="btnLoading" (click)="submit()">
+					<span *ngIf="!btnLoading">Add</span>
+					<span *ngIf="btnLoading">
+						<mat-spinner diameter="20"></mat-spinner>
+					</span>
+				</button>
 			</div>
 		</form>
 	</div>

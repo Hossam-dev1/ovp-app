@@ -62,7 +62,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         FormUploadImageComponent,
         FormStatusComponent,
         FormDatePickerComponent,
-        FormYearDatePickerComponent
+        FormYearDatePickerComponent,
     ],
     imports: [
         CommonModule,

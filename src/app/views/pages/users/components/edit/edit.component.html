@@ -38,7 +38,14 @@
 				</div>
 			</div>
 
-			<div class="btn float-right"> <button mat-raised-button color="primary" (click)="submit()">Update</button>
+			<div class="btn float-right">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button"
+					mat-raised-button color="primary" [disabled]="btnLoading" (click)="submit()">
+					<span *ngIf="!btnLoading">Update</span>
+					<span *ngIf="btnLoading">
+						<mat-spinner diameter="20"></mat-spinner>
+					</span>
+				</button>
 			</div>
 		</form>
 	</div>
