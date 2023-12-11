@@ -21,6 +21,7 @@ export class FormInputComponent implements OnInit {
 	@Input() disabled: boolean = false;
 	@Input() optional: boolean = false;
 	@Input() type: string = "text";
+	@Input() mask: string;
 	lang;
 
 	constructor() {

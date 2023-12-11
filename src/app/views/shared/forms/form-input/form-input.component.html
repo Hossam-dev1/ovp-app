@@ -29,7 +29,7 @@
 			<mat-form-field class="w-100">
 				<mat-label>{{label}}</mat-label>
 				<label class="w-100">
-					<input matInput [value]="value" [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
+					<input matInput [mask]="mask" [value]="value" [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
 						placeholder="{{label}}">
 				</label>
 			</mat-form-field>
@@ -45,7 +45,7 @@
 			<mat-form-field class="w-100">
 				<mat-label>{{label}}</mat-label>
 				<label class="w-100">
-					<input matInput  [value]="value"  [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
+					<input matInput [mask]="mask" [value]="value"  [type]="type" [min]="0.1" formControlName="{{form_control_name}}"
 						placeholder="{{label}}">
 				</label>
 			</mat-form-field>

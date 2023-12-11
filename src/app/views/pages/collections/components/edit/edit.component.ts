@@ -104,7 +104,7 @@ export class EditComponent implements OnInit {
 				ar: this.collection_object["name"]["ar"]
 			},
 			sorting_order: this.collection_object["sorting_order"],
-			device_type_id: this.collection_object["device_type"]['id'],
+			device_types: this.collection_object["device_types"].map((device)=> device.id),
 			display_type_id: this.collection_object?.display_type?.id,
 		});
 	}
@@ -128,7 +128,7 @@ export class EditComponent implements OnInit {
 	private initForm() {
 		this.editForm = this.fb.group({
 			sorting_order: new FormControl('', [Validators.required]),
-			device_type_id: new FormControl([], [Validators.required]),
+			device_types: new FormControl([], [Validators.required]),
 			display_type_id: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),

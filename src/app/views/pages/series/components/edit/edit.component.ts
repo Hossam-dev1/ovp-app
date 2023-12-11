@@ -286,6 +286,7 @@ export class EditComponent implements AfterViewInit {
 		let formData = this.editForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['series_genres'] = this.editForm.value['series_genres']
+		formData['series_status'] = Number(this.geteditForm['series_status'].value);
 		delete formData['genre_ids']
 
 		this.btnLoading = true;

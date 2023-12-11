@@ -48,21 +48,22 @@ export class EditComponent {
 	ratingList: any[] = [
 		{
 			key: '+13',
-			value: 13
+			value: '13'
 		},
 		{
 			key: '+15',
-			value: 15
+			value: '15'
 		},
 		{
 			key: '+18',
-			value: 18
+			value: '18'
 		},
 		{
 			key: "All Ages",
-			value: 0
+			value: '0'
 		},
 	]
+
 	contentTypeList: any[] = []
 	dimentionList: any[] = []
 	providerList: any[] = []
@@ -143,7 +144,7 @@ export class EditComponent {
 				en: this.clip_object["name"]["en"],
 				ar: this.clip_object["name"]["ar"]
 			},
-			clip_duration: this.clip_object['clip_duration'],
+			clip_duration: this.durationToTime(this.clip_object['clip_duration']),
 			clip_status: this.clip_object['clip_status'],
 			is_featured: this.clip_object['is_featured'] || false,
 			clip_year: this.clip_object['clip_year'],
@@ -359,7 +360,22 @@ export class EditComponent {
 		const date = new Date(dateParam);
 		return date?.toISOString().slice(0, 10);
 	}
+	durationFormat(timeValue:string) {
+		const hours = parseInt(timeValue.substring(0, 2));
+		const minutes = parseInt(timeValue.substring(2, 4));
+		const seconds = parseInt(timeValue.substring(4, 6));
+		return (hours * 3600) + (minutes * 60) + seconds;
+	}
+	durationToTime(timeValue: number) {
+		const hours = Math.floor(timeValue / 3600);
+		const minutes = Math.floor((timeValue % 3600) / 60);
+		const seconds = Math.floor(timeValue % 60);
+		const timeFormat = `${String(hours).padStart(2, '0')}${String(minutes).padStart(2, '0')}${String(seconds).padStart(2, '0')}`;
+		return timeFormat
+	}
 	submit() {
+		console.log(this.getEditForm);
+
 		this.btnLoading = true;
 		const contentImg = this.getEditForm['content_images'].value;
 		const isContentImgNull = contentImg.some(obj => obj.img == '');
@@ -375,7 +391,10 @@ export class EditComponent {
 		const formData = this.editForm.value
 		// Remove null values from the formControls array
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
-		formData['clip_status'] = Number(this.getEditForm['clip_status'].value)
+		formData['clip_status'] = Number(this.getEditForm['clip_status'].value);
+		delete formData['genre_ids'];
+		delete formData['company_ids'];
+		formData['clip_duration'] = this.durationFormat(this.getEditForm['clip_duration']?.value.toString())
 		formData['clip_watch_rating'] = (this.getEditForm['clip_watch_rating'].value).toString()
 		formData['clip_puplish_date'] = this.formattedDate(this.getEditForm['clip_puplish_date'].value)
 		formData['clip_puplish_end_date'] = this.formattedDate(this.getEditForm['clip_puplish_end_date'].value || null)

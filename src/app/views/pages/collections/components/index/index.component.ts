@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
 	};
 	isLoadingResults: boolean = true;
 	collectionsData: Observable<any[]>;
-	displayedColumns: string[] = ['name', 'sorting_order', 'device_type', 'display_type', 'options'];
+	displayedColumns: string[] = ['name', 'sorting_order', 'device_types', 'display_type', 'options'];
 
 	constructor(
 		private _collectionsData: CollectionService,

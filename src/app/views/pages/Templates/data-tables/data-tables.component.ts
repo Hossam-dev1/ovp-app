@@ -1,3 +1,4 @@
+import { CollectionService } from './../../../../core/services/Collection-Module/collection.service';
 import { TagService } from './../../../../core/services/Clips-Module/tags.service';
 import { CategoriesService } from './../../../../core/services/Clips-Module/categories.service';
 import { RolesService } from './../../../../core/services/ACL-Module/roles.service';
@@ -63,7 +64,7 @@ export class DataTablesComponent implements OnInit, OnChanges {
 	tableHeaders: string[] = [];
 	displayedColumns: any
 	isLoading = true;
-	isInActiveList:boolean = false;
+	isInActiveList: boolean = false;
 	lang: string = 'en';
 
 	//filter variables
@@ -95,7 +96,8 @@ export class DataTablesComponent implements OnInit, OnChanges {
 		private _companyService: CompanyService,
 		private _adminsService: AdminsService,
 		private _rolesService: RolesService,
-		private _categoriesService:CategoriesService,
+		private _categoriesService: CategoriesService,
+		private _collectionsService: CollectionService,
 		private _toaster: ToastrService,
 		public dialog: MatDialog,
 		private translate: TranslateService

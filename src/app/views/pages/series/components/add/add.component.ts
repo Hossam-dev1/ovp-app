@@ -220,6 +220,7 @@ export class AddComponent implements AfterViewInit {
 		let formData = this.addForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['series_genres'] = this.addForm.value['series_genres']
+		formData['series_status'] = Number(this.getAddForm['series_status'].value);
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
@@ -233,6 +234,7 @@ export class AddComponent implements AfterViewInit {
 			this.clearValue = true
 			this.toastr.success(resp.message + 'successfully');
 			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {

@@ -3,13 +3,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { GestureConfig } from '@angular/material/co';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormGroupDirective } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+export const options: Partial<IConfig> = {
+	thousandSeparator: "'"
+};
 
 // Angular in memory
 // Perfect Scroll bar
@@ -45,7 +49,7 @@ import {
 import { AuthModule } from './views/pages/auth/auth.module';
 import { AuthService } from './core/services/auth.service';
 // CRUD
-import {HttpUtilsService, LayoutUtilsService, TypesUtilsService} from './core/_base/crud';
+import { HttpUtilsService, LayoutUtilsService, TypesUtilsService } from './core/_base/crud';
 // Config
 import { LayoutConfig } from './core/_config/layout.config';
 // Highlight JS
@@ -54,9 +58,9 @@ import * as typescript from 'highlight.js/lib/languages/typescript';
 import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
-import {Interceptor} from './interceptor';
-import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
-import {DatePipe} from '@angular/common';
+import { Interceptor } from './interceptor';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { DatePipe } from '@angular/common';
 import { SharedModule } from './views/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -79,10 +83,10 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
 
 export function hljsLanguages(): HighlightLanguage[] {
 	return [
-		{name: 'typescript', func: typescript},
-		{name: 'scss', func: scss},
-		{name: 'xml', func: xml},
-		{name: 'json', func: json}
+		{ name: 'typescript', func: typescript },
+		{ name: 'scss', func: scss },
+		{ name: 'xml', func: xml },
+		{ name: 'json', func: json }
 	];
 }
 
@@ -100,6 +104,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot(),
+		NgxMaskModule.forRoot(options),
 		ThemeModule,
 		NgxMatSelectSearchModule,
 		SharedModule,
@@ -138,7 +143,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		},
 		{
 			provide: HIGHLIGHT_OPTIONS,
-			useValue: {languages: hljsLanguages}
+			useValue: { languages: hljsLanguages }
 		},
 		// template services
 		SubheaderService,

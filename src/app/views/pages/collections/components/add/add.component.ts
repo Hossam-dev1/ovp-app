@@ -74,7 +74,7 @@ export class AddComponent implements OnInit {
 			sorting_order: new FormControl(null, [
 				Validators.required,
 				Validators.pattern('^-?[0-9]\\d*(\\.\\d+)?$')]),
-			device_type_id: new FormControl('', [Validators.required]),
+			device_types: new FormControl('', [Validators.required]),
 			display_type_id: new FormControl('', [Validators.required]),
 			name: this.fb.group({
 				en: new FormControl('', [Validators.required]),

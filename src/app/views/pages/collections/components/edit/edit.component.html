@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-md-6">
 					<label>Device Type *</label>
-					<ng-select formControlName="device_type_id" [multiple]="true" [loading]="!deviceTypesList.length">
+					<ng-select formControlName="device_types" [multiple]="true" [loading]="!deviceTypesList.length">
 						<ng-option *ngFor="let item of deviceTypesList"
 							[value]="item.id">{{toLang(item.name)}}</ng-option>
 					</ng-select>

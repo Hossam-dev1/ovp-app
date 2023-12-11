@@ -45,7 +45,10 @@ import { FormDatePickerComponent } from './forms/form-date-picker/form-date-pick
 import { FormYearDatePickerComponent } from './forms/form-year-date-picker/form-year-date-picker.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+export const options: Partial<IConfig> = {
+	thousandSeparator: "'"
+};
 
 @NgModule({
     declarations: [
@@ -73,6 +76,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         MatRadioModule,
         MatInputModule,
         MatProgressSpinnerModule,
+		NgxMaskModule.forRoot(),
         TranslateModule,
         MatDialogModule,
         ReactiveFormsModule,
@@ -114,8 +118,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
         FormDatePickerComponent,
 		FormYearDatePickerComponent,
 		FormStatusComponent,
-		MatGridListModule
-
+		MatGridListModule,
+		NgxMaskModule,
     ]
 })
 export class SharedModule {

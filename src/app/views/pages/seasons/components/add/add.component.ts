@@ -56,21 +56,22 @@ export class AddComponent {
 	ratingList: any[] = [
 		{
 			key: '+13',
-			value: 13
+			value: '13'
 		},
 		{
 			key: '+15',
-			value: 15
+			value: '15'
 		},
 		{
 			key: '+18',
-			value: 18
+			value: '18'
 		},
 		{
 			key: "All Ages",
-			value: 0
+			value: '0'
 		},
 	]
+
 	contentTypeID: number = null;
 
 	isLoadingResults: boolean;

@@ -37,7 +37,7 @@
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input  [form]="addForm" [label]="'Clip Duration'"
+					<kt-form-input  [mask]="'00:00:00'" [type]="'text'" [form]="addForm" [label]="'Clip Duration'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-6">

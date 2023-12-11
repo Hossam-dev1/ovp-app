@@ -284,21 +284,26 @@ export class EditComponent {
 		let formData = this.editForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['series_genres'] = this.editForm.value['series_genres']
+		formData['series_status'] = Number(this.geteditForm['series_status'].value);
+
 		delete formData['genre_ids']
 
 		this.btnLoading = true;
 		if (this.editForm.invalid) {
 			this.editForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seriesService.edit(this.series_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
 			this._location.back();
+			this.btnLoading = false;
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				this.cdr.markForCheck();
 			})
 	}

@@ -51,21 +51,22 @@ export class AddComponent {
 	ratingList: any[] = [
 		{
 			key: '+13',
-			value: 13
+			value: '13'
 		},
 		{
 			key: '+15',
-			value: 15
+			value: '15'
 		},
 		{
 			key: '+18',
-			value: 18
+			value: '18'
 		},
 		{
 			key: "All Ages",
-			value: 0
+			value: '0'
 		},
 	]
+
 	// Data State
 	contentTypeList: any[] = []
 	dimentionList: any[] = []
@@ -290,6 +291,12 @@ export class AddComponent {
 			clip_genres.push(this.genreFormGroup(param[i], i + 1))
 		}
 	}
+	durationFormat(timeValue: string) {
+		const hours = parseInt(timeValue.substring(0, 2));
+		const minutes = parseInt(timeValue.substring(2, 4));
+		const seconds = parseInt(timeValue.substring(4, 6));
+		return (hours * 3600) + (minutes * 60) + seconds;
+	}
 	submit() {
 		console.log(this.addForm.value);
 		this.btnLoading = true;
@@ -302,9 +309,10 @@ export class AddComponent {
 		const formData = this.addForm.value
 		// Remove null values from the formControls array
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
-		formData['clip_status'] = Number(this.addForm['clip_status'].value)
-		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date'].value)
-		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date'].value || null)
+		formData['clip_status'] = Number(this.getAddForm['clip_status']?.value)
+		formData['clip_duration'] = this.durationFormat(this.getAddForm['clip_duration']?.value.toString())
+		formData['clip_puplish_date'] = this.formattedDate(this.getAddForm['clip_puplish_date']?.value)
+		formData['clip_puplish_end_date'] = this.formattedDate(this.getAddForm['clip_puplish_end_date']?.value || null)
 
 		this._clipsService.add(formData).subscribe((resp) => {
 			this.addForm.reset()

@@ -215,14 +215,17 @@ export class AddComponent {
 		return date.toISOString().slice(0, 10);
 	}
 	submit() {
+		this.btnLoading = true;
 		this.patchContentTypeID()
 		let formData = this.addForm.value;
 		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
 		formData['series_genres'] = this.addForm.value['series_genres']
+		formData['series_status'] = Number(this.getAddForm['series_status'].value);
 
 		if (this.addForm.invalid) {
 			this.addForm.markAllAsTouched();
 			this.toastr.error('Check required fields');
+			this.btnLoading = false;
 			return
 		}
 		this._seriesService.add(this.addForm.value).subscribe((resp) => {
@@ -230,10 +233,13 @@ export class AddComponent {
 			this.clearImgSrc = true
 			this.clearValue = true
 			this.toastr.success(resp.message + 'successfully');
+			this.btnLoading = false;
+			this._location.back();
 			this.cdr.markForCheck();
 		},
 			(error) => {
 				this.toastr.error(error.error.message);
+				this.btnLoading = false;
 				// const errorControll = Object.keys(error.error.errors).toString();
 				// this.getAddForm[errorControll].setErrors({ 'invalid': true })
 				this.cdr.markForCheck();

@@ -37,7 +37,7 @@
 			<!-- clip_duration && rating && Status -->
 			<div class="row">
 				<div class="col-md-6">
-					<kt-form-input [type]="'text'" [form]="editForm" [label]="'clip_duration (min)'"
+					<kt-form-input [mask]="'00:00:00'" [type]="'text'" [form]="editForm" [label]="'Clip Duration'"
 						[form_control_name]="'clip_duration'"></kt-form-input>
 				</div>
 				<div class="col-md-6">
@@ -139,8 +139,8 @@
 							<div class="col-md-8">
 								<label>Crews * ({{i+1}})</label>
 								<ng-select formControlName="crew_id" [loading]="!crewList.length">
-									<ng-option *ngFor="let item of crewList"
-										[value]="item.id">{{toLang(item.name, i)}}</ng-option>
+									<ng-option *ngFor="let item of crewList" [value]="item.id">{{toLang(item.name,
+										i)}}</ng-option>
 								</ng-select>
 							</div>
 							<div class="col-md-2 px-3">
@@ -176,8 +176,8 @@
 			</ng-container>
 
 			<div class="btn float-right">
-				<button class="action-btn d-flex justify-content-center align-items-center" type="button" mat-raised-button color="primary"
-					[disabled]="btnLoading" (click)="submit()">
+				<button class="action-btn d-flex justify-content-center align-items-center" type="button"
+					mat-raised-button color="primary" [disabled]="btnLoading" (click)="submit()">
 					<span *ngIf="!btnLoading">Update</span>
 					<span *ngIf="btnLoading">
 						<mat-spinner diameter="20"></mat-spinner>
