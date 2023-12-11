@@ -125,6 +125,7 @@ export class EditComponent {
 			is_exclusive: this.series_object['is_exclusive'],
 			is_new: this.series_object['is_new'],
 			is_featured: this.series_object['is_featured'],
+			categories: this.series_object['categories'].map((category) => category.id),
 			//content_provider_id: this.series_object['content_provider_id'],
 
 			content_images: this.series_object['content_images'],
