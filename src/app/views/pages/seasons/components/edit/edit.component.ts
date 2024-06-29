@@ -1,7 +1,7 @@
 import { CompanyService } from './../../../../../core/services/Clips-Module/company.service';
 import { SeasonsService } from './../../../../../core/services/Series-Module/seasons.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Location } from '@angular/common';import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
+import { Location } from '@angular/common'; import { SeriesService } from './../../../../../core/services/Series-Module/series.service';
 import { TagService } from './../../../../../core/services/Clips-Module/tags.service';
 import { HelperService } from './../../../../../core/services/helper.service';
 import { ContentProviderService } from './../../../../../core/services/Clips-Module/content-provider.service';
@@ -270,7 +270,11 @@ export class EditComponent {
 			this.btnLoading = false;
 			return
 		}
-		this._seasonsService.edit(this.seasons_ID, this.editForm.value).subscribe((resp) => {
+		const formData = this.editForm.value
+		// Remove null values from the formControls array
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
+
+		this._seasonsService.edit(this.seasons_ID, formData).subscribe((resp) => {
 			this.toastr.success(resp.message + ' successfully');
 			this.btnLoading = false;
 			this._location.back();

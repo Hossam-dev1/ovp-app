@@ -141,7 +141,7 @@ export class AddComponent {
 			companies: new FormControl([], [Validators.required]),
 
 			tags: new FormControl([], [Validators.required]),
-			categories: new FormControl([], [Validators.required]),
+			// categories: new FormControl([], [Validators.required]),
 		})
 	}
 
@@ -240,7 +240,11 @@ export class AddComponent {
 			this.btnLoading = false;
 			return
 		}
-		this._seasonsService.add(this.addForm.value).subscribe((resp) => {
+		const formData = this.addForm.value
+		// Remove null values from the formControls array
+		formData['content_images'] = this.getContentImgs.value.filter((item: any) => item.img)
+
+		this._seasonsService.add(formData).subscribe((resp) => {
 			this.addForm.reset()
 			this.clearImgSrc = true
 			this.clearValue = true
